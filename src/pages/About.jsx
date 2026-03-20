@@ -1,35 +1,76 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useRef, useCallback } from 'react'
+import avatar from '../assets/avatar.jpg'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styles from './About.module.css'
 
 const SKILLS = [
-  { cat: 'Design', items: ['Product Design', 'UX Research', 'Interaction Design', 'Design Systems', 'Prototyping', 'Wireframing'] },
-  { cat: 'Tools', items: ['Figma', 'Protopie', 'Framer', 'Miro', 'Notion', 'Jira'] },
-  { cat: 'Methods', items: ['User Interviews', 'A/B Testing', 'Usability Testing', 'Card Sorting', 'Journey Mapping', 'Design Sprints'] },
+  { cat: 'Design', items: ['Product Design', 'UX Research', 'Interaction Design', 'Design Systems', 'Prototyping', 'HUman-AI Interaction'] },
+  { cat: 'Tools', items: ['Figma', 'Framer', 'Miro', 'Notion', 'Jira', 'Cursor', 'Claude Code', 'Visual Studio Code'] },
+  { cat: 'Methods', items: ['User Interviews', 'A/B Testing', 'Usability Testing', 'Card Sorting', 'Journey Mapping', 'Design Sprints', 'Prompt Engineering'] },
 ]
 
 const EXPERIENCE = [
   {
-    role: 'Senior Product Designer',
-    company: 'TechScale Ventures',
-    period: '2023 — Present',
-    desc: 'Leading end-to-end design for B2B SaaS products. Collaborated with cross-functional teams to ship 5+ major product features, improving user retention by 34%.',
+    role: 'Product Designer',
+    company: 'FeedMe',
+    period: '2025 — Present',
+    desc: 'Leading the revamp of the core POS product.',
+  },
+  {
+    role: 'AI Product Designer',
+    company: 'Pantas',
+    period: '2024 - 2025',
+    desc: 'Redesigned 4 core product areas — organisation management, biodiversity tracking, financed emissions, and a design system, cutting client onboarding time by 6–7 hours and boosting team productivity by 40%.',
   },
   {
     role: 'Product Designer',
-    company: 'DigitalCraft Studio',
+    company: 'Asia Pacific University',
     period: '2022 — 2023',
-    desc: 'Designed and delivered mobile & web experiences for clients across fintech, edtech, and healthcare. Built and maintained a multi-brand design system.',
+    desc: 'Led end-to-end design across 3 projects — an admin system revamp, a Thesis Management System, and an e-orientation website, driving a 40% increase in user satisfaction and a 4/5 overall rating.',
   },
   {
-    role: 'UI/UX Designer',
-    company: 'Nexus Digital Agency',
-    period: '2021 — 2022',
-    desc: 'Crafted user interfaces for e-commerce, recruitment, and wellness platforms. Conducted user research and usability testing sessions.',
+    role: 'UI/UX Intern',
+    company: 'Hiredly',
+    period: '2022',
+    desc: 'Revamped job seeker and employer dashboards through research-led design — including personas, user flows, and wireframes, resulting in a 30% increase in user satisfaction.',
   },
 ]
+
+function TiltCard({ className, children }) {
+  const ref = useRef(null)
+  const frameRef = useRef(null)
+
+  const onMouseMove = useCallback((e) => {
+    if (frameRef.current) cancelAnimationFrame(frameRef.current)
+    frameRef.current = requestAnimationFrame(() => {
+      const el = ref.current
+      if (!el) return
+      const { left, top, width, height } = el.getBoundingClientRect()
+      const x = (e.clientX - left) / width - 0.5
+      const y = (e.clientY - top) / height - 0.5
+      el.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale3d(1.02,1.02,1.02)`
+    })
+  }, [])
+
+  const onMouseLeave = useCallback(() => {
+    if (frameRef.current) cancelAnimationFrame(frameRef.current)
+    const el = ref.current
+    if (el) el.style.transform = ''
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={{ transition: 'transform 0.15s ease', willChange: 'transform' }}
+    >
+      {children}
+    </div>
+  )
+}
 
 export default function About() {
   useEffect(() => {
@@ -65,7 +106,7 @@ export default function About() {
       <section className={styles.bio}>
         <div className={`container ${styles.bioInner}`}>
           <div className={styles.bioText}>
-            <h2 className={styles.bioTitle}>A little about me</h2>
+            <h2 className={styles.bioTitle}>Designing with empathy, building with intent</h2>
             <p className={styles.bioPara}>
               With close to 4 years in product design, I've had the privilege of
               working across industries — from fintech and HR tech to blockchain
@@ -82,7 +123,7 @@ export default function About() {
             <p className={styles.bioPara}>
               Outside of work, you'll find me exploring local art galleries,
               experimenting with generative design tools, or hunting for the best
-              kopi in KL.
+              cafe spots in KL.
             </p>
             <div className={styles.bioActions}>
               <a href="mailto:cheryl.wylim@outlook.com" className="btn-primary">
@@ -97,10 +138,10 @@ export default function About() {
             </div>
           </div>
 
-          <div className={styles.bioCard}>
+          <TiltCard className={styles.bioCard}>
             <div className={styles.bioAvatar}>
               <div className={styles.bioAvatarInner}>
-                <AvatarIllustration />
+                <img src={avatar} alt="Cheryl Lim" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', borderRadius: 'inherit' }} />
               </div>
               <div className={styles.bioAvatarGlow} />
             </div>
@@ -124,7 +165,7 @@ export default function About() {
                 </a>
               </div>
             </div>
-          </div>
+          </TiltCard>
         </div>
       </section>
 
@@ -135,14 +176,14 @@ export default function About() {
           <h2 className={styles.skillsTitle}>Skills & Expertise</h2>
           <div className={styles.skillsGrid}>
             {SKILLS.map(s => (
-              <div key={s.cat} className={styles.skillCard}>
+              <TiltCard key={s.cat} className={styles.skillCard}>
                 <h4 className={styles.skillCat}>{s.cat}</h4>
                 <div className={styles.skillItems}>
                   {s.items.map(item => (
                     <span key={item} className={styles.skillItem}>{item}</span>
                   ))}
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>
@@ -172,6 +213,34 @@ export default function About() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resume */}
+      <section className={styles.resume}>
+        <div className="container">
+          <div className={styles.resumeBox}>
+            <div className={styles.resumeLeft}>
+              <div className={styles.resumeIcon}>
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <rect x="4" y="2" width="14" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M7 7h8M7 11h8M7 15h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 className={styles.resumeTitle}>Download my resume</h3>
+                <p className={styles.resumeSub}>Feel free to download my resume and have a look!</p>
+              </div>
+            </div>
+            <div className={styles.resumeActions}>
+              <a href="https://drive.google.com/file/d/1rRuA10-6bYInlw7D9xMJvCbD2oimB1Op/view" target="_blank" rel="noreferrer" className="btn-primary">
+                <span>View Resume</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -236,58 +305,3 @@ export default function About() {
   )
 }
 
-function AvatarIllustration() {
-  return (
-    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1e1030"/>
-          <stop offset="100%" stopColor="#130a24"/>
-        </linearGradient>
-        <linearGradient id="logoStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#c4a0ff"/>
-          <stop offset="100%" stopColor="#6b28cc"/>
-        </linearGradient>
-        <linearGradient id="logoDot" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#5cc8ff"/>
-          <stop offset="100%" stopColor="#a36bff"/>
-        </linearGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-
-      {/* Background circle */}
-      <circle cx="100" cy="100" r="100" fill="url(#logoBg)"/>
-
-      {/* Subtle ring */}
-      <circle cx="100" cy="100" r="82" stroke="rgba(163,107,255,0.12)" strokeWidth="1"/>
-      <circle cx="100" cy="100" r="64" stroke="rgba(163,107,255,0.07)" strokeWidth="1"/>
-
-      {/* Wordmark: stylised "CL" ligature */}
-      {/* C - outer arc */}
-      <path
-        d="M112 66 A38 38 0 1 0 112 134"
-        stroke="url(#logoStroke)"
-        strokeWidth="9"
-        strokeLinecap="round"
-        fill="none"
-        filter="url(#glow)"
-      />
-      {/* L - vertical stem */}
-      <line x1="116" y1="66" x2="116" y2="134" stroke="url(#logoStroke)" strokeWidth="9" strokeLinecap="round"/>
-      {/* L - horizontal foot */}
-      <line x1="116" y1="134" x2="140" y2="134" stroke="url(#logoStroke)" strokeWidth="9" strokeLinecap="round"/>
-
-      {/* Accent dot — design touch */}
-      <circle cx="140" cy="66" r="7" fill="url(#logoDot)" filter="url(#glow)"/>
-
-      {/* Corner sparkles */}
-      <circle cx="34" cy="38" r="2.5" fill="#a36bff" fillOpacity="0.5"/>
-      <circle cx="166" cy="160" r="2" fill="#5cc8ff" fillOpacity="0.45"/>
-      <circle cx="160" cy="44" r="1.5" fill="#c4a0ff" fillOpacity="0.4"/>
-      <circle cx="40" cy="158" r="1.5" fill="#a36bff" fillOpacity="0.35"/>
-    </svg>
-  )
-}

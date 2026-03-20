@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import GridCanvas from '../components/GridCanvas'
@@ -55,10 +55,43 @@ const OTHER = [
   { title: 'aikoi.ai', category: 'Entertainment · AI Product', year: '2024' },
 ]
 
-const CLIENTS = ['Deloitte', 'Grab', 'Axiata', 'Maybank', 'Telekom', 'CIMB', 'AirAsia', 'Petronas']
+const CLIENTS = [
+  { name: 'Client 1', src: 'https://framerusercontent.com/images/WUTol1uuj6HYqzJfqxUpjYkHdI.png' },
+  { name: 'Client 2', src: 'https://framerusercontent.com/images/MFYtSBUIkZlYefSHjiTQCShc.png' },
+  { name: 'Client 3', src: 'https://framerusercontent.com/images/XNq9IL6UIYyL9biQeZZy4rGMTw.png' },
+  { name: 'Client 4', src: 'https://framerusercontent.com/images/pAkfe2GyMJat6AGLca2P54TfA2s.png?scale-down-to=512' },
+  { name: 'Client 5', src: 'https://framerusercontent.com/images/I2SUfckZQ5fptbOXTnCujZaY8iw.png' },
+]
+
+function useCountUp(target, duration = 3000) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      observer.disconnect()
+      const start = performance.now()
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1)
+        const ease = 1 - Math.pow(1 - progress, 3)
+        setCount(Math.round(ease * target))
+        if (progress < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }, { threshold: 0.5 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [target, duration])
+  return { ref, count }
+}
 
 export default function Home() {
   const heroRef = useRef(null)
+  const years = useCountUp(4)
+  const projects = useCountUp(20)
+  const clients = useCountUp(12)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -102,18 +135,18 @@ export default function Home() {
           </div>
 
           <div className={`${styles.heroStats} animate-fadeUp delay-5`}>
-            <div className={styles.stat}>
-              <span className={styles.statNum}>~4</span>
+            <div className={styles.stat} ref={years.ref}>
+              <span className={styles.statNum}>~{years.count}</span>
               <span className={styles.statLabel}>Years of Experience</span>
             </div>
             <div className={styles.statDivider} />
-            <div className={styles.stat}>
-              <span className={styles.statNum}>20+</span>
+            <div className={styles.stat} ref={projects.ref}>
+              <span className={styles.statNum}>{projects.count}+</span>
               <span className={styles.statLabel}>Projects Shipped</span>
             </div>
             <div className={styles.statDivider} />
-            <div className={styles.stat}>
-              <span className={styles.statNum}>12+</span>
+            <div className={styles.stat} ref={clients.ref}>
+              <span className={styles.statNum}>{clients.count}+</span>
               <span className={styles.statLabel}>Happy Clients</span>
             </div>
           </div>
@@ -211,7 +244,7 @@ export default function Home() {
           <div className={styles.clientsMarquee}>
             <div className={styles.clientsTrack}>
               {[...CLIENTS, ...CLIENTS].map((c, i) => (
-                <span key={i} className={styles.clientName}>{c}</span>
+                <img key={i} src={c.src} alt={c.name} className={styles.clientLogo} />
               ))}
             </div>
           </div>

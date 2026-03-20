@@ -17,14 +17,14 @@
 }
 
 .body {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 14px;
 }
 
 .bodyWide {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
   max-width: 680px;
@@ -70,7 +70,7 @@
 
 .statLabel {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -108,7 +108,7 @@
 
 .problemTitle {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 10px;
@@ -116,7 +116,7 @@
 }
 
 .problemDesc {
-  font-size: 13.5px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.7;
 }
@@ -150,7 +150,7 @@
 
 .solutionTitle {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--text-primary);
@@ -179,7 +179,7 @@
 .designCardNum {
   display: block;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #ff8c42;
@@ -189,7 +189,7 @@
 
 .designCardTitle {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 12px;
@@ -198,7 +198,7 @@
 }
 
 .designCardDesc {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.7;
   max-width: 640px;
@@ -224,7 +224,7 @@
 
 .designImgLabel {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   color: rgba(255,140,66,0.4);
   letter-spacing: 0.05em;
@@ -263,7 +263,7 @@
 }
 
 .resultLabel {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.55;
 }

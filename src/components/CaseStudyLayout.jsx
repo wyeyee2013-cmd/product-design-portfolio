@@ -22,7 +22,13 @@ export default function CaseStudyLayout({ meta, children }) {
         setNavStuck(stickyRef.current.getBoundingClientRect().top <= 64)
       }
 
-      // Active section
+      // Active section — if near the bottom, force last section active
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 80
+      if (atBottom) {
+        setActiveSection(ids[ids.length - 1])
+        return
+      }
+
       let current = ids[0]
       for (const id of ids) {
         const el = document.getElementById(id)

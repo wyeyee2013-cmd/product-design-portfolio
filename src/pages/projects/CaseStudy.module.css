@@ -18,7 +18,7 @@
 }
 
 .overviewText p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 12px;
@@ -55,7 +55,7 @@
 }
 
 .statLabel {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -83,7 +83,7 @@
 }
 
 .section p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 16px;
@@ -101,7 +101,7 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -127,7 +127,7 @@
 }
 
 .callout p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-primary);
   line-height: 1.6;
   margin: 0;
@@ -169,7 +169,7 @@
 
 .processNum {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--purple);
@@ -179,14 +179,14 @@
 
 .processTitle {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 6px;
 }
 
 .processDesc {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -219,14 +219,14 @@
 
 .insightTitle {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 8px;
 }
 
 .insightDesc {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -261,7 +261,7 @@
 }
 
 .outcomeLabel {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.5;
 }

@@ -16,13 +16,13 @@ function LogoMark() {
         </linearGradient>
       </defs>
       <rect width="36" height="36" rx="9" fill="#1a0e30"/>
-      {/* C arc */}
-      <path d="M21 10 A10 10 0 1 0 21 26" stroke="url(#nlg)" strokeWidth="2.8" strokeLinecap="round" fill="none"/>
-      {/* L stem + foot */}
-      <line x1="22" y1="10" x2="22" y2="26" stroke="url(#nlg)" strokeWidth="2.8" strokeLinecap="round"/>
-      <line x1="22" y1="26" x2="29" y2="26" stroke="url(#nlg)" strokeWidth="2.8" strokeLinecap="round"/>
+      {/* Crescent moon via overlapping circles */}
+      <path
+        d="M22 10 A9 9 0 1 0 22 26 A6 6 0 1 1 22 10 Z"
+        fill="url(#nlg)"
+      />
       {/* Accent dot */}
-      <circle cx="29" cy="10" r="2.2" fill="url(#nld)"/>
+      <circle cx="26" cy="11" r="2" fill="url(#nld)"/>
     </svg>
   )
 }
@@ -49,7 +49,7 @@ export default function Navbar() {
           <span className={styles.logoMark}>
             <LogoMark />
           </span>
-          <span className={styles.logoText}>Cheryl Lim</span>
+          <span className={styles.logoText}>Cheryl.</span>
         </Link>
 
         <div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>

@@ -64,7 +64,7 @@
   background: rgba(98, 232, 160, 0.08);
   border: 1px solid rgba(98, 232, 160, 0.2);
   border-radius: 100px;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: #62e8a0;
   margin-bottom: 32px;
@@ -142,7 +142,7 @@
 }
 
 .statLabel {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -163,7 +163,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -264,7 +264,7 @@
   top: 16px;
   right: 20px;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.1em;
   opacity: 0.6;
@@ -294,7 +294,7 @@
 }
 
 .featCardSub {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.55;
   flex: 1;
@@ -310,14 +310,14 @@
 }
 
 .featCardYear {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   font-family: var(--font-display);
   font-weight: 600;
 }
 
 .featCardArrow {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   font-family: var(--font-display);
   transition: transform 0.2s;
@@ -367,7 +367,7 @@
 
 .otherNum {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.08em;
@@ -383,13 +383,13 @@
 }
 
 .otherCat {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-secondary);
   margin-top: 2px;
 }
 
 .otherYear {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   font-family: var(--font-display);
   font-weight: 600;
@@ -411,9 +411,12 @@
 
 .clientsTrack {
   display: flex;
-  gap: 56px;
   width: max-content;
-  animation: marquee 20s linear infinite;
+  animation: marquee 25s linear infinite;
+}
+
+.clientsTrack > * {
+  padding-right: 100px;
 }
 
 @keyframes marquee {
@@ -421,19 +424,18 @@
   to { transform: translateX(-50%); }
 }
 
-.clientName {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: color 0.2s;
+.clientLogo {
+  height: 72px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.45;
+  transition: opacity 0.2s;
 }
 
-.clientName:hover {
-  color: var(--purple-light);
+.clientLogo:hover {
+  opacity: 0.7;
 }
 
 /* ── CTA ── */
@@ -537,7 +539,7 @@
 }
 
 .ctaSub {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.7;
   max-width: 380px;
@@ -583,7 +585,7 @@
 
 .ctaEmailText {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
@@ -607,7 +609,7 @@
   border: 1px solid var(--border);
   border-radius: 100px;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-secondary);
   transition: all 0.25s;
@@ -633,7 +635,7 @@
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: 100px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   font-weight: 500;
 }

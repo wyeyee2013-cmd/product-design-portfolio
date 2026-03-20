@@ -26,13 +26,13 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .role {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -42,7 +42,7 @@
 }
 
 .links a {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-secondary);
   transition: color 0.2s;
   font-weight: 500;
@@ -53,7 +53,7 @@
 }
 
 .copy {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
