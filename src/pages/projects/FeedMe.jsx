@@ -22,93 +22,10 @@ const META = {
     { id: 'design', label: 'Design' },
     { id: 'results', label: 'Results' },
   ],
-  heroVisual: <FeedMeHero />,
+  heroImage: '/Order.png',
   next: { slug: 'pantas', title: 'Pantas Organisation Revamp', sub: 'Efficiency-driven setup tool for modern teams' },
 }
 
-function FeedMeHero() {
-  return (
-    <svg viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '86%', position: 'relative', zIndex: 1 }}>
-
-      {/* Left panel — order summary */}
-      <rect x="60" y="40" width="280" height="320" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
-      <rect x="60" y="40" width="280" height="44" rx="14" fill="rgba(255,255,255,0.05)"/>
-      <rect x="80" y="54" width="96" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
-      <rect x="298" y="50" width="28" height="18" rx="9" fill="rgba(255,140,66,0.25)" stroke="rgba(255,140,66,0.4)" strokeWidth="0.8"/>
-      <rect x="303" y="55" width="18" height="6" rx="3" fill="rgba(255,140,66,0.8)"/>
-
-      {/* Order items */}
-      {[0,1,2,3].map(i => (
-        <g key={i}>
-          <rect x="76" y={100+i*54} width="248" height="42" rx="9"
-            fill={i===0?'rgba(255,140,66,0.07)':'rgba(255,255,255,0.025)'}
-            stroke={i===0?'rgba(255,140,66,0.2)':'rgba(255,255,255,0.055)'} strokeWidth="0.8"/>
-          <rect x="88" y={112+i*54} width={[80,68,88,72][i]} height="8" rx="4" fill="rgba(255,255,255,0.12)"/>
-          <rect x="88" y={124+i*54} width={[48,56,40,52][i]} height="5" rx="2.5" fill="rgba(255,255,255,0.06)"/>
-          <rect x="286" y={113+i*54} width="26" height="8" rx="4"
-            fill={i===0?'rgba(255,140,66,0.5)':'rgba(255,255,255,0.08)'}/>
-        </g>
-      ))}
-
-      {/* Total bar */}
-      <rect x="76" y="322" width="248" height="28" rx="8" fill="rgba(255,140,66,0.15)" stroke="rgba(255,140,66,0.3)" strokeWidth="0.8"/>
-      <rect x="88" y="330" width="52" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
-      <rect x="286" y="330" width="30" height="8" rx="4" fill="rgba(255,140,66,0.8)"/>
-
-      {/* Middle divider / connector */}
-      <line x1="360" y1="200" x2="380" y2="200" stroke="rgba(255,140,66,0.25)" strokeWidth="1.5" strokeDasharray="3 3"/>
-
-      {/* Right panel — menu grid */}
-      <rect x="390" y="40" width="450" height="320" rx="14" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.055)" strokeWidth="1"/>
-      <rect x="390" y="40" width="450" height="44" rx="14" fill="rgba(255,255,255,0.04)"/>
-
-      {/* Category tabs */}
-      {['All', 'Mains', 'Sides', 'Drinks'].map((tab, ti) => (
-        <g key={tab}>
-          <rect x={406+ti*68} y={52} width={60} height={20} rx="10"
-            fill={ti===0?'rgba(255,140,66,0.25)':'rgba(255,255,255,0.04)'}
-            stroke={ti===0?'rgba(255,140,66,0.45)':'rgba(255,255,255,0.06)'} strokeWidth="0.8"/>
-          <rect x={416+ti*68} y={58} width={[20,28,22,32][ti]} height="6" rx="3"
-            fill={ti===0?'rgba(255,140,66,0.9)':'rgba(255,255,255,0.1)'}/>
-        </g>
-      ))}
-
-      {/* Menu item cards — 3×2 grid */}
-      {[0,1,2,3,4,5].map(i => {
-        const col = i % 3
-        const row = Math.floor(i / 3)
-        const x = 406 + col * 140
-        const y = 98 + row * 118
-        return (
-          <g key={i}>
-            <rect x={x} y={y} width={128} height={106} rx="10"
-              fill={i===2?'rgba(255,140,66,0.07)':'rgba(255,255,255,0.03)'}
-              stroke={i===2?'rgba(255,140,66,0.22)':'rgba(255,255,255,0.055)'} strokeWidth="0.8"/>
-            {/* Image area */}
-            <rect x={x+8} y={y+8} width={112} height={56} rx="7"
-              fill={i===2?'rgba(255,140,66,0.12)':'rgba(255,255,255,0.04)'}/>
-            {/* Food icon placeholder */}
-            <circle cx={x+64} cy={y+36} r={14}
-              fill={i===2?'rgba(255,140,66,0.2)':'rgba(255,255,255,0.06)'}/>
-            <rect x={x+10} y={y+72} width={[62,56,70,58,64,52][i]} height="7" rx="3.5" fill="rgba(255,255,255,0.12)"/>
-            <rect x={x+10} y={y+83} width={[30,36,28,32,26,34][i]} height="5" rx="2.5"
-              fill={i===2?'rgba(255,140,66,0.5)':'rgba(255,255,255,0.06)'}/>
-            {/* Add button */}
-            <circle cx={x+112} cy={y+96} r={8}
-              fill={i===2?'rgba(255,140,66,0.3)':'rgba(255,255,255,0.06)'}/>
-            <path d={`M${x+108} ${y+96}h8M${x+112} ${y+92}v8`}
-              stroke={i===2?'#ff8c42':'rgba(255,255,255,0.2)'} strokeWidth="1.2" strokeLinecap="round"/>
-          </g>
-        )
-      })}
-
-      {/* Charge button */}
-      <rect x="406" y="330" width="418" height="20" rx="10" fill="rgba(255,140,66,0.18)" stroke="rgba(255,140,66,0.35)" strokeWidth="0.8"/>
-      <rect x="556" y="336" width="80" height="7" rx="3.5" fill="rgba(255,140,66,0.75)"/>
-    </svg>
-  )
-}
 
 export default function FeedMe() {
   useEffect(() => { window.scrollTo(0, 0) }, [])

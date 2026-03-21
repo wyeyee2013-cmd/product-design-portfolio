@@ -15,87 +15,10 @@ const META = {
     { label: 'Year', value: '2022' },
     { label: 'Platform', value: 'Web (Admin Portal)' },
   ],
-  heroVisual: <APSpaceHero />,
+  heroImage: '/APSpace.png',
   next: { slug: 'feedme', title: 'FeedMe POS', sub: 'Restaurant point-of-sale system redesigned for speed' },
 }
 
-function APSpaceHero() {
-  return (
-    <svg viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '87%', position: 'relative', zIndex: 1 }}>
-      {/* Sidebar */}
-      <rect x="60" y="30" width="160" height="340" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-      <rect x="76" y="50" width="60" height="20" rx="6" fill="rgba(98,232,160,0.2)"/>
-      <rect x="76" y="50" width="60" height="20" rx="6" fill="transparent"/>
-      <rect x="82" y="56" width="48" height="8" rx="4" fill="rgba(98,232,160,0.7)"/>
-      <rect x="76" y="82" width="128" height="1" fill="rgba(255,255,255,0.05)"/>
-      {['Dashboard','Students','Courses','Timetable','Grades','Reports'].map((label, i) => (
-        <g key={label}>
-          <rect x="72" y={92 + i*38} width="136" height="30" rx="8"
-            fill={i === 0 ? 'rgba(98,232,160,0.1)' : 'transparent'}
-            stroke={i === 0 ? 'rgba(98,232,160,0.2)' : 'transparent'} strokeWidth="0.8"/>
-          <rect x="84" y={103 + i*38} width={[72,60,56,68,44,52][i]} height="8" rx="4"
-            fill={i === 0 ? 'rgba(98,232,160,0.7)' : 'rgba(255,255,255,0.1)'}/>
-        </g>
-      ))}
-
-      {/* Main dashboard */}
-      <rect x="236" y="30" width="624" height="340" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
-      {/* Topbar */}
-      <rect x="236" y="30" width="624" height="40" rx="12" fill="rgba(255,255,255,0.04)"/>
-      <rect x="252" y="42" width="160" height="16" rx="5" fill="rgba(255,255,255,0.08)"/>
-      <rect x="760" y="37" width="80" height="26" rx="8" fill="rgba(98,232,160,0.12)" stroke="rgba(98,232,160,0.25)" strokeWidth="0.8"/>
-      <rect x="772" y="47" width="56" height="6" rx="3" fill="rgba(98,232,160,0.7)"/>
-
-      {/* Stat cards */}
-      {[
-        { label: '15,284', sub: 'Total Students', col: '#62e8a0' },
-        { label: '247', sub: 'Active Courses', col: '#5cc8ff' },
-        { label: '94.2%', sub: 'Attendance Rate', col: '#a36bff' },
-        { label: '3.67', sub: 'Avg. GPA', col: '#ffb347' },
-      ].map(({ label, sub, col }, i) => (
-        <g key={i}>
-          <rect x={252 + i * 148} y={84} width="136" height="68" rx="10"
-            fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
-          <rect x={268 + i * 148} y={96} width="24" height="24" rx="6" fill={col} fillOpacity="0.15"/>
-          <rect x={272 + i * 148} y={100} width="16" height="16" rx="4" fill={col} fillOpacity="0.4"/>
-          <text x={268 + i * 148} y={134} fontSize="14" fontWeight="800" fill={col} fillOpacity="0.9">{label}</text>
-          <rect x={268 + i * 148} y={142} width={[64,52,60,36][i]} height="5" rx="2.5" fill="rgba(255,255,255,0.08)"/>
-        </g>
-      ))}
-
-      {/* Table */}
-      <rect x="252" y="166" width="388" height="188" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" strokeWidth="0.8"/>
-      <rect x="252" y="166" width="388" height="32" rx="10" fill="rgba(255,255,255,0.04)"/>
-      {['Student','Program','Year','Status'].map((h, i) => (
-        <rect key={h} x={264 + i*90} y={179} width={[70,60,30,44][i]} height="6" rx="3" fill="rgba(255,255,255,0.12)"/>
-      ))}
-      {[0,1,2,3,4].map(row => (
-        <g key={row}>
-          <rect x="252" y={198 + row*30} width="388" height="1" fill="rgba(255,255,255,0.04)"/>
-          <circle cx="272" cy={213 + row*30} r="8" fill={`hsl(${row*50},50%,55%)`} fillOpacity="0.4"/>
-          <rect x="286" y={208 + row*30} width="52" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
-          <rect x="354" y={208 + row*30} width="44" height="6" rx="3" fill="rgba(255,255,255,0.07)"/>
-          <rect x="444" y={208 + row*30} width="20" height="6" rx="3" fill="rgba(255,255,255,0.07)"/>
-          <rect x={[490,490,490,490,490][row]} y={206 + row*30} width="36" height="10" rx="5"
-            fill={row % 3 === 0 ? 'rgba(98,232,160,0.2)' : row % 3 === 1 ? 'rgba(255,179,71,0.2)' : 'rgba(92,200,255,0.2)'}
-            stroke={row % 3 === 0 ? 'rgba(98,232,160,0.4)' : row % 3 === 1 ? 'rgba(255,179,71,0.4)' : 'rgba(92,200,255,0.4)'}
-            strokeWidth="0.6"/>
-        </g>
-      ))}
-
-      {/* Chart */}
-      <rect x="652" y="166" width="196" height="188" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" strokeWidth="0.8"/>
-      <rect x="668" y="180" width="100" height="10" rx="4" fill="rgba(255,255,255,0.1)"/>
-      {[0.6,0.8,0.95,0.7,0.85,0.9,0.75].map((h, i) => (
-        <g key={i}>
-          <rect x={668 + i*24} y={230 - h*80} width="16" height={h*80} rx="4"
-            fill="rgba(98,232,160,0.3)" stroke="rgba(98,232,160,0.5)" strokeWidth="0.8"/>
-        </g>
-      ))}
-      <rect x="668" y="234" width="160" height="1" fill="rgba(255,255,255,0.06)"/>
-    </svg>
-  )
-}
 
 export default function APSpace() {
   useEffect(() => { window.scrollTo(0, 0) }, [])

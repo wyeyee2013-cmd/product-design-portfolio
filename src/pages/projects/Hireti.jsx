@@ -32,80 +32,14 @@ const META = {
     { id: 'personas', label: 'User Personalities' },
     { id: 'process', label: 'Current Process' },
     { id: 'solution', label: 'Solution Proposal' },
-    { id: 'wireframes', label: 'Wireframes' },
     { id: 'designsystem', label: 'Design System' },
     { id: 'design', label: 'Final Design' },
     { id: 'results', label: 'Results' },
   ],
-  heroVisual: <HiretiHero />,
+  heroImage: '/Match Candidate.png',
   next: { slug: 'apspace', title: 'APSpace Admin', sub: 'University records administration system' },
 }
 
-function HiretiHero() {
-  const cols = ['Sourced', 'Screening', 'Interview', 'Offer']
-  const counts = [8, 5, 3, 1]
-  return (
-    <svg viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '88%', position: 'relative', zIndex: 1 }}>
-      {/* Header bar */}
-      <rect x="60" y="30" width="780" height="44" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-      <rect x="76" y="44" width="140" height="16" rx="6" fill="rgba(255,255,255,0.08)"/>
-      <rect x="692" y="40" width="128" height="24" rx="12" fill="rgba(255,126,179,0.2)" stroke="rgba(255,126,179,0.4)" strokeWidth="1"/>
-      <rect x="712" y="49" width="88" height="6" rx="3" fill="rgba(255,126,179,0.8)"/>
-
-      {/* Kanban columns */}
-      {cols.map((col, ci) => (
-        <g key={col}>
-          <rect x={60 + ci * 198} y={92} width={184} height={292} rx="10"
-            fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.055)" strokeWidth="1"/>
-          {/* Column header */}
-          <rect x={60 + ci * 198} y={92} width={184} height={36} rx="10" fill="rgba(255,255,255,0.04)"/>
-          <rect x={76 + ci * 198} y={103} width={80} height={14} rx="5" fill="rgba(255,255,255,0.12)"/>
-          <circle cx={220 + ci * 198} cy={110} r={10}
-            fill={
-              ci === 0 ? 'rgba(255,126,179,0.2)'
-              : ci === 1 ? 'rgba(163,107,255,0.2)'
-              : ci === 2 ? 'rgba(255,200,92,0.2)'
-              : 'rgba(98,232,160,0.2)'
-            }
-          />
-          <text x={220 + ci * 198} y={115} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.6)" fontWeight="700">{counts[ci]}</text>
-
-          {/* Cards */}
-          {Array.from({ length: Math.min(counts[ci], 3) }).map((_, ri) => (
-            <g key={ri}>
-              <rect x={68 + ci * 198} y={138 + ri * 72} width={168} height={60} rx="8"
-                fill={ci === 0 && ri === 0 ? 'rgba(255,126,179,0.07)' : 'rgba(255,255,255,0.035)'}
-                stroke={ci === 0 && ri === 0 ? 'rgba(255,126,179,0.25)' : 'rgba(255,255,255,0.065)'}
-                strokeWidth="1"
-              />
-              {/* Avatar */}
-              <circle cx={84 + ci * 198} cy={158 + ri * 72} r={10}
-                fill={`hsl(${(ci * 55 + ri * 35)}, 55%, 52%)`} fillOpacity="0.45"/>
-              {/* Name + role */}
-              <rect x={100 + ci * 198} y={151 + ri * 72} width={86} height="7" rx="3.5" fill="rgba(255,255,255,0.15)"/>
-              <rect x={100 + ci * 198} y={163 + ri * 72} width={58} height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
-              {/* Divider */}
-              <rect x={68 + ci * 198} y={180 + ri * 72} width={168} height={1} fill="rgba(255,255,255,0.04)"/>
-              {/* Tags */}
-              <rect x={76 + ci * 198} y={184 + ri * 72} width={38} height="7" rx="3.5"
-                fill={ri === 0 ? 'rgba(255,126,179,0.2)' : 'rgba(255,255,255,0.05)'}/>
-              <rect x={120 + ci * 198} y={184 + ri * 72} width={52} height="7" rx="3.5" fill="rgba(255,255,255,0.05)"/>
-            </g>
-          ))}
-        </g>
-      ))}
-
-      {/* AI match badge */}
-      <rect x="66" y="344" width="172" height="28" rx="14" fill="rgba(255,126,179,0.12)" stroke="rgba(255,126,179,0.3)" strokeWidth="0.8"/>
-      <circle cx="84" cy="358" r="7" fill="rgba(255,126,179,0.25)"/>
-      <rect x="95" y="354" width="52" height="5" rx="2.5" fill="rgba(255,126,179,0.7)"/>
-      <rect x="95" y="362" width="36" height="4" rx="2" fill="rgba(255,126,179,0.35)"/>
-      <rect x="208" y="350" width="22" height="16" rx="8" fill="rgba(98,232,160,0.2)" stroke="rgba(98,232,160,0.35)" strokeWidth="0.8"/>
-      <rect x="213" y="355" width="12" height="4" rx="2" fill="rgba(98,232,160,0.7)"/>
-    </svg>
-  )
-}
 
 export default function Hireti() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
@@ -127,7 +61,7 @@ export default function Hireti() {
                 candidate management, job management, and analytics dashboards.
               </p>
               <p className={styles.body}>
-                The system earned the Grand Champion Award — the highest recognition at the competition
+                The system earned the Grand Champion Award, the highest recognition at the competition
                 — for its end-to-end approach to solving a real enterprise recruitment challenge with
                 AI-assisted matching and a fully integrated workflow.
               </p>
@@ -156,10 +90,7 @@ export default function Hireti() {
           <p className="section-label">Problem</p>
           <h2 className={styles.sectionTitle}>Finding good candidates through a fragmented system</h2>
           <p className={styles.bodyWide}>
-            Although thousands of applications are sent in every day, the company tends to have issues
-            in searching for candidates that fulfil their requirement criteria. The current structure
-            of the recruitment system is not unified — it requires interactions from different types
-            of recruitment management platforms, creating friction and delays at every step.
+            Although thousands of applications are sent in everyday, the company tends to have issues in searching for candidates that fulfill their requirement criteria. The current structure of the system is not unified as it requires interactions from different types of recruitment management platforms.
           </p>
           <div className={styles.problemGrid}>
             <div className={styles.problemCard}>
@@ -172,8 +103,7 @@ export default function Hireti() {
               <h4 className={styles.problemTitle}>Insufficient initial filtering</h4>
               <p className={styles.problemDesc}>
                 Delays were encountered due to insufficient initial filtering, making it difficult
-                to assess candidates' levels of experience and match them to role requirements
-                without manual review of every application.
+                to assess candidates' levels of experience.
               </p>
             </div>
             <div className={styles.problemCard}>
@@ -187,8 +117,7 @@ export default function Hireti() {
               <h4 className={styles.problemTitle}>Inadequate feedback loops</h4>
               <p className={styles.problemDesc}>
                 Inadequate feedback mechanisms hindered effective communication throughout the
-                recruitment process — leaving recruiters, hiring managers, and candidates without
-                a clear view of where decisions stood.
+                recruitment process.
               </p>
             </div>
             <div className={styles.problemCard}>
@@ -200,8 +129,7 @@ export default function Hireti() {
               <h4 className={styles.problemTitle}>Lack of automation and transparency</h4>
               <p className={styles.problemDesc}>
                 Delays in job position approvals and a lack of automation compromised transparency
-                in the process — teams had no single source of truth for where a requisition or
-                candidate stood at any given time.
+                in the process.
               </p>
             </div>
           </div>
@@ -255,7 +183,6 @@ export default function Hireti() {
               },
             ].map(p => (
               <div key={p.num} className={styles.personaCard}>
-                <div className={styles.personaIcon}>{p.icon}</div>
                 <div className={styles.personaNum}>{p.num}</div>
                 <h4 className={styles.personaName}>{p.name}</h4>
                 <p className={styles.personaDesc}>{p.desc}</p>
@@ -275,22 +202,47 @@ export default function Hireti() {
             to offer — to identify where time was lost, where handoffs broke down, and where the system
             failed to support the people using it.
           </p>
-          <div className={styles.processFlow}>
+          <div className={styles.processGrid}>
             {[
-              { num: '01', label: 'Job Requisition', desc: 'Hiring manager submits a role request via email or paper form. Approval routing is manual and opaque.' },
-              { num: '02', label: 'Job Posting', desc: 'HR manually posts to multiple platforms. No centralised tracking of where listings are published.' },
-              { num: '03', label: 'Application Review', desc: 'CVs collected via email or portals. Recruiters manually review and shortlist without scoring tools.' },
-              { num: '04', label: 'Candidate Screening', desc: 'Phone screens logged in spreadsheets. Notes are siloed — not visible to hiring managers.' },
-              { num: '05', label: 'Interview Coordination', desc: 'Interview scheduling handled manually over email. Calendar conflicts cause significant delays.' },
-              { num: '06', label: 'Decision & Offer', desc: 'Hiring decisions communicated informally. Offer letters generated outside the system.' },
-            ].map((step, i, arr) => (
-              <div key={step.num} className={styles.processStep}>
-                <div className={styles.processStepInner}>
-                  <div className={styles.processNum}>{step.num}</div>
-                  <div className={styles.processLabel}>{step.label}</div>
-                  <p className={styles.processDesc}>{step.desc}</p>
+              {
+                num: '01', label: 'Acquisition',
+                steps: ['Determine positions to hire', 'Write and post job descriptions'],
+                pain: 'Users might not be able to prioritize suitable job postings, and to create a comprehensive job description',
+              },
+              {
+                num: '02', label: 'Screening',
+                steps: ['Screen through candidate resume one-by-one', 'Perform pre-screening calls', 'Provide assessments if the role is technical-based', 'Make decisions to shortlist or reject candidates'],
+                pain: 'Users might be overwhelmed with the huge number of applications received',
+              },
+              {
+                num: '03', label: 'Interview',
+                steps: ['Conduct video/physical interviews', 'Evaluate candidate performance based on questions asked', 'Make decisions to advance candidates to next stages'],
+                pain: 'Users might not remember the context discussed during the interview process',
+              },
+              {
+                num: '04', label: 'Offer',
+                steps: ['Select the most suitable candidate', 'Confirm with the select candidate on their keenness to the position', 'Prepare and send offer letter according to agreed arrangements'],
+                pain: 'Users might need to take extra time to prepare an error-free offer letter',
+              },
+            ].map(stage => (
+              <div key={stage.num} className={styles.processStageCard}>
+                <div className={styles.processStageHeader}>
+                  <span className={styles.processNum}>{stage.num}</span>
+                  <span className={styles.processLabel}>{stage.label}</span>
                 </div>
-                {i < arr.length - 1 && <div className={styles.processArrow}>→</div>}
+                <ul className={styles.processStepList}>
+                  {stage.steps.map((s, i) => (
+                    <li key={i} className={styles.processStepItem}>{s}</li>
+                  ))}
+                </ul>
+                <div className={styles.processPainDivider} />
+                <div className={styles.processPain}>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 1 }}>
+                    <circle cx="7" cy="7" r="5.5" stroke="rgba(255,126,179,0.6)" strokeWidth="1.1"/>
+                    <path d="M7 6v3M7 4.5h.01" stroke="rgba(255,126,179,0.8)" strokeWidth="1.2" strokeLinecap="round"/>
+                  </svg>
+                  <p>{stage.pain}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -352,36 +304,6 @@ export default function Hireti() {
         </div>
       </section>
 
-      {/* ── Wireframes ── */}
-      <section id="wireframes" className={styles.section}>
-        <div className="container">
-          <p className="section-label">Wireframes</p>
-          <h2 className={styles.sectionTitle}>From rough concepts to structured flows</h2>
-          <p className={styles.bodyWide}>
-            Wireframes were used to explore layout structures, navigation patterns, and core
-            interaction flows before committing to visual design. Each screen was iterated
-            on with the team to validate that the information architecture matched how recruiters
-            and hiring managers think about their work.
-          </p>
-          <div className={styles.wireframesGrid}>
-            {['Dashboard Overview', 'Candidate Pipeline', 'Candidate Profile', 'Job Management', 'Analytics', 'Approval Flow'].map(label => (
-              <div key={label} className={styles.wireframeCard}>
-                <div className={styles.wireframePlaceholder}>
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <rect x="2" y="4" width="24" height="20" rx="2.5" stroke="rgba(255,126,179,0.35)" strokeWidth="1.2"/>
-                    <rect x="5" y="7" width="8" height="6" rx="1.5" fill="rgba(255,126,179,0.12)" stroke="rgba(255,126,179,0.25)" strokeWidth="1"/>
-                    <rect x="15" y="7" width="9" height="2.5" rx="1" fill="rgba(255,126,179,0.2)"/>
-                    <rect x="15" y="11" width="6" height="2.5" rx="1" fill="rgba(255,126,179,0.12)"/>
-                    <rect x="5" y="16" width="19" height="2" rx="1" fill="rgba(255,126,179,0.1)"/>
-                    <rect x="5" y="20" width="13" height="2" rx="1" fill="rgba(255,126,179,0.07)"/>
-                  </svg>
-                </div>
-                <span className={styles.wireframeLabel}>{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Design System ── */}
       <section id="designsystem" className={styles.section}>
@@ -399,53 +321,125 @@ export default function Hireti() {
                 <span className={styles.dsCardNum}>01</span>
                 <span className={styles.dsCardTitle}>Colour Tokens</span>
               </div>
-              <div className={styles.dsImgPlaceholder}>
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <circle cx="9" cy="9" r="5" fill="rgba(255,126,179,0.3)" stroke="rgba(255,126,179,0.5)" strokeWidth="1"/>
-                  <circle cx="19" cy="9" r="5" fill="rgba(163,107,255,0.3)" stroke="rgba(163,107,255,0.5)" strokeWidth="1"/>
-                  <circle cx="14" cy="19" r="5" fill="rgba(98,232,160,0.3)" stroke="rgba(98,232,160,0.5)" strokeWidth="1"/>
-                </svg>
-                <span className={styles.dsImgLabel}>Colour palette placeholder</span>
+              <div className={styles.colorTokens}>
+                <div className={styles.colorSwatches}>
+                  {[
+                    { hex: '#D1051E', name: 'Red' },
+                    { hex: '#534F53', name: 'Charcoal' },
+                    { hex: '#2E2C2E', name: 'Dark' },
+                    { hex: '#D7CEBE', name: 'Warm Beige' },
+                    { hex: '#FFFFFF', name: 'White', border: true },
+                  ].map(s => (
+                    <div key={s.hex} className={styles.colorSwatch}>
+                      <div
+                        className={styles.colorSwatchBox}
+                        style={{ background: s.hex, border: s.border ? '1px solid rgba(255,255,255,0.15)' : undefined }}
+                      />
+                      <span className={styles.colorSwatchName}>{s.name}</span>
+                      <span className={styles.colorSwatchName} style={{ opacity: 0.6 }}>{s.hex}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className={styles.dsCard}>
               <div className={styles.dsCardHeader}>
                 <span className={styles.dsCardNum}>02</span>
-                <span className={styles.dsCardTitle}>Typography</span>
-              </div>
-              <div className={styles.dsImgPlaceholder}>
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M4 7h20M4 13h14M4 19h10" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                <span className={styles.dsImgLabel}>Typography scale placeholder</span>
-              </div>
-            </div>
-            <div className={styles.dsCard}>
-              <div className={styles.dsCardHeader}>
-                <span className={styles.dsCardNum}>03</span>
                 <span className={styles.dsCardTitle}>Components</span>
               </div>
-              <div className={styles.dsImgPlaceholder}>
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <rect x="3" y="8" width="10" height="6" rx="2" fill="rgba(255,126,179,0.2)" stroke="rgba(255,126,179,0.4)" strokeWidth="1"/>
-                  <rect x="15" y="8" width="10" height="6" rx="2" stroke="rgba(255,126,179,0.3)" strokeWidth="1"/>
-                  <rect x="3" y="17" width="22" height="5" rx="2" stroke="rgba(255,126,179,0.25)" strokeWidth="1"/>
-                </svg>
-                <span className={styles.dsImgLabel}>Component library placeholder</span>
-              </div>
-            </div>
-            <div className={styles.dsCard}>
-              <div className={styles.dsCardHeader}>
-                <span className={styles.dsCardNum}>04</span>
-                <span className={styles.dsCardTitle}>Iconography</span>
-              </div>
-              <div className={styles.dsImgPlaceholder}>
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <circle cx="8" cy="8" r="4" stroke="rgba(255,126,179,0.35)" strokeWidth="1"/>
-                  <rect x="16" y="4" width="8" height="8" rx="1.5" stroke="rgba(255,126,179,0.35)" strokeWidth="1"/>
-                  <path d="M4 20l4-4 4 4 4-4 4 4" stroke="rgba(255,126,179,0.35)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span className={styles.dsImgLabel}>Icon set placeholder</span>
+              <div className={styles.componentShowcase}>
+                {/* Buttons row */}
+                <div className={styles.hiretiCompGroup}>
+                  <span className={styles.hiretiCompLabel}>Buttons</span>
+                  <div className={styles.hiretiButtonRow}>
+                    <button className={styles.hirBtnFilled}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6M10 14L21 3M21 9v11a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                      View Request
+                    </button>
+                    <button className={styles.hirBtnOutline}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6M10 14L21 3M21 9v11a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                      View Request
+                    </button>
+                    <button className={styles.hirBtnGhost}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6M10 14L21 3M21 9v11a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                      View Request
+                    </button>
+                  </div>
+                </div>
+                {/* Secondary buttons */}
+                <div className={styles.hiretiCompGroup}>
+                  <span className={styles.hiretiCompLabel}>Secondary Buttons</span>
+                  <div className={styles.hiretiButtonRow}>
+                    <button className={styles.hirBtnCancel}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                      Cancel
+                    </button>
+                    <button className={styles.hirBtnStarred}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      Starred Candidates
+                    </button>
+                  </div>
+                </div>
+                {/* Toggle */}
+                <div className={styles.hiretiCompGroup}>
+                  <span className={styles.hiretiCompLabel}>Toggle</span>
+                  <div className={styles.hiretiToggleRow}>
+                    <span className={styles.hiretiToggleText}>Inactive</span>
+                    <div className={styles.hiretiSwitchTrack}>
+                      <div className={styles.hiretiSwitchThumb} />
+                    </div>
+                    <span className={styles.hiretiToggleTextActive}>Active</span>
+                  </div>
+                </div>
+                {/* Form button */}
+                <div className={styles.hiretiCompGroup}>
+                  <span className={styles.hiretiCompLabel}>Form Button</span>
+                  <button className={styles.hirBtnFormAdd}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+                    Add Question
+                  </button>
+                </div>
+                {/* Upload */}
+                <div className={styles.hiretiCompGroup}>
+                  <span className={styles.hiretiCompLabel}>Upload Document</span>
+                  <div className={styles.hiretiUploadCard}>
+                    <div className={styles.hiretiUploadIcon}>
+                      <svg width="28" height="32" viewBox="0 0 28 32" fill="none">
+                        <rect x="1" y="1" width="20" height="26" rx="3" fill="rgba(255,255,255,0.9)" stroke="#ddd" strokeWidth="1"/>
+                        <rect x="4" y="6" width="4" height="4" rx="1" fill="#D1051E" opacity="0.8"/>
+                        <rect x="4" y="13" width="10" height="1.5" rx="1" fill="#ccc"/>
+                        <rect x="4" y="17" width="8" height="1.5" rx="1" fill="#ccc"/>
+                        <circle cx="20" cy="26" r="5" fill="#D1051E"/>
+                        <path d="M18 26h4M20 24v4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div className={styles.hiretiUploadTitle}>Upload a cover photo</div>
+                      <div className={styles.hiretiUploadSub}>Drag and drop or <span className={styles.hiretiUploadLink}>Select File</span></div>
+                    </div>
+                  </div>
+                </div>
+                {/* Candidate card */}
+                <div className={styles.hiretiCompGroup}>
+                  <span className={styles.hiretiCompLabel}>Candidate Card</span>
+                  <div className={styles.hirCandidateCard}>
+                    <div className={styles.hirCandidateTop}>
+                      <div className={styles.hirCandidateAvatar}>JL</div>
+                      <div className={styles.hirCandidateInfo}>
+                        <div className={styles.hirCandidateName}>Jamie Lee</div>
+                        <div className={styles.hirCandidateRole}>Senior UX Designer · 5 yrs exp</div>
+                      </div>
+                      <span className={styles.hirCandidateBadge}>Shortlisted</span>
+                    </div>
+                    <div className={styles.hirCandidateDivider} />
+                    <div className={styles.hirCandidateFooter}>
+                      <span className={styles.hirCandidateTag}>Figma</span>
+                      <span className={styles.hirCandidateTag}>Research</span>
+                      <span className={styles.hirCandidateTag}>Prototyping</span>
+                      <span className={styles.hirCandidateMatch}>92% match</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -456,23 +450,26 @@ export default function Hireti() {
       <section id="design" className={styles.section}>
         <div className="container">
           <p className="section-label">Design</p>
-          <h2 className={styles.sectionTitle}>Three design features that make it work</h2>
+          <h2 className={styles.sectionTitle}>From screening to offer, reimagined end to end</h2>
 
           {[
             {
               num: '01',
               title: 'Candidate matching with AI-ranked shortlists',
               desc: 'Instead of presenting recruiters with a raw list of applicants, the system surfaces AI-ranked shortlists based on job criteria. Recruiters see a match score and key qualification signals for each candidate at a glance, dramatically reducing time spent screening.',
+              image: '/Match Candidate (Unviewed).png',
             },
             {
               num: '02',
-              title: 'Visual pipeline management across all roles',
-              desc: 'A kanban-style pipeline view gives hiring teams a live overview of every candidate across all active job postings. Stage transitions, feedback, and interview scheduling are all accessible from the same view — no context switching required.',
+              title: 'Talent pool integrated with external platforms',
+              desc: 'The talent pool syncs directly with LinkedIn and JobStreet, giving recruiters a broader reach without leaving the platform. Candidate profiles are automatically imported and enriched, ensuring hiring teams always have access to the widest possible pool of qualified applicants.',
+              image: '/Talent Pool.png',
             },
             {
               num: '03',
-              title: 'Analytics dashboard for hiring performance',
-              desc: 'Real-time dashboards surface key metrics — time-to-fill, pipeline health, stage conversion rates, and team activity — giving talent acquisition leads the data they need to identify bottlenecks and make informed decisions.',
+              title: 'Chatbot consultant powered by dashboard insights',
+              desc: 'An AI chatbot analyses hiring performance data from the dashboard in real time, surfacing actionable recommendations and advice. Whether it\'s flagging a bottleneck in the pipeline or suggesting sourcing strategies, the consultant keeps talent teams one step ahead.',
+              image: '/Headcount Budgeting Dashboard.png',
             },
           ].map(item => (
             <div key={item.num} className={styles.designFeature}>
@@ -482,14 +479,20 @@ export default function Hireti() {
                 <p className={styles.designCardDesc}>{item.desc}</p>
               </div>
               <div className={styles.designFeatureImg}>
-                <div className={styles.designImgPlaceholder}>
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <rect x="3" y="5" width="26" height="22" rx="3" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5"/>
-                    <circle cx="10" cy="12" r="2.5" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5"/>
-                    <path d="M3 21l7-5 5 4 4-3 10 7" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <span className={styles.designImgLabel}>Image placeholder</span>
-                </div>
+                {item.image
+                  ? <div className={styles.designFrame}>
+                      <div className={styles.designFrameBar}><span /><span /><span /></div>
+                      <img src={item.image} alt={item.title} className={styles.designImg} />
+                    </div>
+                  : <div className={styles.designImgPlaceholder}>
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="3" y="5" width="26" height="22" rx="3" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5"/>
+                        <circle cx="10" cy="12" r="2.5" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5"/>
+                        <path d="M3 21l7-5 5 4 4-3 10 7" stroke="rgba(255,126,179,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span className={styles.designImgLabel}>Image placeholder</span>
+                    </div>
+                }
               </div>
             </div>
           ))}

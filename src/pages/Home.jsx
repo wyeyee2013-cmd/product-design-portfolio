@@ -15,16 +15,20 @@ const FEATURED = [
     accent: '#ff8c42',
     bg: 'linear-gradient(135deg, #201208 0%, #2a1508 100%)',
     number: '01',
+    image: '/Order.png',
+    imageFull: true,
   },
   {
     slug: 'pantas',
-    title: 'Pantas Organisation Revamp',
+    title: 'Pantas Configuration and Organisation Setup',
     subtitle: 'Efficiency-driven setup tool for modern teams',
     tags: ['B2B SaaS', 'UX Design', 'Design System'],
     year: '2024',
     accent: '#5cc8ff',
     bg: 'linear-gradient(135deg, #0c1a28 0%, #0f2035 100%)',
     number: '02',
+    image: '/Companies.png',
+    imagePosition: 'top',
   },
   {
     slug: 'hireti',
@@ -35,6 +39,8 @@ const FEATURED = [
     accent: '#ff7eb3',
     bg: 'linear-gradient(135deg, #1e1020 0%, #2a1035 100%)',
     number: '03',
+    image: '/Match Candidate.png',
+    imageFull: true,
   },
   {
     slug: 'apspace',
@@ -45,6 +51,8 @@ const FEATURED = [
     accent: '#62e8a0',
     bg: 'linear-gradient(135deg, #0f1e18 0%, #122818 100%)',
     number: '04',
+    image: '/APSpace.png',
+    imageFull: true,
   },
 ]
 
@@ -167,7 +175,7 @@ export default function Home() {
           </div>
 
           <div className={styles.featuredGrid}>
-            {FEATURED.map((p, i) => (
+            {FEATURED.map((p) => (
               <Link to={`/projects/${p.slug}`} key={p.slug} className={styles.featCard}>
                 <div
                   className={styles.featCardVisual}
@@ -177,9 +185,29 @@ export default function Home() {
                     className={styles.featCardGlow}
                     style={{ background: p.accent }}
                   />
-                  <div className={styles.featCardMockup}>
-                    <MockupUI accent={p.accent} number={p.number} />
-                  </div>
+                  {p.image
+                    ? p.imageMode === 'fill'
+                      ? <img
+                          src={p.image}
+                          alt={p.title}
+                          className={styles.featCardImgFill}
+                          style={{ objectPosition: p.imagePosition || 'center' }}
+                        />
+                      : <div className={styles.featCardFrame} style={{ '--card-accent': p.accent }}>
+                          <div className={styles.featCardFrameBar}>
+                            <span /><span /><span />
+                          </div>
+                          <img src={p.image} alt={p.title} className={p.imageFull ? styles.featCardImgFull : styles.featCardImg} style={{ objectPosition: p.imagePosition || 'center' }} />
+                        </div>
+                    : <div className={styles.featCardPlaceholder}>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="3" width="18" height="18" rx="2"/>
+                          <circle cx="8.5" cy="8.5" r="1.5"/>
+                          <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span>Project preview</span>
+                      </div>
+                  }
                   <span
                     className={styles.featCardNum}
                     style={{ color: p.accent }}
@@ -316,40 +344,3 @@ export default function Home() {
   )
 }
 
-/* Simple SVG mockup for card visuals */
-function MockupUI({ accent, number }) {
-  return (
-    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Browser chrome */}
-      <rect x="10" y="10" width="260" height="160" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
-      <rect x="10" y="10" width="260" height="28" rx="10" fill="rgba(255,255,255,0.05)"/>
-      <circle cx="26" cy="24" r="4" fill="rgba(255,255,255,0.15)"/>
-      <circle cx="38" cy="24" r="4" fill="rgba(255,255,255,0.1)"/>
-      <circle cx="50" cy="24" r="4" fill="rgba(255,255,255,0.07)"/>
-      <rect x="65" y="18" width="120" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-
-      {/* Content blocks */}
-      <rect x="22" y="50" width="80" height="8" rx="4" fill={accent} fillOpacity="0.7"/>
-      <rect x="22" y="64" width="140" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
-      <rect x="22" y="74" width="110" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
-      <rect x="22" y="84" width="130" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
-
-      {/* Card grid */}
-      <rect x="22" y="104" width="72" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
-      <rect x="102" y="104" width="72" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
-      <rect x="182" y="104" width="72" height="52" rx="6" fill={accent} fillOpacity="0.12" stroke={accent} strokeOpacity="0.25" strokeWidth="0.8"/>
-
-      <rect x="30" y="116" width="36" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
-      <rect x="30" y="124" width="52" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
-      <rect x="30" y="131" width="44" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
-
-      <rect x="110" y="116" width="36" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
-      <rect x="110" y="124" width="52" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
-      <rect x="110" y="131" width="44" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
-
-      <rect x="190" y="116" width="36" height="4" rx="2" fill={accent} fillOpacity="0.8"/>
-      <rect x="190" y="124" width="52" height="3" rx="1.5" fill={accent} fillOpacity="0.4"/>
-      <rect x="190" y="131" width="44" height="3" rx="1.5" fill={accent} fillOpacity="0.25"/>
-    </svg>
-  )
-}

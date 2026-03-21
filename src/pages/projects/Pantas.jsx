@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
+import { Building2, Users, FileSpreadsheet, Upload, Bell, Settings, Search, ChevronDown, LayoutDashboard, ShieldCheck, BarChart3, CircleAlert } from 'lucide-react'
 import CaseStudyLayout from '../../components/CaseStudyLayout'
 import styles from './Pantas.module.css'
 
 const META = {
   client: 'Environmental Services',
-  title: 'Pantas Organisation Revamp',
-  subtitle: 'Making organisation setup fast and efficient.',
+  title: 'Pantas Configuration and Organisation Setup',
+  subtitle: 'Making organisation setup and rule configuration fast and efficient.',
   tags: ['Product Design', 'Interaction Design', 'Visual Design', 'AI'],
   accent: '#5cc8ff',
   accentDim: 'rgba(92,200,255,0.08)',
@@ -25,95 +26,14 @@ const META = {
     { id: 'overview', label: 'Overview' },
     { id: 'problem', label: 'Problem' },
     { id: 'solution', label: 'Solution Proposal' },
+    { id: 'designsystem', label: 'Design System' },
     { id: 'design', label: 'Design' },
     { id: 'results', label: 'Results' },
   ],
-  heroVisual: <PantasHero />,
+  heroImage: '/Companies.png',
   next: { slug: 'hireti', title: 'Hireti Recruitment System', sub: 'AI-powered talent acquisition for Hilti' },
 }
 
-function PantasHero() {
-  return (
-    <svg viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '85%', position: 'relative', zIndex: 1 }}>
-      {/* Upload panel */}
-      <rect x="60" y="50" width="248" height="300" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
-      <rect x="60" y="50" width="248" height="42" rx="14" fill="rgba(255,255,255,0.05)"/>
-      <rect x="78" y="64" width="88" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
-      {/* Upload zone */}
-      <rect x="78" y="108" width="212" height="72" rx="10" fill="rgba(92,200,255,0.06)" stroke="rgba(92,200,255,0.28)" strokeWidth="1" strokeDasharray="5 4"/>
-      <rect x="140" y="124" width="88" height="16" rx="6" fill="rgba(92,200,255,0.18)"/>
-      <rect x="154" y="129" width="60" height="6" rx="3" fill="rgba(92,200,255,0.65)"/>
-      <rect x="118" y="146" width="132" height="5" rx="2.5" fill="rgba(255,255,255,0.06)"/>
-      {/* File list */}
-      {[0,1,2].map(i => (
-        <g key={i}>
-          <rect x="78" y={196+i*38} width="212" height="28" rx="7"
-            fill={i===1?'rgba(92,200,255,0.08)':'rgba(255,255,255,0.03)'}
-            stroke={i===1?'rgba(92,200,255,0.22)':'rgba(255,255,255,0.06)'} strokeWidth="0.8"/>
-          <rect x="88" y={204+i*38} width="14" height="12" rx="3" fill={i===1?'rgba(92,200,255,0.28)':'rgba(255,255,255,0.07)'}/>
-          <rect x="108" y={206+i*38} width={[76,92,68][i]} height="6" rx="3" fill="rgba(255,255,255,0.11)"/>
-          <rect x={244} y={207+i*38} width="36" height="5" rx="2.5" fill={i===1?'rgba(92,200,255,0.45)':'rgba(255,255,255,0.05)'}/>
-        </g>
-      ))}
-      {/* Arrow connector */}
-      <path d="M322 200 L358 200" stroke="rgba(92,200,255,0.45)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M350 193 L358 200 L350 207" stroke="rgba(92,200,255,0.45)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      {/* Review panel */}
-      <rect x="370" y="50" width="470" height="300" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-      <rect x="370" y="50" width="470" height="42" rx="14" fill="rgba(255,255,255,0.04)"/>
-      <rect x="388" y="64" width="96" height="10" rx="4" fill="rgba(255,255,255,0.09)"/>
-      <rect x="756" y="58" width="64" height="22" rx="11" fill="rgba(98,232,160,0.14)" stroke="rgba(98,232,160,0.28)" strokeWidth="0.8"/>
-      <rect x="766" y="66" width="44" height="5" rx="2.5" fill="rgba(98,232,160,0.65)"/>
-      {/* Org tree root */}
-      <rect x="518" y="108" width="132" height="28" rx="8" fill="rgba(92,200,255,0.14)" stroke="rgba(92,200,255,0.32)" strokeWidth="1"/>
-      <rect x="532" y="118" width="64" height="8" rx="4" fill="rgba(92,200,255,0.75)"/>
-      <rect x="600" y="118" width="36" height="8" rx="4" fill="rgba(92,200,255,0.28)"/>
-      {/* Tree connectors */}
-      <line x1="584" y1="136" x2="584" y2="154" stroke="rgba(92,200,255,0.2)" strokeWidth="1"/>
-      <line x1="446" y1="154" x2="722" y2="154" stroke="rgba(92,200,255,0.15)" strokeWidth="1"/>
-      {[446, 584, 722].map(x => (
-        <line key={x} x1={x} y1="154" x2={x} y2="170" stroke="rgba(92,200,255,0.15)" strokeWidth="1"/>
-      ))}
-      {/* Level 2 */}
-      {[382, 520, 658].map((x,i) => (
-        <g key={i}>
-          <rect x={x} y={170} width={116} height={26} rx="7"
-            fill={i===1?'rgba(92,200,255,0.07)':'rgba(255,255,255,0.035)'}
-            stroke={i===1?'rgba(92,200,255,0.18)':'rgba(255,255,255,0.055)'} strokeWidth="0.8"/>
-          <rect x={x+10} y={179} width={[52,68,56][i]} height="6" rx="3" fill="rgba(255,255,255,0.09)"/>
-        </g>
-      ))}
-      {/* Level 2 → 3 */}
-      {[382,520,658].map((x,i) => (
-        <g key={i}>
-          <line x1={x+58} y1="196" x2={x+58} y2="210" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-          <line x1={x+18} y1="210" x2={x+98} y2="210" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-          {[x+18, x+98].map((lx,j) => (
-            <g key={j}>
-              <line x1={lx} y1="210" x2={lx} y2="222" stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
-              <rect x={lx-26} y={222} width={56} height={20} rx="5"
-                fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.045)" strokeWidth="0.8"/>
-              <rect x={lx-16} y={229} width={[32,40,28,38,26,36][i*2+j]} height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
-            </g>
-          ))}
-        </g>
-      ))}
-      {/* Error flag */}
-      <rect x="388" y="256" width="172" height="40" rx="8" fill="rgba(255,90,90,0.06)" stroke="rgba(255,90,90,0.18)" strokeWidth="0.8"/>
-      <rect x="398" y="265" width="8" height="8" rx="2" fill="rgba(255,90,90,0.45)"/>
-      <rect x="412" y="266" width="72" height="5" rx="2.5" fill="rgba(255,255,255,0.09)"/>
-      <rect x="412" y="275" width="110" height="4" rx="2" fill="rgba(255,255,255,0.045)"/>
-      <rect x="398" y="284" width="56" height="5" rx="2.5" fill="rgba(255,90,90,0.35)"/>
-      {/* Action bar */}
-      <rect x="576" y="256" width="240" height="40" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.055)" strokeWidth="0.8"/>
-      <rect x="590" y="268" width="100" height="16" rx="8" fill="rgba(92,200,255,0.22)" stroke="rgba(92,200,255,0.38)" strokeWidth="0.8"/>
-      <rect x="597" y="273" width="86" height="5" rx="2.5" fill="rgba(92,200,255,0.75)"/>
-      <rect x="702" y="268" width="100" height="16" rx="8" fill="rgba(255,255,255,0.04)"/>
-      <rect x="710" y="273" width="84" height="5" rx="2.5" fill="rgba(255,255,255,0.09)"/>
-    </svg>
-  )
-}
 
 export default function Pantas() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
@@ -247,27 +167,293 @@ export default function Pantas() {
         </div>
       </section>
 
+      {/* ── Design System ── */}
+      <section id="designsystem" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Design System</p>
+          <h2 className={styles.sectionTitle}>Built to scale for the future, not only to ship</h2>
+          <p className={styles.bodyWide}>
+            A core part of this revamp was establishing a design system that could position Pantas
+            as a top-tier carbon management platform. The existing Django Bootstrap stack imposed
+            rigid constraints with limited customisation — components looked generic and couldn't
+            flex to meet the product's complexity. The new system is built on shadcn UI, giving the
+            team a scalable, accessible, and fully customisable component foundation that can grow
+            with the product without accumulating design debt.
+          </p>
+          <div className={styles.dsGrid}>
+            {[
+              {
+                num: '01',
+                title: 'Colour Tokens',
+                content: (
+                  <div className={styles.colorTokens}>
+                    {[
+                      {
+                        group: 'Blue',
+                        swatches: [
+                          { name: '50',  color: '#eff6ff' },
+                          { name: '100', color: '#dbeafe' },
+                          { name: '200', color: '#bfdbfe' },
+                          { name: '300', color: '#93c5fd' },
+                          { name: '400', color: '#60a5fa' },
+                          { name: '500', color: '#3b82f6' },
+                          { name: '600', color: '#2563eb' },
+                          { name: '700', color: '#1d4ed8' },
+                          { name: '800', color: '#1e40af' },
+                          { name: '900', color: '#1e3a8a' },
+                          { name: '950', color: '#172554' },
+                        ],
+                      },
+                      {
+                        group: 'Slate',
+                        swatches: [
+                          { name: '50',  color: '#f8fafc' },
+                          { name: '100', color: '#f1f5f9' },
+                          { name: '200', color: '#e2e8f0' },
+                          { name: '300', color: '#cbd5e1' },
+                          { name: '400', color: '#94a3b8' },
+                          { name: '500', color: '#64748b' },
+                          { name: '600', color: '#475569' },
+                          { name: '700', color: '#334155' },
+                          { name: '800', color: '#1e293b' },
+                          { name: '900', color: '#0f172a' },
+                          { name: '950', color: '#020617' },
+                        ],
+                      },
+                      {
+                        group: 'Accent',
+                        swatches: [
+                          { name: 'Teal',   color: '#0d9488' },
+                          { name: 'Cyan',   color: '#06b6d4' },
+                          { name: 'Indigo', color: '#4f46e5' },
+                          { name: 'Violet', color: '#7c3aed' },
+                        ],
+                      },
+                      {
+                        group: 'Neutrals',
+                        swatches: [
+                          { name: 'White', color: '#ffffff' },
+                          { name: 'Black', color: '#09090b' },
+                        ],
+                      },
+                    ].map(({ group, swatches }) => (
+                      <div key={group} className={styles.colorGroup}>
+                        <span className={styles.colorGroupLabel}>{group}</span>
+                        <div className={styles.colorSwatches}>
+                          {swatches.map(({ name, color }) => (
+                            <div key={name} className={styles.colorSwatch}>
+                              <div className={styles.colorSwatchBox} style={{ background: color }} />
+                              <span className={styles.colorSwatchName}>{name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              },
+              {
+                num: '02',
+                title: 'Typography',
+                content: (
+                  <div className={styles.typographyTokens}>
+                    {[
+                      {
+                        group: 'Heading',
+                        rows: [
+                          { token: 'text-heading-2xl', size: 32, weight: 700, label: 'Bold' },
+                          { token: 'text-heading-xl',  size: 24, weight: 600, label: 'Semi Bold' },
+                          { token: 'text-heading-lg',  size: 20, weight: 600, label: 'Semi Bold' },
+                          { token: 'text-heading-md',  size: 16, weight: 500, label: 'Medium' },
+                        ],
+                      },
+                      {
+                        group: 'Body',
+                        rows: [
+                          { token: 'text-body-lg', size: 20, weight: 400, label: 'Regular' },
+                          { token: 'text-body-md', size: 16, weight: 400, label: 'Regular' },
+                          { token: 'text-body-sm', size: 14, weight: 400, label: 'Regular' },
+                        ],
+                      },
+                      {
+                        group: 'Labels',
+                        rows: [
+                          { token: 'text-label-lg', size: 16, weight: 500, label: 'Medium' },
+                          { token: 'text-label-sm', size: 14, weight: 500, label: 'Medium' },
+                          { token: 'text-label-xs', size: 12, weight: 500, label: 'Medium' },
+                        ],
+                      },
+                    ].map(({ group, rows }) => (
+                      <div key={group} className={styles.typeGroup}>
+                        <span className={styles.typeGroupPill}>{group}</span>
+                        <div className={styles.typeRows}>
+                          {rows.map(({ token, size, weight, label }) => (
+                            <div key={token} className={styles.typeRow}>
+                              <span
+                                className={styles.typeSpecimen}
+                                style={{ fontSize: size, fontWeight: weight }}
+                              >
+                                {token}
+                              </span>
+                              <span className={styles.typeSpec}>{size}px · {label}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              },
+              {
+                num: '03',
+                title: 'Components',
+                content: (
+                  <div className={styles.componentShowcase}>
+                    <div className={styles.componentGrid}>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Button</span>
+                        <button className={styles.demoButton}>Continue</button>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Badge</span>
+                        <span className={styles.demoBadge}>Badge</span>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Tabs</span>
+                        <div className={styles.demoTabs}>
+                          <span className={styles.demoTabActive}>Selected</span>
+                          <span className={styles.demoTab}>Unselected</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Avatar</span>
+                        <div className={styles.demoAvatar}>CN</div>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Input</span>
+                        <div className={styles.demoInput}>Placeholder (If any)</div>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Switch</span>
+                        <div className={styles.demoSwitch}>
+                          <div className={styles.demoSwitchTrack}>
+                            <div className={styles.demoSwitchThumb} />
+                          </div>
+                          <span className={styles.demoSwitchLabel}>Mode</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Checkbox</span>
+                        <div className={styles.demoCheckbox}>
+                          <div className={styles.demoCheckboxBox}>
+                            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                              <path d="M1 4l3 3 5-6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </div>
+                          <span className={styles.demoCheckboxLabel}>Accept terms</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.componentItem}>
+                        <span className={styles.componentLabel}>Select</span>
+                        <div className={styles.demoSelect}>
+                          <span>Select an option</span>
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M3 4.5l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                num: '04',
+                title: 'Iconography',
+                content: (
+                  <div className={styles.iconShowcase}>
+                    {[
+                      { icon: Building2,      label: 'Building2' },
+                      { icon: Users,          label: 'Users' },
+                      { icon: FileSpreadsheet,label: 'FileSpreadsheet' },
+                      { icon: Upload,         label: 'Upload' },
+                      { icon: Bell,           label: 'Bell' },
+                      { icon: Settings,       label: 'Settings' },
+                      { icon: Search,         label: 'Search' },
+                      { icon: ChevronDown,    label: 'ChevronDown' },
+                      { icon: LayoutDashboard,label: 'LayoutDashboard' },
+                      { icon: ShieldCheck,    label: 'ShieldCheck' },
+                      { icon: BarChart3,      label: 'BarChart3' },
+                      { icon: CircleAlert,    label: 'CircleAlert' },
+                    ].map(({ icon: Icon, label }) => (
+                      <div key={label} className={styles.iconItem}>
+                        <Icon size={20} strokeWidth={1.5} />
+                        <span className={styles.iconLabel}>{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              },
+            ].map(item => (
+              <div key={item.num} className={styles.dsCard}>
+                <div className={styles.dsCardHeader}>
+                  <span className={styles.dsCardNum}>{item.num}</span>
+                  <span className={styles.dsCardTitle}>{item.title}</span>
+                </div>
+                {item.content ?? (
+                  <div className={styles.dsImgPlaceholder}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2"/>
+                      <circle cx="8.5" cy="8.5" r="1.5"/>
+                      <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span className={styles.dsImgLabel}>Image placeholder</span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Design ── */}
       <section id="design" className={styles.section}>
         <div className="container">
           <p className="section-label">Design</p>
-          <h2 className={styles.sectionTitle}>Three design features that make it work</h2>
+          <h2 className={styles.sectionTitle}>Intuitive, convenient and interactive</h2>
 
           {[
             {
               num: '01',
               title: 'Seamless hierarchical company navigation',
               desc: 'Nested org structures are represented as an interactive tree. Operators can expand, collapse, and edit nodes without losing the parent–child context that flat tables obscure. Deeply nested companies are navigable in a single screen.',
+              image: '/Companies.png',
             },
             {
               num: '02',
               title: 'AI extraction for various file formats',
               desc: 'The AI auto-mapping layer accepts various file formats without requiring fixed templates. It handles different column names, formatting styles, and nesting approaches — meaning clients can upload what they already have.',
+              image: '/AI extraction.png',
             },
             {
               num: '03',
               title: 'Data review and editing with accuracy validation',
               desc: 'Errors are flagged immediately as operators review extracted data — not in a separate validation step. Inline editing with live accuracy checks means issues are resolved in context, not after the fact.',
+              image: '/Bulk Assign.png',
+            },
+            {
+              num: '04',
+              title: 'LLM-driven configuration setup',
+              desc: 'Operators can converse with the AI assistant to configure organisational rules — instead of declaring them manually through forms. The AI interprets intent, suggests configurations, and applies changes on behalf of the user.',
+              image: '/LLM.png',
             },
           ].map(item => (
             <div key={item.num} className={styles.designFeature}>
@@ -277,14 +463,22 @@ export default function Pantas() {
                 <p className={styles.designCardDesc}>{item.desc}</p>
               </div>
               <div className={styles.designFeatureImg}>
-                <div className={styles.designImgPlaceholder}>
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <rect x="3" y="5" width="26" height="22" rx="3" stroke="rgba(92,200,255,0.4)" strokeWidth="1.5"/>
-                    <circle cx="10" cy="12" r="2.5" stroke="rgba(92,200,255,0.4)" strokeWidth="1.5"/>
-                    <path d="M3 21l7-5 5 4 4-3 10 7" stroke="rgba(92,200,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <span className={styles.designImgLabel}>Image placeholder</span>
-                </div>
+                {item.image
+                  ? <div className={styles.designFrame}>
+                      <div className={styles.designFrameBar}>
+                        <span /><span /><span />
+                      </div>
+                      <img src={item.image} alt={item.title} className={styles.designImg} />
+                    </div>
+                  : <div className={styles.designImgPlaceholder}>
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="3" y="5" width="26" height="22" rx="3" stroke="rgba(92,200,255,0.4)" strokeWidth="1.5"/>
+                        <circle cx="10" cy="12" r="2.5" stroke="rgba(92,200,255,0.4)" strokeWidth="1.5"/>
+                        <path d="M3 21l7-5 5 4 4-3 10 7" stroke="rgba(92,200,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span className={styles.designImgLabel}>Image placeholder</span>
+                    </div>
+                }
               </div>
             </div>
           ))}

@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -92,7 +92,22 @@ export default function CaseStudyLayout({ meta, children }) {
         <div className={`container ${styles.heroVisual} animate-fadeUp delay-6`}>
           <div className={styles.heroVisualBox} style={{ background: meta.heroBg }}>
             <div className={styles.heroVisualGlow} style={{ background: `radial-gradient(ellipse 50% 50% at 50% 50%, ${meta.accent}28, transparent)` }} />
-            {meta.heroVisual}
+            {meta.heroImage
+              ? <div className={styles.heroFrame} style={{ '--accent': meta.accent }}>
+                  <div className={styles.heroFrameBar}>
+                    <span /><span /><span />
+                  </div>
+                  <img src={meta.heroImage} alt={meta.title} className={styles.heroImg} />
+                </div>
+              : <div className={styles.heroPlaceholder}>
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                  <span>Project preview</span>
+                </div>
+            }
           </div>
         </div>
       </section>

@@ -1,4 +1,10 @@
-.page { min-height: 100vh; }
+.page {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
 
 /* ── Hero ── */
 .hero {
@@ -143,7 +149,7 @@
   overflow: hidden;
   min-height: 360px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   border: 1px solid rgba(255,255,255,0.06);
   border-bottom: none;
@@ -153,6 +159,56 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+
+.heroFrame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.heroFrameBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.heroFrameBar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+
+.heroImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.heroPlaceholder {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 360px;
+  color: rgba(255,255,255,0.18);
+}
+.heroPlaceholder span {
+  font-size: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
 }
 
 /* ── Sticky in-page nav ── */
