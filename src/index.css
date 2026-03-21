@@ -32,6 +32,36 @@
 
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Component tokens */
+  --nav-blur-bg: rgba(15, 15, 17, 0.88);
+  --nav-blur-border: rgba(255,255,255,0.05);
+  --grid-line: rgba(255,255,255,0.025);
+  --sticky-nav-bg: rgba(15, 15, 17, 0.9);
+}
+
+[data-theme="light"] {
+  --bg: #f6f4fb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ede9ff;
+  --border: rgba(0,0,0,0.08);
+  --border-purple: rgba(130, 80, 220, 0.2);
+
+  --purple-light: #7c3aed;
+  --purple: #7c3aed;
+  --purple-mid: #6d28d9;
+  --purple-deep: #5b21b6;
+  --purple-dark: #ede9ff;
+  --cyan: #0891b2;
+
+  --text-primary: #12101f;
+  --text-secondary: rgba(18, 16, 31, 0.58);
+  --text-muted: rgba(18, 16, 31, 0.36);
+
+  --nav-blur-bg: rgba(246, 244, 251, 0.92);
+  --nav-blur-border: rgba(0,0,0,0.07);
+  --grid-line: rgba(0,0,0,0.04);
+  --sticky-nav-bg: rgba(246, 244, 251, 0.95);
 }
 
 html { scroll-behavior: smooth; }

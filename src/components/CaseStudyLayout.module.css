@@ -1,8 +1,8 @@
 .page {
   min-height: 100vh;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -222,7 +222,7 @@
 }
 
 .stickyNavStuck {
-  background: rgba(15, 15, 17, 0.9);
+  background: var(--sticky-nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom-color: var(--border);

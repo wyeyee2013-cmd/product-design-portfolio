@@ -10,10 +10,10 @@
 
 .nav.scrolled {
   padding: 14px 0;
-  background: rgba(15, 15, 17, 0.85);
+  background: var(--nav-blur-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid var(--nav-blur-border);
 }
 
 .inner {
@@ -80,6 +80,31 @@
 .contactBtn:hover {
   background: rgba(163, 107, 255, 0.2) !important;
   color: var(--purple-light) !important;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.themeToggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+.themeToggle:hover {
+  border-color: var(--border-purple);
+  color: var(--text-primary);
 }
 
 .burger {
