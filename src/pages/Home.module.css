@@ -215,6 +215,26 @@
   flex-direction: column;
 }
 
+.featCardDimmed {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}
+
+.comingSoonBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .featCard:hover {
   border-color: var(--border-purple);
   transform: translateY(-4px);

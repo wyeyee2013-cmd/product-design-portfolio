@@ -19,6 +19,13 @@
   opacity: 0.35;
 }
 
+:global([data-theme="light"]) .hero {
+  background: #ffffff;
+}
+:global([data-theme="light"]) .heroBg {
+  display: none;
+}
+
 .heroGlow {
   position: absolute;
   width: 700px;

@@ -17,6 +17,7 @@ const FEATURED = [
     number: '01',
     image: '/Order.png',
     imageFull: true,
+    comingSoon: true,
   },
   {
     slug: 'pantas',
@@ -175,8 +176,13 @@ export default function Home() {
           </div>
 
           <div className={styles.featuredGrid}>
-            {FEATURED.map((p) => (
-              <Link to={`/projects/${p.slug}`} key={p.slug} className={styles.featCard}>
+            {FEATURED.map((p) => {
+              const CardEl = p.comingSoon ? 'div' : Link
+              const cardProps = p.comingSoon
+                ? { key: p.slug, className: `${styles.featCard} ${styles.featCardDimmed}` }
+                : { to: `/projects/${p.slug}`, key: p.slug, className: styles.featCard }
+              return (
+              <CardEl {...cardProps}>
                 <div
                   className={styles.featCardVisual}
                   style={{ background: p.bg }}
@@ -226,16 +232,14 @@ export default function Home() {
                   <p className={styles.featCardSub}>{p.subtitle}</p>
                   <div className={styles.featCardFooter}>
                     <span className={styles.featCardYear}>{p.year}</span>
-                    <span
-                      className={styles.featCardArrow}
-                      style={{ color: p.accent }}
-                    >
-                      View case study →
-                    </span>
+                    {p.comingSoon
+                      ? <span className={styles.comingSoonBadge}>Coming Soon</span>
+                      : <span className={styles.featCardArrow} style={{ color: p.accent }}>View case study →</span>
+                    }
                   </div>
                 </div>
-              </Link>
-            ))}
+              </CardEl>
+              )})}
           </div>
         </div>
       </section>
