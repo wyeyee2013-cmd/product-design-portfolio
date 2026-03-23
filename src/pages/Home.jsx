@@ -11,7 +11,7 @@ const FEATURED = [
     title: 'FeedMe POS',
     subtitle: 'Restaurant point-of-sale system redesigned for speed',
     tags: ['F&B Tech', 'Product Design', 'POS System'],
-    year: '2024',
+    year: '2026',
     accent: '#ff8c42',
     bg: 'linear-gradient(135deg, #201208 0%, #2a1508 100%)',
     number: '01',
@@ -24,7 +24,7 @@ const FEATURED = [
     title: 'Pantas Configuration and Organisation Setup',
     subtitle: 'Efficiency-driven setup tool for modern teams',
     tags: ['B2B SaaS', 'UX Design', 'Design System'],
-    year: '2024',
+    year: '2025',
     accent: '#5cc8ff',
     bg: 'linear-gradient(135deg, #0c1a28 0%, #0f2035 100%)',
     number: '02',
@@ -48,7 +48,7 @@ const FEATURED = [
     title: 'APSpace Admin',
     subtitle: 'University records administration system',
     tags: ['EdTech', 'Admin Dashboard', 'Data-heavy'],
-    year: '2022',
+    year: '2023',
     accent: '#62e8a0',
     bg: 'linear-gradient(135deg, #0f1e18 0%, #122818 100%)',
     number: '04',
@@ -58,10 +58,8 @@ const FEATURED = [
 ]
 
 const OTHER = [
-  { title: 'La-La Zen', category: 'Wellness · Mobile App', year: '2024' },
-  { title: 'Tomo.zone', category: 'Retail · E-commerce', year: '2023' },
-  { title: 'WeGroup', category: 'Recruitment · Platform', year: '2023' },
-  { title: 'aikoi.ai', category: 'Entertainment · AI Product', year: '2024' },
+  { title: 'Wolfplanet', category: 'Entertainment · Platform', year: '2024', slug: 'wolfplanet' },
+  { title: 'Tomo.zone', category: 'Retail · E-commerce', year: '2023', slug: 'tomo' },
 ]
 
 const CLIENTS = [
@@ -253,18 +251,23 @@ export default function Home() {
           </div>
 
           <div className={styles.otherGrid}>
-            {OTHER.map((p, i) => (
-              <div key={p.title} className={styles.otherCard}>
-                <div className={styles.otherCardLeft}>
-                  <span className={styles.otherNum}>0{i + 5}</span>
-                  <div>
-                    <h4 className={styles.otherTitle}>{p.title}</h4>
-                    <p className={styles.otherCat}>{p.category}</p>
+            {OTHER.map((p, i) => {
+              const inner = (
+                <>
+                  <div className={styles.otherCardLeft}>
+                    <span className={styles.otherNum}>0{i + 5}</span>
+                    <div>
+                      <h4 className={styles.otherTitle}>{p.title}</h4>
+                      <p className={styles.otherCat}>{p.category}</p>
+                    </div>
                   </div>
-                </div>
-                <span className={styles.otherYear}>{p.year}</span>
-              </div>
-            ))}
+                  <span className={styles.otherYear}>{p.year}</span>
+                </>
+              )
+              return p.slug
+                ? <Link key={p.title} to={`/projects/${p.slug}`} className={styles.otherCard}>{inner}</Link>
+                : <div key={p.title} className={styles.otherCard}>{inner}</div>
+            })}
           </div>
         </div>
       </section>

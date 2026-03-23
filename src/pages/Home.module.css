@@ -79,6 +79,27 @@
   flex-shrink: 0;
 }
 
+:global([data-theme="light"]) .featCardFrame {
+  background: #1e1e22;
+}
+:global([data-theme="light"]) .featCardFrameBar {
+  background: #2a2a30;
+  border-bottom-color: rgba(0,0,0,0.2);
+}
+:global([data-theme="light"]) .featCardFrameBar span {
+  background: rgba(255,255,255,0.3);
+}
+
+:global([data-theme="light"]) .heroAvail {
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.35);
+  color: #16a34a;
+}
+
+:global([data-theme="light"]) .availDot {
+  background: #16a34a;
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.8); }
@@ -776,5 +797,10 @@
   }
   .statDivider {
     display: none;
+  }
+  .ctaActions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
   }
 }

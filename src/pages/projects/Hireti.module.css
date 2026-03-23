@@ -1132,3 +1132,59 @@
   .resultsGrid { grid-template-columns: 1fr; }
   .processGrid { grid-template-columns: 1fr; }
 }
+
+:global([data-theme="light"]) .designFrame {
+  background: #1e1e22;
+}
+:global([data-theme="light"]) .designFrameBar {
+  background: #2a2a30;
+  border-bottom-color: rgba(0,0,0,0.2);
+}
+:global([data-theme="light"]) .designFrameBar span {
+  background: rgba(255,255,255,0.3);
+}
+
+:global([data-theme="light"]) .iconItem {
+  color: #1e293b;
+}
+:global([data-theme="light"]) .iconItem:hover {
+  background: rgba(255,126,179,0.1);
+  color: #be185d;
+}
+
+/* ── Light mode: component demos ── */
+:global([data-theme="light"]) .hirBtnOutline {
+  border-color: #D1051E;
+  color: #D1051E;
+  background: transparent;
+}
+:global([data-theme="light"]) .hirBtnGhost {
+  color: #D1051E;
+  background: transparent;
+}
+:global([data-theme="light"]) .hirBtnCancel {
+  border-color: rgba(0,0,0,0.2);
+  color: rgba(0,0,0,0.6);
+  background: transparent;
+}
+:global([data-theme="light"]) .hirBtnFormAdd {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: rgba(0,0,0,0.5);
+}
+:global([data-theme="light"]) .hiretiSwitchTrack {
+  background: rgba(0,0,0,0.12);
+}
+:global([data-theme="light"]) .hiretiToggleText {
+  color: rgba(0,0,0,0.5);
+}
+:global([data-theme="light"]) .hiretiUploadCard {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.12);
+}
+:global([data-theme="light"]) .hiretiUploadTitle {
+  color: #0d0b1a;
+}
+:global([data-theme="light"]) .hiretiUploadSub {
+  color: rgba(0,0,0,0.5);
+}

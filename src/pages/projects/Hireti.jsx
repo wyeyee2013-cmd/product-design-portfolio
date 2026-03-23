@@ -3,7 +3,7 @@ import CaseStudyLayout from '../../components/CaseStudyLayout'
 import styles from './Hireti.module.css'
 
 const META = {
-  client: 'Hilti IT Competition 2024',
+  client: 'Hilti',
   title: 'Hireti Recruitment System',
   subtitle: 'Elevating talent acquisition processes with AI-powered candidate management.',
   tags: ['UX/UI Design', 'Product Development', 'Branding', 'Interaction Design'],

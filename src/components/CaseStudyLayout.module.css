@@ -191,6 +191,17 @@
   background: rgba(255,255,255,0.15);
 }
 
+:global([data-theme="light"]) .heroFrame {
+  background: #1e1e22;
+}
+:global([data-theme="light"]) .heroFrameBar {
+  background: #2a2a30;
+  border-bottom-color: rgba(0,0,0,0.2);
+}
+:global([data-theme="light"]) .heroFrameBar span {
+  background: rgba(255,255,255,0.3);
+}
+
 .heroImg {
   width: 100%;
   height: auto;

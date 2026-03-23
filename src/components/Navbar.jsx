@@ -31,9 +31,12 @@ export default function Navbar() {
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState(
-    () => document.documentElement.getAttribute('data-theme') || 'dark'
-  )
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('theme')
+    const initial = saved || 'dark'
+    document.documentElement.setAttribute('data-theme', initial)
+    return initial
+  })
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)

@@ -1,0 +1,508 @@
+/* ── Shared section shell ── */
+.section {
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+}
+.section:first-child { border-top: none; }
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  max-width: 680px;
+  line-height: 1.15;
+}
+
+.body {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.bodyWide {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 14px;
+}
+
+/* ── Overview ── */
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.overviewStats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  transition: border-color 0.25s;
+}
+.statCard:hover { border-color: rgba(98,232,160,0.35); }
+
+.statNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #62e8a0, #3ac47d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  display: block;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+/* ── Problem ── */
+.problemGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.problemCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.problemCard:hover {
+  border-color: rgba(98,232,160,0.35);
+  transform: translateY(-2px);
+}
+
+.problemIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(98,232,160,0.1);
+  border: 1px solid rgba(98,232,160,0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #62e8a0;
+  margin-bottom: 16px;
+}
+
+.problemTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.problemDesc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Callout ── */
+.callout {
+  border-left: 3px solid #62e8a0;
+  background: rgba(98,232,160,0.06);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 20px 24px;
+  margin-top: 32px;
+}
+.callout p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Research / Personalities ── */
+.personasGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.personaCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.personaCard:hover {
+  border-color: rgba(98,232,160,0.35);
+  transform: translateY(-2px);
+}
+
+.personaIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(98,232,160,0.1);
+  border: 1px solid rgba(98,232,160,0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #62e8a0;
+  margin-bottom: 16px;
+}
+
+.personaName {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.personaDesc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Design Process ── */
+.processSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.processStep {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.processNum {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #62e8a0;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+
+.processTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.processDesc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Design System ── */
+.dsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.dsCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dsCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dsCardNum {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #62e8a0;
+  text-transform: uppercase;
+}
+
+.dsCardTitle {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Colour tokens ── */
+.colorTokens {
+  padding: 20px 24px 24px;
+}
+
+.colorSwatches {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.colorSwatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.colorSwatchBox {
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.colorSwatchName {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  text-align: center;
+}
+
+/* ── Final Design features ── */
+.designFeature {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-top: 48px;
+  background: var(--bg-card);
+  transition: border-color 0.25s;
+}
+.designFeature:hover { border-color: rgba(98,232,160,0.35); }
+
+.designFeatureText {
+  padding: 32px 36px;
+}
+
+.designCardNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #62e8a0;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.designCardTitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.designCardDesc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+.designFrame {
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.designFrameBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.designFrameBar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: block;
+}
+
+.designImgWrap {
+  background: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.designImg {
+  width: 100%;
+  height: 480px;
+  object-fit: contain;
+  display: block;
+}
+
+.designFeatureImg {
+  border-top: 1px solid var(--border);
+}
+
+.designImgPlaceholder {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(98,232,160,0.02);
+  background-image:
+    linear-gradient(rgba(98,232,160,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(98,232,160,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.designImgLabel {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(98,232,160,0.4);
+  letter-spacing: 0.05em;
+}
+
+/* ── Results ── */
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.resultCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  transition: border-color 0.25s;
+}
+.resultCard:hover { border-color: rgba(98,232,160,0.35); }
+
+.resultNum {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #62e8a0, #3ac47d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.resultLabel {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ── Takeaways ── */
+.takeawaysGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.takeawayCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.takeawayCard:hover {
+  border-color: rgba(98,232,160,0.35);
+  transform: translateY(-2px);
+}
+
+.takeawayIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(98,232,160,0.1);
+  border: 1px solid rgba(98,232,160,0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #62e8a0;
+  margin-bottom: 16px;
+}
+
+.takeawayTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.takeawayDesc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+:global([data-theme="light"]) .designFrame {
+  background: #1e1e22;
+}
+:global([data-theme="light"]) .designFrameBar {
+  background: #2a2a30;
+  border-bottom-color: rgba(0,0,0,0.2);
+}
+:global([data-theme="light"]) .designFrameBar span {
+  background: rgba(255,255,255,0.3);
+}

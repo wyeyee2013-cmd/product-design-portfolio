@@ -712,3 +712,57 @@
   .resultsGrid { grid-template-columns: 1fr; }
   .highlightBody { padding: 12px 20px 24px; }
 }
+
+:global([data-theme="light"]) .designFrame {
+  background: #1e1e22;
+}
+:global([data-theme="light"]) .designFrameBar {
+  background: #2a2a30;
+  border-bottom-color: rgba(0,0,0,0.2);
+}
+:global([data-theme="light"]) .designFrameBar span {
+  background: rgba(255,255,255,0.3);
+}
+
+:global([data-theme="light"]) .iconItem {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: #1e293b;
+}
+:global([data-theme="light"]) .iconItem:hover {
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.25);
+  color: #1d4ed8;
+}
+
+/* ── Light mode: component showcase ── */
+:global([data-theme="light"]) .componentItem {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.1);
+}
+:global([data-theme="light"]) .demoTab {
+  color: rgba(0,0,0,0.35);
+}
+:global([data-theme="light"]) .demoInput {
+  border-color: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.03);
+  color: #0d0b1a;
+}
+:global([data-theme="light"]) .demoInput::placeholder {
+  color: rgba(0,0,0,0.3);
+}
+:global([data-theme="light"]) .demoSwitchTrack {
+  background: rgba(0,0,0,0.12);
+}
+:global([data-theme="light"]) .demoCheckboxBox {
+  border-color: rgba(0,0,0,0.25);
+}
+:global([data-theme="light"]) .demoCheckboxLabel,
+:global([data-theme="light"]) .demoSwitchLabel {
+  color: rgba(0,0,0,0.7);
+}
+:global([data-theme="light"]) .demoSelect {
+  border-color: rgba(0,0,0,0.2);
+  color: #0d0b1a;
+  background: rgba(0,0,0,0.03);
+}

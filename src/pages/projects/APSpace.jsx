@@ -1,176 +1,376 @@
 import { useEffect } from 'react'
 import CaseStudyLayout from '../../components/CaseStudyLayout'
-import cs from './CaseStudy.module.css'
+import styles from './APSpace.module.css'
 
 const META = {
+  client: 'Asia Pacific University',
   title: 'APSpace Admin',
-  subtitle: 'Modernising a legacy university records system used by 15,000+ students and 400+ staff daily.',
-  tags: ['EdTech', 'Admin Dashboard', 'Data-Heavy UI', 'Enterprise'],
+  subtitle: 'Administer university records efficiently',
+  tags: ['Education', 'UX/UI Design', 'Product Development', 'Branding'],
   accent: '#62e8a0',
   accentDim: 'rgba(98,232,160,0.08)',
   heroBg: 'linear-gradient(135deg, #0d1f16 0%, #112818 50%, #091510 100%)',
   metaItems: [
-    { label: 'Role', value: 'Product Designer' },
-    { label: 'Timeline', value: '24 Weeks' },
-    { label: 'Year', value: '2022' },
-    { label: 'Platform', value: 'Web (Admin Portal)' },
+    { label: 'My Role', value: 'UX/UI Design Lead — Product Development, Branding, Interaction Design, Visual Design, Prototyping' },
+    { label: 'Team', value: 'Tahmid Rahman' },
+    { label: 'Timeline', value: 'September 2022 – November 2023 · 1 year 3 months' },
   ],
   heroImage: '/APSpace.png',
+  sections: [
+    { id: 'overview',     label: 'Overview' },
+    { id: 'problem',      label: 'Problem' },
+    { id: 'research',     label: 'Research' },
+    { id: 'process',      label: 'Design Process' },
+    { id: 'designsystem', label: 'Design System' },
+    { id: 'design',       label: 'Final Design' },
+    { id: 'results',      label: 'Results' },
+    { id: 'takeaways',    label: 'Key Takeaways' },
+  ],
   next: { slug: 'feedme', title: 'FeedMe POS', sub: 'Restaurant point-of-sale system redesigned for speed' },
 }
-
 
 export default function APSpace() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
   return (
     <CaseStudyLayout meta={META}>
-      <div className={cs.overview}>
-        <div className={cs.overviewText}>
-          <h2>The Challenge</h2>
-          <p>
-            APSpace is the student and staff portal for Asia Pacific University (APU), one of Malaysia's
-            largest private universities. The admin-facing side of the platform — used by registrars,
-            faculty, and department heads — had not been meaningfully redesigned in 7 years.
+
+      {/* ── Overview ── */}
+      <section id="overview" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Overview</p>
+          <div className={styles.overviewGrid}>
+            <div>
+              <h2 className={styles.sectionTitle}>Enhancing the current administrative experience</h2>
+              <p className={styles.body}>
+                I was the Lead Designer for the APSpace Admin system, working to enhance the productivity
+                and satisfaction of the university admins, while encouraging them to adapt to newer
+                technologies. I was tasked to construct a whole new administrative system to replace the
+                legacy system hosted on SQL server itself.
+              </p>
+              <p className={styles.body}>
+                Currently, the adoption rate of the admins towards the new system is as high as 85%.
+              </p>
+            </div>
+            <div className={styles.overviewStats}>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}>85%</span>
+                <span className={styles.statLabel}>Admin adoption rate towards the new system</span>
+              </div>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}>10+</span>
+                <span className={styles.statLabel}>Design iterations across all phases</span>
+              </div>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}>1yr+</span>
+                <span className={styles.statLabel}>End-to-end product delivery timeline</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Problem ── */}
+      <section id="problem" className={styles.section}>
+        <div className="container">
+          <p className="section-label">The Problem</p>
+          <h2 className={styles.sectionTitle}>To enhance the productivity of employees by replacing the legacy system</h2>
+          <p className={styles.bodyWide}>
+            The legacy system uses old-fashioned UI with cluttered information. Hence, the university
+            management has decided to revamp the legacy system by developing a replacement with a more
+            modern and user-friendly interface.
           </p>
-          <p>
-            Staff described their daily workflow as "fighting the system." Critical tasks like grade
-            submission, timetable management, and student status updates required navigating 5-8
-            separate screens with no clear information architecture. The system was built for
-            desktop, but 40% of staff accessed it from tablets and laptops in classrooms.
+          <div className={styles.problemGrid}>
+            {[
+              {
+                title: 'No Brand Image',
+                desc: 'Lesser trust is developed among the employees while using the system.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5"/><path d="M7 10h6M10 7v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+              },
+              {
+                title: 'Information Overload',
+                desc: 'Users are required to enter and process unnecessary information.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M6 8h8M6 11h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+              },
+              {
+                title: 'Unproductive to Use',
+                desc: 'Users are not motivated to use the system due to its complex user flow.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v4M10 13v4M3 10h4M13 10h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="10" cy="10" r="3" stroke="currentColor" strokeWidth="1.5"/></svg>,
+              },
+            ].map(item => (
+              <div key={item.title} className={styles.problemCard}>
+                <div className={styles.problemIcon}>{item.icon}</div>
+                <div className={styles.problemTitle}>{item.title}</div>
+                <div className={styles.problemDesc}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.callout}>
+            <p>The Goal — to provide a whole new experience to users by simplifying the user flow and beautifying the user interface through reducing the amount of information present.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Research ── */}
+      <section id="research" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Research</p>
+          <h2 className={styles.sectionTitle}>Specially crafted for our users</h2>
+          <p className={styles.bodyWide}>
+            Before diving deeper into the design process, the team identified our target users — most of
+            them being the admins of the university, who came to have several types of personalities and
+            motivations. They are broken down into three types:
           </p>
+          <div className={styles.personasGrid}>
+            {[
+              {
+                name: 'The Non-Tech Savvy',
+                desc: 'Does not take many initiatives to explore technology. Prefers to stick to traditional methods.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M7 17h6M10 14v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+              },
+              {
+                name: 'The Lazy Learners',
+                desc: 'Only willing to learn new products or functions if it brings direct benefits to their work.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v3M10 14v3M3 10h3M14 10h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="10" cy="10" r="3" stroke="currentColor" strokeWidth="1.5"/></svg>,
+              },
+              {
+                name: 'The Busy Bunch',
+                desc: 'Does not like to go through many layers to obtain information. Prefers a straightforward working style.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+              },
+            ].map(p => (
+              <div key={p.name} className={styles.personaCard}>
+                <div className={styles.personaIcon}>{p.icon}</div>
+                <div className={styles.personaName}>{p.name}</div>
+                <div className={styles.personaDesc}>{p.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className={cs.overviewStats}>
-          <div className={cs.stat}>
-            <div className={cs.statNum}>15K+</div>
-            <div className={cs.statLabel}>Students whose records flow through the system daily</div>
-          </div>
-          <div className={cs.stat}>
-            <div className={cs.statNum}>−52%</div>
-            <div className={cs.statLabel}>Reduction in task completion time for key admin flows</div>
-          </div>
-          <div className={cs.stat}>
-            <div className={cs.statNum}>400+</div>
-            <div className={cs.statLabel}>Staff members using the redesigned system</div>
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <div className={cs.section}>
-        <p className="section-label">Research</p>
-        <h2>Going deep into a legacy system</h2>
-        <p>
-          The most important thing I did in week one was sit with three admin staff members and
-          watch them work. Not interviews — observation. I watched a registrar process student
-          withdrawals, a faculty member submit grades, and a department head generate an
-          attendance report.
-        </p>
-        <p>What I saw was a masterclass in workarounds:</p>
-        <ul>
-          <li>The registrar had a handwritten cheat sheet of screen navigation shortcuts taped to her monitor</li>
-          <li>The faculty member kept a spreadsheet of student IDs because the search function was "too slow"</li>
-          <li>The department head exported data to Excel to run reports the system should have generated natively</li>
-        </ul>
-        <div className={cs.insightGrid}>
-          <div className={cs.insightCard}>
-            <div className={cs.insightIcon}>🗺️</div>
-            <div className={cs.insightTitle}>Navigation was the root cause</div>
-            <div className={cs.insightDesc}>The IA had grown organically over 7 years. Related functions were scattered across 6 top-level menu sections with no logical grouping.</div>
-          </div>
-          <div className={cs.insightCard}>
-            <div className={cs.insightIcon}>📊</div>
-            <div className={cs.insightTitle}>Data density without hierarchy</div>
-            <div className={cs.insightDesc}>Tables had 20+ columns with no priority ordering. Staff scanned every column to find 2-3 fields they actually needed.</div>
-          </div>
-          <div className={cs.insightCard}>
-            <div className={cs.insightIcon}>🔎</div>
-            <div className={cs.insightTitle}>Search was broken</div>
-            <div className={cs.insightDesc}>Student search only matched exact ID numbers, not names. Staff avoided it entirely and used departmental lists instead.</div>
-          </div>
-          <div className={cs.insightCard}>
-            <div className={cs.insightIcon}>📱</div>
-            <div className={cs.insightTitle}>Responsive was non-existent</div>
-            <div className={cs.insightDesc}>The system broke on any viewport below 1280px. Faculty submitting grades from classroom laptops had to scroll horizontally.</div>
+      {/* ── Design Process ── */}
+      <section id="process" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Design Process</p>
+          <h2 className={styles.sectionTitle}>New design processes. Fresh look.</h2>
+          <div className={styles.processSteps}>
+            {[
+              {
+                num: '01',
+                title: 'Introducing design sprints',
+                desc: 'Design sprints were conducted between the product managers and UX/UI Designers to ensure alignment towards a common goal — to discuss roadblocks, requirements, and specifications across the processes of discover, define, develop, and deliver.',
+              },
+              {
+                num: '02',
+                title: 'Enhancing the information architecture and user flow',
+                desc: 'The design team and the requirement team sat together to discuss potential user flows that could maximise productivity and satisfaction. We aimed to create a system that requires lesser effort in scrolling as it is less overwhelming to manage.',
+              },
+              {
+                num: '03',
+                title: 'Sketching the layouts through wireframing',
+                desc: 'Multiple layouts were sketched and arranged to ensure good user flow while fulfilling the requirements of the targeted audiences — to keep the interface compact but less complicated to screen through.',
+              },
+              {
+                num: '04',
+                title: 'Iterate, iterate and iterate',
+                desc: 'More than 10 iterations were made on the designs due to the change of business requirements, change of priorities in the product roadmap, or to perform further enhancements of the user experience.',
+              },
+            ].map(step => (
+              <div key={step.num} className={styles.processStep}>
+                <span className={styles.processNum}>{step.num}</span>
+                <div>
+                  <div className={styles.processTitle}>{step.title}</div>
+                  <div className={styles.processDesc}>{step.desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className={cs.section}>
-        <div className={cs.callout}>
-          <p>"I've memorised exactly which 7 clicks to press to get to grade entry. If anything changes, I'm lost. That's not how software should work." — Senior Lecturer, Faculty of Computing</p>
+      {/* ── Design System ── */}
+      <section id="designsystem" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Design System</p>
+          <h2 className={styles.sectionTitle}>Morphing the university's branding into the system</h2>
+          <p className={styles.bodyWide}>
+            The university decided to improve their identity by introducing unique branding guidelines that
+            represent their values and the image they portray. Blue is chosen as the main colour as it
+            represents the professionalism and trust catered towards students, clients and third-party
+            collaborators.
+          </p>
+          <div className={styles.dsGrid}>
+            <div className={styles.dsCard}>
+              <div className={styles.dsCardHeader}>
+                <span className={styles.dsCardNum}>01</span>
+                <span className={styles.dsCardTitle}>Colour Tokens</span>
+              </div>
+              <div className={styles.colorTokens}>
+                <div className={styles.colorSwatches}>
+                  {[
+                    { hex: '#1565C0', name: 'Primary Blue' },
+                    { hex: '#1976D2', name: 'Blue 700' },
+                    { hex: '#42A5F5', name: 'Blue 400' },
+                    { hex: '#E3F2FD', name: 'Blue 50' },
+                    { hex: '#FFFFFF', name: 'White', border: true },
+                  ].map(s => (
+                    <div key={s.hex} className={styles.colorSwatch}>
+                      <div
+                        className={styles.colorSwatchBox}
+                        style={{ background: s.hex, border: s.border ? '1px solid rgba(0,0,0,0.1)' : undefined }}
+                      />
+                      <span className={styles.colorSwatchName}>{s.name}</span>
+                      <span className={styles.colorSwatchName} style={{ opacity: 0.6 }}>{s.hex}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className={styles.dsCard}>
+              <div className={styles.dsCardHeader}>
+                <span className={styles.dsCardNum}>02</span>
+                <span className={styles.dsCardTitle}>Components</span>
+              </div>
+              <div style={{ padding: '20px 24px 24px', color: 'var(--text-muted)', fontSize: 14 }}>
+                Built with Angular Material — buttons, tables, dialogs, form fields, and navigation components
+                adapted to APSpace's brand identity.
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className={cs.section}>
-        <p className="section-label">Design Approach</p>
-        <h2>Modernising without disrupting</h2>
-        <p>
-          A key constraint: 400+ staff had years of muscle memory built around the existing system.
-          A complete redesign risked alienating the most experienced users — the ones the university
-          most depended on. My challenge was to dramatically improve the experience while
-          minimising the relearning curve.
-        </p>
-        <div className={cs.processGrid}>
-          <div className={cs.processStep}>
-            <div className={cs.processNum}>01</div>
-            <div className={cs.processTitle}>IA Restructure</div>
-            <div className={cs.processDesc}>Condensed 6 menu sections into 4 task-oriented groups based on workflow patterns, not feature silos.</div>
-          </div>
-          <div className={cs.processStep}>
-            <div className={cs.processNum}>02</div>
-            <div className={cs.processTitle}>Smart Tables</div>
-            <div className={cs.processDesc}>Implemented configurable column visibility, sticky headers, inline editing, and column-level sorting with state persistence.</div>
-          </div>
-          <div className={cs.processStep}>
-            <div className={cs.processNum}>03</div>
-            <div className={cs.processTitle}>Universal Search</div>
-            <div className={cs.processDesc}>Rebuilt search with fuzzy matching, recent lookups, and cross-entity results (students, courses, staff) in a single command palette.</div>
-          </div>
-          <div className={cs.processStep}>
-            <div className={cs.processNum}>04</div>
-            <div className={cs.processTitle}>Responsive Grid</div>
-            <div className={cs.processDesc}>Built a fluid layout system that degrades gracefully from 1440px to 768px with priority content reflow.</div>
-          </div>
-        </div>
-        <h3>The onboarding transition</h3>
-        <p>
-          To minimise disruption, I worked with the dev team to implement a "classic mode" toggle for
-          the first 3 months post-launch. This gave hesitant staff a safety net, and usage analytics
-          showed 94% had abandoned classic mode by month 2 — proving the new system was better,
-          not just different.
-        </p>
-      </div>
+      {/* ── Final Design ── */}
+      <section id="design" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Final Design</p>
+          <h2 className={styles.sectionTitle}>Introducing a whole new experience in APSpace Admin</h2>
 
-      <div className={cs.section}>
-        <p className="section-label">Results</p>
-        <h2>Adoption and efficiency gains</h2>
-        <div className={cs.outcomeGrid}>
-          <div className={cs.outcomeCard}>
-            <div className={cs.outcomeNum}>−52%</div>
-            <div className={cs.outcomeLabel}>Time to complete grade submission (6 min → 2.9 min)</div>
-          </div>
-          <div className={cs.outcomeCard}>
-            <div className={cs.outcomeNum}>94%</div>
-            <div className={cs.outcomeLabel}>Staff abandoned "classic mode" within 8 weeks</div>
-          </div>
-          <div className={cs.outcomeCard}>
-            <div className={cs.outcomeNum}>4.4★</div>
-            <div className={cs.outcomeLabel}>Post-launch satisfaction score (up from 2.1★)</div>
+          {[
+            {
+              num: '01',
+              title: 'Welcoming you with a refreshing homepage',
+              desc: 'A homepage serves as a prominent entry point for users entering the system — compared to the previous system where there was no homepage providing a brief description of functionalities and navigations.',
+              image: '/BbykbvD8RcUIwS5bh7Q5EOxZK0.webp',
+            },
+            {
+              num: '02',
+              title: 'Better search systems',
+              desc: 'The search function was made more prominent and easier to use, allowing users to search students across multiple fields rather than requiring an exact ID number match.',
+              image: '/9XLrZx5JvrP51bjLLZSajZ9I0.webp',
+            },
+            {
+              num: '03',
+              title: 'Manage students in an effective way',
+              desc: 'We designed a series of navigation options so users can easily navigate to the information they need about a student, without being overwhelmed by thousands of records.',
+              image: '/oeL6ksI3fj6eToKuWViI0Ef6U.webp',
+            },
+            {
+              num: '04',
+              title: 'Don\'t be confused. Just write some remarks.',
+              desc: 'The remarks section ensures all departments remain on the same page via timely records and comments, resolving miscommunication between departments.',
+              image: '/44mlBwRbevUhdfCALmRpXnd9k.webp',
+            },
+            {
+              num: '05',
+              title: 'Access through your fingertips',
+              desc: 'APSpace Admin can also be accessed through mobile phones and tablets, presenting a familiar experience consistent with desktops and laptops.',
+              image: '/HFzepbluzcWjbKet0p4iY0Zdgeg.webp',
+            },
+          ].map(item => (
+            <div key={item.num} className={styles.designFeature}>
+              <div className={styles.designFeatureText}>
+                <span className={styles.designCardNum}>{item.num}</span>
+                <div className={styles.designCardTitle}>{item.title}</div>
+                <div className={styles.designCardDesc}>{item.desc}</div>
+              </div>
+              <div className={styles.designFeatureImg}>
+                {item.image
+                  ? <div className={styles.designFrame}>
+                      <div className={styles.designFrameBar}><span /><span /><span /></div>
+                      <div className={styles.designImgWrap}>
+                        <img src={item.image} alt={item.title} className={styles.designImg} />
+                      </div>
+                    </div>
+                  : <div className={styles.designImgPlaceholder}>
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <rect x="3" y="3" width="22" height="22" rx="3" stroke="rgba(98,232,160,0.35)" strokeWidth="1.2"/>
+                        <circle cx="9.5" cy="9.5" r="2" stroke="rgba(98,232,160,0.35)" strokeWidth="1"/>
+                        <path d="M3 18l6-5 5 5 4-4 7 6" stroke="rgba(98,232,160,0.35)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span className={styles.designImgLabel}>Image coming soon</span>
+                    </div>
+                }
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Results ── */}
+      <section id="results" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Results</p>
+          <h2 className={styles.sectionTitle}>Achieving bigger milestones by adapting to changes</h2>
+          <p className={styles.bodyWide}>
+            As the project functionalities are released based on phases, the actual value of the impacts
+            are hard to obtain, and due to confidentiality reasons, estimated values will be given.
+          </p>
+          <div className={styles.resultsGrid}>
+            <div className={styles.resultCard}>
+              <div className={styles.resultNum}>85%</div>
+              <div className={styles.resultLabel}>Admin adoption rate towards the new system</div>
+            </div>
+            <div className={styles.resultCard}>
+              <div className={styles.resultNum}>4/5</div>
+              <div className={styles.resultLabel}>Satisfaction rating from admins post-launch</div>
+            </div>
+            <div className={styles.resultCard}>
+              <div className={styles.resultNum}>10+</div>
+              <div className={styles.resultLabel}>Design iterations across all phases</div>
+            </div>
           </div>
         </div>
-        <p>
-          The universal search feature alone reduced navigation clicks by an average of 4.2 per
-          session. The column configurability was cited by every focus group participant as the
-          feature they'd most miss if removed. Sometimes small UX improvements have outsized impact.
-        </p>
-        <h3>What I'd do differently</h3>
-        <p>
-          The 24-week timeline meant some features — particularly bulk action workflows and an
-          API for third-party grade imports — were deprioritised. In hindsight, I'd have
-          advocated harder for an additional 4-week sprint to ship those. They became the top
-          feature requests within a month of launch.
-        </p>
-      </div>
+      </section>
+
+      {/* ── Key Takeaways ── */}
+      <section id="takeaways" className={styles.section}>
+        <div className="container">
+          <p className="section-label">Key Takeaways</p>
+          <h2 className={styles.sectionTitle}>Continuing the process of learning something new</h2>
+          <p className={styles.bodyWide}>
+            In every phase, every design that we have done, new things are unfolded unexpectedly, which
+            brings a big realisation towards the project.
+          </p>
+          <div className={styles.takeawaysGrid}>
+            {[
+              {
+                title: 'There are no perfect designs',
+                desc: 'The process of designing for users should be constantly evolving. If you think your designs are 100% perfect, your users might not feel the same way.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3l1.8 5.5H17l-4.6 3.3 1.8 5.5L10 14l-4.2 3.3 1.8-5.5L3 8.5h5.2L10 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+              },
+              {
+                title: 'Take feasibility into account',
+                desc: 'A design could be attractive and interactive. However, placing too many idealistic thoughts might disrupt implementation if developers lack the skillsets to achieve the level of interactions you desire.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M7 10h6M7 7h4M7 13h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+              },
+              {
+                title: 'Collaboration is everything',
+                desc: 'Constructing a system should include everyone from different areas of expertise. As a designer, actively collaborate with other teams to ensure everyone is on the same page.',
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="13" cy="7" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M2 17c0-3 2-5 5-5h6c3 0 5 2 5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+              },
+            ].map(t => (
+              <div key={t.title} className={styles.takeawayCard}>
+                <div className={styles.takeawayIcon}>{t.icon}</div>
+                <div className={styles.takeawayTitle}>{t.title}</div>
+                <div className={styles.takeawayDesc}>{t.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </CaseStudyLayout>
   )
 }

@@ -93,12 +93,14 @@ export default function CaseStudyLayout({ meta, children }) {
           <div className={styles.heroVisualBox} style={{ background: meta.heroBg }}>
             <div className={styles.heroVisualGlow} style={{ background: `radial-gradient(ellipse 50% 50% at 50% 50%, ${meta.accent}28, transparent)` }} />
             {meta.heroImage
-              ? <div className={styles.heroFrame} style={{ '--accent': meta.accent }}>
-                  <div className={styles.heroFrameBar}>
-                    <span /><span /><span />
+              ? meta.heroNoFrame
+                ? <img src={meta.heroImage} alt={meta.title} className={styles.heroImg} />
+                : <div className={styles.heroFrame} style={{ '--accent': meta.accent }}>
+                    <div className={styles.heroFrameBar}>
+                      <span /><span /><span />
+                    </div>
+                    <img src={meta.heroImage} alt={meta.title} className={styles.heroImg} />
                   </div>
-                  <img src={meta.heroImage} alt={meta.title} className={styles.heroImg} />
-                </div>
               : <div className={styles.heroPlaceholder}>
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2"/>

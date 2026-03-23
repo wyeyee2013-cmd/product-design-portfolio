@@ -4,7 +4,7 @@ import CaseStudyLayout from '../../components/CaseStudyLayout'
 import styles from './Pantas.module.css'
 
 const META = {
-  client: 'Environmental Services',
+  client: 'Pantas',
   title: 'Pantas Configuration and Organisation Setup',
   subtitle: 'Making organisation setup and rule configuration fast and efficient.',
   tags: ['Product Design', 'Interaction Design', 'Visual Design', 'AI'],
