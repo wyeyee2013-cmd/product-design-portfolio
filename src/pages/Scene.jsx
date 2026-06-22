@@ -208,16 +208,25 @@ export default function Scene() {
         </p>
       </div>
 
-      {/* Mobile list */}
-      <nav className={styles.mobileList} aria-label="Projects">
+      {/* Responsive icon grid — tablet (3-col) + mobile (2-col) */}
+      <div className={styles.iconGrid}>
         {FEATURED.map((p) => (
-          <Link key={p.slug} to={`/projects/${p.slug}`} className={styles.mobileItem}>
-            <img src={p.image} alt="" className={styles.mobileThumb} loading="lazy" />
-            <span>{p.label}</span>
-            <span className={styles.mobileArrow}>→</span>
-          </Link>
+          <div
+            key={p.slug}
+            className={styles.gridItem}
+            onClick={() => navigate(`/projects/${p.slug}`)}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${p.label} case study`}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/projects/${p.slug}`) }}
+          >
+            <span className={styles.thumbTile}>
+              <img src={p.image} alt="" className={styles.thumbImg} loading="lazy" draggable={false} />
+            </span>
+            <span className={styles.thumbLabel}>{p.label}</span>
+          </div>
         ))}
-      </nav>
+      </div>
 
 
       {/* Dock */}

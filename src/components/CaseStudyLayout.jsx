@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import MacWindow from './MacWindow'
 import styles from './CaseStudyLayout.module.css'
 
 export default function CaseStudyLayout({ meta, children }) {
+  const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('')
   const bodyRef = useRef(null)
 
@@ -41,6 +42,11 @@ export default function CaseStudyLayout({ meta, children }) {
   return (
     <MacWindow title={meta.client || meta.title} bodyRef={bodyRef}>
       <div className={styles.inner} style={{ '--accent': meta.accent }}>
+
+        {/* ── Back button (tablet/mobile only) ── */}
+        <div className={styles.backRow}>
+          <button className={styles.backBtn} onClick={() => navigate('/')} aria-label="Back">‹</button>
+        </div>
 
         {/* ── Header ── */}
         <div className={styles.header}>

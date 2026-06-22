@@ -114,6 +114,9 @@ export default function Notes() {
           <span className={styles.titleText}>Notes</span>
         </div>
 
+        {/* Close button — mobile sheet only */}
+        <button className={styles.closeBtn} onClick={() => navigate('/')} aria-label="Close">×</button>
+
         {/* Two-panel body */}
         <div className={styles.body}>
           {/* Sidebar */}

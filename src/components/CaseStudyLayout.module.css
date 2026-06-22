@@ -20,7 +20,7 @@
   font-weight: 500;
   color: #0d0d0d;
   line-height: 1.1;
-  letter-spacing: -3px;
+  letter-spacing: -0.05em;
   margin: 0 0 14px;
 }
 
@@ -120,7 +120,7 @@
 /* Section headings inside content */
 .content :global(h2) {
   font-weight: 500 !important;
-  letter-spacing: -3px !important;
+  letter-spacing: -0.05em !important;
 }
 
 /* Body text inside content */
@@ -191,11 +191,65 @@
   flex-shrink: 0;
 }
 
+/* ─── Back button (tablet/mobile only) ───────────────── */
+.backRow {
+  display: none;
+}
+
+.backBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.07);
+  color: #111;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-bottom: 2px;
+  transition: background 0.15s;
+}
+.backBtn:hover { background: rgba(0, 0, 0, 0.12); }
+
+/* ─── Tablet + Mobile — full-page sub-page layout ───── */
+@media (max-width: 1024px) {
+  .backRow {
+    display: flex;
+    padding: 20px 24px 8px;
+  }
+
+  .header {
+    padding: 12px 24px 28px;
+  }
+
+  .hero {
+    padding: 20px 24px 0;
+  }
+
+  .sectionNav {
+    padding-left: 24px;
+    padding-right: 24px;
+    display: none;
+  }
+
+  .content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .next {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 /* ─── Mobile ─────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .header, .hero, .sectionNav, .content, .next {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  .backRow { padding: 16px 20px 4px; }
+  .header { padding: 8px 20px 24px; }
+  .hero, .content, .next { padding-left: 20px; padding-right: 20px; }
   .metaGrid { grid-template-columns: 1fr 1fr; }
 }

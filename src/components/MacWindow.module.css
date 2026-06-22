@@ -117,11 +117,52 @@
 .body::-webkit-scrollbar-track { background: transparent; }
 .body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
 
-/* ─── Mobile ─────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .window {
-    width: 100vw;
-    height: 100dvh;
-    border-radius: 0;
+/* ─── Close button (hidden on desktop) ──────────────── */
+.closeBtn { display: none; }
+
+/* ─── Tablet + Mobile — full page, no floating window ── */
+@media (max-width: 1024px) {
+  .stage {
+    position: relative;
+    min-height: 100svh;
+    display: block;
+    background: #fff;
   }
+  .bg, .nebula { display: none; }
+  .window {
+    width: 100%;
+    height: auto;
+    min-height: 100svh;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+    position: relative;
+  }
+  .titleBar { display: none; }
+  .body {
+    overflow-y: visible;
+    height: auto;
+  }
+
+  /* Close button replaces title bar */
+  .closeBtn {
+    display: flex;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    padding: 0;
+    line-height: 1;
+  }
+  .closeBtn:hover { background: rgba(0, 0, 0, 0.09); }
 }
