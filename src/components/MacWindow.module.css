@@ -1,0 +1,127 @@
+/* ─── Stage ──────────────────────────────────────────── */
+.stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Background (same as Scene) ────────────────────── */
+.bg {
+  position: absolute;
+  inset: -6%;
+  z-index: 0;
+  background-image: url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #0d0618;
+  animation: bgDrift 28s ease-in-out infinite alternate;
+  transform-origin: center;
+  will-change: transform;
+}
+@keyframes bgDrift {
+  0%   { transform: scale(1.00) translate(0%, 0%); }
+  30%  { transform: scale(1.04) translate(-1%, 0.8%); }
+  65%  { transform: scale(1.07) translate(1%, -0.6%); }
+  100% { transform: scale(1.03) translate(-0.5%, 1.2%); }
+}
+
+.nebula {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 42% at 10% 65%, rgba(110,28,170,0.38), transparent),
+    radial-gradient(ellipse 45% 36% at 88% 28%, rgba(65,18,130,0.30), transparent);
+  animation: nebulaPulse 10s ease-in-out infinite alternate;
+}
+@keyframes nebulaPulse {
+  from { opacity: 0.55; }
+  to   { opacity: 1; }
+}
+
+/* ─── Floating window ────────────────────────────────── */
+.window {
+  position: relative;
+  z-index: 10;
+  width: min(1080px, 88vw);
+  height: 84vh;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: windowIn 0.38s cubic-bezier(0.34, 1.32, 0.64, 1);
+}
+@keyframes windowIn {
+  from { opacity: 0; transform: scale(0.94) translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─── Title bar ──────────────────────────────────────── */
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #f0f0f0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px 12px 0 0;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.lights {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  display: block;
+  flex-shrink: 0;
+}
+.red    { background: #FF5F57; cursor: pointer; }
+.yellow { background: #FFBD2E; cursor: default; }
+.green  { background: #28C840; cursor: default; }
+.red:hover { filter: brightness(0.88); }
+
+.titleText {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Scrollable body ────────────────────────────────── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  background: #fff;
+  scroll-behavior: smooth;
+}
+.body::-webkit-scrollbar { width: 5px; }
+.body::-webkit-scrollbar-track { background: transparent; }
+.body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+/* ─── Mobile ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .window {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+}

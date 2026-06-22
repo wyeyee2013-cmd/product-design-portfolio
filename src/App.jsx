@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import Scene from './pages/Scene'
 import About from './pages/About'
+import Notes from './pages/Notes'
 import FeedMe from './pages/projects/FeedMe'
 import Pantas from './pages/projects/Pantas'
 import Hireti from './pages/projects/Hireti'
@@ -12,8 +13,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Scene />} />
         <Route path="/about" element={<About />} />
+        <Route path="/notes" element={<Notes />} />
         <Route path="/projects/feedme" element={<FeedMe />} />
         <Route path="/projects/pantas" element={<Pantas />} />
         <Route path="/projects/hireti" element={<Hireti />} />
