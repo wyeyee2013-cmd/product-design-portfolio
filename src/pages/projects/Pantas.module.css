@@ -48,13 +48,18 @@
 }
 
 .statCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-md);
   padding: 20px 24px;
-  transition: border-color 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.statCard:hover { border-color: rgba(92,200,255,0.35); }
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
+}
 
 .statNum {
   display: block;
@@ -62,10 +67,7 @@
   font-size: 36px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, #8ddeff, #5cc8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #2b9fe0;
   line-height: 1.1;
   margin-bottom: 4px;
 }
@@ -84,15 +86,17 @@
 }
 
 .problemCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: 28px;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 .problemCard:hover {
-  border-color: rgba(92,200,255,0.35);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .problemIcon {
@@ -132,13 +136,18 @@
 }
 
 .solutionCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-xl);
   padding: 32px;
-  transition: border-color 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.solutionCard:hover { border-color: rgba(92,200,255,0.35); }
+.solutionCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
+}
 
 .solutionAccent {
   width: 56px;
@@ -165,14 +174,19 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   overflow: hidden;
   margin-top: 24px;
-  background: var(--bg-card);
-  transition: border-color 0.25s;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.designFeature:hover { border-color: rgba(92,200,255,0.35); }
+.designFeature:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
+}
 
 .designFeatureText {
   padding: 32px 36px;
@@ -214,11 +228,7 @@
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow:
-    0 2px 0 rgba(255,255,255,0.05) inset,
-    0 16px 48px rgba(0,0,0,0.5),
-    0 0 32px rgba(92,200,255,0.08);
+  box-shadow: inset 0 0 0 1px var(--glass-edge), 0 16px 48px rgba(0,0,0,0.12), 0 0 32px rgba(92,200,255,0.08);
 }
 
 .designFrameBar {
@@ -226,15 +236,15 @@
   align-items: center;
   gap: 6px;
   padding: 9px 14px;
-  background: rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.45);
+  border-bottom: 1px solid var(--border);
 }
 
 .designFrameBar span {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.15);
 }
 
 .designImg {
@@ -273,27 +283,29 @@
 }
 
 .resultCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  transition: border-color 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.resultCard:hover { border-color: rgba(92,200,255,0.35); }
+.resultCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
+}
 
 .resultNum {
   font-family: var(--font-display);
   font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.04em;
-  background: linear-gradient(135deg, #5cc8ff, #a36bff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #2b9fe0;
   line-height: 1.1;
 }
 
@@ -312,15 +324,20 @@
 }
 
 .dsCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  transition: border-color 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
   display: flex;
   flex-direction: column;
 }
-.dsCard:hover { border-color: rgba(92,200,255,0.35); }
+.dsCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
+}
 
 .dsCardHeader {
   display: flex;
@@ -410,7 +427,7 @@
   width: 40px;
   height: 40px;
   border-radius: 9px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
   flex-shrink: 0;
 }
 
@@ -462,7 +479,7 @@
   justify-content: space-between;
   gap: 16px;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid var(--border);
 }
 .typeRow:last-child { border-bottom: none; }
 
@@ -498,8 +515,8 @@
 }
 
 .componentItem {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.45);
+  box-shadow: inset 0 0 0 1px var(--glass-edge);
   border-radius: 10px;
   padding: 12px 10px;
   display: flex;
@@ -558,7 +575,7 @@
 
 .demoTab {
   font-size: 11px;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   font-family: 'Inter', sans-serif;
   padding-bottom: 3px;
   white-space: nowrap;
@@ -580,11 +597,12 @@
 }
 
 .demoInput {
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 6px;
   padding: 5px 8px;
   font-size: 10px;
-  color: rgba(255,255,255,0.3);
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.03);
   font-family: 'Inter', sans-serif;
   width: 100%;
   text-align: center;
@@ -618,7 +636,7 @@
 
 .demoSwitchLabel {
   font-size: 11px;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-secondary);
   font-family: 'Inter', sans-serif;
 }
 
@@ -641,7 +659,7 @@
 
 .demoCheckboxLabel {
   font-size: 10px;
-  color: rgba(255,255,255,0.7);
+  color: var(--text-secondary);
   font-family: 'Inter', sans-serif;
   white-space: nowrap;
 }
@@ -650,11 +668,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 6px;
   padding: 5px 8px;
   font-size: 10px;
-  color: rgba(255,255,255,0.3);
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.03);
   font-family: 'Inter', sans-serif;
   width: 100%;
   gap: 4px;
@@ -678,15 +697,15 @@
   gap: 8px;
   padding: 14px 8px;
   border-radius: 10px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.65);
-  transition: background 0.2s, color 0.2s;
+  background: rgba(255,255,255,0.45);
+  box-shadow: inset 0 0 0 1px var(--glass-edge);
+  color: var(--text-secondary);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .iconItem:hover {
-  background: rgba(37,99,235,0.1);
-  border-color: rgba(37,99,235,0.3);
-  color: #60a5fa;
+  background: rgba(37,99,235,0.08);
+  box-shadow: inset 0 0 0 1px rgba(37,99,235,0.25);
+  color: #1d4ed8;
 }
 
 .iconLabel {
@@ -713,56 +732,3 @@
   .highlightBody { padding: 12px 20px 24px; }
 }
 
-:global([data-theme="light"]) .designFrame {
-  background: #1e1e22;
-}
-:global([data-theme="light"]) .designFrameBar {
-  background: #2a2a30;
-  border-bottom-color: rgba(0,0,0,0.2);
-}
-:global([data-theme="light"]) .designFrameBar span {
-  background: rgba(255,255,255,0.3);
-}
-
-:global([data-theme="light"]) .iconItem {
-  background: rgba(0,0,0,0.04);
-  border-color: rgba(0,0,0,0.1);
-  color: #1e293b;
-}
-:global([data-theme="light"]) .iconItem:hover {
-  background: rgba(37,99,235,0.08);
-  border-color: rgba(37,99,235,0.25);
-  color: #1d4ed8;
-}
-
-/* ── Light mode: component showcase ── */
-:global([data-theme="light"]) .componentItem {
-  background: rgba(0,0,0,0.03);
-  border-color: rgba(0,0,0,0.1);
-}
-:global([data-theme="light"]) .demoTab {
-  color: rgba(0,0,0,0.35);
-}
-:global([data-theme="light"]) .demoInput {
-  border-color: rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.03);
-  color: #0d0b1a;
-}
-:global([data-theme="light"]) .demoInput::placeholder {
-  color: rgba(0,0,0,0.3);
-}
-:global([data-theme="light"]) .demoSwitchTrack {
-  background: rgba(0,0,0,0.12);
-}
-:global([data-theme="light"]) .demoCheckboxBox {
-  border-color: rgba(0,0,0,0.25);
-}
-:global([data-theme="light"]) .demoCheckboxLabel,
-:global([data-theme="light"]) .demoSwitchLabel {
-  color: rgba(0,0,0,0.7);
-}
-:global([data-theme="light"]) .demoSelect {
-  border-color: rgba(0,0,0,0.2);
-  color: #0d0b1a;
-  background: rgba(0,0,0,0.03);
-}

@@ -46,13 +46,15 @@
 }
 
 .statCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-md);
   padding: 20px 24px;
-  transition: border-color 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.statCard:hover { border-color: rgba(98,232,160,0.35); }
+.statCard:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); }
 
 .statNum {
   display: block;
@@ -83,15 +85,17 @@
 }
 
 .problemCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: 28px;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 .problemCard:hover {
-  border-color: rgba(98,232,160,0.35);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .problemIcon {
@@ -147,15 +151,17 @@
 }
 
 .personaCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: 28px;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 .personaCard:hover {
-  border-color: rgba(98,232,160,0.35);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .personaIcon {
@@ -235,8 +241,10 @@
 }
 
 .dsCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-xl);
   overflow: hidden;
   display: flex;
@@ -289,7 +297,7 @@
   width: 80px;
   height: 80px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 0 0 1px var(--glass-edge);
 }
 
 .colorSwatchName {
@@ -301,14 +309,16 @@
 
 /* ── Final Design features ── */
 .designFeature {
-  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   overflow: hidden;
   margin-top: 48px;
-  background: var(--bg-card);
-  transition: border-color 0.25s;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.designFeature:hover { border-color: rgba(98,232,160,0.35); }
+.designFeature:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); }
 
 .designFeatureText {
   padding: 32px 36px;
@@ -356,7 +366,7 @@
   align-items: center;
   gap: 6px;
   padding: 10px 14px;
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.45);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -364,12 +374,12 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.15);
   display: block;
 }
 
 .designImgWrap {
-  background: #212121;
+  background: #ece9e3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -418,17 +428,19 @@
 }
 
 .resultCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  transition: border-color 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.resultCard:hover { border-color: rgba(98,232,160,0.35); }
+.resultCard:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); }
 
 .resultNum {
   font-family: var(--font-display);
@@ -457,15 +469,17 @@
 }
 
 .takeawayCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: 28px;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 .takeawayCard:hover {
-  border-color: rgba(98,232,160,0.35);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .takeawayIcon {
@@ -497,12 +511,12 @@
 }
 
 :global([data-theme="light"]) .designFrame {
-  background: #1e1e22;
+  background: transparent;
 }
 :global([data-theme="light"]) .designFrameBar {
-  background: #2a2a30;
-  border-bottom-color: rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.45);
+  border-bottom-color: var(--border);
 }
 :global([data-theme="light"]) .designFrameBar span {
-  background: rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.15);
 }

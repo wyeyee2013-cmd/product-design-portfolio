@@ -66,3 +66,15 @@
     width: 100%;
   }
 }
+
+/* ── "wabi" variant — homepage light surface ── */
+.wabi {
+  border-top: none;
+  margin-top: 0;
+  padding: 44px 0 56px;
+}
+.wabi .name { color: #1c1b18; }
+.wabi .role { color: #9b958a; }
+.wabi .links a { color: #6c6760; }
+.wabi .links a:hover { color: #6d28d9; }
+.wabi .copy { color: #9b958a; }

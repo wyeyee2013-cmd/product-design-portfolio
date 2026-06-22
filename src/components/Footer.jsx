@@ -25,7 +25,7 @@ function LogoMark() {
 export default function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} ${styles.wabi}`}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.left}>
           <div className={styles.logoMark}><LogoMark /></div>

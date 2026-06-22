@@ -31,15 +31,18 @@
 }
 
 .stat {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-md);
   padding: 20px 24px;
-  transition: border-color 0.3s;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .stat:hover {
-  border-color: var(--border-purple);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .statNum {
@@ -47,10 +50,7 @@
   font-size: 36px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, var(--purple-light), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent, var(--purple));
   line-height: 1.1;
 }
 
@@ -111,16 +111,16 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--purple);
+  background: var(--accent, var(--purple));
   flex-shrink: 0;
   margin-top: 8px;
 }
 
 /* Callout / highlight box */
 .callout {
-  background: rgba(163,107,255,0.07);
-  border: 1px solid var(--border-purple);
-  border-left: 3px solid var(--purple);
+  background: color-mix(in srgb, var(--accent, var(--purple)) 9%, transparent);
+  border-left: 3px solid var(--accent, var(--purple));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent, var(--purple)) 22%, transparent);
   border-radius: var(--radius-md);
   padding: 20px 24px;
   margin: 24px 0;
@@ -139,7 +139,10 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   margin: 32px 0;
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
   min-height: 280px;
   display: flex;
   align-items: center;
@@ -156,15 +159,18 @@
 }
 
 .processStep {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-md);
   padding: 20px;
-  transition: border-color 0.3s;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .processStep:hover {
-  border-color: var(--border-purple);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .processNum {
@@ -172,7 +178,7 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--purple);
+  color: var(--accent, var(--purple));
   text-transform: uppercase;
   margin-bottom: 8px;
 }
@@ -200,16 +206,18 @@
 }
 
 .insightCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-md);
   padding: 24px;
-  transition: all 0.3s;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .insightCard:hover {
-  border-color: var(--border-purple);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .insightIcon {
@@ -240,11 +248,19 @@
 }
 
 .outcomeCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-md);
   padding: 24px;
   text-align: center;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.outcomeCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .outcomeNum {
@@ -252,10 +268,7 @@
   font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, var(--purple-light), var(--cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent, var(--purple));
   line-height: 1.1;
   margin-bottom: 8px;
 }
