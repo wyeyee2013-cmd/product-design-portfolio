@@ -3,39 +3,6 @@ import styles from './About.module.css'
 
 const RESUME_URL = 'https://drive.google.com/file/d/1rRuA10-6bYInlw7D9xMJvCbD2oimB1Op/view'
 
-const EXPERIENCE = [
-  {
-    role: 'Product Designer',
-    company: 'FeedMe',
-    period: '2025 — Present',
-    desc: 'Leading the revamp of the core POS product.',
-  },
-  {
-    role: 'AI Product Designer',
-    company: 'Pantas',
-    period: '2024 — 2025',
-    desc: 'Redesigned 4 core product areas — organisation management, biodiversity tracking, financed emissions, and a design system, cutting client onboarding time by 6–7 hours and boosting team productivity by 40%.',
-  },
-  {
-    role: 'Product Designer',
-    company: 'Asia Pacific University',
-    period: '2022 — 2023',
-    desc: 'Led end-to-end design across 3 projects — an admin system revamp, a Thesis Management System, and an e-orientation website, driving a 40% increase in user satisfaction.',
-  },
-  {
-    role: 'UI/UX Intern',
-    company: 'Hiredly',
-    period: '2022',
-    desc: 'Revamped job seeker and employer dashboards through research-led design, resulting in a 30% increase in user satisfaction.',
-  },
-]
-
-const SKILLS = [
-  { cat: 'Design', items: ['Product Design', 'UX Research', 'Interaction Design', 'Design Systems', 'Prototyping', 'Human-AI Interaction'] },
-  { cat: 'Tools', items: ['Figma', 'Framer', 'Miro', 'Notion', 'Jira', 'Cursor', 'Claude Code'] },
-  { cat: 'Methods', items: ['User Interviews', 'A/B Testing', 'Usability Testing', 'Journey Mapping', 'Design Sprints', 'Prompt Engineering'] },
-]
-
 export default function About() {
   return (
     <MacWindow title="About me">
@@ -76,42 +43,6 @@ export default function About() {
           <div className={styles.actions}>
             <a href="mailto:cheryl.wylim@outlook.com" className={styles.btnPrimary}>Say hello</a>
             <a href={RESUME_URL} target="_blank" rel="noreferrer" className={styles.btnGhost}>View résumé ↗</a>
-          </div>
-        </div>
-
-        {/* ── Experience ── */}
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Experience</h2>
-          <div className={styles.expList}>
-            {EXPERIENCE.map((e, i) => (
-              <div key={i} className={styles.expItem}>
-                <div className={styles.expMeta}>
-                  <span className={styles.expPeriod}>{e.period}</span>
-                </div>
-                <div className={styles.expContent}>
-                  <p className={styles.expRole}>{e.role}</p>
-                  <p className={styles.expCompany}>{e.company}</p>
-                  <p className={styles.expDesc}>{e.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Skills ── */}
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Skills</h2>
-          <div className={styles.skillsGrid}>
-            {SKILLS.map(s => (
-              <div key={s.cat} className={styles.skillCard}>
-                <p className={styles.skillCat}>{s.cat}</p>
-                <div className={styles.skillItems}>
-                  {s.items.map(item => (
-                    <span key={item} className={styles.skillItem}>{item}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 

@@ -181,13 +181,32 @@
   margin: 0 0 20px;
 }
 
+.contentHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.resumeBtn {
+  font-size: 13px;
+  font-weight: 500;
+  color: #3b82f6;
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.resumeBtn:hover { text-decoration: underline; }
+
 .contentTitle {
   font-size: clamp(28px, 3.5vw, 40px);
   font-weight: 700;
   color: #0d0d0d;
   letter-spacing: -3px;
   line-height: 1.1;
-  margin: 0 0 24px;
+  margin: 0;
 }
 
 /* ─── Content body ────────────────────────────────────── */

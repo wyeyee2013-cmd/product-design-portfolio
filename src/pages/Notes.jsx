@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './Notes.module.css'
 
+const RESUME_URL = 'https://drive.google.com/file/d/1rRuA10-6bYInlw7D9xMJvCbD2oimB1Op/view'
+
 const NOTES = [
   {
     id: 'experience',
@@ -131,7 +133,12 @@ export default function Notes() {
           {/* Content */}
           <div className={styles.content}>
             <p className={styles.timestamp}>Cheryl Lim · Portfolio</p>
-            <h1 className={styles.contentTitle}>{current.title}</h1>
+            <div className={styles.contentHeader}>
+              <h1 className={styles.contentTitle}>{current.title}</h1>
+              <a href={RESUME_URL} target="_blank" rel="noreferrer" className={styles.resumeBtn}>
+                View full résumé ↗
+              </a>
+            </div>
             <div className={styles.contentBody}>{current.content}</div>
           </div>
         </div>
