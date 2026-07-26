@@ -178,15 +178,14 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   margin-top: 24px;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.25s, box-shadow 0.25s;
 }
 .designFeature:hover {
   transform: translateY(-3px);
-  box-shadow: var(--glass-shadow-hover);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
 }
 
 .designFeatureText {
@@ -227,9 +226,7 @@
 
 .designFrame {
   width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 1px var(--glass-edge), 0 16px 48px rgba(0,0,0,0.12), 0 0 32px rgba(255,140,66,0.08);
+  background: #fff;
 }
 
 .designFrameBar {

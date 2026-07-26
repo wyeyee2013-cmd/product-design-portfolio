@@ -1,0 +1,88 @@
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f6f4ef;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 30px 80px rgba(0, 0, 0, 0.4);
+  animation: winOpen 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: box-shadow 0.2s;
+}
+.window.active {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.16),
+    0 40px 100px rgba(0, 0, 0, 0.5);
+}
+@keyframes winOpen {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.titlebar {
+  position: relative;
+  flex-shrink: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(244,242,237,0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: grab;
+  user-select: none;
+}
+.titlebar:active { cursor: grabbing; }
+
+.lights {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: filter 0.15s;
+}
+.light:hover { filter: brightness(0.9); }
+.close { background: #ff5f57; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.12); }
+.min   { background: #febc2e; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.12); }
+.max   { background: #28c840; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.12); }
+
+.title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b4742;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 90px;
+}
+.titleSpacer { flex: 1; }
+
+.body {
+  flex: 1;
+  overflow: auto;
+  background: var(--bg);
+  position: relative;
+}
+.body::-webkit-scrollbar { width: 8px; }
+.body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+
+@media (max-width: 700px) {
+  .title { padding: 0 70px; }
+}

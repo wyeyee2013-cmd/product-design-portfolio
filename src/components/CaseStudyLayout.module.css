@@ -313,6 +313,12 @@
     padding-right: 24px;
   }
 
+  /* .container inside case study sections already has layout padding — zero it out */
+  .content :global(.container) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .next {
     padding-left: 24px;
     padding-right: 24px;

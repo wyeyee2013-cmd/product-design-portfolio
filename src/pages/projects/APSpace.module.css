@@ -520,3 +520,63 @@
 :global([data-theme="light"]) .designFrameBar span {
   background: rgba(0,0,0,0.15);
 }
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+  .section { padding: 48px 0; }
+
+  .overviewGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .problemGrid,
+  .personasGrid,
+  .takeawaysGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .dsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .resultsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .resultsGrid .resultCard:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .designFeatureText { padding: 24px 20px; }
+
+  .designImg {
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+  }
+  .designImgWrap { padding: 16px; }
+
+  .colorSwatchBox { width: 56px; height: 56px; }
+  .colorSwatches { gap: 12px; }
+}
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .problemGrid,
+  .personasGrid,
+  .takeawaysGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resultsGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .designImg { height: 320px; }
+}
