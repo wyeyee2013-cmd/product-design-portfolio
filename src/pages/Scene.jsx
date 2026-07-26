@@ -164,7 +164,7 @@ export default function Scene() {
 
   return (
     <div className={styles.stage}>
-      <div className={styles.bg} aria-hidden="true" />
+      <video className={styles.bg} src="/bg.mp4" autoPlay loop muted playsInline aria-hidden="true" />
       <div className={styles.nebula} aria-hidden="true" />
 
       {/* Top bar */}
@@ -198,9 +198,8 @@ export default function Scene() {
           <span className={styles.dot} /> Open for product design roles
         </span>
         <h1 className={styles.headline}>
-          Turning<br />
-          creativity<br />
-          into reality.
+          Turning complex systems<br />
+          into intuitive products.
         </h1>
         <p className={styles.sub}>
           ~4 years crafting user-centered digital experiences<br />

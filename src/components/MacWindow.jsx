@@ -6,7 +6,7 @@ export default function MacWindow({ title, children, bodyRef }) {
 
   return (
     <div className={styles.stage}>
-      <div className={styles.bg} aria-hidden="true" />
+      <video className={styles.bg} src="/bg.mp4" autoPlay loop muted playsInline aria-hidden="true" />
       <div className={styles.nebula} aria-hidden="true" />
 
       <div className={styles.window} role="dialog" aria-label={title}>
