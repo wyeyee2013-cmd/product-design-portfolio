@@ -21,6 +21,40 @@ const DOCK = [
   { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com',            glyph: 'linkedin', from: '#0A66C2', to2: '#0A66C2', ink: '#fff' },
 ]
 
+const TALKS_FOLDER = { id: 'talks', label: 'Talks', pos: { top: '42%', left: '50%' }, size: 88, delay: 360 }
+
+const TALKS = [
+  { id: 1, title: 'Add your talk title', event: 'Conference / Event name', date: '2024', link: null },
+]
+
+function TalksFolderIcon({ styles, uid = 'tff' }) {
+  const b = `${uid}b`
+  const f = `${uid}f`
+  return (
+    <span className={styles.macFolderTile}>
+      <svg viewBox="0 0 100 84" fill="none" xmlns="http://www.w3.org/2000/svg"
+           style={{ width: '94%', height: 'auto', display: 'block' }}>
+        <defs>
+          <linearGradient id={b} x1="50" y1="0" x2="50" y2="84" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#42B2EB" />
+            <stop offset="100%" stopColor="#2494D4" />
+          </linearGradient>
+          <linearGradient id={f} x1="50" y1="22" x2="50" y2="84" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#90D8FC" />
+            <stop offset="100%" stopColor="#62C3F5" />
+          </linearGradient>
+        </defs>
+        {/* Back panel + tab */}
+        <path d="M 2 80 Q 2 84 6 84 L 94 84 Q 98 84 98 80 L 98 26 Q 98 22 94 22 L 44 22 C 40 22 32 6 34 6 L 6 6 Q 2 6 2 10 L 2 80 Z" fill={`url(#${b})`} />
+        {/* Front panel */}
+        <path d="M 2 22 L 98 22 L 98 79 Q 98 84 92 84 L 8 84 Q 2 84 2 79 Z" fill={`url(#${f})`} />
+        {/* Top highlight */}
+        <rect x="2" y="22" width="96" height="8" fill="rgba(255,255,255,0.18)" />
+      </svg>
+    </span>
+  )
+}
+
 function DockGlyph({ name }) {
   const p = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' }
   switch (name) {
@@ -103,6 +137,7 @@ export default function Scene() {
   const [dragId, setDragId] = useState(null)
   const drag = useRef(null)
   const now = useClock()
+  const [folderOpen, setFolderOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -190,6 +225,16 @@ export default function Scene() {
           </div>
         ))}
 
+        {/* Talks folder */}
+        <div
+          className={`${styles.thumb} ${mounted ? styles.thumbIn : ''} ${dragId === 'talks' ? styles.dragging : ''}`}
+          style={tileStyle(TALKS_FOLDER)}
+          aria-label="View talks"
+          {...dragProps('talks', () => setFolderOpen(true))}
+        >
+          <TalksFolderIcon styles={styles} uid="tff0" />
+          <span className={styles.thumbLabel}>Talks</span>
+        </div>
       </div>
 
       {/* Centered headline */}
@@ -207,7 +252,7 @@ export default function Scene() {
         </p>
       </div>
 
-      {/* Responsive icon grid — tablet (3-col) + mobile (2-col) */}
+      {/* Responsive icon grid — tablet + mobile */}
       <div className={styles.iconGrid}>
         {FEATURED.map((p) => (
           <div
@@ -225,8 +270,39 @@ export default function Scene() {
             <span className={styles.thumbLabel}>{p.label}</span>
           </div>
         ))}
+        <div
+          className={styles.gridItem}
+          onClick={() => setFolderOpen(true)}
+          role="button"
+          tabIndex={0}
+          aria-label="View talks"
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFolderOpen(true) }}
+        >
+          <TalksFolderIcon styles={styles} uid="tff1" />
+          <span className={styles.thumbLabel}>Talks</span>
+        </div>
       </div>
 
+
+      {/* Talks panel */}
+      {folderOpen && (
+        <div className={styles.folderOverlay} onClick={() => setFolderOpen(false)}>
+          <div className={styles.talksPanel} onClick={e => e.stopPropagation()}>
+            <div className={styles.folderPanelHead}>
+              <h2>Talks</h2>
+              <button className={styles.folderClose} onClick={() => setFolderOpen(false)} aria-label="Close">×</button>
+            </div>
+            <div className={styles.talksEmpty}>
+              <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: 48, height: 40 }}>
+                <path d="M 1 36 Q 1 39 4 39 L 44 39 Q 47 39 47 36 L 47 14 Q 47 11 44 11 L 22 11 C 21 11 20 9 19.5 7 L 18 4 Q 17.5 2 16 2 L 4 2 Q 1 2 1 5 Z" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+                <path d="M 1 13 L 47 13" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+              </svg>
+              <span className={styles.talksEmptyTitle}>Work in progress</span>
+              <span className={styles.talksEmptyDesc}>Talks will appear here soon</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Dock */}
       <div className={styles.dockWrap}>

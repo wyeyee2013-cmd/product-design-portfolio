@@ -6,34 +6,76 @@ import styles from './CaseStudyLayout.module.css'
 export default function CaseStudyLayout({ meta, children }) {
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('')
+  const [navVisible, setNavVisible] = useState(false)
   const bodyRef = useRef(null)
+  const headerRef = useRef(null)
+  const tabsRef = useRef(null)
 
+  // Show/hide mobile sticky nav once header scrolls off screen
+  useEffect(() => {
+    if (window.innerWidth > 1024) return
+    const el = headerRef.current
+    if (!el) return
+    const onScroll = () => setNavVisible(el.getBoundingClientRect().bottom < 0)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Active section tracking
   useEffect(() => {
     if (!meta.sections) return
     const ids = meta.sections.map(s => s.id)
     const el = bodyRef.current
     if (!el) return
 
-    const onScroll = () => {
-      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 60
-      if (atBottom) { setActiveSection(ids[ids.length - 1]); return }
-      const elTop = el.getBoundingClientRect().top
-      const threshold = elTop + 100
-      let current = ids[0]
-      for (const id of ids) {
-        const sec = document.getElementById(id)
-        if (sec && sec.getBoundingClientRect().top <= threshold) current = id
+    const isMobile = window.innerWidth <= 1024
+
+    const updateActive = () => {
+      if (isMobile) {
+        const atBottom = window.scrollY + window.innerHeight >= document.body.scrollHeight - 60
+        if (atBottom) { setActiveSection(ids[ids.length - 1]); return }
+        let current = ids[0]
+        for (const id of ids) {
+          const sec = document.getElementById(id)
+          if (sec && sec.getBoundingClientRect().top <= 60) current = id
+        }
+        setActiveSection(current)
+      } else {
+        const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 60
+        if (atBottom) { setActiveSection(ids[ids.length - 1]); return }
+        const threshold = el.getBoundingClientRect().top + 100
+        let current = ids[0]
+        for (const id of ids) {
+          const sec = document.getElementById(id)
+          if (sec && sec.getBoundingClientRect().top <= threshold) current = id
+        }
+        setActiveSection(current)
       }
-      setActiveSection(current)
     }
-    el.addEventListener('scroll', onScroll, { passive: true })
-    return () => el.removeEventListener('scroll', onScroll)
+
+    const target = isMobile ? window : el
+    target.addEventListener('scroll', updateActive, { passive: true })
+    return () => target.removeEventListener('scroll', updateActive)
   }, [meta.sections])
+
+  // Auto-scroll the tabs pill to keep active button centred
+  useEffect(() => {
+    if (!activeSection || !tabsRef.current) return
+    const container = tabsRef.current
+    const btn = container.querySelector(`[data-section="${activeSection}"]`)
+    if (!btn) return
+    const targetLeft = Math.max(0, btn.offsetLeft - (container.offsetWidth - btn.offsetWidth) / 2)
+    container.scrollTo({ left: targetLeft, behavior: 'smooth' })
+  }, [activeSection])
 
   const scrollTo = (id) => {
     const sec = document.getElementById(id)
+    if (!sec) return
     const el = bodyRef.current
-    if (sec && el) {
+    if (window.innerWidth <= 1024) {
+      const navH = 48
+      window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY - navH - 8, behavior: 'smooth' })
+    } else if (el) {
       const top = sec.getBoundingClientRect().top - el.getBoundingClientRect().top + el.scrollTop
       el.scrollTo({ top: top - 24, behavior: 'smooth' })
     }
@@ -43,17 +85,14 @@ export default function CaseStudyLayout({ meta, children }) {
     <MacWindow title={meta.client || meta.title} bodyRef={bodyRef}>
       <div className={styles.inner} style={{ '--accent': meta.accent }}>
 
-        {/* ── Back button (tablet/mobile only) ── */}
-        <div className={styles.backRow}>
-          <button className={styles.backBtn} onClick={() => navigate('/')} aria-label="Back">‹</button>
-        </div>
+        {/* ── Top spacer (mobile only) ── */}
+        <div className={styles.topSpacer} />
 
         {/* ── Header ── */}
-        <div className={styles.header}>
+        <div className={styles.header} ref={headerRef}>
           <h1 className={styles.title}>{meta.title}</h1>
           {meta.subtitle && <p className={styles.subtitle}>{meta.subtitle}</p>}
 
-          {/* Metadata grid */}
           {meta.metaItems?.length > 0 && (
             <div className={styles.metaGrid}>
               {meta.metaItems.map(item => (
@@ -76,18 +115,26 @@ export default function CaseStudyLayout({ meta, children }) {
           </div>
         )}
 
-        {/* ── In-page section nav ── */}
+        {/* ── In-page section nav (desktop: sticky inline; mobile: fixed slide-in) ── */}
         {meta.sections?.length > 0 && (
-          <div className={styles.sectionNav}>
-            {meta.sections.map(s => (
-              <button
-                key={s.id}
-                onClick={() => scrollTo(s.id)}
-                className={`${styles.sectionNavBtn} ${activeSection === s.id ? styles.sectionNavBtnActive : ''}`}
-              >
-                {s.label}
-              </button>
-            ))}
+          <div className={`${styles.sectionNav} ${navVisible ? styles.sectionNavVisible : ''}`}>
+            <div className={styles.sectionNavTabs} ref={tabsRef}>
+              {meta.sections.map(s => (
+                <button
+                  key={s.id}
+                  data-section={s.id}
+                  onClick={() => scrollTo(s.id)}
+                  className={`${styles.sectionNavBtn} ${activeSection === s.id ? styles.sectionNavBtnActive : ''}`}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+            <button
+              className={styles.sectionNavClose}
+              onClick={() => navigate('/')}
+              aria-label="Close"
+            >×</button>
           </div>
         )}
 
