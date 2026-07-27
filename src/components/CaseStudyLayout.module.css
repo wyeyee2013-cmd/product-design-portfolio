@@ -330,5 +330,5 @@
   .topSpacer { height: 56px; }
   .header { padding: 8px 20px 24px; }
   .hero, .content, .next { padding-left: 20px; padding-right: 20px; }
-  .metaGrid { grid-template-columns: 1fr 1fr; }
+  .metaGrid { grid-template-columns: 1fr; }
 }
