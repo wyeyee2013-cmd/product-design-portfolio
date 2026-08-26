@@ -2,36 +2,45 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './Scene.module.css'
 
-const RESUME_URL = 'https://drive.google.com/file/d/1rRuA10-6bYInlw7D9xMJvCbD2oimB1Op/view'
-const STORE_KEY = 'scene-offsets-v2'
+const STORE_KEY = 'scene-offsets-v3'
 
 const FEATURED = [
-  { slug: 'feedme',  label: 'FeedMe POS',   image: '/feedme-icon.png',     pos: { top: '29%', left: '19%' }, size: 96,  delay: 0   },
-  { slug: 'pantas',  label: 'Pantas',        image: '/pantas.png',          pos: { top: '19%', left: '76%' }, size: 90,  delay: 90  },
-  { slug: 'apspace', label: 'APSpace Admin', image: '/apspace-logo.png',    pos: { top: '53%', left: '83%' }, size: 96,  delay: 180 },
-  { slug: 'hireti',  label: 'Hilti',          image: '/hilti.png',           pos: { top: '67%', left: '19%' }, size: 92,  delay: 270 },
+  { slug: 'feedme',  label: 'FeedMe POS',   image: '/POS Tables.png',      iconImg: '/feedme-icon.png',  tags: ['Product Design', 'Figma', '2024'], pos: { top: '40%', left: '15%' }, rot: -4, delay: 0   },
+  { slug: 'apspace', label: 'APSpace Admin', image: '/APSpace.png',         iconImg: '/apspace-logo.png', tags: ['UX/UI Design',   'Figma', '2022'], pos: { top: '16%', left: '72%' }, rot: 3,  delay: 90  },
+  { slug: 'hireti',  label: 'Hireti',        image: '/Match Candidate.png', iconImg: '/hilti.png',        tags: ['Product Design', 'Figma', '2024'], pos: { top: '62%', left: '76%' }, rot: -2, delay: 180 },
+  { slug: 'pantas',  label: 'Pantas',        image: '/Companies.png',       iconImg: '/pantas.png',       tags: ['UX/UI Design',   'Figma', '2024'], pos: { top: '65%', left: '20%' }, rot: 3,  delay: 270 },
 ]
-
 
 const DOCK = [
-  { id: 'about',    label: 'About',    to:   '/about',                          glyph: 'about',    from: '#ffffff', to2: '#f2f2f2', ink: '#333' },
-  { id: 'resume',   label: 'Résumé',   to:   '/notes',                          glyph: 'notes',    from: '#ffffff', to2: '#f5f2e8', ink: '#666' },
+  { id: 'about',    label: 'About',    to:   '/about',                          glyph: 'about'    },
+  { id: 'resume',   label: 'Résumé',   to:   '/notes',                          glyph: 'notes'    },
   { sep: true },
-  { id: 'mail',     label: 'Email',    href: 'mailto:cheryl.wylim@outlook.com', glyph: 'mail',     from: '#62C3FB', to2: '#1A72EB', ink: '#fff' },
-  { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com',            glyph: 'linkedin', from: '#0A66C2', to2: '#0A66C2', ink: '#fff' },
+  { id: 'mail',     label: 'Email',    href: 'mailto:cheryl.wylim@outlook.com', glyph: 'mail'     },
+  { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com',            glyph: 'linkedin' },
 ]
 
-const TALKS_FOLDER = { id: 'talks', label: 'Talks', pos: { top: '42%', left: '50%' }, size: 88, delay: 360 }
+const TALKS_FOLDER = { id: 'talks', label: 'Talks', pos: { top: '40%', left: '48%' }, delay: 360 }
 
 const TALKS = [
   { id: 1, title: 'Add your talk title', event: 'Conference / Event name', date: '2024', link: null },
 ]
 
-function TalksFolderIcon({ styles, uid = 'tff' }) {
+function PaperclipIcon() {
+  return (
+    <svg className={styles.paperclip} viewBox="0 0 28 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M14 68 L14 22 C14 10 24 10 24 22 L24 56 C24 66 4 66 4 54 L4 24"
+        stroke="#3b82f6" strokeWidth="3.5" strokeLinecap="round" fill="none"
+      />
+    </svg>
+  )
+}
+
+function TalksFolderIcon({ styles: s, uid = 'tff' }) {
   const b = `${uid}b`
   const f = `${uid}f`
   return (
-    <span className={styles.macFolderTile}>
+    <span className={s.macFolderTile}>
       <svg viewBox="0 0 100 84" fill="none" xmlns="http://www.w3.org/2000/svg"
            style={{ width: '94%', height: 'auto', display: 'block' }}>
         <defs>
@@ -44,11 +53,8 @@ function TalksFolderIcon({ styles, uid = 'tff' }) {
             <stop offset="100%" stopColor="#62C3F5" />
           </linearGradient>
         </defs>
-        {/* Back panel + tab */}
         <path d="M 2 80 Q 2 84 6 84 L 94 84 Q 98 84 98 80 L 98 26 Q 98 22 94 22 L 44 22 C 40 22 32 6 34 6 L 6 6 Q 2 6 2 10 L 2 80 Z" fill={`url(#${b})`} />
-        {/* Front panel */}
         <path d="M 2 22 L 98 22 L 98 79 Q 98 84 92 84 L 8 84 Q 2 84 2 79 Z" fill={`url(#${f})`} />
-        {/* Top highlight */}
         <rect x="2" y="22" width="96" height="8" fill="rgba(255,255,255,0.18)" />
       </svg>
     </span>
@@ -58,16 +64,11 @@ function TalksFolderIcon({ styles, uid = 'tff' }) {
 function DockGlyph({ name }) {
   const p = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' }
   switch (name) {
-    case 'about':
-      return <svg viewBox="0 0 24 24" width="52%" height="52%"><circle cx="12" cy="8.5" r="3.4" {...p} /><path d="M5.5 19c0-3.4 3-5.6 6.5-5.6s6.5 2.2 6.5 5.6" {...p} /></svg>
-    case 'mail':
-      return <svg viewBox="0 0 24 24" width="54%" height="54%"><rect x="3.5" y="5.5" width="17" height="13" rx="3" {...p} /><path d="M4.5 7.5 12 13l7.5-5.5" {...p} /></svg>
-    case 'linkedin':
-      return <svg viewBox="0 0 24 24" width="52%" height="52%"><path d="M7 9.5v8M7 6.4v.05M11 17.5v-4.3a2.6 2.6 0 0 1 5.2 0v4.3M11 9.5v8" {...p} /></svg>
-    case 'resume':
-      return <svg viewBox="0 0 24 24" width="52%" height="52%"><rect x="5" y="3" width="14" height="18" rx="2.5" {...p} /><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5" {...p} /></svg>
-    default:
-      return null
+    case 'about':   return <svg viewBox="0 0 24 24" width="52%" height="52%"><circle cx="12" cy="8.5" r="3.4" {...p} /><path d="M5.5 19c0-3.4 3-5.6 6.5-5.6s6.5 2.2 6.5 5.6" {...p} /></svg>
+    case 'mail':    return <svg viewBox="0 0 24 24" width="54%" height="54%"><rect x="3.5" y="5.5" width="17" height="13" rx="3" {...p} /><path d="M4.5 7.5 12 13l7.5-5.5" {...p} /></svg>
+    case 'linkedin':return <svg viewBox="0 0 24 24" width="52%" height="52%"><path d="M7 9.5v8M7 6.4v.05M11 17.5v-4.3a2.6 2.6 0 0 1 5.2 0v4.3M11 9.5v8" {...p} /></svg>
+    case 'resume':  return <svg viewBox="0 0 24 24" width="52%" height="52%"><rect x="5" y="3" width="14" height="18" rx="2.5" {...p} /><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5" {...p} /></svg>
+    default: return null
   }
 }
 
@@ -75,18 +76,14 @@ function MailIcon() {
   return (
     <svg width="50" height="50" viewBox="0 0 50 50" className={styles.dockNotesIcon} xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="mailBg" x1="0%" y1="0%" x2="60%" y2="100%">
+        <linearGradient id="mailBg2" x1="0%" y1="0%" x2="60%" y2="100%">
           <stop offset="0%" stopColor="#62C3FB" />
           <stop offset="100%" stopColor="#1A72EB" />
         </linearGradient>
       </defs>
-      <rect width="50" height="50" fill="url(#mailBg)" />
-      {/* Envelope body */}
+      <rect width="50" height="50" fill="url(#mailBg2)" />
       <rect x="7" y="15" width="36" height="24" rx="2.5" fill="white" opacity="0.96" />
-      {/* Envelope flap (V shape) */}
       <path d="M7 15 L25 28 L43 15Z" fill="white" opacity="0.90" />
-      {/* Subtle crease line highlight */}
-      <path d="M7 15 L25 28 L43 15" fill="none" stroke="rgba(100,160,240,0.3)" strokeWidth="0.6" />
     </svg>
   )
 }
@@ -95,11 +92,8 @@ function LinkedInIcon() {
   return (
     <svg width="50" height="50" viewBox="0 0 50 50" className={styles.dockNotesIcon} xmlns="http://www.w3.org/2000/svg">
       <rect width="50" height="50" fill="#0A66C2" />
-      {/* i — dot */}
       <circle cx="15.5" cy="14.5" r="3.2" fill="#fff" />
-      {/* i — stem */}
       <rect x="12.4" y="20.5" width="6.2" height="17" rx="0.5" fill="#fff" />
-      {/* n */}
       <path d="M23.5 20.5h5.8v2.4c1.2-1.8 3.2-2.9 5.4-2.9 4.2 0 6.3 2.8 6.3 7.2v10.3h-6.1V28.8c0-2.1-0.7-3.4-2.5-3.4-1.9 0-2.9 1.2-2.9 3.6v8.5h-6V20.5z" fill="#fff" />
     </svg>
   )
@@ -139,19 +133,31 @@ export default function Scene() {
   const now = useClock()
   const [folderOpen, setFolderOpen] = useState(false)
 
+  // Custom cursor
+  const [cursor, setCursor] = useState({ x: -100, y: -100 })
+  const [cursorHover, setCursorHover] = useState(false)
+
   useEffect(() => {
     window.scrollTo(0, 0)
     const id = requestAnimationFrame(() => setMounted(true))
     return () => cancelAnimationFrame(id)
   }, [])
+
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setFolderOpen(false) }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
   useEffect(() => {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(offsets)) } catch { /* ignore */ }
   }, [offsets])
+
+  useEffect(() => {
+    const move = (e) => setCursor({ x: e.clientX, y: e.clientY })
+    window.addEventListener('mousemove', move)
+    return () => window.removeEventListener('mousemove', move)
+  }, [])
 
   const dragProps = useCallback((id, activate) => ({
     role: 'button',
@@ -185,30 +191,38 @@ export default function Scene() {
     return {
       top: item.pos.top,
       left: item.pos.left,
-      '--w': `${item.size}px`,
       '--delay': `${item.delay}ms`,
       '--dx': `${off.dx}px`,
       '--dy': `${off.dy}px`,
+      '--rot': `${item.rot || 0}deg`,
     }
   }
 
   const time = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+
   const launch = (item, e) => {
     if (item.href) { e.preventDefault(); window.open(item.href, item.href.startsWith('http') ? '_blank' : '_self') }
   }
 
   return (
     <div className={styles.stage}>
-      <video className={styles.bg} src="/bg.mp4" autoPlay loop muted playsInline aria-hidden="true" />
-      <div className={styles.nebula} aria-hidden="true" />
+      {/* Sky-to-grass background */}
+      <div className={styles.bg} aria-hidden="true" />
+
+      {/* Custom cursor */}
+      <div
+        className={`${styles.cursor} ${cursorHover ? styles.cursorHover : ''}`}
+        style={{ '--cx': `${cursor.x}px`, '--cy': `${cursor.y}px` }}
+        aria-hidden="true"
+      />
 
       {/* Top bar */}
       <header className={styles.top}>
-        <span className={styles.wordmark}>Cheryl Lim</span>
+        <span className={styles.wordmark}>Cheryl Lim®</span>
         <span className={styles.clock}>Kuala Lumpur · {time}</span>
       </header>
 
-      {/* Scattered, draggable thumbnails */}
+      {/* Scattered draggable polaroid cards */}
       <div className={styles.scatter}>
         {FEATURED.map((p) => (
           <div
@@ -216,20 +230,42 @@ export default function Scene() {
             className={`${styles.thumb} ${mounted ? styles.thumbIn : ''} ${dragId === p.slug ? styles.dragging : ''}`}
             style={tileStyle(p)}
             aria-label={`View ${p.label} case study`}
+            onMouseEnter={() => setCursorHover(true)}
+            onMouseLeave={() => setCursorHover(false)}
             {...dragProps(p.slug, () => navigate(`/projects/${p.slug}`))}
           >
-            <span className={styles.thumbTile}>
-              <img src={p.image} alt="" className={styles.thumbImg} loading="lazy" draggable={false} />
-            </span>
-            <span className={styles.thumbLabel}>{p.label}</span>
+            <div className={styles.card}>
+              <PaperclipIcon />
+              {/* macOS window chrome */}
+              <div className={styles.cardChrome}>
+                <div className={styles.cardLights}>
+                  <span className={`${styles.cardLight} ${styles.lightRed}`} />
+                  <span className={`${styles.cardLight} ${styles.lightYellow}`} />
+                  <span className={`${styles.cardLight} ${styles.lightGreen}`} />
+                </div>
+              </div>
+              {/* Screenshot */}
+              <div className={styles.cardImg}>
+                <img src={p.image} alt="" draggable={false} />
+              </div>
+              {/* Footer */}
+              <div className={styles.cardInfo}>
+                <span className={styles.cardName}>{p.label}</span>
+                <div className={styles.cardTags}>
+                  {p.tags.map(t => <span key={t}>{t}</span>)}
+                </div>
+              </div>
+            </div>
           </div>
         ))}
 
         {/* Talks folder */}
         <div
-          className={`${styles.thumb} ${mounted ? styles.thumbIn : ''} ${dragId === 'talks' ? styles.dragging : ''}`}
+          className={`${styles.thumb} ${styles.thumbFolder} ${mounted ? styles.thumbIn : ''} ${dragId === 'talks' ? styles.dragging : ''}`}
           style={tileStyle(TALKS_FOLDER)}
           aria-label="View talks"
+          onMouseEnter={() => setCursorHover(true)}
+          onMouseLeave={() => setCursorHover(false)}
           {...dragProps('talks', () => setFolderOpen(true))}
         >
           <TalksFolderIcon styles={styles} uid="tff0" />
@@ -243,8 +279,9 @@ export default function Scene() {
           <span className={styles.dot} /> Open for product design roles
         </span>
         <h1 className={styles.headline}>
-          Turning complex systems<br />
-          into intuitive products.
+          <span className={styles.headlineLight}>Turning complex</span><br />
+          <span className={styles.headlineBold}>systems into</span><br />
+          <span className={styles.headlineItalic}>intuitive products.</span>
         </h1>
         <p className={styles.sub}>
           ~4 years crafting user-centered digital experiences<br />
@@ -252,7 +289,7 @@ export default function Scene() {
         </p>
       </div>
 
-      {/* Responsive icon grid — tablet + mobile */}
+      {/* Icon grid — tablet + mobile */}
       <div className={styles.iconGrid}>
         {FEATURED.map((p) => (
           <div
@@ -265,7 +302,7 @@ export default function Scene() {
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/projects/${p.slug}`) }}
           >
             <span className={styles.thumbTile}>
-              <img src={p.image} alt="" className={styles.thumbImg} loading="lazy" draggable={false} />
+              <img src={p.iconImg} alt="" className={styles.thumbImg} loading="lazy" draggable={false} />
             </span>
             <span className={styles.thumbLabel}>{p.label}</span>
           </div>
@@ -283,7 +320,6 @@ export default function Scene() {
         </div>
       </div>
 
-
       {/* Talks panel */}
       {folderOpen && (
         <div className={styles.folderOverlay} onClick={() => setFolderOpen(false)}>
@@ -294,8 +330,8 @@ export default function Scene() {
             </div>
             <div className={styles.talksEmpty}>
               <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: 48, height: 40 }}>
-                <path d="M 1 36 Q 1 39 4 39 L 44 39 Q 47 39 47 36 L 47 14 Q 47 11 44 11 L 22 11 C 21 11 20 9 19.5 7 L 18 4 Q 17.5 2 16 2 L 4 2 Q 1 2 1 5 Z" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-                <path d="M 1 13 L 47 13" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+                <path d="M 1 36 Q 1 39 4 39 L 44 39 Q 47 39 47 36 L 47 14 Q 47 11 44 11 L 22 11 C 21 11 20 9 19.5 7 L 18 4 Q 17.5 2 16 2 L 4 2 Q 1 2 1 5 Z" stroke="rgba(0,0,0,0.2)" strokeWidth="1.5" />
+                <path d="M 1 13 L 47 13" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
               </svg>
               <span className={styles.talksEmptyTitle}>Work in progress</span>
               <span className={styles.talksEmptyDesc}>Talks will appear here soon</span>
@@ -322,12 +358,13 @@ export default function Scene() {
                         : <DockGlyph name={item.glyph} />}
               </span>
             )
-            const s = { '--from': item.from, '--to2': item.to2, '--ink': item.ink }
             const el = item.to
-              ? <Link key={item.id} to={item.to} className={styles.dockItem} aria-label={item.label} style={s}>{tile}</Link>
-              : <a key={item.id} href={item.href} onClick={(e) => launch(item, e)} className={styles.dockItem} aria-label={item.label} style={s}>{tile}</a>
+              ? <Link key={item.id} to={item.to} className={styles.dockItem} aria-label={item.label}>{tile}</Link>
+              : <a key={item.id} href={item.href} onClick={(e) => launch(item, e)} className={styles.dockItem} aria-label={item.label}>{tile}</a>
             return (
-              <div key={item.id} className={styles.dockItemWrap}>
+              <div key={item.id} className={styles.dockItemWrap}
+                   onMouseEnter={() => setCursorHover(true)}
+                   onMouseLeave={() => setCursorHover(false)}>
                 {el}
                 <span className={styles.dockTip}>{item.label}</span>
               </div>
