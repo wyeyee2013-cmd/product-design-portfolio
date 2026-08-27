@@ -4,6 +4,9 @@
  *   - the tilted browser cards on the projects board
  *   - the macOS case-study window
  *
+ * `previewUrl` (optional) points the case-study window at the live write-up;
+ * without one the Preview Link is hidden rather than shown dead.
+ *
  * Board placement — `row` picks which row the card sits in, `rotate` its tilt,
  * `fit` the thumbnail crop, all taken from Figma node 15:1515.
  */
@@ -67,6 +70,7 @@ export const PROJECTS = [
   },
   {
     id: 'pantas',
+    previewUrl: 'https://cheryllimm.framer.website/pantas-org',
     title: 'Pantas Organisation',
     deckTitle: 'Pantas Organisation',
     client: 'Pantas',
@@ -86,6 +90,7 @@ export const PROJECTS = [
   },
   {
     id: 'hireti',
+    previewUrl: 'https://cheryllimm.framer.website/hireti',
     title: 'Hireti Talent',
     deckTitle: 'Hireti Talent',
     client: 'Hilti',

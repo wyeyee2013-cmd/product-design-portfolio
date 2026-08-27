@@ -31,7 +31,7 @@ const ExternalIcon = () => (
    Case study
    ============================================================ */
 export function ProjectDoc({ project }) {
-  const { title, summary, client, year, type, tool, thumb, gallery = [] } = project
+  const { title, summary, client, year, type, tool, thumb, previewUrl, gallery = [] } = project
   const extras = gallery.filter((src) => src !== thumb)
 
   return (
@@ -42,15 +42,19 @@ export function ProjectDoc({ project }) {
 
       <header className={styles.head}>
         <h1 className={styles.title}>{title}</h1>
-        <a
-          className={styles.preview}
-          href="#work"
-          onClick={(e) => e.preventDefault()}
-          aria-disabled="true"
-        >
-          Preview Link
-          <ExternalIcon />
-        </a>
+        {/* only shown where a live write-up exists — a dead link reads worse
+            than no link at all */}
+        {previewUrl && (
+          <a
+            className={styles.preview}
+            href={previewUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Preview Link
+            <ExternalIcon />
+          </a>
+        )}
       </header>
 
       <p className={styles.summary}>{summary}</p>
