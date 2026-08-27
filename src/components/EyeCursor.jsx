@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react'
 import { useMediaQuery } from '../hooks/useLayout.js'
 import styles from './EyeCursor.module.css'
 
-const LOOK = 0.5 /* how far a pixel of pointer travel swings the pupils */
-const LOOK_MAX = 3.6 /* px — any further and the beads leave the whites */
+const LOOK = 0.62 /* how far a pixel of pointer travel swings the pupils */
+const LOOK_MAX = 5.6 /* px — any further and the beads leave the whites */
 const EASE = 0.2 /* how much of the remaining swing a frame covers */
 const DECAY = 0.87 /* how quickly the eyes recentre once you stop moving */
 const BLINK = 110 /* ms the lids stay shut */
@@ -12,9 +12,10 @@ const KEEN = 'a, button, [role="button"], summary, label'
 const TEXT = 'input, textarea, [contenteditable="true"]'
 
 /**
- * A pair of googly eyes standing in for the pointer. The whites track the
- * pointer exactly — no lag, so clicks still land where you aim — and the
- * pupils swing towards wherever you are heading, then drift back to centre.
+ * A pair of googly eyes standing in for the pointer. They sit centred on it —
+ * you aim the middle of the pair — and track it exactly, with no lag, so
+ * clicks land where you point. The pupils swing towards wherever you are
+ * heading, then drift back to centre.
  *
  * Everything runs on refs and direct DOM writes: a cursor updates every frame,
  * which is no place for React state. Pointer devices only, and the eyes step
@@ -123,13 +124,12 @@ export default function EyeCursor() {
   return (
     <div className={`${styles.cursor} ${styles.gone}`} ref={root} aria-hidden="true">
       <span className={styles.lids}>
-        <svg className={styles.art} viewBox="0 0 40 27" width="40" height="27">
-          {/* the outline is what keeps the whites readable on the cream sections */}
-          <ellipse className={styles.white} cx="10.4" cy="13.5" rx="9.6" ry="12.4" />
-          <ellipse className={styles.white} cx="29.6" cy="13.5" rx="9.6" ry="12.4" />
+        <svg className={styles.art} viewBox="0 0 63 41" width="63" height="41">
+          <ellipse className={styles.white} cx="16.2" cy="20.5" rx="15.6" ry="19.6" />
+          <ellipse className={styles.white} cx="46.8" cy="20.5" rx="15.6" ry="19.6" />
           <g ref={pupils}>
-            <circle className={styles.pupil} cx="10.4" cy="13.5" r="4.3" />
-            <circle className={styles.pupil} cx="29.6" cy="13.5" r="4.3" />
+            <circle className={styles.pupil} cx="16.2" cy="20.5" r="6.7" />
+            <circle className={styles.pupil} cx="46.8" cy="20.5" r="6.7" />
           </g>
         </svg>
       </span>
