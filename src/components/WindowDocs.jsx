@@ -31,6 +31,66 @@ const ExternalIcon = () => (
 /* ============================================================
    Case study
    ============================================================ */
+
+/** One item in a case-study section, rendered in source order. */
+function StudyItem({ item }) {
+  switch (item.type) {
+    case 'subhead':
+      return <h3 className={styles.chapterSubhead}>{item.text}</h3>
+
+    case 'text':
+      return <p className={styles.chapterBody}>{item.text}</p>
+
+    case 'bullets':
+      return (
+        <ul className={styles.chapterList}>
+          {item.items.map((b) => (
+            <li key={b.slice(0, 28)}>{b}</li>
+          ))}
+        </ul>
+      )
+
+    case 'callout':
+      return (
+        <div className={styles.callout}>
+          <h4>{item.title}</h4>
+          {item.subtitle && <p className={styles.calloutSub}>{item.subtitle}</p>}
+          {item.bullets && (
+            <ul>
+              {item.bullets.map((b) => (
+                <li key={b.slice(0, 24)}>{b}</li>
+              ))}
+            </ul>
+          )}
+          {item.text && <p>{item.text}</p>}
+        </div>
+      )
+
+    case 'figure':
+      return (
+        <figure className={styles.figure}>
+          <img src={item.src} alt={item.caption} loading="lazy" />
+          <figcaption>{item.caption}</figcaption>
+        </figure>
+      )
+
+    case 'figureGroup':
+      return (
+        <figure className={styles.figure}>
+          <div className={styles.figureGrid}>
+            {item.srcs.map((src) => (
+              <img src={src} alt="" loading="lazy" key={src} />
+            ))}
+          </div>
+          <figcaption>{item.caption}</figcaption>
+        </figure>
+      )
+
+    default:
+      return null
+  }
+}
+
 export function ProjectDoc({ project }) {
   const { id, title, summary, client, year, type, tool, thumb, previewUrl, gallery = [] } = project
   const extras = gallery.filter((src) => src !== thumb)
@@ -45,7 +105,7 @@ export function ProjectDoc({ project }) {
       {study?.sector && <p className={styles.sector}>{study.sector}</p>}
 
       <header className={styles.head}>
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className={styles.title}>{study?.title || title}</h1>
         {/* only shown where a live write-up exists — a dead link reads worse
             than no link at all */}
         {previewUrl && (
@@ -88,47 +148,20 @@ export function ProjectDoc({ project }) {
           {study.credits.map((c) => (
             <div key={c.label}>
               <dt>{c.label}</dt>
-              <dd>{c.value}</dd>
+              {c.values.map((v) => (
+                <dd key={v}>{v}</dd>
+              ))}
             </div>
           ))}
         </dl>
       )}
 
       {study?.sections?.map((s) => (
-        <section className={styles.chapter} key={s.heading}>
-          <h2 className={styles.chapterHeading}>{s.heading}</h2>
+        <section className={styles.chapter} key={s.label}>
+          <h2 className={styles.chapterHeading}>{s.label}</h2>
           {s.lead && <p className={styles.chapterLead}>{s.lead}</p>}
-
-          {s.body?.map((p) => (
-            <p className={styles.chapterBody} key={p.slice(0, 28)}>
-              {p}
-            </p>
-          ))}
-
-          {s.bullets && (
-            <ul className={styles.chapterList}>
-              {s.bullets.map((b) => (
-                <li key={b.slice(0, 28)}>{b}</li>
-              ))}
-            </ul>
-          )}
-
-          {s.blocks && (
-            <div className={styles.chapterBlocks}>
-              {s.blocks.map((b) => (
-                <div className={styles.chapterBlock} key={b.title}>
-                  <h3>{b.title}</h3>
-                  <p>{b.body}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {s.figures?.map((f) => (
-            <figure className={styles.figure} key={f.src}>
-              <img src={f.src} alt={f.caption} loading="lazy" />
-              <figcaption>{f.caption}</figcaption>
-            </figure>
+          {s.items.map((it, i) => (
+            <StudyItem item={it} key={`${it.type}-${i}`} />
           ))}
         </section>
       ))}
