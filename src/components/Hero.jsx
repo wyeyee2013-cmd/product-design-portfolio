@@ -2,9 +2,13 @@ import { PROFILE } from '../data/about.js'
 import { useFitScale, useMediaQuery } from '../hooks/useLayout.js'
 import AskBox from './AskBox.jsx'
 import ProjectDeck from './ProjectDeck.jsx'
+import RotatingWord from './RotatingWord.jsx'
 import styles from './Hero.module.css'
 
-const HEADLINE = 'Turning Complex Systems into Intuitive Products'
+/* the headline reads "…into Intuitive Products"; the closing word retypes
+   itself through the list below, starting with the word from the design */
+const LEAD = 'Turning Complex Systems into Intuitive'
+const ENDINGS = ['Products', 'Workflows', 'Interfaces', 'Journeys']
 
 /** Figma node 15:1410 — the hero, authored at 1920px and zoomed as one artboard. */
 export default function Hero() {
@@ -44,7 +48,7 @@ export default function Hero() {
         <div className={styles.body}>
           <div className={styles.headlineWrap}>
             <h1 className={styles.headline}>
-              {HEADLINE.split(' ').map((word, i) => (
+              {LEAD.split(' ').map((word, i) => (
                 <span
                   key={`${word}-${i}`}
                   className={styles.word}
@@ -53,6 +57,13 @@ export default function Hero() {
                   {word}{' '}
                 </span>
               ))}
+              {/* rises in with the rest, then starts cycling once it has landed */}
+              <span
+                className={styles.word}
+                style={{ animationDelay: `${80 + LEAD.split(' ').length * 55}ms` }}
+              >
+                <RotatingWord words={ENDINGS} />
+              </span>
             </h1>
 
             <div className={`${styles.tag} ${styles.tagDesign}`}>

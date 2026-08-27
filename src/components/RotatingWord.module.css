@@ -1,0 +1,25 @@
+/* sized in em so it tracks the headline through the artboard zoom */
+.caret {
+  display: inline-block;
+  width: 0.055em;
+  height: 0.66em;
+  margin-left: 0.05em;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.8;
+  translate: 0 0.03em;
+}
+.blink {
+  animation: caretBlink 1.05s steps(1, end) infinite;
+}
+@keyframes caretBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    display: none;
+  }
+}
