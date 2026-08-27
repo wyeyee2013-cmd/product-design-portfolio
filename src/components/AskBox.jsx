@@ -1,17 +1,19 @@
 import { useState } from 'react'
+import { SUGGESTIONS } from '../data/knowledge.js'
 import { useWindows } from './windowContext.js'
 import styles from './AskBox.module.css'
 
 /**
  * Figma node 15:1452. Submitting opens the answer in a macOS window rather
- * than expanding inline, so the hero composition never shifts.
+ * than expanding inline, so the hero composition never shifts. The suggested
+ * questions sit absolutely below the box for the same reason.
  */
 export default function AskBox() {
   const [value, setValue] = useState('')
   const { openAsk } = useWindows()
 
-  function ask() {
-    const q = value.trim()
+  function ask(question) {
+    const q = (question ?? value).trim()
     if (!q) return
     openAsk(q)
     setValue('')
@@ -51,6 +53,14 @@ export default function AskBox() {
           </button>
         </div>
       </form>
+
+      <div className={styles.suggests}>
+        {SUGGESTIONS.map((s) => (
+          <button key={s} type="button" onClick={() => ask(s)}>
+            {s}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }

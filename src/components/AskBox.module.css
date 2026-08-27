@@ -85,120 +85,53 @@
   transform: none;
 }
 
-/* answers float beneath the box so the hero layout never shifts */
-.reply {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% + 12px);
-  z-index: 6;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  border-radius: 20px;
-  border: 2px solid var(--glass-border);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(40px) saturate(130%);
-  -webkit-backdrop-filter: blur(40px) saturate(130%);
-  box-shadow: var(--glass-shadow), var(--glass-inset);
-  transition: max-height 0.5s var(--ease), opacity 0.35s var(--ease);
-}
-/* The dock occupies the bottom ~112px of the viewport, so the answer log is
-   capped against viewport height rather than a flat 300px — otherwise the
-   newest message hides behind the dock on shorter screens. */
-.replyOpen {
-  max-height: min(300px, 20svh);
-  opacity: 1;
-}
 
-.scroll {
-  max-height: min(300px, 20svh);
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
-}
-.scroll::-webkit-scrollbar {
-  width: 6px;
-}
-.scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-}
 
-.turn {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.bubble {
-  max-width: 88%;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.2px;
-}
-.question {
-  align-self: flex-end;
-  padding: 9px 14px;
-  border-radius: 14px 14px 4px 14px;
-  background: rgba(0, 0, 0, 0.42);
-  color: var(--white);
-  font-weight: 500;
-}
-.answer {
-  align-self: flex-start;
-  color: rgba(255, 255, 255, 0.94);
-  padding: 2px 2px 2px 0;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
-}
-.answer b {
-  font-weight: 600;
-  color: #fff;
-}
-
-.caret {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: currentColor;
-  vertical-align: -2px;
-  margin-left: 2px;
-  animation: blink 0.9s steps(2, start) infinite;
-}
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.suggests {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 2px;
-}
-.suggests button {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.2px;
-  padding: 6px 11px;
-  border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.92);
-  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
-}
-.suggests button:hover {
-  background: rgba(255, 255, 255, 0.22);
-  transform: translateY(-1px);
-}
 
 @media (max-width: 900px) {
   .zone {
     width: min(92vw, 460px);
+  }
+}
+
+/* ---------- suggested questions ----------
+   Absolutely positioned so adding them never shifts the hero composition. */
+.suggests {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 14px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.suggests button {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  color: #fff;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+.suggests button:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .suggests {
+    position: static;
+    margin-top: 14px;
   }
 }
