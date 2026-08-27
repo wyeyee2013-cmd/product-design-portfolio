@@ -41,13 +41,13 @@ export const PROJECTS = [
     tags: ['Tablet/Mobile App', 'FeedMe', '2026'],
     summary:
       'The hardest surface I design for: used one-handed, at speed, by staff trained once. Every extra tap costs real seconds during a rush.',
-    thumb: '/assets/proj-2.png',
-    gallery: ['/assets/proj-2.png'],
+    thumb: '/assets/pos-cover.png',
+    gallery: [],
     tint: '#f0803c',
     row: 0,
     rotate: -3.12,
     clip: '/assets/clip-2.svg',
-    fit: { height: '105.93%', top: '-2.97%', width: '100%', left: '0' },
+    fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
     id: 'hrm-premium',
