@@ -57,35 +57,6 @@
   pointer-events: none;
 }
 
-/* ---------- socials, top left ---------- */
-.socials {
-  position: absolute;
-  left: 30px;
-  top: 30px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px;
-  border-radius: 100px;
-}
-.social {
-  width: 33px;
-  height: 33px;
-  border-radius: 16.5px;
-  background: #f2f2f2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
-}
-.social:hover {
-  transform: translateY(-2px);
-  background: #fff;
-}
-.social img {
-  width: 21px;
-  height: 21px;
-}
 
 /* ---------- "have an idea?", top right ---------- */
 .idea {
@@ -244,20 +215,6 @@
   }
   .panel {
     min-height: 72svh;
-  }
-  .socials {
-    left: 16px;
-    top: 16px;
-    gap: 6px;
-    padding: 0;
-  }
-  .social {
-    width: 30px;
-    height: 30px;
-  }
-  .social img {
-    width: 18px;
-    height: 18px;
   }
   .idea {
     right: 16px;
