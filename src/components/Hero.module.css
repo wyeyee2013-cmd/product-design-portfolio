@@ -1,0 +1,377 @@
+/* Figma node 15:1410 — Home / hero */
+
+.hero {
+  position: relative;
+  height: 100svh;
+  scroll-snap-align: start;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------- wordmark ---------- */
+.wordmark {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  height: 68.4px;
+  flex: none;
+}
+.wordmark a {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 20.4px;
+  letter-spacing: -0.96px;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+/* zoom is set inline from useFitScale — the artboard keeps filling the
+   viewport instead of reflowing, so the Figma proportions hold at any width */
+.stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- availability pill ---------- */
+.status {
+  position: absolute;
+  left: 32px;
+  top: 54.6px; /* 123px from the hero top, less the 68.4px wordmark band */
+  z-index: 5;
+  width: 361px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 24px;
+  border: 2px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.45);
+  overflow: hidden;
+}
+.statusRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.statusMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 2px;
+}
+.live {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #34c75a;
+  opacity: 0.6;
+  animation: pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.18); }
+}
+.live span {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 10.2px;
+  letter-spacing: -0.48px;
+  color: var(--white);
+}
+.role {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 13.6px;
+  letter-spacing: -0.64px;
+  color: var(--white);
+  text-transform: capitalize;
+}
+
+/* ---------- centre block ---------- */
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+}
+
+
+.headlineWrap {
+  position: relative;
+  z-index: 6;
+  width: 594px;
+  height: 324px;
+  flex: none;
+}
+.headline {
+  position: absolute;
+  left: 0;
+  top: 99.61px;
+  width: 668px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 64px;
+  letter-spacing: -3.8px;
+  text-transform: capitalize;
+  color: var(--white);
+}
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: rise 0.9s var(--ease-out) forwards;
+  white-space: pre;
+}
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- floating skill tags ---------- */
+.tag {
+  position: absolute;
+  width: 161px;
+  height: 77px;
+  opacity: 0;
+  animation: tagIn 0.8s var(--ease-out) forwards;
+}
+@keyframes tagIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.9); }
+  to   { opacity: 1; transform: none; }
+}
+.tagDesign {
+  left: -97px;
+  top: 23.61px;
+  rotate: -10deg;
+  animation-delay: 0.55s;
+}
+.tagPm {
+  left: 446px;
+  top: 146.61px;
+  width: 223.66px;
+  rotate: 6deg;
+  animation-delay: 0.7s;
+}
+.tagBody {
+  position: absolute;
+  left: 0.16px;
+  top: 28px;
+  height: 49px;
+  width: 162px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.72px;
+  padding: 3.72px 11.16px;
+  border-radius: 7.44px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+}
+.tagDesign .tagBody {
+  background: #f1eefc;
+}
+.tagPm .tagBody {
+  background: #f4eaf5;
+  width: 225.18px;
+  top: 27.82px;
+  left: 0.14px;
+}
+.tagLabel {
+  font-family: var(--font-tag);
+  font-weight: 600;
+  font-size: 18.6px;
+  line-height: 22.32px;
+  color: #212121;
+  white-space: nowrap;
+}
+.tagCorner {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  top: -3px;
+  left: 145.84px;
+  pointer-events: none;
+}
+.tagPm .tagCorner {
+  left: 209.34px;
+  top: -0.93px;
+}
+.tagBadge {
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 41px;
+  height: 41px;
+  border-radius: 100px;
+  border: 1.333px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.24));
+}
+.tagDesign .tagBadge { background: var(--violet); }
+.tagPm .tagBadge     { background: var(--magenta); }
+.tagBadge img {
+  width: 16px;
+  height: 16px;
+}
+.tagDesign .tagBadge img { rotate: 19deg; }
+.tagPm .tagBadge img     { rotate: -12deg; }
+
+/* ---------- footer row ---------- */
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px;
+  min-height: 214px;
+}
+.tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  width: 303px;
+}
+.taglineTop {
+  display: flex;
+  align-items: center;
+  gap: 6.04px;
+  width: 100%;
+  height: 24px;
+}
+.rule {
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  flex: none;
+}
+.tagline p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -1px;
+  color: var(--white);
+}
+.taglineBody {
+  width: 243px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    scroll-snap-align: none;
+  }
+  .status {
+    position: static;
+    width: auto;
+    max-width: 361px;
+    margin: 16px auto 0;
+  }
+  .body {
+    padding-top: 8px;
+    gap: 20px;
+  }
+  .headlineWrap {
+    width: min(92vw, 460px);
+    height: auto;
+    padding: 78px 0 40px;
+  }
+  .headline {
+    position: static;
+    width: 100%;
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 0.92;
+    letter-spacing: -2px;
+  }
+  /* the -10deg rotation pushes this tag's bounding box ~20px above its top
+     edge, so it needs clearance from the availability pill above it */
+  .tagDesign {
+    left: 0;
+    top: 26px;
+    scale: 0.72;
+    transform-origin: top left;
+  }
+  .tagPm {
+    left: auto;
+    right: 0;
+    top: auto;
+    bottom: -4px;
+    scale: 0.66;
+    transform-origin: bottom right;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    padding: 24px 24px 120px; /* clear the dock */
+  }
+  .tagline {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .taglineBody {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .tagDesign { scale: 0.6; }
+  .tagPm     { scale: 0.54; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word, .tag { opacity: 1; transform: none; }
+}

@@ -1,0 +1,140 @@
+/* Figma node 15:1466 — the glass card stack */
+
+.deck {
+  --card-w: 320px;
+  --card-h: 98px;
+  --card-gap: 10px;
+  position: relative;
+  width: var(--card-w);
+  height: 134px;
+  flex: none;
+  z-index: 8;
+}
+
+.card {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 16px;
+  border: 2px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  overflow: hidden;
+  transform: translate(-50%, var(--y, 0px));
+  transition: transform 0.55s var(--ease-out), width 0.55s var(--ease-out),
+    opacity 0.4s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+/* collapsed: card 0 in front, 1 & 2 peeking above it, the rest hidden behind */
+.card[data-i='0'] { --y: 0px;   width: 320px; z-index: 6; }
+.card[data-i='1'] { --y: -12px; width: 304px; z-index: 5; }
+.card[data-i='2'] { --y: -24px; width: 289px; z-index: 4; }
+.card[data-i='3'] { --y: -24px; width: 289px; z-index: 3; opacity: 0; }
+.card[data-i='4'] { --y: -24px; width: 289px; z-index: 2; opacity: 0; }
+.card[data-i='5'] { --y: -24px; width: 289px; z-index: 1; opacity: 0; }
+
+.open .card {
+  width: var(--card-w);
+  opacity: 1;
+  --y: calc(var(--i) * (var(--card-h) + var(--card-gap)) * -1);
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+.card[data-i='0'] .inner,
+.open .inner {
+  opacity: 1;
+}
+
+.thumb {
+  width: 74px;
+  height: 74px;
+  flex: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.meta span {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 13.2px;
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+.title {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 17.6px;
+  letter-spacing: -0.64px;
+  color: var(--white);
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 10px;
+  color: var(--white);
+  text-transform: capitalize;
+}
+.cta svg {
+  flex: none;
+  transition: transform 0.3s var(--ease);
+}
+.card:hover .cta svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 560px) {
+  .deck {
+    --card-w: min(86vw, 320px);
+  }
+}

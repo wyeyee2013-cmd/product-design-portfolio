@@ -1,0 +1,353 @@
+/* Figma node 15:1947 — reviews board.
+   Authored at 1112x670; the stage is scaled to fit one viewport. */
+
+.section {
+  position: relative;
+  height: 100svh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.fit {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage {
+  /* natural size drives the fit scale — see useFitContent.
+     The vertical padding covers the chip that overhangs the heading and the
+     rotated cards that spill past their layout boxes, so nothing gets clipped. */
+  width: 1112px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  transform: scale(var(--scale, 1));
+  transform-origin: center;
+  padding: 96px 0 32px;
+}
+
+/* ---------- heading ---------- */
+.heading {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15.3px;
+  width: 820px;
+  flex: none;
+  opacity: 0;
+  translate: 0 18px;
+  transition: opacity 0.6s var(--ease-out), translate 0.6s var(--ease-out);
+}
+.in .heading {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: -1.3px;
+  text-transform: capitalize;
+  color: #252525;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ---------- "Reviews" chip ---------- */
+.chip {
+  position: absolute;
+  left: 107.04px;
+  top: -81.99px;
+  width: 176.914px;
+  height: 122.983px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chipInner {
+  position: relative;
+  width: 161px;
+  height: 77px;
+  rotate: -18deg;
+}
+.chipBody {
+  position: absolute;
+  left: 0.01px;
+  bottom: 0;
+  height: 48.998px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.721px 11.163px;
+  border-radius: 7.44px;
+  background: #e5f2fa;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+}
+.chipLabel {
+  width: 140px;
+  text-align: center;
+  font-family: var(--font-tag);
+  font-weight: 600;
+  font-size: 18.6px;
+  line-height: 22.32px;
+  color: #212121;
+  white-space: nowrap;
+}
+.chipFlip {
+  position: absolute;
+  left: 145.99px;
+  top: -3px;
+  width: 18px;
+  height: 19px;
+}
+.chipIcon {
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 40.997px;
+  height: 40.997px;
+  border-radius: 100px;
+  border: 1px solid #fff;
+  background: #039cfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.24));
+}
+.chipIcon img {
+  width: 20px;
+  height: 20px;
+}
+.chipClip {
+  position: absolute;
+  left: 44px;
+  top: 16px;
+  width: 24.006px;
+  height: 25.005px;
+}
+.chipClip img {
+  position: absolute;
+  left: 0;
+  width: 24.006px;
+  height: 24.006px;
+}
+.chipClipShadow {
+  bottom: 0;
+  top: auto;
+}
+
+/* ---------- cards ---------- */
+.board {
+  position: relative;
+  width: 1112px;
+  height: 670px;
+  flex: none;
+}
+
+.slot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 354px;
+  rotate: var(--rot);
+  opacity: 0;
+  translate: 0 30px;
+  transition: opacity 0.6s var(--ease-out), translate 0.6s var(--ease-out);
+  transition-delay: calc(var(--i) * 110ms);
+}
+.in .slot {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 40px 28px;
+  border-radius: 13.74px;
+  background: #fff;
+  box-shadow: 12px 6px 0 0 rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: translate 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.slot:hover .card {
+  translate: 0 -6px;
+  box-shadow: 16px 10px 0 0 rgba(0, 0, 0, 0.14);
+}
+
+/* pushpin, top left */
+.pin {
+  position: absolute;
+  left: 11.44px;
+  top: 11.55px;
+  width: 18px;
+  height: 22px;
+  rotate: -3deg;
+  pointer-events: none;
+}
+
+/* folded corner, bottom right */
+.flip {
+  position: absolute;
+  right: -8.41px;
+  bottom: -4.02px;
+  width: 71px;
+  height: 94px;
+  rotate: -3deg;
+  pointer-events: none;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.name {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 13.4px;
+  line-height: 11.4px;
+  letter-spacing: -0.536px;
+  color: #272727;
+  text-transform: capitalize;
+}
+.role {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 11.2px;
+  line-height: 12px;
+  letter-spacing: -0.447px;
+  color: rgba(39, 39, 39, 0.53);
+  text-transform: capitalize;
+}
+
+.quote {
+  margin: 0;
+  width: 244.36px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -1px;
+  color: #252525;
+}
+
+.body {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20.8px;
+  letter-spacing: -0.2px;
+  color: #252525;
+}
+
+/* ---------- narrow: stack the cards ---------- */
+@media (max-width: 900px) {
+  .section {
+    height: auto;
+    min-height: 100svh;
+    padding: 92px 20px 132px;
+    scroll-snap-align: none;
+    align-items: flex-start;
+  }
+  .fit {
+    height: auto;
+  }
+  .stage {
+    width: 100%;
+    height: auto;
+    gap: 44px;
+    padding: 0;
+    transform: none;
+  }
+  .heading {
+    width: 100%;
+    max-width: 460px;
+  }
+  .title {
+    font-size: clamp(28px, 7.5vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    white-space: normal;
+  }
+  .chip {
+    left: 0;
+    top: -66px;
+    scale: 0.7;
+    transform-origin: top left;
+  }
+  .board {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .slot {
+    position: static;
+    width: 100%;
+    rotate: 0deg;
+  }
+  .slot:hover .card {
+    translate: none;
+    box-shadow: 8px 4px 0 0 rgba(0, 0, 0, 0.12);
+  }
+  .card {
+    gap: 28px;
+    /* extra bottom room so the folded corner does not sit over the last line —
+       the cards are narrower here than in the 354px design, so the text runs
+       further down than it does on desktop */
+    padding: 32px 24px 60px;
+    box-shadow: 8px 4px 0 0 rgba(0, 0, 0, 0.12);
+  }
+  .quote {
+    width: 100%;
+    font-size: 21px;
+    line-height: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .slot {
+    opacity: 1;
+    translate: none;
+  }
+}

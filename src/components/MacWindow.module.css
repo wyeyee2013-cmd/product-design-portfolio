@@ -1,159 +1,159 @@
-/* ─── Stage ──────────────────────────────────────────── */
-.stage {
+/* macOS-style browser window, used as a modal */
+
+.overlay {
   position: fixed;
   inset: 0;
+  z-index: 400;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', 'DM Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
+  padding: 40px 24px;
+  background: rgba(20, 20, 22, 0.42);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  animation: fade 0.22s var(--ease) both;
 }
-
-/* ─── Background video ───────────────────────────────── */
-.bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  background-color: #0d0618;
-}
-
-.nebula {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 42% at 10% 65%, rgba(110,28,170,0.38), transparent),
-    radial-gradient(ellipse 45% 36% at 88% 28%, rgba(65,18,130,0.30), transparent);
-  animation: nebulaPulse 10s ease-in-out infinite alternate;
-}
-@keyframes nebulaPulse {
-  from { opacity: 0.55; }
+@keyframes fade {
+  from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* ─── Floating window ────────────────────────────────── */
 .window {
-  position: relative;
-  z-index: 10;
-  width: min(1080px, 88vw);
-  height: 84vh;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow:
-    0 40px 100px rgba(0, 0, 0, 0.65),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
+  width: min(1240px, 100%);
+  max-height: min(920px, 100%);
   display: flex;
   flex-direction: column;
+  border-radius: 24px;
+  background: #fff;
   overflow: hidden;
-  animation: windowIn 0.38s cubic-bezier(0.34, 1.32, 0.64, 1);
+  box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.45), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+  animation: rise 0.32s var(--ease-out) both;
+  outline: none;
 }
-@keyframes windowIn {
-  from { opacity: 0; transform: scale(0.94) translateY(24px); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px) scale(0.985); }
   to   { opacity: 1; transform: none; }
 }
 
-/* ─── Title bar ──────────────────────────────────────── */
-.titleBar {
+/* ---------- title bar ---------- */
+.chrome {
+  flex: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: #f0f0f0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px 12px 0 0;
-  flex-shrink: 0;
-  user-select: none;
+  gap: 18px;
+  height: 64px;
+  padding: 0 22px;
+  background: #fff;
 }
 
 .lights {
   display: flex;
-  gap: 6px;
   align-items: center;
-  flex-shrink: 0;
+  gap: 8px;
+  flex: none;
 }
-
 .light {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: none;
+  padding: 0;
+  border: 0;
   display: block;
-  flex-shrink: 0;
 }
-.red    { background: #FF5F57; cursor: pointer; }
-.yellow { background: #FFBD2E; cursor: default; }
-.green  { background: #28C840; cursor: default; }
-.red:hover { filter: brightness(0.88); }
+.close { background: #fd5d5c; cursor: pointer; }
+.close:hover { filter: brightness(0.92); }
+.min   { background: #fac900; }
+.max   { background: #34c75a; }
 
-.titleText {
-  font-size: 13px;
+.urlbar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  background: #f1f1f3;
+  color: #8a8a8f;
+}
+.searchIcon,
+.refresh {
+  flex: none;
+  display: flex;
+  align-items: center;
+  color: #8a8a8f;
+}
+.refresh {
+  margin-left: auto;
+}
+.url {
+  font-family: var(--font-ui);
+  font-size: 14px;
   font-weight: 400;
-  color: #888;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.2px;
+  color: #8a8a8f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* ─── Scrollable body ────────────────────────────────── */
+.favicon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+}
+
+/* ---------- scrolling document ---------- */
 .body {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
-  background: #fff;
-  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  padding: 22px 32px 40px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
 }
-.body::-webkit-scrollbar { width: 5px; }
-.body::-webkit-scrollbar-track { background: transparent; }
-.body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+.body::-webkit-scrollbar {
+  width: 8px;
+}
+.body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
 
-/* ─── Close button (hidden on desktop) ──────────────── */
-.closeBtn { display: none; }
-
-/* ─── Tablet + Mobile — full page, no floating window ── */
-@media (max-width: 1024px) {
-  .stage {
-    position: relative;
-    min-height: 100svh;
-    display: block;
-    background: #fff;
+/* ---------- mobile: full page ---------- */
+@media (max-width: 900px) {
+  .overlay {
+    padding: 0;
+    background: rgba(20, 20, 22, 0.5);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
-  .bg, .nebula { display: none; }
   .window {
     width: 100%;
-    height: auto;
-    min-height: 100svh;
+    max-height: none;
+    height: 100svh;
     border-radius: 0;
-    box-shadow: none;
-    animation: none;
-    position: relative;
   }
-  .titleBar { display: none; }
+  .chrome {
+    height: 56px;
+    padding: 0 14px;
+    gap: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  }
+  .favicon {
+    display: none;
+  }
   .body {
-    overflow-y: visible;
-    height: auto;
+    padding: 18px 20px 40px;
   }
+}
 
-  /* Close button replaces title bar */
-  .closeBtn {
-    display: flex;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(0, 0, 0, 0.12);
-    background: rgba(0, 0, 0, 0.05);
-    color: #333;
-    font-size: 22px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 20;
-    padding: 0;
-    line-height: 1;
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .window {
+    animation: none;
   }
-  .closeBtn:hover { background: rgba(0, 0, 0, 0.09); }
 }

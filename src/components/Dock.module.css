@@ -1,0 +1,125 @@
+/* Figma node 15:1504 — Dock-navigation */
+
+.wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 24px;
+  pointer-events: none; /* only the dock itself is interactive */
+}
+
+.dock {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  height: 88px;
+  padding: 9px;
+  border-radius: 20px;
+  background: rgba(247, 247, 247, 0.32);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  /* the 0.667px stroke is drawn inside, so 9px padding + 70px icon == 88px exactly */
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25), inset 0 2px 6px 0 rgba(255, 255, 255, 0.32),
+    inset 0 0 0 0.667px #e6e6eb;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 70px;
+  flex: none;
+  border-radius: 18px;
+  /* grow from the bottom edge, the way the macOS dock does */
+  transform: scale(var(--scale, 1));
+  transform-origin: bottom center;
+  transition: transform 0.18s var(--ease-dock);
+  will-change: transform;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.item:active .icon {
+  filter: brightness(0.92);
+}
+
+/* running-indicator dot, sitting just under the icon inside the dock padding */
+.dot {
+  position: absolute;
+  bottom: -6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+.item:hover .dot,
+.item:focus-visible .dot {
+  opacity: 1;
+}
+
+/* label bubble above the icon */
+.tip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(247, 247, 247, 0.82);
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: #1c1c1e;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px) scale(calc(1 / var(--scale, 1)));
+  transform-origin: bottom center;
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+  pointer-events: none;
+}
+.tipOn {
+  opacity: 1;
+  transform: translateY(0) scale(calc(1 / var(--scale, 1)));
+}
+
+@media (max-width: 560px) {
+  .wrap {
+    padding: 12px;
+  }
+  .dock {
+    height: 74px;
+    gap: 6px;
+    padding: 7px;
+    border-radius: 17px;
+  }
+  .item,
+  .icon {
+    width: 60px;
+  }
+  .icon {
+    height: 60px;
+    border-radius: 15px;
+  }
+}

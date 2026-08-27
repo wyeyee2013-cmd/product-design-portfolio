@@ -1,46 +1,73 @@
+import { useInView } from '../hooks/useLayout.js'
+import { useWindows } from './windowContext.js'
 import styles from './Footer.module.css'
 
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" width="38" height="38">
-      <defs>
-        <linearGradient id="flg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#c4a0ff"/>
-          <stop offset="100%" stopColor="#6b28cc"/>
-        </linearGradient>
-        <linearGradient id="fld" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#5cc8ff"/>
-          <stop offset="100%" stopColor="#a36bff"/>
-        </linearGradient>
-      </defs>
-      <rect width="38" height="38" rx="10" fill="#1a0e30"/>
-      <path d="M22 11 A10 10 0 1 0 22 27" stroke="url(#flg)" strokeWidth="2.8" strokeLinecap="round" fill="none"/>
-      <line x1="23" y1="11" x2="23" y2="27" stroke="url(#flg)" strokeWidth="2.8" strokeLinecap="round"/>
-      <line x1="23" y1="27" x2="30" y2="27" stroke="url(#flg)" strokeWidth="2.8" strokeLinecap="round"/>
-      <circle cx="30" cy="11" r="2.2" fill="url(#fld)"/>
-    </svg>
-  )
-}
+const SOCIALS = [
+  { label: 'Instagram', icon: '/assets/ic-instagram.svg', href: 'https://instagram.com/' },
+  { label: 'X', icon: '/assets/ic-x.svg', href: 'https://x.com/' },
+  { label: 'Phone', icon: '/assets/ic-phone.svg', href: 'tel:' },
+  { label: 'Email', icon: '/assets/ic-email.svg', href: 'mailto:wyeyee@feedme.cc' },
+]
 
+/** Figma node 15:2100 — closing panel. */
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const [ref, inView] = useInView({ threshold: 0.25 })
+  const { openAbout } = useWindows()
+
   return (
-    <footer className={`${styles.footer} ${styles.wabi}`}>
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.left}>
-          <div className={styles.logoMark}><LogoMark /></div>
-          <div>
-            <p className={styles.name}>Cheryl Lim</p>
-            <p className={styles.role}>Product Designer</p>
+    <section className={styles.section} id="contact" ref={ref}>
+      <img className={styles.tile} src="/assets/footer-bg.png" alt="" aria-hidden="true" />
+
+      <div className={styles.top}>
+        <div className={`${styles.panel} ${inView ? styles.in : ''}`}>
+          <img className={styles.photo} src="/assets/footer-photo.png" alt="" aria-hidden="true" />
+
+          <div className={styles.socials}>
+            {SOCIALS.map((s) => (
+              <a
+                key={s.label}
+                className={styles.social}
+                href={s.href}
+                aria-label={s.label}
+                {...(s.href.startsWith('http')
+                  ? { target: '_blank', rel: 'noreferrer noopener' }
+                  : {})}
+              >
+                <img src={s.icon} alt="" />
+              </a>
+            ))}
           </div>
+
+          <div className={styles.idea}>
+            <div className={styles.ideaTop}>
+              <i className={styles.rule} />
+              <p>Have an idea?</p>
+            </div>
+            <p className={styles.ideaBody}>Let&rsquo;s turn it into a sharp digital experience.</p>
+          </div>
+
+          <h2 className={styles.heading}>
+            <span>Let&rsquo;s Work on</span>
+            <span>something</span>
+            <span>Exciting!</span>
+          </h2>
+
+          <a className={styles.chat} href="mailto:wyeyee@feedme.cc">
+            Let&rsquo;s chat
+          </a>
         </div>
-        <div className={styles.links}>
-          <a href="mailto:cheryl.wylim@outlook.com">Email</a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://read.cv" target="_blank" rel="noreferrer">Read.cv</a>
-        </div>
-        <p className={styles.copy}>© {year} Cheryl Lim. All rights reserved.</p>
       </div>
-    </footer>
+
+      <nav className={styles.nav} aria-label="Footer">
+        <span className={styles.mark}>Cheryl Lim&reg;</span>
+        <div className={styles.links}>
+          <a href="#work">Projects</a>
+          <button type="button" onClick={openAbout}>
+            About
+          </button>
+          <a href="mailto:wyeyee@feedme.cc">Contact</a>
+        </div>
+      </nav>
+    </section>
   )
 }

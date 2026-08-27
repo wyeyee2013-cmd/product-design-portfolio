@@ -1,0 +1,204 @@
+/* Figma node 15:1452 — the "Ask Cheryl stuff..." box */
+
+.zone {
+  position: relative;
+  width: 594px;
+  flex: none;
+}
+
+.ask {
+  position: relative;
+  width: 100%;
+  height: 132px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 24px;
+  background: #f8fafc;
+  box-shadow: 0 18px 48px -22px rgba(0, 0, 0, 0.45);
+  transition: box-shadow 0.35s var(--ease);
+}
+.ask:focus-within {
+  box-shadow: 0 22px 60px -22px rgba(0, 0, 0, 0.55), 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.input {
+  flex: 1;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20.4px;
+  letter-spacing: -0.96px;
+  color: var(--ink);
+  text-transform: capitalize;
+}
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.24);
+}
+.input:focus {
+  outline: none;
+}
+
+.side {
+  width: 69px;
+  flex: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.send {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: #000;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.4px;
+  letter-spacing: -0.96px;
+  text-transform: capitalize;
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.send:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+.send:active {
+  transform: translateY(0) scale(0.97);
+}
+.send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* answers float beneath the box so the hero layout never shifts */
+.reply {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 12px);
+  z-index: 6;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 2px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px) saturate(130%);
+  -webkit-backdrop-filter: blur(40px) saturate(130%);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  transition: max-height 0.5s var(--ease), opacity 0.35s var(--ease);
+}
+/* The dock occupies the bottom ~112px of the viewport, so the answer log is
+   capped against viewport height rather than a flat 300px — otherwise the
+   newest message hides behind the dock on shorter screens. */
+.replyOpen {
+  max-height: min(300px, 20svh);
+  opacity: 1;
+}
+
+.scroll {
+  max-height: min(300px, 20svh);
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+.scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+
+.turn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bubble {
+  max-width: 88%;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+}
+.question {
+  align-self: flex-end;
+  padding: 9px 14px;
+  border-radius: 14px 14px 4px 14px;
+  background: rgba(0, 0, 0, 0.42);
+  color: var(--white);
+  font-weight: 500;
+}
+.answer {
+  align-self: flex-start;
+  color: rgba(255, 255, 255, 0.94);
+  padding: 2px 2px 2px 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+.answer b {
+  font-weight: 600;
+  color: #fff;
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: currentColor;
+  vertical-align: -2px;
+  margin-left: 2px;
+  animation: blink 0.9s steps(2, start) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.suggests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 2px;
+}
+.suggests button {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  padding: 6px 11px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.92);
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.suggests button:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .zone {
+    width: min(92vw, 460px);
+  }
+}

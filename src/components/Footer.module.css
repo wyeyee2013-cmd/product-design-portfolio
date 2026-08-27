@@ -1,80 +1,307 @@
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 0;
-  margin-top: 80px;
+/* Figma node 15:2100 — closing panel */
+
+.section {
+  position: relative;
+  height: 100svh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  background: #fbf8dc;
 }
 
-.inner {
+/* the tiled "let's work" backdrop */
+.tile {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 119.85%;
+  height: 100%;
+  left: -9.93%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.top {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.panel {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  opacity: 0;
+  translate: 0 20px;
+  transition: opacity 0.6s var(--ease-out), translate 0.6s var(--ease-out);
+}
+.in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ---------- socials, top left ---------- */
+.socials {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 100px;
+}
+.social {
+  width: 33px;
+  height: 33px;
+  border-radius: 16.5px;
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+.social:hover {
+  transform: translateY(-2px);
+  background: #fff;
+}
+.social img {
+  width: 21px;
+  height: 21px;
+}
+
+/* ---------- "have an idea?", top right ---------- */
+.idea {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 317px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+.ideaTop {
+  display: flex;
+  align-items: center;
+  gap: 6.03px;
+}
+.rule {
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  flex: none;
+}
+.idea p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -1px;
+  color: #fff;
+}
+.ideaBody {
+  text-align: right;
+}
+
+/* ---------- headline, bottom left ---------- */
+.heading {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  width: 653px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 32px;
+  letter-spacing: -3.8px;
+  text-transform: capitalize;
+  color: #fff;
+}
+
+/* ---------- CTA, bottom right ---------- */
+.chat {
+  position: absolute;
+  right: 31.11px;
+  bottom: 32.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 40px 12px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.15);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26.4px;
+  letter-spacing: -0.96px;
+  color: #1a1a1a;
+  white-space: nowrap;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.chat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px 0 rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- bottom nav ---------- */
+.nav {
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 24px;
+  padding: 0 30px 24px;
 }
-
-.left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.logoMark {
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-}
-
-.name {
+.mark {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-variation-settings: 'wdth' 100;
   font-weight: 600;
-  color: var(--text-primary);
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #252525;
+  white-space: nowrap;
 }
-
-.role {
-  font-size: 16px;
-  color: var(--text-muted);
-}
-
 .links {
   display: flex;
-  gap: 28px;
+  align-items: center;
+  gap: 18px;
 }
-
-.links a {
-  font-size: 16px;
-  color: var(--text-secondary);
-  transition: color 0.2s;
+.links a,
+.links button {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
   font-weight: 500;
-}
-
-.links a:hover {
-  color: var(--purple-light);
-}
-
-.copy {
   font-size: 16px;
-  color: var(--text-muted);
+  line-height: 20.8px;
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+  color: #252525;
+  white-space: nowrap;
+  transition: opacity 0.2s var(--ease);
+}
+.links a:hover,
+.links button:hover {
+  opacity: 0.6;
 }
 
-@media (max-width: 640px) {
-  .inner {
+/* ---------- narrow ---------- */
+@media (max-width: 1240px) {
+  .heading {
+    font-size: 62px;
+    line-height: 26px;
+    gap: 26px;
+    width: 520px;
+  }
+  .idea {
+    width: 280px;
+  }
+  .idea p {
+    font-size: 20px;
+    line-height: 21px;
+  }
+  .chat {
+    font-size: 20px;
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    height: auto;
+    min-height: 100svh;
+    scroll-snap-align: none;
+  }
+  .top {
+    padding: 16px;
+  }
+  .panel {
+    min-height: 72svh;
+  }
+  .socials {
+    left: 16px;
+    top: 16px;
+    gap: 6px;
+    padding: 0;
+  }
+  .social {
+    width: 30px;
+    height: 30px;
+  }
+  .social img {
+    width: 18px;
+    height: 18px;
+  }
+  .idea {
+    right: 16px;
+    top: 16px;
+    width: min(58vw, 240px);
+  }
+  .idea p {
+    font-size: 15px;
+    line-height: 17px;
+    letter-spacing: -0.5px;
+  }
+  .rule {
+    width: 16px;
+  }
+  .heading {
+    left: 16px;
+    bottom: 88px;
+    width: calc(100% - 32px);
+    font-size: clamp(34px, 11vw, 56px);
+    line-height: 0.92;
+    gap: 0;
+    letter-spacing: -2px;
+  }
+  .chat {
+    right: 16px;
+    bottom: 20px;
+    font-size: 16px;
+    padding: 10px 24px;
+    line-height: 20px;
+  }
+  .nav {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px 132px; /* clears the dock */
   }
-  .copy {
-    width: 100%;
+  .links {
+    gap: 14px;
   }
 }
 
-/* ── "wabi" variant — homepage light surface ── */
-.wabi {
-  border-top: none;
-  margin-top: 0;
-  padding: 44px 0 56px;
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    opacity: 1;
+    translate: none;
+  }
 }
-.wabi .name { color: #1c1b18; }
-.wabi .role { color: #9b958a; }
-.wabi .links a { color: #6c6760; }
-.wabi .links a:hover { color: #6d28d9; }
-.wabi .copy { color: #9b958a; }
