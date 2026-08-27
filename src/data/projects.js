@@ -60,13 +60,14 @@ export const PROJECTS = [
     tags: ['B2B2C', 'FeedMe', '2026'],
     summary:
       'The people side — shifts, skills, and permissions — for businesses where the roster changes weekly and half the team is part-time.',
-    thumb: '/assets/proj-3.png',
-    gallery: ['/assets/proj-3.png'],
+    thumb: '/assets/hrm-cover.png',
+    gallery: [],
+    comingSoon: true,
     tint: '#2f7d6b',
     row: 0,
     rotate: -7,
     clip: '/assets/clip-3.svg',
-    fit: { height: '100%', top: '0', width: '100.6%', left: '-0.3%' },
+    fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
     id: 'pantas',

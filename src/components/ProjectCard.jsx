@@ -7,7 +7,7 @@ import styles from './ProjectsSection.module.css'
  * paperclip hooked over the top edge.
  */
 export default function ProjectCard({ project, index = 0 }) {
-  const { title, tags, thumb, clip, rotate, fit } = project
+  const { title, tags, thumb, clip, rotate, fit, comingSoon } = project
   const { openProject } = useWindows()
 
   return (
@@ -16,7 +16,7 @@ export default function ProjectCard({ project, index = 0 }) {
         className={styles.card}
         role="button"
         tabIndex={0}
-        aria-label={`Open case study: ${title}`}
+        aria-label={comingSoon ? `${title} — case study coming soon` : `Open case study: ${title}`}
         onClick={() => openProject(project)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -34,6 +34,7 @@ export default function ProjectCard({ project, index = 0 }) {
               <i style={{ '--c': '#fac900' }} />
               <i style={{ '--c': '#34c75a' }} />
             </span>
+            {comingSoon && <span className={styles.soon}>Coming soon</span>}
           </div>
 
           <div className={styles.collection}>

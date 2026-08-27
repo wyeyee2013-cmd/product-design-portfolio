@@ -124,7 +124,8 @@ function StudyItem({ item }) {
 }
 
 export function ProjectDoc({ project }) {
-  const { id, title, summary, client, year, type, tool, thumb, previewUrl, gallery = [] } = project
+  const { id, title, summary, client, year, type, tool, thumb, previewUrl, comingSoon, gallery = [] } =
+    project
   const extras = gallery.filter((src) => src !== thumb)
   const study = CASE_STUDIES[id]
 
@@ -135,6 +136,7 @@ export function ProjectDoc({ project }) {
       </div>
 
       {study?.sector && <p className={styles.sector}>{study.sector}</p>}
+      {comingSoon && <p className={styles.soonTag}>Coming soon</p>}
 
       <header className={styles.head}>
         <h1 className={styles.title}>{study?.title || title}</h1>
@@ -186,6 +188,12 @@ export function ProjectDoc({ project }) {
             </div>
           ))}
         </dl>
+      )}
+
+      {comingSoon && !study && (
+        <p className={styles.soonNote}>
+          The full case study for this project is being written up — check back soon.
+        </p>
       )}
 
       {study?.sections?.map((s) => (
