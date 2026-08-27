@@ -125,11 +125,18 @@ export default function EyeCursor() {
     <div className={`${styles.cursor} ${styles.gone}`} ref={root} aria-hidden="true">
       <span className={styles.lids}>
         <svg className={styles.art} viewBox="0 0 63 41" width="63" height="41">
-          <ellipse className={styles.white} cx="16.2" cy="20.5" rx="15.6" ry="19.6" />
-          <ellipse className={styles.white} cx="46.8" cy="20.5" rx="15.6" ry="19.6" />
+          <rect className={styles.white} x="0.7" y="1" width="31" height="39" rx="12" />
+          <rect className={styles.white} x="31.3" y="1" width="31" height="39" rx="12" />
+          {/* both beads swing together; the glint rides along inside each one */}
           <g ref={pupils}>
-            <circle className={styles.pupil} cx="16.2" cy="20.5" r="6.7" />
-            <circle className={styles.pupil} cx="46.8" cy="20.5" r="6.7" />
+            <g className={styles.bead}>
+              <ellipse className={styles.pupil} cx="16.2" cy="20.5" rx="5.7" ry="7.5" />
+              <circle className={styles.glint} cx="18.5" cy="17.5" r="1.9" />
+            </g>
+            <g className={styles.bead}>
+              <ellipse className={styles.pupil} cx="46.8" cy="20.5" rx="5.7" ry="7.5" />
+              <circle className={styles.glint} cx="49.1" cy="17.5" r="1.9" />
+            </g>
           </g>
         </svg>
       </span>

@@ -39,14 +39,21 @@
 }
 
 .white {
-  fill: #fff;
+  fill: #f6f1e5;
 }
 .pupil {
   fill: #000;
+}
+.glint {
+  fill: #fff;
+}
+/* scaling the bead rather than the pupil keeps the glint pinned in place — the
+   group's box is the pupil's, since the glint sits wholly inside it */
+.bead {
   transform-box: fill-box;
   transform-origin: center;
   transition: scale 160ms ease;
 }
-.keen .pupil {
+.keen .bead {
   scale: 1.18;
 }
