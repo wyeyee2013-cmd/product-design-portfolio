@@ -126,8 +126,7 @@ function StudyItem({ item }) {
 }
 
 export function ProjectDoc({ project }) {
-  const { id, title, summary, client, year, type, tool, thumb, previewUrl, comingSoon, gallery = [] } =
-    project
+  const { id, title, summary, client, year, type, tool, thumb, comingSoon, gallery = [] } = project
   const extras = gallery.filter((src) => src !== thumb)
   const study = CASE_STUDIES[id]
 
@@ -142,19 +141,6 @@ export function ProjectDoc({ project }) {
 
       <header className={styles.head}>
         <h1 className={styles.title}>{study?.title || title}</h1>
-        {/* only shown where a live write-up exists — a dead link reads worse
-            than no link at all */}
-        {previewUrl && (
-          <a
-            className={styles.preview}
-            href={previewUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Preview Link
-            <ExternalIcon />
-          </a>
-        )}
       </header>
 
       <p className={styles.summary}>{study?.tagline || summary}</p>
