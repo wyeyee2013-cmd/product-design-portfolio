@@ -890,3 +890,179 @@
 .showMore[aria-expanded='true'] svg {
   transform: rotate(180deg);
 }
+
+/* ============================================================
+   Long-form case study
+   ============================================================ */
+.sector {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+
+/* role / team / timeline */
+.credits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 26px 40px;
+  margin: 0 0 8px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.credits > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.credits dt {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.credits dd {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  color: #111;
+}
+
+.chapter {
+  border-top: 1px solid var(--rule);
+  padding-top: 34px;
+  margin-top: 40px;
+}
+.chapterHeading {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.chapterLead {
+  margin: 0 0 18px;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.18;
+  letter-spacing: -1.1px;
+  color: #111;
+}
+.chapterBody {
+  margin: 0 0 16px;
+  max-width: 72ch;
+  font-family: var(--font-ui);
+  font-size: 16.5px;
+  line-height: 1.6;
+  letter-spacing: -0.25px;
+  color: rgba(18, 18, 18, 0.8);
+}
+
+.chapterList {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 72ch;
+}
+.chapterList li {
+  position: relative;
+  padding-left: 17px;
+  font-family: var(--font-ui);
+  font-size: 15.5px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.74);
+}
+.chapterList li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.26);
+}
+
+/* sub-points: challenge callouts, solution cards, personas, journey stages */
+.chapterBlocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 4px 0 24px;
+}
+.chapterBlock {
+  padding: 20px;
+  border-radius: 14px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.chapterBlock h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  color: #111;
+}
+.chapterBlock p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.72);
+}
+
+.figure {
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: var(--cream-2);
+}
+.figure figcaption {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  letter-spacing: -0.1px;
+  color: #9a9a9a;
+}
+
+@media (max-width: 900px) {
+  .credits {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .chapter {
+    padding-top: 26px;
+    margin-top: 30px;
+  }
+  .chapterBody {
+    font-size: 15.5px;
+  }
+  .chapterBlocks {
+    grid-template-columns: 1fr;
+  }
+}

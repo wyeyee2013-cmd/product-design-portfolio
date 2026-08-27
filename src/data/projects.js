@@ -80,13 +80,13 @@ export const PROJECTS = [
     tags: ['B2B', 'Pantas', '2025'],
     summary:
       'An organisation model that keeps roles, permissions, and reporting lines legible as a company grows past the point one person can hold it in their head.',
-    thumb: '/assets/proj-4.png',
-    gallery: ['/assets/proj-4.png'],
+    thumb: '/assets/pantas-cover.png',
+    gallery: [],
     tint: '#c2453f',
     row: 1,
     rotate: 7.65,
     clip: '/assets/clip-4.svg',
-    fit: { height: '108.68%', top: '-4.34%', width: '100%', left: '0' },
+    fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
     id: 'hireti',
@@ -100,13 +100,13 @@ export const PROJECTS = [
     tags: ['B2B', 'Hilti', '2024'],
     summary:
       'Matching people to roles without burying either side in forms. Most of the work went into what the system should decide and what it should ask.',
-    thumb: '/assets/proj-5.png',
-    gallery: ['/assets/proj-5.png'],
+    thumb: '/assets/hireti-cover.png',
+    gallery: [],
     tint: '#3a6ea5',
     row: 1,
     rotate: -7,
     clip: '/assets/clip-5.svg',
-    fit: { height: '120.37%', top: '-10.19%', width: '100%', left: '0' },
+    fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
 ]
 

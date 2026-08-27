@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { CASE_STUDIES } from '../data/caseStudies.js'
 import { findAnswer, SUGGESTIONS } from '../data/knowledge.js'
 import {
   COMMUNITY,
@@ -31,14 +32,17 @@ const ExternalIcon = () => (
    Case study
    ============================================================ */
 export function ProjectDoc({ project }) {
-  const { title, summary, client, year, type, tool, thumb, previewUrl, gallery = [] } = project
+  const { id, title, summary, client, year, type, tool, thumb, previewUrl, gallery = [] } = project
   const extras = gallery.filter((src) => src !== thumb)
+  const study = CASE_STUDIES[id]
 
   return (
     <article className={styles.doc}>
       <div className={styles.hero}>
         <img src={thumb} alt={`${title} cover`} />
       </div>
+
+      {study?.sector && <p className={styles.sector}>{study.sector}</p>}
 
       <header className={styles.head}>
         <h1 className={styles.title}>{title}</h1>
@@ -57,7 +61,7 @@ export function ProjectDoc({ project }) {
         )}
       </header>
 
-      <p className={styles.summary}>{summary}</p>
+      <p className={styles.summary}>{study?.tagline || summary}</p>
 
       <dl className={styles.meta}>
         <div>
@@ -77,6 +81,57 @@ export function ProjectDoc({ project }) {
           <dd>{tool}</dd>
         </div>
       </dl>
+
+      {/* credits (role / team / timeline) from the long-form write-up */}
+      {study?.credits && (
+        <dl className={styles.credits}>
+          {study.credits.map((c) => (
+            <div key={c.label}>
+              <dt>{c.label}</dt>
+              <dd>{c.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {study?.sections?.map((s) => (
+        <section className={styles.chapter} key={s.heading}>
+          <h2 className={styles.chapterHeading}>{s.heading}</h2>
+          {s.lead && <p className={styles.chapterLead}>{s.lead}</p>}
+
+          {s.body?.map((p) => (
+            <p className={styles.chapterBody} key={p.slice(0, 28)}>
+              {p}
+            </p>
+          ))}
+
+          {s.bullets && (
+            <ul className={styles.chapterList}>
+              {s.bullets.map((b) => (
+                <li key={b.slice(0, 28)}>{b}</li>
+              ))}
+            </ul>
+          )}
+
+          {s.blocks && (
+            <div className={styles.chapterBlocks}>
+              {s.blocks.map((b) => (
+                <div className={styles.chapterBlock} key={b.title}>
+                  <h3>{b.title}</h3>
+                  <p>{b.body}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {s.figures?.map((f) => (
+            <figure className={styles.figure} key={f.src}>
+              <img src={f.src} alt={f.caption} loading="lazy" />
+              <figcaption>{f.caption}</figcaption>
+            </figure>
+          ))}
+        </section>
+      ))}
 
       {extras.map((src) => (
         <div className={styles.shot} key={src}>
