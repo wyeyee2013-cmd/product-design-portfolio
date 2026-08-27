@@ -349,6 +349,7 @@ export function AboutDoc() {
             </li>
           ))}
         </ul>
+        <p className={styles.andMore}>and more.</p>
       </section>
 
       {/* ---- hackathons ---- */}

@@ -1233,3 +1233,13 @@
   letter-spacing: -0.2px;
   color: rgba(18, 18, 18, 0.62);
 }
+
+/* signals the listed talks are a selection, not the full count */
+.andMore {
+  margin: 16px 0 0;
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  font-style: italic;
+  letter-spacing: -0.2px;
+  color: #9a9a9a;
+}
