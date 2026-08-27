@@ -6,7 +6,7 @@ const SOCIALS = [
   { label: 'Instagram', icon: '/assets/ic-instagram.svg', href: 'https://instagram.com/' },
   { label: 'X', icon: '/assets/ic-x.svg', href: 'https://x.com/' },
   { label: 'Phone', icon: '/assets/ic-phone.svg', href: 'tel:' },
-  { label: 'Email', icon: '/assets/ic-email.svg', href: 'mailto:wyeyee@feedme.cc' },
+  { label: 'Email', icon: '/assets/ic-email.svg', href: 'mailto:cheryl.wylim@outlook.com' },
 ]
 
 /** Figma node 15:2100 — closing panel. */
@@ -52,7 +52,7 @@ export default function Footer() {
             <span>Exciting!</span>
           </h2>
 
-          <a className={styles.chat} href="mailto:wyeyee@feedme.cc">
+          <a className={styles.chat} href="mailto:cheryl.wylim@outlook.com">
             Let&rsquo;s chat
           </a>
         </div>
@@ -65,7 +65,7 @@ export default function Footer() {
           <button type="button" onClick={openAbout}>
             About
           </button>
-          <a href="mailto:wyeyee@feedme.cc">Contact</a>
+          <a href="mailto:cheryl.wylim@outlook.com">Contact</a>
         </div>
       </nav>
     </section>

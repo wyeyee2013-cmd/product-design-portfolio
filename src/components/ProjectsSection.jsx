@@ -50,7 +50,7 @@ export default function ProjectsSection() {
             </p>
 
             <div className={styles.buttonStack}>
-              <a className={styles.cta} href="mailto:wyeyee@feedme.cc">
+              <a className={styles.cta} href="mailto:cheryl.wylim@outlook.com">
                 Start a project
               </a>
               <img className={styles.ctaArrow} src="/assets/arrow.svg" alt="" aria-hidden="true" />

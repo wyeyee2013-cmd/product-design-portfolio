@@ -62,11 +62,11 @@ export const KB = [
   },
   {
     k: ['available', 'hire', 'hiring', 'freelance', 'open to', 'opportunit', 'recruit', 'looking for'],
-    a: 'Yes — currently <b>available for work</b>. Product design or design-engineering hybrid roles, contract or full-time. Best route is <b>wyeyee@feedme.cc</b>.',
+    a: 'Yes — currently <b>available for work</b>. Product design or design-engineering hybrid roles, contract or full-time. Best route is <b>cheryl.wylim@outlook.com</b>.',
   },
   {
     k: ['contact', 'email', 'reach', 'get in touch', 'talk', 'call', 'connect'],
-    a: "Email is best: <b>wyeyee@feedme.cc</b>. The mail icon in the dock at the bottom opens it directly.",
+    a: "Email is best: <b>cheryl.wylim@outlook.com</b>. The mail icon in the dock at the bottom opens it directly.",
   },
   {
     k: ['location', 'based', 'where are you', 'city', 'country', 'remote', 'timezone'],

@@ -18,7 +18,7 @@ const ITEMS = [
     href: 'https://www.linkedin.com/',
     external: true,
   },
-  { id: 'mail', label: 'Email', icon: '/assets/dock-mail.png', href: 'mailto:wyeyee@feedme.cc' },
+  { id: 'mail', label: 'Email', icon: '/assets/dock-mail.png', href: 'mailto:cheryl.wylim@outlook.com' },
 ]
 
 /* a restrained lift — just enough to show which icon is under the cursor */

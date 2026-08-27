@@ -275,3 +275,618 @@
     font-size: 16px;
   }
 }
+
+/* ============================================================
+   About document
+   ============================================================ */
+.lede {
+  margin: 0 0 40px;
+  max-width: 26ch;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+  color: #111;
+}
+
+/* ---------- profile card ---------- */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 24px;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  background: #f7f7f9;
+}
+.avatar {
+  width: 116px;
+  height: 116px;
+  flex: none;
+  border-radius: 14px;
+  object-fit: cover;
+}
+.facts {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 32px;
+}
+.facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.facts dt {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.facts dd {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: #111;
+  overflow-wrap: anywhere;
+}
+.mailLink {
+  color: #2f6fed;
+}
+.mailLink:hover {
+  opacity: 0.7;
+}
+
+/* ---------- intro ---------- */
+
+/* ---------- narrative blocks ---------- */
+.block {
+  border-top: 1px solid var(--rule);
+  padding-top: 32px;
+  margin-bottom: 44px;
+}
+.blockHeading {
+  margin: 0 0 18px;
+  max-width: 34ch;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -0.9px;
+  color: #111;
+}
+.blockNote {
+  margin: -6px 0 22px;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  letter-spacing: -0.25px;
+  color: var(--ink-60);
+}
+
+/* ---------- experience timeline ---------- */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.job {
+  display: flex;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.07);
+}
+.job:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.jobMark {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 11px;
+  background: #f2f2f4;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.jobMark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 7px;
+}
+.jobMark span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: #6a6a6f;
+}
+.jobBody {
+  flex: 1;
+  min-width: 0;
+}
+.jobTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.jobTop h3 {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.35px;
+  color: #111;
+}
+.at {
+  color: #b6b6bb;
+  font-weight: 400;
+}
+.period {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  color: #9a9a9a;
+  white-space: nowrap;
+}
+.focus {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  color: #8a8a8f;
+}
+.jobBlurb {
+  margin: 0;
+  max-width: 64ch;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.76);
+}
+
+/* ---------- talks ---------- */
+.talks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.talk {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 14px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.talkTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.kind {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #2f6fed;
+  padding: 4px 9px;
+  border-radius: 100px;
+  background: rgba(47, 111, 237, 0.1);
+}
+.talkYear {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: #9a9a9a;
+}
+.talkTitle {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  color: #111;
+}
+.talkEvent {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  color: #8a8a8f;
+}
+.talkBlurb {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.15px;
+  color: rgba(18, 18, 18, 0.72);
+}
+
+/* ---------- closing CTA ---------- */
+.aboutCta {
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+  margin-top: 36px;
+}
+.aboutCta p {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.6px;
+  color: #111;
+}
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ctaPrimary,
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  transition: opacity 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ctaPrimary {
+  background: #000;
+  color: #fff;
+}
+.ctaPrimary:hover {
+  opacity: 0.85;
+}
+.ctaGhost {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  color: #111;
+}
+.ctaGhost:hover {
+  background: #f4f4f6;
+}
+
+@media (max-width: 900px) {
+  .profile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+  .avatar {
+    width: 92px;
+    height: 92px;
+  }
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .job {
+    gap: 14px;
+  }
+  .talks {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- intro + highlight list ---------- */
+.intro {
+  margin: 0 0 26px;
+  max-width: 72ch;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.25px;
+  color: rgba(18, 18, 18, 0.82);
+}
+
+.highlights {
+  list-style: none;
+  margin: 0 0 44px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 78ch;
+}
+.highlights li {
+  display: flex;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.8);
+}
+.emoji {
+  flex: none;
+  width: 24px;
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ---------- experience: role meta + bullets ---------- */
+.jobMeta {
+  margin: 0 0 2px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.15px;
+  color: #111;
+}
+.dot {
+  color: #b6b6bb;
+  font-weight: 400;
+}
+.jobPlace {
+  margin: 0 0 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  color: #9a9a9a;
+}
+.points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-width: 76ch;
+}
+.points li {
+  position: relative;
+  padding-left: 16px;
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  line-height: 1.55;
+  letter-spacing: -0.15px;
+  color: rgba(18, 18, 18, 0.74);
+}
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.28);
+}
+
+/* ---------- community gallery ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+.frame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.frameWide {
+  grid-column: span 2;
+}
+.frame img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+  background: var(--cream-2);
+}
+/* 16/9 nearly matches the Config panorama's own 1.73 aspect, so the banner
+   and the whole crowd survive — an 8/3 slot was cutting 35% vertically. */
+.frameWide img,
+.frameWide .slot {
+  aspect-ratio: 16 / 9;
+}
+/* Levels this tile with the two-column 16/9 tile beside it: solving
+   c/a = (2c + gap)/1.778 gives a ~= 0.87 across the usable column widths.
+   Must sit after `.frame img` — same specificity, so source order decides. */
+.frameTall img,
+.frameTall .slot {
+  aspect-ratio: 0.87;
+}
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  border: 1.5px dashed rgba(0, 0, 0, 0.16);
+  background: #fafafa;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  color: #a8a8ad;
+}
+.frame figcaption {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  letter-spacing: -0.1px;
+  color: #9a9a9a;
+}
+
+@media (max-width: 900px) {
+  .highlights li {
+    font-size: 15px;
+  }
+  .points li {
+    font-size: 14px;
+  }
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .frameWide {
+    grid-column: span 2;
+  }
+}
+
+/* ---------- community committee roles ---------- */
+.roles {
+  list-style: none;
+  margin: 4px 0 26px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.role {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px 9px 10px;
+  border-radius: 100px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.roleTag {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2f6fed;
+  padding: 4px 9px;
+  border-radius: 100px;
+  background: rgba(47, 111, 237, 0.1);
+  white-space: nowrap;
+}
+.roleOrg {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .role {
+    width: 100%;
+  }
+}
+
+/* ---------- hackathons & competitions ----------
+   A plain ruled list: no cards, no colour badges — twelve rows of these
+   read far calmer than twelve tiles. */
+.hacks {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(18, 18, 18, 0.08);
+}
+.hack {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 13px 2px;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.08);
+}
+.hackName {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  color: #111;
+}
+.place {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  letter-spacing: -0.15px;
+  color: rgba(18, 18, 18, 0.5);
+  white-space: nowrap;
+}
+.hackDate {
+  flex: none;
+  width: 74px;
+  text-align: right;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.1px;
+  color: #b0b0b5;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .hack {
+    flex-wrap: wrap;
+    gap: 4px 14px;
+  }
+  .hackName {
+    flex: 1 0 100%;
+  }
+  .hackDate {
+    width: auto;
+    margin-left: auto;
+  }
+}
+
+
+/* ---------- show more (hackathons) ---------- */
+.showMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.15px;
+  color: rgba(18, 18, 18, 0.55);
+  transition: color 0.2s var(--ease);
+}
+.showMore:hover {
+  color: #111;
+}
+.showMore svg {
+  transition: transform 0.25s var(--ease);
+}
+.showMore[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
