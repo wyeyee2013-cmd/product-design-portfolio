@@ -11,7 +11,7 @@
  *   { type: 'callout',     title, subtitle?, bullets?, text }
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
- *   { type: 'feature',     title, text, figure: { src | srcs, caption } }
+ *   { type: 'feature',     title, text, figure: { src | srcs, caption, dark? } }
  *   { type: 'resultCards', items: [] }
  *
  * `feature` keeps a design decision and the screen that shows it in one card,
@@ -312,6 +312,8 @@ export const CASE_STUDIES = {
             figure: {
               src: '/assets/hireti-03-matching-concept.png',
               caption: '03 Candidate Matching Layout Concept',
+              /* transparent PNG with white annotations — needs a dark backdrop */
+              dark: true,
             },
           },
           {
@@ -321,6 +323,7 @@ export const CASE_STUDIES = {
             figure: {
               src: '/assets/hireti-04-chatbot-concept.png',
               caption: '04 Budgeting Chatbot Layout Concept',
+              dark: true,
             },
           },
         ],

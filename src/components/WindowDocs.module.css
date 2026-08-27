@@ -1165,6 +1165,14 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #fff;
 }
+/* transparent wireframe exports carry white annotations, so they need an
+   inked backdrop to be readable — declared after the rule above, since equal
+   specificity is settled by source order */
+.figureOnDark > img {
+  background: #111113;
+  border-color: rgba(255, 255, 255, 0.08);
+  padding: 14px;
+}
 .featureFigure figcaption {
   font-family: var(--font-ui);
   font-size: 12.5px;

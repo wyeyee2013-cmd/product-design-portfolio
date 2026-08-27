@@ -92,7 +92,9 @@ function StudyItem({ item }) {
         <div className={styles.feature}>
           <h3>{item.title}</h3>
           <p>{item.text}</p>
-          <figure className={styles.featureFigure}>
+          <figure
+            className={`${styles.featureFigure} ${item.figure.dark ? styles.figureOnDark : ''}`}
+          >
             {item.figure.srcs ? (
               <div className={styles.figureGrid}>
                 {item.figure.srcs.map((src) => (
