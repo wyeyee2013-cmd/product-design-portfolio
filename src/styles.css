@@ -123,3 +123,21 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- eye cursor ----------
+   EyeCursor draws the pointer instead, so the native one is switched off on
+   devices that have one. !important is the point here: this is a global mode
+   switch and has to beat the per-component `cursor` declarations. Text fields
+   keep their caret — the eyes hide themselves over those. */
+@media (hover: hover) and (pointer: fine) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+  input,
+  textarea,
+  [contenteditable='true'] {
+    cursor: text !important;
+  }
+}

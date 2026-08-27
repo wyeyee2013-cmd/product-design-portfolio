@@ -1,4 +1,5 @@
 import Dock from './components/Dock.jsx'
+import EyeCursor from './components/EyeCursor.jsx'
 import Hero from './components/Hero.jsx'
 import ProjectsSection from './components/ProjectsSection.jsx'
 import About from './components/About.jsx'
@@ -18,6 +19,7 @@ export default function App() {
         <Footer />
       </main>
       <Dock />
+      <EyeCursor />
     </WindowProvider>
   )
 }
