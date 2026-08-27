@@ -86,6 +86,38 @@ function StudyItem({ item }) {
         </figure>
       )
 
+    /* a design decision and the screen that proves it, in one card */
+    case 'feature':
+      return (
+        <div className={styles.feature}>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+          <figure className={styles.featureFigure}>
+            {item.figure.srcs ? (
+              <div className={styles.figureGrid}>
+                {item.figure.srcs.map((src) => (
+                  <img src={src} alt="" loading="lazy" key={src} />
+                ))}
+              </div>
+            ) : (
+              <img src={item.figure.src} alt={item.figure.caption} loading="lazy" />
+            )}
+            <figcaption>{item.figure.caption}</figcaption>
+          </figure>
+        </div>
+      )
+
+    case 'resultCards':
+      return (
+        <div className={styles.resultCards}>
+          {item.items.map((r) => (
+            <div className={styles.resultCard} key={r.slice(0, 28)}>
+              <p>{r}</p>
+            </div>
+          ))}
+        </div>
+      )
+
     default:
       return null
   }

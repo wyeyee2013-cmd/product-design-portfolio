@@ -8,9 +8,14 @@
  *   { type: 'subhead',     text }
  *   { type: 'text',        text }
  *   { type: 'bullets',     items: [] }
- *   { type: 'callout',     title, text }
+ *   { type: 'callout',     title, subtitle?, bullets?, text }
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
+ *   { type: 'feature',     title, text, figure: { src | srcs, caption } }
+ *   { type: 'resultCards', items: [] }
+ *
+ * `feature` keeps a design decision and the screen that shows it in one card,
+ * rather than letting the copy and the UI drift apart down the page.
  */
 
 export const CASE_STUDIES = {
@@ -112,36 +117,27 @@ export const CASE_STUDIES = {
         lead: 'Intuitive, convenient and interactive',
         items: [
           {
-            type: 'subhead',
-            text: 'Seamless hierarchical company navigation - say goodbye to confusions',
-          },
-          {
-            type: 'text',
+            type: 'feature',
+            title: 'Seamless hierarchical company navigation - say goodbye to confusions',
             text: 'Based on previous designs, it is confusing to navigate through companies of different hierarchies as it was displayed as nested information within a company.',
+            figure: {
+              src: '/assets/pantas-01-companies.png',
+              caption: '03 Manage Companies Hierarchy',
+            },
           },
           {
-            type: 'figure',
-            src: '/assets/pantas-01-companies.png',
-            caption: '03 Manage Companies Hierarchy',
-          },
-          {
-            type: 'subhead',
-            text: 'Extract and transform information of various formats - no fixed template format needed',
-          },
-          {
-            type: 'text',
+            type: 'feature',
+            title:
+              'Extract and transform information of various formats - no fixed template format needed',
             text: "Our AI auto-maps information present within client's current templates to match our template requirements, omitting manual entry efforts to our fixed templates.",
-          },
-          { type: 'figure', src: '/assets/pantas-03-upload.png', caption: '04 File upload' },
-          {
-            type: 'subhead',
-            text: 'Review and edit extracted data - ensuring accurate information',
+            figure: { src: '/assets/pantas-03-upload.png', caption: '04 File upload' },
           },
           {
-            type: 'text',
+            type: 'feature',
+            title: 'Review and edit extracted data - ensuring accurate information',
             text: "Not satisfied with the generated data? Feel free to edit the data if needed, inaccurate information will also be flagged to raise user's attention.",
+            figure: { src: '/assets/pantas-04-preview.png', caption: '05 File preview' },
           },
-          { type: 'figure', src: '/assets/pantas-04-preview.png', caption: '05 File preview' },
         ],
       },
       {
@@ -154,7 +150,7 @@ export const CASE_STUDIES = {
             text: 'Through an AI-powered, automated onboarding system, businesses can significantly enhance efficiency, accuracy, and user satisfaction.',
           },
           {
-            type: 'bullets',
+            type: 'resultCards',
             items: [
               'Onboarding completion time cut by 6 - 7 hours',
               'Reducing manual data processing tasks by >60% for the onboarding team',
@@ -310,30 +306,22 @@ export const CASE_STUDIES = {
         lead: 'Compact, consistent and scannable',
         items: [
           {
-            type: 'subhead',
-            text: 'Candidate matching made easy - all information in one page',
-          },
-          {
-            type: 'text',
+            type: 'feature',
+            title: 'Candidate matching made easy - all information in one page',
             text: 'Since the current recruitment system requires users to use separate systems to administer the whole process, the functionalities of the systems are all compressed to be interactable in one interface.',
+            figure: {
+              src: '/assets/hireti-03-matching-concept.png',
+              caption: '03 Candidate Matching Layout Concept',
+            },
           },
           {
-            type: 'figure',
-            src: '/assets/hireti-03-matching-concept.png',
-            caption: '03 Candidate Matching Layout Concept',
-          },
-          {
-            type: 'subhead',
-            text: 'Solving your decisions in budgeting - introducing our chatbot consultant',
-          },
-          {
-            type: 'text',
+            type: 'feature',
+            title: 'Solving your decisions in budgeting - introducing our chatbot consultant',
             text: 'Our consultant chatbot is here to save your struggles in budgeting, and to help in creating new job postings',
-          },
-          {
-            type: 'figure',
-            src: '/assets/hireti-04-chatbot-concept.png',
-            caption: '04 Budgeting Chatbot Layout Concept',
+            figure: {
+              src: '/assets/hireti-04-chatbot-concept.png',
+              caption: '04 Budgeting Chatbot Layout Concept',
+            },
           },
         ],
       },
@@ -341,31 +329,29 @@ export const CASE_STUDIES = {
         label: 'Design System',
         lead: 'Giving a touch of simplicity and modernity',
         items: [
-          { type: 'subhead', text: 'The colors of Hilti' },
           {
-            type: 'text',
+            type: 'feature',
+            title: 'The colors of Hilti',
             text: "The main color palette of Hilti is implemented to maintain the system's brand identity",
+            figure: {
+              src: '/assets/hireti-05-colors.png',
+              caption: '05 Hilti Color Palette',
+            },
           },
           {
-            type: 'figure',
-            src: '/assets/hireti-05-colors.png',
-            caption: '05 Hilti Color Palette',
-          },
-          { type: 'subhead', text: 'The small components to craft a big system' },
-          {
-            type: 'text',
+            type: 'feature',
+            title: 'The small components to craft a big system',
             text: 'The UI components is constructed based on Next.js components to ease development processes',
-          },
-          {
-            type: 'figureGroup',
-            srcs: [
-              '/assets/hireti-06-components-a.png',
-              '/assets/hireti-06-components-b.png',
-              '/assets/hireti-06-components-c.png',
-              '/assets/hireti-06-components-d.png',
-              '/assets/hireti-06-components-e.png',
-            ],
-            caption: '06 UI Components',
+            figure: {
+              srcs: [
+                '/assets/hireti-06-components-a.png',
+                '/assets/hireti-06-components-b.png',
+                '/assets/hireti-06-components-c.png',
+                '/assets/hireti-06-components-d.png',
+                '/assets/hireti-06-components-e.png',
+              ],
+              caption: '06 UI Components',
+            },
           },
         ],
       },
@@ -400,7 +386,7 @@ export const CASE_STUDIES = {
             text: 'Through a system unified for recruiters to perform all processes, significant positive results are shown. Due to non-disclosure agreements, the results will be displayed in a general format',
           },
           {
-            type: 'bullets',
+            type: 'resultCards',
             items: [
               'Significant time savings by reducing time and effort in manual processes',
               'Increased diversity in hiring by dispelling human biases',
