@@ -313,12 +313,6 @@
     min-height: 100svh;
     scroll-snap-align: none;
   }
-  .status {
-    position: static;
-    width: auto;
-    max-width: 361px;
-    margin: 16px auto 0;
-  }
   .body {
     padding-top: 8px;
     gap: 20px;
@@ -336,7 +330,7 @@
     letter-spacing: -2px;
   }
   /* the -10deg rotation pushes this tag's bounding box ~20px above its top
-     edge, so it needs clearance from the availability pill above it */
+     edge, so it needs the headline's top padding as clearance */
   .tagDesign {
     left: 0;
     top: 26px;

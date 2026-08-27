@@ -28,22 +28,24 @@ export default function Hero() {
       </div>
 
       <div className={styles.stage} style={{ zoom: isNarrow ? 1 : scale }}>
-        {/* availability pill */}
-        <div className={styles.status}>
-          <div className={styles.statusRow}>
-            <div className={styles.avatar}>
-              {/* same photo as the About page, so changing it once updates both */}
-              <img src={PROFILE.photo} alt="Portrait of Cheryl Lim" />
-            </div>
-            <div className={styles.statusMeta}>
-              <div className={styles.live}>
-                <i className={styles.dot} />
-                <span>Available for work</span>
+        {/* availability pill — dropped on mobile to keep the headline above the fold */}
+        {!isNarrow && (
+          <div className={styles.status}>
+            <div className={styles.statusRow}>
+              <div className={styles.avatar}>
+                {/* same photo as the About page, so changing it once updates both */}
+                <img src={PROFILE.photo} alt="Portrait of Cheryl Lim" />
               </div>
-              <div className={styles.role}>Senior Product Designer</div>
+              <div className={styles.statusMeta}>
+                <div className={styles.live}>
+                  <i className={styles.dot} />
+                  <span>Available for work</span>
+                </div>
+                <div className={styles.role}>Senior Product Designer</div>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className={styles.body}>
           <div className={styles.headlineWrap}>
