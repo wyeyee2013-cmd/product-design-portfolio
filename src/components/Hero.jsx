@@ -1,3 +1,4 @@
+import { PROFILE } from '../data/about.js'
 import { useFitScale, useMediaQuery } from '../hooks/useLayout.js'
 import AskBox from './AskBox.jsx'
 import ProjectDeck from './ProjectDeck.jsx'
@@ -27,7 +28,8 @@ export default function Hero() {
         <div className={styles.status}>
           <div className={styles.statusRow}>
             <div className={styles.avatar}>
-              <img src="/assets/avatar.png" alt="Portrait of Cheryl Lim" />
+              {/* same photo as the About page, so changing it once updates both */}
+              <img src={PROFILE.photo} alt="Portrait of Cheryl Lim" />
             </div>
             <div className={styles.statusMeta}>
               <div className={styles.live}>
