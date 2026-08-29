@@ -23,6 +23,13 @@
   object-fit: cover;
   object-position: center;
 }
+/* scrim — sits above the artwork, below everything else in the hero */
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
 
 /* ---------- wordmark ---------- */
 .wordmark {
