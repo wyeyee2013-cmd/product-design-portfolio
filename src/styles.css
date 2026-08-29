@@ -14,7 +14,7 @@
   --cream-2: #e9e5dd;
   --rule: rgba(18, 18, 18, 0.12);
 
-  --glass-bg: rgba(255, 255, 255, 0.14);
+  --glass-bg: rgba(255, 255, 255, 0.3);
   --glass-bg-strong: rgba(255, 255, 255, 0.12);
   --glass-border: rgba(255, 255, 255, 0.18);
   --glass-inset: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.45),
