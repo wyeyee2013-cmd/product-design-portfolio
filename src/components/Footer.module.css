@@ -8,7 +8,9 @@
   flex-direction: column;
   overflow: hidden;
   isolation: isolate;
-  background: #fbf8dc;
+  /* the tile's own average — shows only while the image loads, so it should
+     not flash a different colour than the artwork that lands on top of it */
+  background: #e7e3f1;
 }
 
 /* the tiled "let's work" backdrop */
