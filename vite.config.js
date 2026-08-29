@@ -51,5 +51,19 @@ function devApi(env) {
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  return { plugins: [react(), devApi(env)] }
+  return {
+    plugins: [react(), devApi(env)],
+    /* esbuild's css minifier reads `backdrop-filter` and its -webkit- twin as
+       one property declared twice and keeps only the last, which silently
+       dropped the standard property from every glass surface — no blur in
+       Firefox at all. lightningcss understands prefixes properly and emits
+       both from a single unprefixed source declaration. */
+    css: {
+      transformer: 'lightningcss',
+      lightningcss: {
+        targets: { chrome: 87 << 16, edge: 88 << 16, firefox: 103 << 16, safari: 14 << 16 },
+      },
+    },
+    build: { cssMinify: 'lightningcss' },
+  }
 })

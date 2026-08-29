@@ -24,7 +24,6 @@
      over the scrimmed backdrop to within 6 levels. */
   background: var(--glass-bg);
   backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(50px);
   /* the stroke is an inset ring, not a border: Figma draws it as an overlay
      (15:1468) so it costs no layout, and a real border would shrink the text
      column from the specified 212px to 208px */
