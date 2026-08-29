@@ -18,6 +18,10 @@
   width: var(--card-w);
   height: var(--card-h);
   border-radius: 16px;
+  /* Figma 15:1466 specifies 8% white, but that frame has no scrim behind it.
+     The hero image here carries a 30% black scrim, so 8% lands 36 levels
+     darker than the design reads. 30% reproduces the design's appearance
+     over the scrimmed backdrop to within 6 levels. */
   background: var(--glass-bg);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
@@ -48,7 +52,7 @@
 }
 
 .card:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.38);
   --ring: rgba(255, 255, 255, 0.32);
 }
 
