@@ -92,7 +92,7 @@
   justify-content: center;
   padding: 3.721px 11.163px;
   border-radius: 7.44px;
-  background: #f4eaf5;
+  background: #e5f2fa;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
 }
 .chipLabel {
@@ -120,7 +120,7 @@
   height: 40.997px;
   border-radius: 100px;
   border: 1px solid #fff;
-  background: var(--magenta);
+  background: #039cfb;
   display: flex;
   align-items: center;
   justify-content: center;
