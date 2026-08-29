@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CASE_STUDIES } from '../data/caseStudies.js'
-import { findAnswer, SUGGESTIONS } from '../data/knowledge.js'
+import { SUGGESTIONS } from '../data/knowledge.js'
+import { askCheryl, safeRich } from '../lib/ask.js'
 import {
   COMMUNITY,
   COMMUNITY_PHOTOS,
@@ -459,21 +460,39 @@ export function AboutDoc() {
    Ask Cheryl — the conversation lives here now
    ============================================================ */
 export function AskDoc({ firstQuestion }) {
-  const [turns, setTurns] = useState(() =>
-    firstQuestion ? [{ q: firstQuestion, a: findAnswer(firstQuestion), id: 'seed' }] : []
-  )
+  const [turns, setTurns] = useState([])
+  const [pending, setPending] = useState(null)
   const [value, setValue] = useState('')
   const endRef = useRef(null)
+  const seeded = useRef(false)
+  /* mirrors `turns` so ask() reads the live thread rather than its closure */
+  const turnsRef = useRef([])
 
   useEffect(() => {
+    turnsRef.current = turns
     endRef.current?.scrollIntoView({ block: 'nearest' })
-  }, [turns])
+  }, [turns, pending])
 
-  function ask(raw) {
+  /* the question typed in the hero opens this window, so it asks itself */
+  useEffect(() => {
+    if (seeded.current || !firstQuestion) return
+    seeded.current = true
+    ask(firstQuestion)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstQuestion])
+
+  async function ask(raw) {
     const q = (raw || '').trim()
-    if (!q) return
-    setTurns((t) => [...t, { q, a: findAnswer(q), id: `${t.length}-${q.slice(0, 12)}` }])
+    if (!q || pending) return
     setValue('')
+    setPending(q)
+    /* the model sees the thread so follow-ups like "and before that?" work */
+    const { answer } = await askCheryl(
+      q,
+      turnsRef.current.map((t) => ({ q: t.q, a: t.a }))
+    )
+    setPending(null)
+    setTurns((t) => [...t, { q, a: answer, id: `${t.length}-${q.slice(0, 12)}` }])
   }
 
   return (
@@ -486,15 +505,26 @@ export function AskDoc({ firstQuestion }) {
         {turns.map((t) => (
           <div className={styles.turn} key={t.id}>
             <p className={styles.q}>{t.q}</p>
-            <p className={styles.a} dangerouslySetInnerHTML={{ __html: t.a }} />
+            <p className={styles.a} dangerouslySetInnerHTML={{ __html: safeRich(t.a) }} />
           </div>
         ))}
+        {pending && (
+          <div className={styles.turn}>
+            <p className={styles.q}>{pending}</p>
+            <p className={styles.thinking} aria-live="polite">
+              <i />
+              <i />
+              <i />
+              <span className="srOnly">Thinking</span>
+            </p>
+          </div>
+        )}
         <div ref={endRef} />
       </div>
 
       <div className={styles.chips}>
         {SUGGESTIONS.map((s) => (
-          <button key={s} type="button" onClick={() => ask(s)}>
+          <button key={s} type="button" onClick={() => ask(s)} disabled={Boolean(pending)}>
             {s}
           </button>
         ))}
@@ -518,7 +548,7 @@ export function AskDoc({ firstQuestion }) {
           maxLength={300}
           autoComplete="off"
         />
-        <button type="submit" disabled={!value.trim()}>
+        <button type="submit" disabled={!value.trim() || Boolean(pending)}>
           Send
         </button>
       </form>

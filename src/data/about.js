@@ -274,3 +274,18 @@ export const COMMUNITY_PHOTOS = [
     caption: 'Hackathon',
   },
 ]
+
+/**
+ * Personal colour from cheryllimm.framer.website/about — used by the Ask
+ * Cheryl brief so the assistant can answer the human questions too.
+ */
+export const PERSONAL = {
+  greeting: 'Hello / Hai / 你好',
+  notes: [
+    'Design addict, casual gamer, and always down for cafe hopping.',
+    'Enjoys solving problems by designing captivating interfaces, mostly by talking to people from all sorts of backgrounds.',
+    'Has led design for several competitions and hackathons, and at times led UX/UI design departments to mature their design processes.',
+    'Volunteers — has taught English reading to children and parents in rural areas, and fundraised for several events and communities.',
+    'Works in English, and gets by in Malay and Mandarin.',
+  ],
+}
