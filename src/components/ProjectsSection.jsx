@@ -29,7 +29,7 @@ export default function ProjectsSection() {
                   <img className={styles.chipFlip} src="/assets/chip-flip.svg" alt="" />
                 </div>
                 <div className={styles.chipIcon}>
-                  <img src="/assets/chip-icon-blue.svg" alt="" />
+                  <img src="/assets/chip-icon.svg" alt="" />
                 </div>
                 <div className={styles.chipClip}>
                   <img className={styles.chipClipShadow} src="/assets/clip-shadow.svg" alt="" />
