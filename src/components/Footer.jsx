@@ -13,7 +13,10 @@ export default function Footer() {
 
       <div className={styles.top}>
         <div className={`${styles.panel} ${inView ? styles.in : ''}`}>
-          <img className={styles.photo} src="/assets/footer-photo.png" alt="" aria-hidden="true" />
+          {/* wrapped so the scrim can sit over the painting but under the copy */}
+          <div className={styles.art}>
+            <img className={styles.photo} src="/assets/footer-photo.png" alt="" aria-hidden="true" />
+          </div>
           <div className={styles.idea}>
             <div className={styles.ideaTop}>
               <i className={styles.rule} />

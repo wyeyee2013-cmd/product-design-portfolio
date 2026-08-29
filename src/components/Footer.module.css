@@ -50,6 +50,19 @@
   translate: 0 0;
 }
 
+/* the painting and its scrim — first child of the panel, so the copy that
+   follows paints on top of both */
+.art {
+  position: absolute;
+  inset: 0;
+}
+.art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .photo {
   position: absolute;
   inset: 0;
