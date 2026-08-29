@@ -18,15 +18,18 @@
   width: var(--card-w);
   height: var(--card-h);
   border-radius: 16px;
-  border: 2px solid var(--glass-border);
   background: var(--glass-bg);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
-  box-shadow: var(--glass-shadow), var(--glass-inset);
+  /* the stroke is an inset ring, not a border: Figma draws it as an overlay
+     (15:1468) so it costs no layout, and a real border would shrink the text
+     column from the specified 212px to 208px */
+  --ring: var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-inset), inset 0 0 0 2px var(--ring);
   overflow: hidden;
   transform: translate(-50%, var(--y, 0px));
   transition: transform 0.55s var(--ease-out), width 0.55s var(--ease-out),
-    opacity 0.4s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+    opacity 0.4s var(--ease), background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
   transition-delay: var(--delay, 0ms);
 }
 
@@ -45,14 +48,15 @@
 }
 
 .card:hover {
-  background: rgba(255, 255, 255, 0.38);
-  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.16);
+  --ring: rgba(255, 255, 255, 0.32);
 }
 
 .inner {
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 12px;
   /* Figma 15:1473 — a second, tighter blur sits behind the content only. It
@@ -108,8 +112,14 @@
   white-space: nowrap;
 }
 
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+
 .title {
-  margin-top: 4px;
   font-size: 16px;
   font-weight: 600;
   line-height: 17.6px;
@@ -130,6 +140,10 @@
   line-height: 10px;
   color: var(--white);
   text-transform: capitalize;
+}
+.cta span {
+  flex: 1;
+  min-width: 0;
 }
 .cta svg {
   flex: none;

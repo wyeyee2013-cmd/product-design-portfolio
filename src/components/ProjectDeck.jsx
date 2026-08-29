@@ -73,7 +73,7 @@ export default function ProjectDeck() {
               <img src={p.thumb} alt="" />
             </div>
             <div className={styles.body}>
-              <div>
+              <div className={styles.stack}>
                 <div className={styles.meta}>
                   <span>{p.client}</span>
                   <span>{p.year}</span>
@@ -81,7 +81,7 @@ export default function ProjectDeck() {
                 <div className={styles.title}>{p.deckTitle ?? p.title}</div>
               </div>
               <div className={styles.cta}>
-                View Case Study
+                <span>View Case Study</span>
                 <Arrow />
               </div>
             </div>
