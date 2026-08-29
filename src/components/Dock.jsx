@@ -15,7 +15,7 @@ const ITEMS = [
     id: 'linkedin',
     label: 'LinkedIn',
     icon: '/assets/dock-linkedin.png',
-    href: 'https://www.linkedin.com/',
+    href: 'https://www.linkedin.com/in/cheryllimwyeyee/',
     external: true,
   },
   { id: 'mail', label: 'Email', icon: '/assets/dock-mail.png', href: 'mailto:cheryl.wylim@outlook.com' },
