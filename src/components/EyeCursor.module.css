@@ -29,6 +29,12 @@
 
 .art {
   display: block;
+  /* drop-shadow follows the rounded-rect outline rather than a bounding box,
+     so the eyes keep an edge on the cream sections and inside the white window
+     where white-on-white leaves them nothing to sit against. Violet-tinted to
+     match the palette, and kept light — a cursor should not look like a card. */
+  filter: drop-shadow(0 1px 1.5px rgba(58, 42, 82, 0.24))
+    drop-shadow(0 4px 10px rgba(58, 42, 82, 0.22));
   transition: scale 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .keen .art {
