@@ -377,19 +377,3 @@
   .word, .tag { opacity: 1; transform: none; }
 }
 
-/* ---------- legibility over the painted sky ----------
-   The artwork is pale through its middle band, where the headline sits — white
-   on that measures 2.65:1 on average and 1.32:1 at its lightest, well under the
-   3:1 WCAG wants for large text. A violet halo picked from the painting itself
-   lifts the type off it without putting a scrim over the art. */
-.wordmark a {
-  text-shadow: 0 1px 10px rgba(72, 40, 96, 0.4);
-}
-.headline {
-  text-shadow:
-    0 1px 2px rgba(72, 40, 96, 0.26),
-    0 3px 26px rgba(72, 40, 96, 0.44);
-}
-.tagline p {
-  text-shadow: 0 1px 12px rgba(72, 40, 96, 0.42);
-}
