@@ -9,6 +9,7 @@
  *   { type: 'text',        text }
  *   { type: 'bullets',     items: [] }
  *   { type: 'callout',     title, subtitle?, bullets?, text }
+ *   { type: 'phases',      items: [{ label, title, scope, outcome }] }
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
  *   { type: 'feature',     title, text, figure: { src | srcs, caption, dark? } }
@@ -103,17 +104,26 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'To ensure we didn’t disrupt our merchants’ daily operations, I advocated for a phased rollout strategy:',
           },
+          /* a real sequence, not two alternatives — rendered on a progress
+             track rather than as cards. Columns map to the source table:
+             Phase / Scope / Outcome. */
           {
-            type: 'callout',
-            title: 'Phase 1: Core Operations',
-            subtitle: 'Ordering, Payments, Transactions, and Reporting.',
-            text: 'Beta-tested with a cohort of live merchants to validate the new architecture.',
-          },
-          {
-            type: 'callout',
-            title: 'Phase 2: Secondary Features',
-            subtitle: 'Inventory Management, Membership, and Settings.',
-            text: 'Safely deployed once the core foundation was proven stable.',
+            type: 'phases',
+            items: [
+              {
+                label: 'Phase 1',
+                title: 'Core Operations',
+                scope: 'Ordering, Payments, Transactions, and Reporting.',
+                outcome:
+                  'Beta-tested with a cohort of live merchants to validate the new architecture.',
+              },
+              {
+                label: 'Phase 2',
+                title: 'Secondary Features',
+                scope: 'Inventory Management, Membership, and Settings.',
+                outcome: 'Safely deployed once the core foundation was proven stable.',
+              },
+            ],
           },
         ],
       },

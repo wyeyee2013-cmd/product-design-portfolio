@@ -145,7 +145,14 @@ function groupItems(items) {
     }
     packed.push(item)
   }
-  return packed
+
+  /* a card earns its box by sitting beside a sibling. A lone point is just a
+     passage of prose — boxing and numbering it only adds furniture. */
+  return packed.map((item) =>
+    item.type === 'pointGrid' && item.items.length === 1
+      ? { ...item.items[0], type: 'plainPoint' }
+      : item
+  )
 }
 
 function Callout({ item }) {
@@ -211,6 +218,43 @@ function StudyItem({ item }) {
             </div>
           ))}
         </div>
+      )
+
+    /* a lone point: subhead and prose, no box, no number */
+    case 'plainPoint':
+      return (
+        <>
+          <h3 className={styles.chapterSubhead}>{item.title}</h3>
+          {item.body.map((b, i) =>
+            b.type === 'bullets' ? (
+              <ul className={styles.chapterList} key={`b-${i}`}>
+                {b.items.map((li) => (
+                  <li key={li.slice(0, 28)}>{li}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className={styles.chapterBody} key={`p-${i}`}>
+                {b.text}
+              </p>
+            )
+          )}
+        </>
+      )
+
+    /* a sequence on a progress track — deliberately not a card, so it does not
+       read as two independent options the way the callout pairs do */
+    case 'phases':
+      return (
+        <ol className={styles.phases}>
+          {item.items.map((p) => (
+            <li className={styles.phase} key={p.label}>
+              <span className={styles.phaseLabel}>{p.label}</span>
+              <h4>{p.title}</h4>
+              <p className={styles.phaseScope}>{p.scope}</p>
+              <p className={styles.phaseOutcome}>{p.outcome}</p>
+            </li>
+          ))}
+        </ol>
       )
 
     case 'calloutGrid':
