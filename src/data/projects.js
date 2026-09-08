@@ -7,9 +7,13 @@
  * Board placement — `row` picks which row the card sits in, `rotate` its tilt,
  * `fit` the thumbnail crop, all taken from Figma node 15:1515.
  */
-export const PROJECTS = [
+const ALL_PROJECTS = [
   {
     id: 'hrm-premium',
+    /* off the page for now. Delete this one line to bring it back, then
+       re-slot the row-0 tilts so the three cards alternate again:
+       first 7.65/clip-1, second -3.12/clip-2, third -7/clip-3. */
+    hidden: true,
     title: 'HRM Premium',
     deckTitle: 'HRM Premium',
     client: 'FeedMe',
@@ -24,8 +28,8 @@ export const PROJECTS = [
     comingSoon: true,
     tint: '#2f7d6b',
     row: 0,
-    rotate: 7.65,
-    clip: '/assets/clip-1.svg',
+    rotate: -7,
+    clip: '/assets/clip-3.svg',
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
@@ -44,8 +48,8 @@ export const PROJECTS = [
     comingSoon: true,
     tint: '#8168fd',
     row: 0,
-    rotate: -3.12,
-    clip: '/assets/clip-2.svg',
+    rotate: 7.65,
+    clip: '/assets/clip-1.svg',
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
@@ -64,8 +68,8 @@ export const PROJECTS = [
     comingSoon: true,
     tint: '#f0803c',
     row: 0,
-    rotate: -7,
-    clip: '/assets/clip-3.svg',
+    rotate: -3.12,
+    clip: '/assets/clip-2.svg',
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
@@ -107,6 +111,11 @@ export const PROJECTS = [
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
 ]
+
+/** Everything not flagged `hidden`. The hero deck, the board rows and the
+    brief the ask box sends all derive from this, so one flag takes a
+    project off the page everywhere. */
+export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden)
 
 export const PROJECT_ROWS = [
   PROJECTS.filter((p) => p.row === 0),

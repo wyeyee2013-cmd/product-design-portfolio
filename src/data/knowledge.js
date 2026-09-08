@@ -57,7 +57,7 @@ export const KB = [
   /* ---------- the work ---------- */
   {
     k: ['project', 'portfolio', 'case study', 'built', 'shipped', 'work on', 'works on', 'working on', 'her work', 'your work', 'selected work', 'what have you'],
-    a: 'Five pieces on this page — HRM Premium, FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. The Pantas and Hireti write-ups are full case studies; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
+    a: 'Four pieces on this page — FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. The Pantas and Hireti write-ups are full case studies; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
   },
   {
     k: ['pos', 'point of sale', 'terminal', 'cashier', 'till'],
