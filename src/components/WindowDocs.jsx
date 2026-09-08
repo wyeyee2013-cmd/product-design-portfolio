@@ -63,6 +63,42 @@ function FeatureFigure({ figure }) {
   )
 }
 
+/**
+ * Two versions of one screen under a draggable divider — used for the light
+ * and dark themes, where a side-by-side wastes half the width and makes the
+ * reader do the comparing. The range input is the real control: dragging the
+ * image moves it, and it keeps arrow keys and a screen-reader label for free.
+ */
+function CompareFigure({ item }) {
+  const [pos, setPos] = useState(50)
+
+  return (
+    <figure className={styles.compare}>
+      <div className={styles.compareStage} style={{ '--pos': `${pos}%` }}>
+        <img src={item.light} alt={`${item.caption} — light`} loading="lazy" />
+        <div className={styles.compareDark}>
+          <img src={item.dark} alt={`${item.caption} — dark`} loading="lazy" />
+        </div>
+        <span className={`${styles.compareTag} ${styles.compareTagLight}`}>Light</span>
+        <span className={`${styles.compareTag} ${styles.compareTagDark}`}>Dark</span>
+        <span className={styles.compareBar} aria-hidden="true">
+          <i />
+        </span>
+        <input
+          className={styles.compareRange}
+          type="range"
+          min="0"
+          max="100"
+          value={pos}
+          onChange={(e) => setPos(Number(e.target.value))}
+          aria-label="Drag to compare light and dark mode"
+        />
+      </div>
+      <figcaption>{item.caption}</figcaption>
+    </figure>
+  )
+}
+
 /** One item in a case-study section, rendered in source order. */
 function StudyItem({ item }) {
   switch (item.type) {
@@ -126,6 +162,9 @@ function StudyItem({ item }) {
           {item.figure && <FeatureFigure figure={item.figure} />}
         </div>
       )
+
+    case 'compare':
+      return <CompareFigure item={item} />
 
     case 'resultCards':
       return (

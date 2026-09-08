@@ -30,7 +30,7 @@ export const CASE_STUDIES = {
       },
       {
         label: 'Team',
-        values: ['Lead Product Designer', 'Senior Product Designer'],
+        values: ['Yong Tee Lee (Lead Product Designer)', 'Amy Low (Senior Product Designer)'],
       },
       { label: 'Platform', values: ['POS (Tablet & Mobile iOS/Android)'] },
       { label: 'Timeline', values: ['November 2025 - August 2026, 10 months'] },
@@ -173,6 +173,12 @@ export const CASE_STUDIES = {
           {
             type: 'text',
             text: 'Designed the dark theme to retain FeedMe’s vibrant orange accent colors, ensuring the brand identity remained recognizable even when the primary backgrounds shifted to deep charcoal and black.',
+          },
+          {
+            type: 'compare',
+            light: '/assets/pos-02-ordering.png',
+            dark: '/assets/pos-06-ordering-dark.png',
+            caption: '06 One screen, both themes — drag to compare',
           },
         ],
       },
