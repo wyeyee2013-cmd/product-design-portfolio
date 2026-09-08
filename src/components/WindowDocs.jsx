@@ -128,9 +128,17 @@ function groupItems(items) {
 
     if (item.type === 'subhead' && next && (next.type === 'text' || next.type === 'bullets')) {
       const body = []
-      while (i + 1 < items.length && ['text', 'bullets'].includes(items[i + 1].type)) {
+      while (i + 1 < items.length && items[i + 1].type === 'text') {
         body.push(items[i + 1])
         i += 1
+      }
+      /* a list following the diagnosis is its symptoms — those read better as
+         cards stacked beside the prose than as bullets buried under it */
+      if (items[i + 1]?.type === 'bullets') {
+        const cards = items[i + 1].items
+        i += 1
+        out.push({ type: 'splitPoint', title: item.text, body, cards })
+        continue
       }
       out.push({ type: 'point', title: item.text, body })
       continue
@@ -212,7 +220,16 @@ function PhaseTrack({ items }) {
 function Callout({ item }) {
   return (
     <div className={styles.callout}>
-      <h4>{item.title}</h4>
+      <div className={styles.calloutHead}>
+        {/* a target, tinted per study from --study-tint */}
+        <span className={styles.calloutIcon} aria-hidden="true">
+          <svg viewBox="0 0 20 20" width="20" height="20">
+            <circle cx="10" cy="10" r="7.4" fill="none" stroke="currentColor" strokeWidth="1.7" />
+            <circle cx="10" cy="10" r="2.6" fill="currentColor" />
+          </svg>
+        </span>
+        <h4>{item.title}</h4>
+      </div>
       {item.subtitle && <p className={styles.calloutSub}>{item.subtitle}</p>}
       {item.bullets && (
         <ul>
@@ -393,6 +410,24 @@ function StudyItem({ item }) {
         </div>
       )
 
+    /* the diagnosis reads as prose, its symptoms as cards stacked alongside */
+    case 'splitPoint':
+      return (
+        <div className={styles.splitPoint}>
+          <div className={styles.splitProse}>
+            <h3>{item.title}</h3>
+            <PointBody body={item.body} />
+          </div>
+          <div className={styles.splitCards}>
+            {item.cards.map((c) => (
+              <div className={styles.splitCard} key={c.slice(0, 28)}>
+                <p>{c}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+
     /* a point whose phases belong to it — one card, full width for the track */
     case 'phasedPoint':
       return (
@@ -522,7 +557,8 @@ export function ProjectDoc({ project }) {
   const study = CASE_STUDIES[id]
 
   return (
-    <article className={styles.doc}>
+    /* the project's own tint, so brand-coloured marks pick it up per study */
+    <article className={styles.doc} style={{ '--study-tint': project.tint }}>
       <div className={styles.hero}>
         <img src={thumb} alt={`${title} cover`} />
       </div>

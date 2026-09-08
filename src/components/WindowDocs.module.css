@@ -1059,9 +1059,9 @@
   max-width: 72ch;
 }
 .callout h4 {
-  margin: 0 0 8px;
+  margin: 0;
   font-family: var(--font-ui);
-  font-size: 15px;
+  font-size: 17.5px;
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.25px;
@@ -1074,7 +1074,7 @@
 .callout p {
   margin: 0;
   font-family: var(--font-ui);
-  font-size: 14.5px;
+  font-size: 15.5px;
   line-height: 1.55;
   letter-spacing: -0.2px;
   color: rgba(18, 18, 18, 0.72);
@@ -1917,4 +1917,75 @@
 }
 .pointWide .phases {
   margin-bottom: 0;
+}
+
+/* ---------- callout head: brand-tinted mark beside the title ---------- */
+.calloutHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.calloutIcon {
+  flex: none;
+  display: inline-flex;
+  /* falls back to the violet where a study declares no tint */
+  color: var(--study-tint, var(--violet));
+}
+
+/* ---------- diagnosis beside its symptoms ---------- */
+.splitPoint {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: start;
+  gap: 24px;
+  margin: 16px 0 0;
+}
+/* the prose is not boxed — it is the section's argument, not one card of many */
+.splitProse h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: #111;
+}
+.splitProse p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.25px;
+  color: rgba(18, 18, 18, 0.8);
+}
+.splitProse p + p {
+  margin-top: 12px;
+}
+.splitCards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.splitCard {
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 3px solid var(--study-tint, var(--violet));
+}
+.splitCard p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.78);
+}
+
+@media (max-width: 900px) {
+  .splitPoint {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
 }
