@@ -129,36 +129,31 @@ export const CASE_STUDIES = {
             type: 'feature',
             title: 'Spatial Table Management',
             text: 'Visualized a clear, scannable floor plan using standardized, color-coded tokens (Available, Reserved, Occupied) to replace cryptic legacy icons, allowing staff to read the room at a glance.',
-            /* awaiting the export — drop it in as public/assets/pos-01-tables.png
-               and uncomment:  figure: { src: '/assets/pos-01-tables.png', caption: '01 Spatial Table Management' }, */
+            figure: { src: '/assets/pos-01-tables.png', caption: '01 Spatial Table Management' },
           },
           {
             type: 'feature',
             title: 'Streamlined POS & Ordering',
             text: 'Redesigned the menu architecture with rich item imagery and a persistent, clear billing summary. We prioritized tap-targets and categorized navigation to ensure cashiers could process orders without friction.',
-            /* awaiting the export — drop it in as public/assets/pos-02-ordering.png
-               and uncomment:  figure: { src: '/assets/pos-02-ordering.png', caption: '02 Streamlined POS and Ordering' }, */
+            figure: { src: '/assets/pos-02-ordering.png', caption: '02 Streamlined POS and Ordering' },
           },
           {
             type: 'feature',
             title: 'Frictionless Payment Processing',
             text: 'Introduced a split-pane layout for checkout, separating the itemized bill from distinct, oversized payment method cards tailored for high-speed, high-stress environments.',
-            /* awaiting the export — drop it in as public/assets/pos-03-payment.png
-               and uncomment:  figure: { src: '/assets/pos-03-payment.png', caption: '03 Frictionless Payment Processing' }, */
+            figure: { src: '/assets/pos-03-payment.png', caption: '03 Frictionless Payment Processing' },
           },
           {
             type: 'feature',
             title: 'Actionable Reporting Dashboards',
             text: 'Replaced generic charts with customized data visualizations utilizing the FeedMe palette, giving store managers immediate, readable insights into daily sales and top products.',
-            /* awaiting the export — drop it in as public/assets/pos-04-reporting.png
-               and uncomment:  figure: { src: '/assets/pos-04-reporting.png', caption: '04 Actionable Reporting Dashboards' }, */
+            figure: { src: '/assets/pos-04-reporting.png', caption: '04 Actionable Reporting Dashboards' },
           },
           {
             type: 'feature',
             title: 'Defensible Settings & Onboarding',
             text: 'Integrated the proprietary, AI-generated illustrations directly into complex workflows (like configuring Operation Modes), turning a traditionally dry settings page into a premium, highly defensible brand experience.',
-            /* awaiting the export — drop it in as public/assets/pos-05-settings.png
-               and uncomment:  figure: { src: '/assets/pos-05-settings.png', caption: '05 Defensible Settings and Onboarding' }, */
+            figure: { src: '/assets/pos-05-settings.png', caption: '05 Defensible Settings and Onboarding' },
           },
         ],
       },
