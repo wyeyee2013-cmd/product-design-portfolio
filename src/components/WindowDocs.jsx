@@ -154,26 +154,44 @@ function StudyItem({ item }) {
       )
 
     /* a design decision and the screen that proves it, in one card */
+    /* screen first, at full width; the reasoning reads underneath it */
     case 'feature':
       return (
         <div className={styles.feature}>
-          <h3>{item.title}</h3>
-          <p>{item.text}</p>
           {item.figure && <FeatureFigure figure={item.figure} />}
+          <div className={styles.featureCopy}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
         </div>
       )
 
     case 'compare':
       return <CompareFigure item={item} />
 
+    /* items are either a plain sentence or { icon, value, label, note } — the
+       object form gets the display-number treatment, the string form the
+       original card, so earlier studies are untouched */
     case 'resultCards':
       return (
         <div className={styles.resultCards}>
-          {item.items.map((r) => (
-            <div className={styles.resultCard} key={r.slice(0, 28)}>
-              <p>{r}</p>
-            </div>
-          ))}
+          {item.items.map((r) =>
+            typeof r === 'string' ? (
+              <div className={styles.resultCard} key={r.slice(0, 28)}>
+                <p>{r}</p>
+              </div>
+            ) : (
+              <div className={styles.metric} key={r.label}>
+                {r.value ? (
+                  <strong className={styles.metricValue}>{r.value}</strong>
+                ) : (
+                  r.icon && <span className={styles.metricIcon}>{r.icon}</span>
+                )}
+                <span className={styles.metricLabel}>{r.label}</span>
+                <p className={styles.metricNote}>{r.note}</p>
+              </div>
+            )
+          )}
         </div>
       )
 

@@ -118,7 +118,9 @@
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 22px 32px 40px;
+  /* the case-study layout bleeds figures out by this much — see WindowDocs */
+  --doc-gutter: 32px;
+  padding: 22px var(--doc-gutter) 40px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
 }
@@ -153,7 +155,8 @@
     display: none;
   }
   .body {
-    padding: 18px 20px 40px;
+    --doc-gutter: 20px;
+    padding: 18px var(--doc-gutter) 40px;
   }
 }
 

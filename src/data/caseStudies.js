@@ -193,9 +193,23 @@ export const CASE_STUDIES = {
           {
             type: 'resultCards',
             items: [
-              '🚀 10% Faster Task Completion — Merchants navigated the new, decluttered UI significantly faster, proving our structural overhaul worked.',
-              '⚡ 30% Faster Engineering Handoff — By establishing the foundational component library and tokens, front-end implementation velocity skyrocketed.',
-              '🤝 Executive Alignment — Received overwhelmingly positive feedback from leadership for successfully aligning the product with the new market strategy and fending off copycats.',
+              {
+                icon: '🚀',
+                value: '10%',
+                label: 'Faster Task Completion',
+                note: 'Merchants navigated the new, decluttered UI significantly faster, proving our structural overhaul worked.',
+              },
+              {
+                icon: '⚡',
+                value: '30%',
+                label: 'Faster Engineering Handoff',
+                note: 'By establishing the foundational component library and tokens, front-end implementation velocity skyrocketed.',
+              },
+              {
+                icon: '🤝',
+                label: 'Executive Alignment',
+                note: 'Received overwhelmingly positive feedback from leadership for successfully aligning the product with the new market strategy and fending off copycats.',
+              },
             ],
           },
           { type: 'subhead', text: 'The Retrospective: The 80% Compromise' },
