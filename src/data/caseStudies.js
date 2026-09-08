@@ -32,7 +32,13 @@ export const CASE_STUDIES = {
       },
       {
         label: 'Team',
-        values: ['Yong Tee Lee (Lead Product Designer)', 'Amy Low (Senior Product Designer)'],
+        values: [
+          'Yong Tee Lee (Lead Product Designer)',
+          'Amy Low (Senior Product Designer)',
+          'Victor Chai (Software Engineer Lead)',
+          'Guo Quan Zhang (Senior Software Engineer)',
+          'King (CTO)',
+        ],
       },
       { label: 'Platform', values: ['POS (Tablet & Mobile iOS/Android)'] },
       { label: 'Timeline', values: ['November 2025 - August 2026, 10 months'] },
@@ -195,20 +201,6 @@ export const CASE_STUDIES = {
         ],
       },
       {
-        label: 'Validating with Merchants',
-        lead: 'Five merchants, a set of actions, and watching what they did',
-        items: [
-          {
-            type: 'text',
-            text: 'Following the rollout, I conducted usability testing with 5 distinct merchants to validate our assumptions.',
-          },
-          {
-            type: 'text',
-            text: 'Each session was an interview built around a set of actions for the merchant to carry out on the new interface. My job was to observe those actions — where they hesitated, what they reached for first, which steps they skipped — rather than to take their word for how the product felt.',
-          },
-        ],
-      },
-      {
         label: 'Architecting the Dark Mode Experience',
         items: [
           {
@@ -231,6 +223,20 @@ export const CASE_STUDIES = {
             dark: '/assets/pos-06-ordering-dark.png',
             labels: ['Light', 'Dark'],
             caption: '06 One screen, both themes — drag to compare',
+          },
+        ],
+      },
+      {
+        label: 'Validating with Merchants',
+        lead: 'Five merchants, a set of actions, and watching what they did',
+        items: [
+          {
+            type: 'text',
+            text: 'Following the rollout, I conducted usability testing with 5 distinct merchants to validate our assumptions.',
+          },
+          {
+            type: 'text',
+            text: 'Each session was an interview built around a set of actions for the merchant to carry out on the new interface. My job was to observe those actions — where they hesitated, what they reached for first, which steps they skipped — rather than to take their word for how the product felt.',
           },
         ],
       },
