@@ -47,13 +47,27 @@ export const CASE_STUDIES = {
         ],
       },
       {
-        label: 'The Audit',
-        lead: 'UX archaeology & uncovering hidden flows',
+        label: 'The Problem',
+        lead: 'Technical debt, brand misalignment, and a design too easy to clone',
         items: [
           {
             type: 'text',
             text: 'The legacy system lacked documentation and was riddled with usability dead-ends. We could not simply build a new UI on top of broken logic.',
           },
+          {
+            type: 'bullets',
+            items: [
+              'Technical debt',
+              'Brand misalignment',
+              'An interface that was becoming too easy for competitors to clone',
+            ],
+          },
+        ],
+      },
+      {
+        label: 'The Audit',
+        lead: 'UX archaeology & uncovering hidden flows',
+        items: [
           { type: 'subhead', text: 'The Click-Through Audit' },
           {
             type: 'text',
@@ -89,9 +103,9 @@ export const CASE_STUDIES = {
             light: '/assets/pos-07-legacy-order.png',
             dark: '/assets/pos-02-ordering.png',
             labels: ['Legacy', 'Revamped'],
-            /* framed on the revamp so it stays uncropped; the legacy screen is
-               4:3 and loses a sliver top and bottom */
-            aspect: '1194 / 834',
+            /* framed 4:3 so the legacy screen stays whole; the revamp is
+               1194x834 and gives up a sliver left and right instead */
+            aspect: '4 / 3',
             caption: '02 The generic blue build against the FeedMe revamp — drag to compare',
           },
         ],
