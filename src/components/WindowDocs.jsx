@@ -99,6 +99,35 @@ function CompareFigure({ item }) {
   )
 }
 
+/**
+ * Folds each `subhead` together with the copy that follows it into one `point`
+ * card, so a section reads as a set of discrete ideas rather than an
+ * undifferentiated run of headings and paragraphs.
+ *
+ * A subhead only starts a card when prose actually follows it — one standing
+ * ahead of a figure or a metrics band (`The Results`) stays a plain heading for
+ * what comes next. Source order is otherwise untouched.
+ */
+function groupItems(items) {
+  const out = []
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i]
+    const next = items[i + 1]
+
+    if (item.type === 'subhead' && next && (next.type === 'text' || next.type === 'bullets')) {
+      const body = []
+      while (i + 1 < items.length && ['text', 'bullets'].includes(items[i + 1].type)) {
+        body.push(items[i + 1])
+        i += 1
+      }
+      out.push({ type: 'point', title: item.text, body })
+      continue
+    }
+    out.push(item)
+  }
+  return out
+}
+
 /** One item in a case-study section, rendered in source order. */
 function StudyItem({ item }) {
   switch (item.type) {
@@ -115,6 +144,25 @@ function StudyItem({ item }) {
             <li key={b.slice(0, 28)}>{b}</li>
           ))}
         </ul>
+      )
+
+    /* a subhead and its copy, contained — see groupItems */
+    case 'point':
+      return (
+        <div className={styles.point}>
+          <h3>{item.title}</h3>
+          {item.body.map((b, i) =>
+            b.type === 'bullets' ? (
+              <ul key={`b-${i}`}>
+                {b.items.map((li) => (
+                  <li key={li.slice(0, 28)}>{li}</li>
+                ))}
+              </ul>
+            ) : (
+              <p key={`p-${i}`}>{b.text}</p>
+            )
+          )}
+        </div>
       )
 
     case 'callout':
@@ -263,7 +311,7 @@ export function ProjectDoc({ project }) {
         <section className={styles.chapter} key={s.label}>
           <h2 className={styles.chapterHeading}>{s.label}</h2>
           {s.lead && <p className={styles.chapterLead}>{s.lead}</p>}
-          {s.items.map((it, i) => (
+          {groupItems(s.items).map((it, i) => (
             <StudyItem item={it} key={`${it.type}-${i}`} />
           ))}
         </section>

@@ -1443,8 +1443,6 @@
 
 /* ... and everything shown breaks out past it */
 .chapter > .figure,
-.feature > .featureFigure,
-.feature > .compare,
 .chapter > .compare,
 .resultCards {
   width: auto;
@@ -1452,9 +1450,7 @@
   margin-inline: calc(var(--gutter) * -1);
 }
 .chapter > .figure img,
-.feature > .featureFigure > img,
-.chapter > .compare .compareStage,
-.feature > .compare .compareStage {
+.chapter > .compare .compareStage {
   border-radius: 0;
   border-left: 0;
   border-right: 0;
@@ -1462,7 +1458,6 @@
 /* a bled figure starts one gutter left of the text, so its caption is padded
    back by the same amount to land on the shared left edge */
 .chapter > .figure figcaption,
-.feature > .featureFigure figcaption,
 .chapter > .compare figcaption {
   max-width: calc(var(--measure) + var(--gutter) * 2);
   margin-inline: 0;
@@ -1470,17 +1465,15 @@
 }
 
 /* the feature card loses its chrome — the screen is the object now */
+/* the screen sits inside the card now, so it keeps the card's radius */
 .feature {
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 52px 0 0;
+  margin: 18px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 .featureCopy h3 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 .featureCopy p {
   margin: 0;
@@ -1557,4 +1550,53 @@
     border-left: 0;
     border-top: 1px solid var(--rule);
   }
+}
+
+/* ---------- point card: a subhead and its copy, contained ---------- */
+.point {
+  max-width: var(--measure);
+  margin: 14px 0 0;
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.point h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 16.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: #111;
+}
+.point p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.25px;
+  color: rgba(18, 18, 18, 0.8);
+}
+.point p + p {
+  margin-top: 12px;
+}
+.point ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.point li {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.25px;
+  color: rgba(18, 18, 18, 0.8);
+}
+
+/* the screen inside a feature card keeps a radius rather than running edge to edge */
+.feature > .featureFigure > img {
+  border-radius: 12px;
 }
