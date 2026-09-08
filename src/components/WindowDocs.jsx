@@ -216,13 +216,18 @@ function arc([x1, y1], [x2, y2], i) {
 function IaDiagram({ item }) {
   return (
     <figure className={styles.diagram}>
+      {/* the labels live in the viewBox, so on a narrow screen they would
+          scale down to a few pixels — the diagram scrolls in its own track */}
+      <div className={styles.diagramScroll}>
       <svg viewBox="0 0 1000 400" className={styles.diagramSvg} role="img" aria-label={item.caption}>
+        {/* the halves butt together, divided by one rule down the middle */}
+        <path className={styles.diagramDivide} d="M500 24 V376" />
+
         {/* ---- legacy ---- */}
-        <rect className={styles.diagramPanel} x="8" y="8" width="462" height="384" rx="14" />
-        <text className={styles.diagramTagBad} x="30" y="42">
+        <text className={styles.diagramTagBad} x="0" y="42">
           LEGACY
         </text>
-        <text className={styles.diagramNote} x="30" y="372">
+        <text className={styles.diagramNote} x="0" y="372">
           10+ undocumented flows behind generic icons
         </text>
         <g className={styles.tangleEdge}>
@@ -240,11 +245,10 @@ function IaDiagram({ item }) {
         ))}
 
         {/* ---- revamped ---- */}
-        <rect className={styles.diagramPanel} x="530" y="8" width="462" height="384" rx="14" />
-        <text className={styles.diagramTagGood} x="552" y="42">
+        <text className={styles.diagramTagGood} x="528" y="42">
           REVAMPED
         </text>
-        <text className={styles.diagramNote} x="552" y="372">
+        <text className={styles.diagramNote} x="528" y="372">
           One predictable path to every area
         </text>
         <g className={styles.cleanEdge}>
@@ -286,6 +290,7 @@ function IaDiagram({ item }) {
           )
         })}
       </svg>
+      </div>
       <figcaption>{item.caption}</figcaption>
     </figure>
   )

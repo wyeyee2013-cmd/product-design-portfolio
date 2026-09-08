@@ -1820,14 +1820,23 @@
   flex-direction: column;
   gap: 9px;
 }
+/* the labels live in the viewBox, so below a certain width they would scale
+   down to a few pixels — the diagram scrolls in its own track instead */
+.diagramScroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
 .diagramSvg {
   width: 100%;
+  min-width: 760px;
   height: auto;
   display: block;
 }
-.diagramPanel {
-  fill: #faf9fb;
-  stroke: rgba(0, 0, 0, 0.07);
+.diagramDivide {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1.5;
 }
 .diagramTagBad,
 .diagramTagGood {
