@@ -33,6 +33,36 @@ const ExternalIcon = () => (
    Case study
    ============================================================ */
 
+/**
+ * A feature card's screen. Drops itself if the file is not there yet, so a
+ * study can declare its figures before the exports land rather than shipping
+ * broken images — put the file in place and it appears on the next load.
+ */
+function FeatureFigure({ figure }) {
+  const [missing, setMissing] = useState(false)
+  if (missing) return null
+
+  return (
+    <figure className={`${styles.featureFigure} ${figure.dark ? styles.figureOnDark : ''}`}>
+      {figure.srcs ? (
+        <div className={styles.figureGrid}>
+          {figure.srcs.map((src) => (
+            <img src={src} alt="" loading="lazy" key={src} />
+          ))}
+        </div>
+      ) : (
+        <img
+          src={figure.src}
+          alt={figure.caption}
+          loading="lazy"
+          onError={() => setMissing(true)}
+        />
+      )}
+      <figcaption>{figure.caption}</figcaption>
+    </figure>
+  )
+}
+
 /** One item in a case-study section, rendered in source order. */
 function StudyItem({ item }) {
   switch (item.type) {
@@ -93,23 +123,7 @@ function StudyItem({ item }) {
         <div className={styles.feature}>
           <h3>{item.title}</h3>
           <p>{item.text}</p>
-          {/* the figure is optional so copy can land before the screens do */}
-          {item.figure && (
-            <figure
-              className={`${styles.featureFigure} ${item.figure.dark ? styles.figureOnDark : ''}`}
-            >
-              {item.figure.srcs ? (
-                <div className={styles.figureGrid}>
-                  {item.figure.srcs.map((src) => (
-                    <img src={src} alt="" loading="lazy" key={src} />
-                  ))}
-                </div>
-              ) : (
-                <img src={item.figure.src} alt={item.figure.caption} loading="lazy" />
-              )}
-              <figcaption>{item.figure.caption}</figcaption>
-            </figure>
-          )}
+          {item.figure && <FeatureFigure figure={item.figure} />}
         </div>
       )
 

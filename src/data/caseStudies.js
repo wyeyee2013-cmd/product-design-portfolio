@@ -21,7 +21,7 @@
 export const CASE_STUDIES = {
   'feedme-pos': {
     sector: 'Food & Beverage Technology',
-    title: 'Revamping the Feedme POS',
+    title: 'Revamping the FeedMe POS',
     tagline: 'From legacy chaos to a scalable, defensible ecosystem',
     credits: [
       {
@@ -33,7 +33,7 @@ export const CASE_STUDIES = {
         values: ['Lead Product Designer', 'Senior Product Designer'],
       },
       { label: 'Platform', values: ['POS (Tablet & Mobile iOS/Android)'] },
-      { label: 'Timeline', values: ['TBC'] },
+      { label: 'Timeline', values: ['November 2025 - August 2026, 10 months'] },
     ],
     sections: [
       {
@@ -41,7 +41,7 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'The legacy Feedme POS system (tablet and mobile) was suffering from technical debt, brand misalignment, and an interface that was becoming too easy for competitors to clone. Collaborating alongside the Lead and Senior Product Designer, I spearheaded the UX audit and UI redesign. We established the foundational design system for the Feedme brand, overhauled the architecture, and delivered a phased rollout that increased task efficiency by 10% while significantly accelerating engineering handoff.',
+            text: 'The legacy FeedMe POS system (tablet and mobile) was suffering from technical debt, brand misalignment, and an interface that was becoming too easy for competitors to clone. Collaborating alongside the Lead and Senior Product Designer, I spearheaded the UX audit and UI redesign. We established the foundational design system for the FeedMe brand, overhauled the architecture, and delivered a phased rollout that increased task efficiency by 10% while significantly accelerating engineering handoff.',
           },
         ],
       },
@@ -71,7 +71,7 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'The previous iteration of the POS was a generic blue interface that completely missed Feedme’s vibrant orange brand identity. Worse, its generic nature made it an easy target for copycats. We needed a UI that was aggressively “Feedme.”',
+            text: 'The previous iteration of the POS was a generic blue interface that completely missed FeedMe’s vibrant orange brand identity. Worse, its generic nature made it an easy target for copycats. We needed a UI that was aggressively “FeedMe.”',
           },
           { type: 'subhead', text: 'Brand Translation' },
           {
@@ -93,10 +93,10 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'Building a design system while simultaneously redesigning the core product is akin to changing a tire on a moving car. To manage risk, we approached this systematically.',
           },
-          { type: 'subhead', text: 'Establishing the Feedme Foundation' },
+          { type: 'subhead', text: 'Establishing the FeedMe Foundation' },
           {
             type: 'text',
-            text: 'In close collaboration with the Lead and Senior PD, I helped architect the core design system that now powers the entire Feedme ecosystem. We established base design tokens and a robust component library, moving the engineering team away from hard-coded legacy styles.',
+            text: 'In close collaboration with the Lead and Senior PD, I helped architect the core design system that now powers the entire FeedMe ecosystem. We established base design tokens and a robust component library, moving the engineering team away from hard-coded legacy styles.',
           },
           { type: 'subhead', text: 'Strategic Phased Delivery' },
           {
@@ -129,26 +129,36 @@ export const CASE_STUDIES = {
             type: 'feature',
             title: 'Spatial Table Management',
             text: 'Visualized a clear, scannable floor plan using standardized, color-coded tokens (Available, Reserved, Occupied) to replace cryptic legacy icons, allowing staff to read the room at a glance.',
+            /* awaiting the export — drop it in as public/assets/pos-01-tables.png
+               and uncomment:  figure: { src: '/assets/pos-01-tables.png', caption: '01 Spatial Table Management' }, */
           },
           {
             type: 'feature',
             title: 'Streamlined POS & Ordering',
             text: 'Redesigned the menu architecture with rich item imagery and a persistent, clear billing summary. We prioritized tap-targets and categorized navigation to ensure cashiers could process orders without friction.',
+            /* awaiting the export — drop it in as public/assets/pos-02-ordering.png
+               and uncomment:  figure: { src: '/assets/pos-02-ordering.png', caption: '02 Streamlined POS and Ordering' }, */
           },
           {
             type: 'feature',
             title: 'Frictionless Payment Processing',
             text: 'Introduced a split-pane layout for checkout, separating the itemized bill from distinct, oversized payment method cards tailored for high-speed, high-stress environments.',
+            /* awaiting the export — drop it in as public/assets/pos-03-payment.png
+               and uncomment:  figure: { src: '/assets/pos-03-payment.png', caption: '03 Frictionless Payment Processing' }, */
           },
           {
             type: 'feature',
             title: 'Actionable Reporting Dashboards',
-            text: 'Replaced generic charts with customized data visualizations utilizing the Feedme palette, giving store managers immediate, readable insights into daily sales and top products.',
+            text: 'Replaced generic charts with customized data visualizations utilizing the FeedMe palette, giving store managers immediate, readable insights into daily sales and top products.',
+            /* awaiting the export — drop it in as public/assets/pos-04-reporting.png
+               and uncomment:  figure: { src: '/assets/pos-04-reporting.png', caption: '04 Actionable Reporting Dashboards' }, */
           },
           {
             type: 'feature',
             title: 'Defensible Settings & Onboarding',
             text: 'Integrated the proprietary, AI-generated illustrations directly into complex workflows (like configuring Operation Modes), turning a traditionally dry settings page into a premium, highly defensible brand experience.',
+            /* awaiting the export — drop it in as public/assets/pos-05-settings.png
+               and uncomment:  figure: { src: '/assets/pos-05-settings.png', caption: '05 Defensible Settings and Onboarding' }, */
           },
         ],
       },
@@ -167,7 +177,7 @@ export const CASE_STUDIES = {
           { type: 'subhead', text: 'Preserving Brand Identity' },
           {
             type: 'text',
-            text: 'Designed the dark theme to retain Feedme’s vibrant orange accent colors, ensuring the brand identity remained recognizable even when the primary backgrounds shifted to deep charcoal and black.',
+            text: 'Designed the dark theme to retain FeedMe’s vibrant orange accent colors, ensuring the brand identity remained recognizable even when the primary backgrounds shifted to deep charcoal and black.',
           },
         ],
       },
