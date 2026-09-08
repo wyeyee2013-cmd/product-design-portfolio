@@ -84,6 +84,16 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'To create a defensible visual moat, we needed rich, proprietary illustrations and icons. Recognizing the bandwidth constraints on our graphic designers, I engineered an AI-assisted generation workflow. This empowered the product design team to independently generate and maintain on-brand icons and illustrations, scaling our visual quality without bottlenecking the graphics team.',
           },
+          {
+            type: 'compare',
+            light: '/assets/pos-07-legacy-order.png',
+            dark: '/assets/pos-02-ordering.png',
+            labels: ['Legacy', 'Revamped'],
+            /* framed on the revamp so it stays uncropped; the legacy screen is
+               4:3 and loses a sliver top and bottom */
+            aspect: '1194 / 834',
+            caption: '02 The generic blue build against the FeedMe revamp — drag to compare',
+          },
         ],
       },
       {
@@ -188,6 +198,7 @@ export const CASE_STUDIES = {
             type: 'compare',
             light: '/assets/pos-02-ordering.png',
             dark: '/assets/pos-06-ordering-dark.png',
+            labels: ['Light', 'Dark'],
             caption: '06 One screen, both themes — drag to compare',
           },
         ],

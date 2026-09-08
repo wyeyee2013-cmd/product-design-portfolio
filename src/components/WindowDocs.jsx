@@ -69,23 +69,30 @@ function FeatureFigure({ figure, bare = false }) {
 }
 
 /**
- * Two versions of one screen under a draggable divider — used for the light
- * and dark themes, where a side-by-side wastes half the width and makes the
- * reader do the comparing. The range input is the real control: dragging the
- * image moves it, and it keeps arrow keys and a screen-reader label for free.
+ * Two screens under a draggable divider — the light and dark themes, and the
+ * legacy build against the revamp. A side-by-side would halve the width and
+ * leave the reader doing the comparing.
+ *
+ * `labels` names the two sides and `aspect` frames them; where the pair are
+ * different sizes, set it to whichever screen should stay uncropped, since the
+ * other is covered to fit.
  */
 function CompareFigure({ item }) {
   const [pos, setPos] = useState(50)
+  const [before, after] = item.labels ?? ['Light', 'Dark']
 
   return (
     <figure className={styles.compare}>
-      <div className={styles.compareStage} style={{ '--pos': `${pos}%` }}>
-        <img src={item.light} alt={`${item.caption} — light`} loading="lazy" />
+      <div
+        className={styles.compareStage}
+        style={{ '--pos': `${pos}%`, aspectRatio: item.aspect ?? '1194 / 834' }}
+      >
+        <img src={item.light} alt={`${item.caption} — ${before}`} loading="lazy" />
         <div className={styles.compareDark}>
-          <img src={item.dark} alt={`${item.caption} — dark`} loading="lazy" />
+          <img src={item.dark} alt={`${item.caption} — ${after}`} loading="lazy" />
         </div>
-        <span className={`${styles.compareTag} ${styles.compareTagLight}`}>Light</span>
-        <span className={`${styles.compareTag} ${styles.compareTagDark}`}>Dark</span>
+        <span className={`${styles.compareTag} ${styles.compareTagLight}`}>{before}</span>
+        <span className={`${styles.compareTag} ${styles.compareTagDark}`}>{after}</span>
         <span className={styles.compareBar} aria-hidden="true">
           <i />
         </span>
@@ -96,7 +103,7 @@ function CompareFigure({ item }) {
           max="100"
           value={pos}
           onChange={(e) => setPos(Number(e.target.value))}
-          aria-label="Drag to compare light and dark mode"
+          aria-label={`Drag to compare ${before} and ${after}`}
         />
       </div>
       <figcaption>{item.caption}</figcaption>
