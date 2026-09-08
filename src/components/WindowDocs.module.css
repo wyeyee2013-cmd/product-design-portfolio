@@ -1416,9 +1416,13 @@
 }
 
 /* ============================================================
-   Showcase layout — screens run to the window edges, the reading
-   copy holds a narrow centred measure so the reasoning stays legible.
-   `--gutter` mirrors MacWindow's .body padding; keep them in step.
+   Showcase layout — screens run to the window edges, the reading copy holds
+   a narrow measure so the reasoning stays legible.
+
+   Everything that is read shares ONE left edge: the same one the title, the
+   tagline, the meta grid and the credits already use. Only the width varies.
+   Centring the prose instead pulls it off that edge and nothing in the
+   document lines up with anything else.
    ============================================================ */
 .doc {
   /* inherited from MacWindow .body so the bleed always matches its padding */
@@ -1426,7 +1430,6 @@
   --measure: 62ch;
 }
 
-/* everything that is read sits on one centred column ... */
 .chapter > .chapterHeading,
 .chapter > .chapterLead,
 .chapter > .chapterBody,
@@ -1435,7 +1438,7 @@
 .chapter > .callout,
 .featureCopy {
   max-width: var(--measure);
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 /* ... and everything shown breaks out past it */
@@ -1456,12 +1459,13 @@
   border-left: 0;
   border-right: 0;
 }
-/* captions come back to the measure so they read with the copy */
+/* a bled figure starts one gutter left of the text, so its caption is padded
+   back by the same amount to land on the shared left edge */
 .chapter > .figure figcaption,
 .feature > .featureFigure figcaption,
 .chapter > .compare figcaption {
-  max-width: var(--measure);
-  margin-inline: auto;
+  max-width: calc(var(--measure) + var(--gutter) * 2);
+  margin-inline: 0;
   padding-inline: var(--gutter);
 }
 
@@ -1487,7 +1491,11 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 28px 24px;
+  /* no left padding: the first cell has to start on the document's left edge */
+  padding: 28px 24px 28px 0;
+}
+.metric + .metric {
+  padding-left: 24px;
 }
 .metricValue {
   font-family: var(--font-display);
@@ -1529,6 +1537,7 @@
   gap: 0;
   margin-top: 34px;
   margin-bottom: 8px;
+  padding-inline: var(--gutter);
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   background: #faf9fb;
@@ -1540,11 +1549,8 @@
 .resultCards > .resultCard {
   margin: 22px 0;
 }
-.resultCards > .resultCard:first-child {
-  margin-left: var(--gutter);
-}
-.resultCards > .resultCard:last-child {
-  margin-right: var(--gutter);
+.resultCards > .resultCard + .resultCard {
+  margin-left: 14px;
 }
 @media (max-width: 900px) {
   .resultCards > .metric + .metric {
