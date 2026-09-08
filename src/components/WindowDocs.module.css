@@ -1602,15 +1602,25 @@
 }
 
 /* ---------- side-by-side point cards ---------- */
-.pointGrid {
+.pointGrid,
+.calloutGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 14px;
   margin: 16px 0 0;
 }
 /* a lone point should not stretch to the full width of the pair */
-.pointGrid:has(> .point:only-child) {
+.pointGrid:has(> .point:only-child),
+.calloutGrid:has(> .callout:only-child) {
   grid-template-columns: minmax(0, var(--measure));
+}
+
+/* inside a grid the card gives up its own width and spacing */
+.calloutGrid > .callout {
+  max-width: none;
+  margin: 0;
+  height: auto;
 }
 .point {
   max-width: none;
@@ -1682,7 +1692,8 @@
 }
 
 @media (max-width: 900px) {
-  .pointGrid {
+  .pointGrid,
+  .calloutGrid {
     grid-template-columns: minmax(0, 1fr);
   }
 }

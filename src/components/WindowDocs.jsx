@@ -131,18 +131,38 @@ function groupItems(items) {
     out.push(item)
   }
 
-  /* consecutive points sit side by side, numbered within their own run */
+  /* runs of sibling cards pair up rather than stacking down the left, which
+     leaves a section reading as one rhythm instead of three */
+  const PAIRS = { point: 'pointGrid', callout: 'calloutGrid' }
   const packed = []
   for (const item of out) {
+    const grid = PAIRS[item.type]
     const last = packed[packed.length - 1]
-    if (item.type === 'point') {
-      if (last?.type === 'pointGrid') last.items.push(item)
-      else packed.push({ type: 'pointGrid', items: [item] })
+    if (grid) {
+      if (last?.type === grid) last.items.push(item)
+      else packed.push({ type: grid, items: [item] })
       continue
     }
     packed.push(item)
   }
   return packed
+}
+
+function Callout({ item }) {
+  return (
+    <div className={styles.callout}>
+      <h4>{item.title}</h4>
+      {item.subtitle && <p className={styles.calloutSub}>{item.subtitle}</p>}
+      {item.bullets && (
+        <ul>
+          {item.bullets.map((b) => (
+            <li key={b.slice(0, 24)}>{b}</li>
+          ))}
+        </ul>
+      )}
+      {item.text && <p>{item.text}</p>}
+    </div>
+  )
 }
 
 /** '03 Candidate Matching Layout' -> { n: '03', rest: 'Candidate Matching Layout' } */
@@ -193,19 +213,12 @@ function StudyItem({ item }) {
         </div>
       )
 
-    case 'callout':
+    case 'calloutGrid':
       return (
-        <div className={styles.callout}>
-          <h4>{item.title}</h4>
-          {item.subtitle && <p className={styles.calloutSub}>{item.subtitle}</p>}
-          {item.bullets && (
-            <ul>
-              {item.bullets.map((b) => (
-                <li key={b.slice(0, 24)}>{b}</li>
-              ))}
-            </ul>
-          )}
-          {item.text && <p>{item.text}</p>}
+        <div className={styles.calloutGrid}>
+          {item.items.map((c) => (
+            <Callout item={c} key={c.title} />
+          ))}
         </div>
       )
 
