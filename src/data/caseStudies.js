@@ -183,7 +183,7 @@ export const CASE_STUDIES = {
         ],
       },
       {
-        label: 'Measurable Impact & Senior Reflections',
+        label: 'Measurable Impact',
         items: [
           {
             type: 'text',

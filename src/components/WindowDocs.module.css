@@ -1600,3 +1600,89 @@
 .feature > .featureFigure > img {
   border-radius: 12px;
 }
+
+/* ---------- side-by-side point cards ---------- */
+.pointGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0 0;
+}
+/* a lone point should not stretch to the full width of the pair */
+.pointGrid:has(> .point:only-child) {
+  grid-template-columns: minmax(0, var(--measure));
+}
+.point {
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.pointNum {
+  font-family: var(--font-tag);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--violet);
+  margin-bottom: 10px;
+}
+
+/* ---------- section title (sections with no lead) ---------- */
+.chapterTitle {
+  margin: 0 0 18px;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.18;
+  letter-spacing: -1.1px;
+  color: #111;
+}
+
+/* ---------- feature card: copy on top, screen filling the rest ---------- */
+.feature {
+  padding: 24px 24px 0;
+  overflow: hidden;
+}
+.featureCaption {
+  margin-top: 12px;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  letter-spacing: -0.1px;
+  color: #9a9a9a;
+}
+/* the screen runs to the card's own edges and squares off at the bottom */
+.figureFills {
+  margin: 20px -24px 0;
+}
+.feature > .figureFills > img {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  display: block;
+}
+
+/* ---------- dark mode: the slider keeps the document's side margins ---------- */
+.chapter > .compare {
+  width: auto;
+  max-width: none;
+  margin-inline: 0;
+}
+.chapter > .compare .compareStage {
+  border-radius: 12px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+.chapter > .compare figcaption {
+  max-width: var(--measure);
+  padding-inline: 0;
+}
+
+@media (max-width: 900px) {
+  .pointGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

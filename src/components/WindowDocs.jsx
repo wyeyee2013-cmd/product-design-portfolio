@@ -38,12 +38,16 @@ const ExternalIcon = () => (
  * study can declare its figures before the exports land rather than shipping
  * broken images — put the file in place and it appears on the next load.
  */
-function FeatureFigure({ figure }) {
+function FeatureFigure({ figure, bare = false }) {
   const [missing, setMissing] = useState(false)
   if (missing) return null
 
   return (
-    <figure className={`${styles.featureFigure} ${figure.dark ? styles.figureOnDark : ''}`}>
+    <figure
+      className={`${styles.featureFigure} ${figure.dark ? styles.figureOnDark : ''} ${
+        bare ? styles.figureFills : ''
+      }`}
+    >
       {figure.srcs ? (
         <div className={styles.figureGrid}>
           {figure.srcs.map((src) => (
@@ -58,7 +62,8 @@ function FeatureFigure({ figure }) {
           onError={() => setMissing(true)}
         />
       )}
-      <figcaption>{figure.caption}</figcaption>
+      {/* the caption moves up beside the copy when the screen fills the card */}
+      {!bare && <figcaption>{figure.caption}</figcaption>}
     </figure>
   )
 }
@@ -125,7 +130,25 @@ function groupItems(items) {
     }
     out.push(item)
   }
-  return out
+
+  /* consecutive points sit side by side, numbered within their own run */
+  const packed = []
+  for (const item of out) {
+    const last = packed[packed.length - 1]
+    if (item.type === 'point') {
+      if (last?.type === 'pointGrid') last.items.push(item)
+      else packed.push({ type: 'pointGrid', items: [item] })
+      continue
+    }
+    packed.push(item)
+  }
+  return packed
+}
+
+/** '03 Candidate Matching Layout' -> { n: '03', rest: 'Candidate Matching Layout' } */
+function splitCaption(caption = '') {
+  const m = caption.match(/^\s*(\d{1,2})\s+(.*)$/)
+  return m ? { n: m[1], rest: m[2] } : { n: null, rest: caption }
 }
 
 /** One item in a case-study section, rendered in source order. */
@@ -146,22 +169,27 @@ function StudyItem({ item }) {
         </ul>
       )
 
-    /* a subhead and its copy, contained — see groupItems */
-    case 'point':
+    /* subheads and their copy, contained and side by side — see groupItems */
+    case 'pointGrid':
       return (
-        <div className={styles.point}>
-          <h3>{item.title}</h3>
-          {item.body.map((b, i) =>
-            b.type === 'bullets' ? (
-              <ul key={`b-${i}`}>
-                {b.items.map((li) => (
-                  <li key={li.slice(0, 28)}>{li}</li>
-                ))}
-              </ul>
-            ) : (
-              <p key={`p-${i}`}>{b.text}</p>
-            )
-          )}
+        <div className={styles.pointGrid}>
+          {item.items.map((point, n) => (
+            <div className={styles.point} key={point.title}>
+              <span className={styles.pointNum}>{String(n + 1).padStart(2, '0')}</span>
+              <h3>{point.title}</h3>
+              {point.body.map((b, i) =>
+                b.type === 'bullets' ? (
+                  <ul key={`b-${i}`}>
+                    {b.items.map((li) => (
+                      <li key={li.slice(0, 28)}>{li}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p key={`p-${i}`}>{b.text}</p>
+                )
+              )}
+            </div>
+          ))}
         </div>
       )
 
@@ -202,17 +230,23 @@ function StudyItem({ item }) {
       )
 
     /* a design decision and the screen that proves it, in one card */
-    /* screen first, at full width; the reasoning reads underneath it */
-    case 'feature':
+    /* copy on top, then the screen filling the rest of the card */
+    case 'feature': {
+      const cap = splitCaption(item.figure?.caption)
       return (
         <div className={styles.feature}>
-          {item.figure && <FeatureFigure figure={item.figure} />}
           <div className={styles.featureCopy}>
+            {cap.n && <span className={styles.pointNum}>{cap.n}</span>}
             <h3>{item.title}</h3>
             <p>{item.text}</p>
+            {cap.rest && cap.rest !== item.title && (
+              <span className={styles.featureCaption}>{cap.rest}</span>
+            )}
           </div>
+          {item.figure && <FeatureFigure figure={item.figure} bare />}
         </div>
       )
+    }
 
     case 'compare':
       return <CompareFigure item={item} />
@@ -309,8 +343,17 @@ export function ProjectDoc({ project }) {
 
       {study?.sections?.map((s) => (
         <section className={styles.chapter} key={s.label}>
-          <h2 className={styles.chapterHeading}>{s.label}</h2>
-          {s.lead && <p className={styles.chapterLead}>{s.lead}</p>}
+          {/* a section with a lead shows a small label above it; one without
+              carries the display weight on the label itself, so it does not
+              read as a lesser section than its neighbours */}
+          {s.lead ? (
+            <>
+              <h2 className={styles.chapterHeading}>{s.label}</h2>
+              <p className={styles.chapterLead}>{s.lead}</p>
+            </>
+          ) : (
+            <h2 className={styles.chapterTitle}>{s.label}</h2>
+          )}
           {groupItems(s.items).map((it, i) => (
             <StudyItem item={it} key={`${it.type}-${i}`} />
           ))}
