@@ -1634,7 +1634,7 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: var(--violet);
+  color: var(--study-tint, var(--violet));
   margin-bottom: 10px;
 }
 
@@ -1734,7 +1734,7 @@
   fill: #c2453f;
 }
 .diagramTagGood {
-  fill: var(--violet);
+  fill: var(--study-tint, var(--violet));
 }
 .diagramNote {
   font-family: var(--font-ui);
@@ -1757,11 +1757,11 @@
 /* the clean tree */
 .cleanEdge path {
   fill: none;
-  stroke: rgba(129, 104, 253, 0.45);
+  stroke: color-mix(in srgb, var(--study-tint, var(--violet)) 45%, transparent);
   stroke-width: 1.6;
 }
 .cleanRoot {
-  fill: var(--violet);
+  fill: var(--study-tint, var(--violet));
 }
 .cleanRootLabel {
   font-family: var(--font-ui);
@@ -1772,7 +1772,7 @@
 }
 .cleanNode {
   fill: #fff;
-  stroke: rgba(129, 104, 253, 0.5);
+  stroke: color-mix(in srgb, var(--study-tint, var(--violet)) 50%, transparent);
   stroke-width: 1.4;
 }
 .cleanLabel {
@@ -1783,7 +1783,7 @@
   text-anchor: middle;
 }
 .cleanLeaf {
-  fill: rgba(129, 104, 253, 0.22);
+  fill: color-mix(in srgb, var(--study-tint, var(--violet)) 22%, transparent);
 }
 
 .diagram figcaption {
@@ -1912,7 +1912,7 @@
   background: linear-gradient(
     to bottom,
     var(--study-tint, var(--violet)),
-    rgba(129, 104, 253, 0.2)
+    color-mix(in srgb, var(--study-tint, var(--violet)) 20%, transparent)
   );
 }
 .flowStep {
@@ -2003,5 +2003,131 @@
 @media (max-width: 900px) {
   .statement {
     padding: 26px 22px 30px;
+  }
+}
+
+/* ---------- personas: three personalities across ---------- */
+.personas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+  margin: 20px 0 8px;
+}
+.persona {
+  padding: 22px 22px 24px;
+  border-radius: 16px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.personaIcon {
+  display: inline-flex;
+  margin-bottom: 20px;
+  color: var(--study-tint, var(--violet));
+}
+.persona h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  color: #111;
+}
+.persona p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.68);
+}
+
+/* ---------- journey: the stages as they stood ---------- */
+.journeyBlock {
+  margin: 34px 0 8px;
+}
+.journeyTitle {
+  margin: 0 0 12px;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -0.9px;
+  color: #111;
+}
+.journeyIntro {
+  margin: 0 0 20px;
+  max-width: var(--measure);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.25px;
+  color: rgba(18, 18, 18, 0.8);
+}
+.journey {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+}
+.stage {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border-radius: 16px;
+  background: #f7f7f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.stagePill {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #fff;
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: #111;
+}
+.mood {
+  display: inline-flex;
+  margin: 18px 0 16px;
+  color: var(--study-tint, var(--violet));
+}
+.stage ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* the note is pinned to the card's foot, so the lists can differ in length */
+  flex: 1;
+}
+.stage li {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.78);
+}
+.stageNote {
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.55);
+}
+
+@media (max-width: 900px) {
+  .personas,
+  .journey {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

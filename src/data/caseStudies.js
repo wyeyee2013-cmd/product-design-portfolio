@@ -10,6 +10,8 @@
  *   { type: 'bullets',     items: [] | [{ icon, text }] }  text allows <b>
  *   { type: 'callout',     title, subtitle?, bullets?, text, variant? }
  *   { type: 'timeline',    items: [{ label, text }] }
+ *   { type: 'personas',    items: [{ icon, title, text }] }
+ *   { type: 'journey',     title, intro, items: [{ label, mood, bullets, note }] }
  *   { type: 'iaDiagram',   caption }
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
@@ -532,64 +534,74 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'Several interviews were conducted with a diverse pool of individuals in order to understand their personality and attitude towards the recruitment process, while focusing on talent acquisition specialists.',
+            text: 'Several interviews were conducted with a diverse pool of individuals in order to understand their personality and attitude towards the recruitment process, while focusing on <b>talent acquisition specialists</b>.',
           },
+          /* three personalities side by side, as on the original page */
           {
-            type: 'callout',
-            title: 'The Indecisive',
-            text: 'Recruiters are not able to decide the best candidate due to biasness and the lack of additional reference/opinions',
-          },
-          {
-            type: 'callout',
-            title: 'The Skill-centric',
-            text: "Does not focus on the interview perspective of the process, but rather the candidate's technical capabilities in handling tasks",
-          },
-          {
-            type: 'callout',
-            title: 'The Communication Centric',
-            text: "Would place more focus on candidate's communication skills, as hard-skills can be learnt with suitable training methods",
-          },
-          { type: 'subhead', text: 'The current process' },
-          {
-            type: 'text',
-            text: 'Based on the information collected, the current user journey in recruitment comprises of main stages such as acquiring, screening, interviewing and offering candidates.',
-          },
-          {
-            type: 'callout',
-            title: 'Acquisition',
-            bullets: ['Determine positions to hire', 'Write and post job descriptions'],
-            text: 'Users might not be able to prioritize suitable job postings, and to create a comprehensive job description',
-          },
-          {
-            type: 'callout',
-            title: 'Screening',
-            bullets: [
-              'Screen through candidate resume one-by-one',
-              'Perform pre-screening calls',
-              'Provide assessments if the role is technical-based',
-              'Make decisions to shortlist or reject candidates',
+            type: 'personas',
+            items: [
+              {
+                icon: 'question',
+                title: 'The Indecisive',
+                text: 'Recruiters are not able to decide the best candidate due to biasness and the lack of additional reference/opinions',
+              },
+              {
+                icon: 'wrench',
+                title: 'The Skill-centric',
+                text: "Does not focus on the interview perspective of the process, but rather the candidate's technical capabilities in handling tasks",
+              },
+              {
+                icon: 'headset',
+                title: 'The Communication Centric',
+                text: "Would place more focus on candidate's communication skills, as hard-skills can be learnt with suitable training methods",
+              },
             ],
-            text: 'Users might be overwhelmed with the huge number of applications received',
           },
+          /* the four journey stages, each with the mood it carries */
           {
-            type: 'callout',
-            title: 'Interview',
-            bullets: [
-              'Conduct video/physical interviews',
-              'Evaluate candidate performance based on questions asked',
-              'Make decisions to advance candidates to next stages',
+            type: 'journey',
+            title: 'The current process',
+            intro:
+              'Based on the information collected, the current user journey in recruitment comprises of main stages such as acquiring, screening, interviewing and offering candidates.',
+            items: [
+              {
+                label: 'Acquisition',
+                mood: 'ok',
+                bullets: ['Determine positions to hire', 'Write and post job descriptions'],
+                note: 'Users might not be able to prioritize suitable job postings, and to create a comprehensive job description',
+              },
+              {
+                label: 'Screening',
+                mood: 'bad',
+                bullets: [
+                  'Screen through candidate resume one-by-one',
+                  'Perform pre-screening calls',
+                  'Provide assessments if the role is technical-based',
+                  'Make decisions to shortlist or reject candidates',
+                ],
+                note: 'Users might be overwhelmed with the huge number of applications received',
+              },
+              {
+                label: 'Interview',
+                mood: 'neutral',
+                bullets: [
+                  'Conduct video/physical interviews',
+                  'Evaluate candidate performance based on questions asked',
+                  'Make decisions to advance candidates to next stages',
+                ],
+                note: 'Users might not remember the context discussed during the interview process',
+              },
+              {
+                label: 'Offer',
+                mood: 'good',
+                bullets: [
+                  'Select the most suitable candidate',
+                  'Confirm with the select candidate on their keenness to the position',
+                  'Prepare and send offer letter according to agreed arrangements',
+                ],
+                note: 'Users might need to take extra time to prepare an error-free offer letter',
+              },
             ],
-            text: 'Users might not remember the context discussed during the interview process',
-          },
-          {
-            type: 'callout',
-            title: 'Offer',
-            bullets: [
-              'Select the most suitable candidate',
-              'Confirm with the select candidate on their keenness to the position',
-              'Prepare and send offer letter according to agreed arrangements',
-            ],
-            text: 'Users might need to take extra time to prepare an error-free offer letter',
           },
         ],
       },

@@ -209,6 +209,61 @@ function SymptomIcon({ name }) {
   )
 }
 
+/* Persona marks and the mood a journey stage carries. Outlined to match the
+   reference; they inherit --study-tint. */
+const PERSONA_ICONS = {
+  question:
+    'M12 2.8a9.2 9.2 0 1 0 0 18.4 9.2 9.2 0 0 0 0-18.4M12 14.6v-.5c0-1 .6-1.5 1.4-2.1.8-.6 1.3-1.2 1.3-2.2a2.7 2.7 0 0 0-5.4 0M12 17.4h.02',
+  wrench:
+    'M17.4 5.2a3.6 3.6 0 0 0-5 4.4L5.6 16.4a1.6 1.6 0 0 0 2.2 2.2l6.8-6.8a3.6 3.6 0 0 0 4.4-5l-2.3 2.3-2.1-.5-.5-2.1z',
+  headset:
+    'M5.4 15.2v-3.4a6.6 6.6 0 0 1 13.2 0v3.4M5.4 13.4H7a1 1 0 0 1 1 1v2.6a1 1 0 0 1-1 1H5.4zM18.6 13.4H17a1 1 0 0 0-1 1v2.6a1 1 0 0 0 1 1h1.6z',
+}
+
+const MOODS = {
+  good: 'M8.2 13.8a4.2 4.2 0 0 0 7.6 0',
+  ok: 'M8.6 14.2a3.9 3.9 0 0 0 6.8 0',
+  neutral: 'M8.4 14.6h7.2',
+  bad: 'M8.2 15.8a4.2 4.2 0 0 1 7.6 0',
+}
+
+function StrokeIcon({ d, size = 26, viewBox = '0 0 24 24' }) {
+  return (
+    <svg viewBox={viewBox} width={size} height={size} aria-hidden="true">
+      <path
+        d={d}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function MoodFace({ mood }) {
+  return (
+    <span className={styles.mood} aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="30" height="30">
+        <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+          <circle cx="12" cy="12" r="9.2" />
+          {mood === 'bad' ? (
+            <>
+              <path d="M8.4 9.6l1.8 1.4M15.6 9.6l-1.8 1.4" />
+            </>
+          ) : (
+            <>
+              <path d="M9.3 10.2v.02M14.7 10.2v.02" />
+            </>
+          )}
+          <path d={MOODS[mood] ?? MOODS.neutral} />
+        </g>
+      </svg>
+    </span>
+  )
+}
+
 /** The paragraphs and lists that hang off a point. */
 function PointBody({ body }) {
   return body.map((b, i) =>
@@ -407,8 +462,14 @@ function StudyItem({ item }) {
     case 'subhead':
       return <h3 className={styles.chapterSubhead}>{item.text}</h3>
 
+    /* through safeRich so copy can carry <b>, like the bullets and cards do */
     case 'text':
-      return <p className={styles.chapterBody}>{item.text}</p>
+      return (
+        <p
+          className={styles.chapterBody}
+          dangerouslySetInnerHTML={{ __html: safeRich(item.text) }}
+        />
+      )
 
     case 'bullets':
       return (
@@ -486,6 +547,45 @@ function StudyItem({ item }) {
     /* the run of work in order, on a rail */
     case 'timeline':
       return <Flow items={item.items} />
+
+    /* the personalities the interviews surfaced, three across */
+    case 'personas':
+      return (
+        <div className={styles.personas}>
+          {item.items.map((p) => (
+            <div className={styles.persona} key={p.title}>
+              <span className={styles.personaIcon}>
+                <StrokeIcon d={PERSONA_ICONS[p.icon]} />
+              </span>
+              <h4>{p.title}</h4>
+              <p>{p.text}</p>
+            </div>
+          ))}
+        </div>
+      )
+
+    /* the stages of the journey as it stood, and the mood each carried */
+    case 'journey':
+      return (
+        <div className={styles.journeyBlock}>
+          {item.title && <h3 className={styles.journeyTitle}>{item.title}</h3>}
+          {item.intro && <p className={styles.journeyIntro}>{item.intro}</p>}
+          <div className={styles.journey}>
+            {item.items.map((stage) => (
+              <div className={styles.stage} key={stage.label}>
+                <span className={styles.stagePill}>{stage.label}</span>
+                <MoodFace mood={stage.mood} />
+                <ul>
+                  {stage.bullets.map((b) => (
+                    <li key={b.slice(0, 28)}>{b}</li>
+                  ))}
+                </ul>
+                <p className={styles.stageNote}>{stage.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
 
     /* a statement callout, left unpaired by groupItems */
     case 'callout':
@@ -583,8 +683,9 @@ export function ProjectDoc({ project }) {
   const study = CASE_STUDIES[id]
 
   return (
-    /* the project's own tint, so brand-coloured marks pick it up per study */
-    <article className={styles.doc} style={{ '--study-tint': project.tint }}>
+    /* the readable shade of the project's colour, so brand-coloured marks pick
+       it up per study — the raw tint is too light for 11px type on white */
+    <article className={styles.doc} style={{ '--study-tint': project.accent ?? project.tint }}>
       <div className={styles.hero}>
         <img src={thumb} alt={`${title} cover`} />
       </div>

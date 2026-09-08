@@ -4,6 +4,9 @@
  *   - the tilted browser cards on the projects board
  *   - the macOS case-study window
  *
+ * `tint` fills the deck thumbnail; `accent` is the readable shade of the same
+ * hue used for small brand-coloured marks in the case study.
+ *
  * Board placement — `row` picks which row the card sits in, `rotate` its tilt,
  * `fit` the thumbnail crop, all taken from Figma node 15:1515.
  */
@@ -66,6 +69,7 @@ const ALL_PROJECTS = [
     thumb: '/assets/pos-cover.png',
     gallery: [],
     tint: '#f0803c',
+    accent: '#b35110',
     row: 0,
     rotate: -3.12,
     clip: '/assets/clip-2.svg',
@@ -84,7 +88,8 @@ const ALL_PROJECTS = [
       'An organisation model that keeps roles, permissions, and reporting lines legible as a company grows past the point one person can hold it in their head.',
     thumb: '/assets/pantas-cover.png',
     gallery: [],
-    tint: '#c2453f',
+    tint: '#2b79fd',
+    accent: '#0153e4',
     row: 1,
     rotate: 7.65,
     clip: '/assets/clip-4.svg',
@@ -103,7 +108,8 @@ const ALL_PROJECTS = [
       'Matching people to roles without burying either side in forms. Most of the work went into what the system should decide and what it should ask.',
     thumb: '/assets/hireti-cover.png',
     gallery: [],
-    tint: '#3a6ea5',
+    tint: '#d2051e',
+    accent: '#d2051e',
     row: 1,
     rotate: -7,
     clip: '/assets/clip-5.svg',
