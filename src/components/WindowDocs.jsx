@@ -185,6 +185,17 @@ function splitCaption(caption = '') {
   return m ? { n: m[1], rest: m[2] } : { n: null, rest: caption }
 }
 
+/** Loose enough that '&' and 'and' count as the same word. */
+const sameWords = (a = '', b = '') => {
+  const norm = (t) =>
+    t
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim()
+  return norm(a) === norm(b)
+}
+
 /** One item in a case-study section, rendered in source order. */
 function StudyItem({ item }) {
   switch (item.type) {
@@ -303,7 +314,8 @@ function StudyItem({ item }) {
             {cap.n && <span className={styles.pointNum}>{cap.n}</span>}
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-            {cap.rest && cap.rest !== item.title && (
+            {/* only worth showing when it says something the title does not */}
+            {cap.rest && !sameWords(cap.rest, item.title) && (
               <span className={styles.featureCaption}>{cap.rest}</span>
             )}
           </div>
