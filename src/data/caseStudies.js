@@ -9,7 +9,7 @@
  *   { type: 'text',        text }
  *   { type: 'bullets',     items: [] }
  *   { type: 'callout',     title, subtitle?, bullets?, text }
- *   { type: 'phases',      items: [{ label, title, scope, outcome }] }
+ *   { type: 'timeline',    items: [{ label, text }] }
  *   { type: 'iaDiagram',   caption }
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
@@ -123,34 +123,32 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'Building a design system while simultaneously redesigning the core product is akin to changing a tire on a moving car. To manage risk, we approached this systematically.',
           },
-          { type: 'subhead', text: 'Establishing the FeedMe Foundation' },
-          {
-            type: 'text',
-            text: 'In close collaboration with the Lead and Senior PD, I helped architect the core design system that now powers the entire FeedMe ecosystem. We established base design tokens and a robust component library, moving the engineering team away from hard-coded legacy styles.',
-          },
-          { type: 'subhead', text: 'Strategic Phased Delivery' },
           {
             type: 'text',
             text: 'To ensure we didn’t disrupt our merchants’ daily operations, I advocated for a phased rollout strategy:',
           },
-          /* a real sequence, not two alternatives — rendered on a progress
-             track rather than as cards. Columns map to the source table:
-             Phase / Scope / Outcome. */
           {
-            type: 'phases',
+            type: 'timeline',
             items: [
               {
-                label: 'Phase 1',
-                title: 'Core Operations',
-                scope: 'Ordering, Payments, Transactions, and Reporting.',
-                outcome:
-                  'Beta-tested with a cohort of live merchants to validate the new architecture.',
+                label: 'Establish the foundation',
+                text: 'In close collaboration with the Lead and Senior PD, I helped architect the core design system that now powers the entire FeedMe ecosystem. We established base design tokens and a robust component library, moving the engineering team away from hard-coded legacy styles.',
               },
               {
-                label: 'Phase 2',
-                title: 'Secondary Features',
-                scope: 'Inventory Management, Membership, and Settings.',
-                outcome: 'Safely deployed once the core foundation was proven stable.',
+                label: 'Deliver Phase 1',
+                text: 'Core operations: Ordering, Payments, Transactions, and Reporting.',
+              },
+              {
+                label: 'Test Phase 1',
+                text: 'Beta-tested with a cohort of live merchants to validate the new architecture.',
+              },
+              {
+                label: 'Ship Phase 2',
+                text: 'Inventory Management, Membership, and Settings, carrying the changes that came out of the Phase 1 feedback. Safely deployed once the core foundation was proven stable.',
+              },
+              {
+                label: 'Test with merchants',
+                text: 'Usability testing with five merchants, to check the rollout against how the product is actually operated.',
               },
             ],
           },
@@ -197,6 +195,20 @@ export const CASE_STUDIES = {
         ],
       },
       {
+        label: 'Validating with Merchants',
+        lead: 'Five merchants, a set of actions, and watching what they did',
+        items: [
+          {
+            type: 'text',
+            text: 'Following the rollout, I conducted usability testing with 5 distinct merchants to validate our assumptions.',
+          },
+          {
+            type: 'text',
+            text: 'Each session was an interview built around a set of actions for the merchant to carry out on the new interface. My job was to observe those actions — where they hesitated, what they reached for first, which steps they skipped — rather than to take their word for how the product felt.',
+          },
+        ],
+      },
+      {
         label: 'Architecting the Dark Mode Experience',
         items: [
           {
@@ -227,7 +239,7 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'The true measure of a redesign is its impact on both the end-user and the internal product team. Following the rollout, I conducted usability testing with 5 distinct merchants to validate our assumptions.',
+            text: 'The true measure of a redesign is its impact on both the end-user and the internal product team.',
           },
           { type: 'subhead', text: 'The Results' },
           {

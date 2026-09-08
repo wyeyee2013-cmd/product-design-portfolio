@@ -146,22 +146,11 @@ function groupItems(items) {
     out.push(item)
   }
 
-  /* a sequence belongs to the point that introduces it, not beside it */
-  const joined = []
-  for (const item of out) {
-    const last = joined[joined.length - 1]
-    if (item.type === 'phases' && last?.type === 'point') {
-      joined[joined.length - 1] = { ...last, type: 'phasedPoint', phases: item.items }
-      continue
-    }
-    joined.push(item)
-  }
-
   /* runs of sibling cards pair up rather than stacking down the left, which
      leaves a section reading as one rhythm instead of three */
   const PAIRS = { point: 'pointGrid', callout: 'calloutGrid' }
   const packed = []
-  for (const item of joined) {
+  for (const item of out) {
     const grid = PAIRS[item.type]
     const last = packed[packed.length - 1]
     if (grid) {
@@ -175,7 +164,7 @@ function groupItems(items) {
   /* A card earns its box by having company. A point alone in a section of
      plain prose is just prose — but one sitting alongside other cards keeps
      its box, or it reads as a gap in the set. */
-  const CARDED = new Set(['calloutGrid', 'feature', 'phasedPoint'])
+  const CARDED = new Set(['calloutGrid', 'feature'])
   const hasCompany = packed.some(
     (i) => CARDED.has(i.type) || (i.type === 'pointGrid' && i.items.length > 1)
   )
@@ -201,16 +190,15 @@ function PointBody({ body }) {
   )
 }
 
-/** A left-to-right sequence on a track: node per step, arrowhead at the end. */
-function PhaseTrack({ items }) {
+/** A run of work in order, on a rail: numbered node per step. */
+function Flow({ items }) {
   return (
-    <ol className={styles.phases}>
-      {items.map((p) => (
-        <li className={styles.phase} key={p.label}>
-          <span className={styles.phaseLabel}>{p.label}</span>
-          <h4>{p.title}</h4>
-          <p className={styles.phaseScope}>{p.scope}</p>
-          <p className={styles.phaseOutcome}>{p.outcome}</p>
+    <ol className={styles.flow}>
+      {items.map((step, i) => (
+        <li className={styles.flowStep} key={step.label}>
+          <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+          <h4>{step.label}</h4>
+          <p>{step.text}</p>
         </li>
       ))}
     </ol>
@@ -428,16 +416,6 @@ function StudyItem({ item }) {
         </div>
       )
 
-    /* a point whose phases belong to it — one card, full width for the track */
-    case 'phasedPoint':
-      return (
-        <div className={`${styles.point} ${styles.pointWide}`}>
-          <h3>{item.title}</h3>
-          <PointBody body={item.body} />
-          <PhaseTrack items={item.phases} />
-        </div>
-      )
-
     /* a lone point: subhead and prose, no box, no number */
     case 'plainPoint':
       return (
@@ -459,11 +437,9 @@ function StudyItem({ item }) {
         </>
       )
 
-    /* a sequence on a progress track — deliberately not a card, so it does not
-       read as two independent options the way the callout pairs do */
-    /* only reached if a sequence stands alone; normally it folds into its point */
-    case 'phases':
-      return <PhaseTrack items={item.items} />
+    /* the run of work in order, on a rail */
+    case 'timeline':
+      return <Flow items={item.items} />
 
     case 'calloutGrid':
       return (
