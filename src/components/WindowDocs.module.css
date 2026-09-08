@@ -1485,11 +1485,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  /* no left padding: the first cell has to start on the document's left edge */
-  padding: 28px 24px 28px 0;
-}
-.metric + .metric {
-  padding-left: 24px;
+  /* symmetric, so no cell's content touches the band's border */
+  padding: 26px 26px;
 }
 .metricValue {
   font-family: var(--font-display);
@@ -1814,10 +1811,24 @@
 /* ---------- diagnosis beside its symptoms ---------- */
 .splitPoint {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
   align-items: start;
-  gap: 24px;
-  margin: 16px 0 0;
+  gap: 32px;
+  margin: 18px 0 0;
+}
+.splitHeading {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.35px;
+  color: #111;
+}
+.splitBody {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 /* the prose is not boxed — it is the section's argument, not one card of many */
 .splitProse h3 {
@@ -1846,11 +1857,23 @@
   gap: 10px;
 }
 .splitCard {
-  padding: 16px 18px;
-  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 14px;
   background: #f7f7f9;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-left: 3px solid var(--study-tint, var(--violet));
+}
+.symptomIcon {
+  flex: none;
+  display: inline-flex;
+  margin-top: 1px;
+  color: var(--study-tint, var(--violet));
+}
+.splitCard b {
+  font-weight: 600;
+  color: #111;
 }
 .splitCard p {
   margin: 0;
@@ -1933,4 +1956,52 @@
   line-height: 1.6;
   letter-spacing: -0.25px;
   color: rgba(18, 18, 18, 0.72);
+}
+
+/* ---------- statement: the section's conclusion, centred ---------- */
+/* the measure rule targets .chapter > .callout, so it needs matching reach */
+.chapter > .callout.statement,
+.statement {
+  max-width: none;
+  margin: 30px 0 8px;
+  padding: 34px 40px 38px;
+  border-radius: 18px;
+  text-align: center;
+}
+.statement .calloutHead {
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.statement .calloutIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--study-tint, var(--violet));
+}
+.statement h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.statement p {
+  margin: 0 auto;
+  max-width: 46ch;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  font-weight: 500;
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.3;
+  letter-spacing: -0.9px;
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .statement {
+    padding: 26px 22px 30px;
+  }
 }

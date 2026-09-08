@@ -7,8 +7,8 @@
  * sequence as the source, with figures sitting where they actually sit:
  *   { type: 'subhead',     text }
  *   { type: 'text',        text }
- *   { type: 'bullets',     items: [] }
- *   { type: 'callout',     title, subtitle?, bullets?, text }
+ *   { type: 'bullets',     items: [] | [{ icon, text }] }  text allows <b>
+ *   { type: 'callout',     title, subtitle?, bullets?, text, variant? }
  *   { type: 'timeline',    items: [{ label, text }] }
  *   { type: 'iaDiagram',   caption }
  *   { type: 'figure',      src, caption }
@@ -332,13 +332,23 @@ export const CASE_STUDIES = {
           {
             type: 'bullets',
             items: [
-              'Manual template-based Excel files that are prone to human errors, inconsistencies, and redundant work, leading to data inaccuracies',
-              'Onboarding is time consuming as it takes 2-3 days or more due to complex data structures and manual validation.',
-              'Internal teams and clients experience friction, reducing overall satisfaction and efficiency.',
+              {
+                icon: 'file',
+                text: '<b>Manual template-based Excel files</b> that are prone to human errors, inconsistencies, and redundant work, leading to data inaccuracies',
+              },
+              {
+                icon: 'clock',
+                text: 'Onboarding is time consuming as it <b>takes 2-3 days</b> or more due to complex data structures and manual validation.',
+              },
+              {
+                icon: 'people',
+                text: 'Internal teams and clients <b>experience friction</b>, reducing overall satisfaction and efficiency.',
+              },
             ],
           },
           {
             type: 'callout',
+            variant: 'statement',
             title: 'The Challenge',
             text: 'Ensuring that both internal teams and clients can complete the onboarding process with minimal manual work, reduced errors, and improved efficiency, leading to a seamless and accurate data collection experience.',
           },
@@ -406,9 +416,21 @@ export const CASE_STUDIES = {
           {
             type: 'resultCards',
             items: [
-              'Onboarding completion time cut by 6 - 7 hours',
-              'Reducing manual data processing tasks by >60% for the onboarding team',
-              'Achieved high satisfaction rate from internal employees and clients',
+              {
+                value: '6-7 hrs',
+                label: 'Saved per onboarding',
+                note: 'Onboarding completion time cut by 6 - 7 hours.',
+              },
+              {
+                value: '>60%',
+                label: 'Less manual processing',
+                note: 'Reducing manual data processing tasks for the onboarding team.',
+              },
+              {
+                icon: '🤝',
+                label: 'High satisfaction rate',
+                note: 'Achieved from internal employees and clients.',
+              },
             ],
           },
         ],
@@ -476,13 +498,23 @@ export const CASE_STUDIES = {
           {
             type: 'bullets',
             items: [
-              "Encountering delays due to insufficient initial filtering, difficulty assessing candidates' levels of experience",
-              'Inadequate feedback mechanisms, hindering effective communication throughout the recruitment process',
-              'Delays in job position approvals and a lack of automation, compromising transparency in the process',
+              {
+                icon: 'filter',
+                text: "Encountering <b>delays due to insufficient initial filtering</b>, difficulty assessing candidates' levels of experience",
+              },
+              {
+                icon: 'message',
+                text: '<b>Inadequate feedback mechanisms</b>, hindering effective communication throughout the recruitment process',
+              },
+              {
+                icon: 'clock',
+                text: '<b>Delays in job position approvals</b> and a lack of automation, compromising transparency in the process',
+              },
             ],
           },
           {
             type: 'callout',
+            variant: 'statement',
             title: 'The Challenge',
             text: 'Ensuring that recruiters are able to complete recruitment processes with minimal number of interactions and efforts, with maximum results in recruiting good candidates',
           },
@@ -645,9 +677,21 @@ export const CASE_STUDIES = {
           {
             type: 'resultCards',
             items: [
-              'Significant time savings by reducing time and effort in manual processes',
-              'Increased diversity in hiring by dispelling human biases',
-              'Achieved high satisfaction rate from employees',
+              {
+                icon: '⏱️',
+                label: 'Significant time savings',
+                note: 'By reducing time and effort in manual processes.',
+              },
+              {
+                icon: '🌍',
+                label: 'Increased diversity in hiring',
+                note: 'By dispelling human biases.',
+              },
+              {
+                icon: '🤝',
+                label: 'High satisfaction rate',
+                note: 'Achieved from employees.',
+              },
             ],
           },
         ],

@@ -151,6 +151,11 @@ function groupItems(items) {
   const PAIRS = { point: 'pointGrid', callout: 'calloutGrid' }
   const packed = []
   for (const item of out) {
+    /* a statement is the section's conclusion — it takes the full width alone */
+    if (item.type === 'callout' && item.variant === 'statement') {
+      packed.push(item)
+      continue
+    }
     const grid = PAIRS[item.type]
     const last = packed[packed.length - 1]
     if (grid) {
@@ -172,6 +177,35 @@ function groupItems(items) {
     item.type === 'pointGrid' && item.items.length === 1 && !hasCompany
       ? { ...item.items[0], type: 'plainPoint' }
       : item
+  )
+}
+
+/* Line icons for the symptom cards. Drawn here rather than exported, so they
+   inherit --study-tint and stay crisp; keyed by name from the case-study data. */
+const SYMPTOM_ICONS = {
+  file: 'M6 2.6h6.4L17 7.2v10.2H6zM12.2 2.8v4.6h4.6',
+  clock: 'M11.5 4.4a7.1 7.1 0 1 0 0 14.2 7.1 7.1 0 0 0 0-14.2zM11.5 8v3.9l2.9 1.8',
+  people: 'M8.4 11.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3.6 18.2c0-2.6 2.1-4.3 4.8-4.3s4.8 1.7 4.8 4.3M15 6.2a2.7 2.7 0 0 1 0 5.3M16.6 13.6c1.9.4 3.2 1.7 3.2 3.6',
+  filter: 'M4 5.4h15L13 12v6l-4-2v-4z',
+  message: 'M4.2 6.2h14.6v9.2h-8L6 18.4v-3H4.2z',
+}
+
+function SymptomIcon({ name }) {
+  const d = SYMPTOM_ICONS[name]
+  if (!d) return null
+  return (
+    <span className={styles.symptomIcon} aria-hidden="true">
+      <svg viewBox="0 0 23 23" width="22" height="22">
+        <path
+          d={d}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
   )
 }
 
@@ -206,8 +240,12 @@ function Flow({ items }) {
 }
 
 function Callout({ item }) {
+  /* a statement stands on its own, centred, with the body at display size —
+     used where the callout is the section's conclusion rather than an aside */
+  const statement = item.variant === 'statement'
+
   return (
-    <div className={styles.callout}>
+    <div className={`${styles.callout} ${statement ? styles.statement : ''}`}>
       <div className={styles.calloutHead}>
         {/* a target, tinted per study from --study-tint */}
         <span className={styles.calloutIcon} aria-hidden="true">
@@ -375,9 +413,10 @@ function StudyItem({ item }) {
     case 'bullets':
       return (
         <ul className={styles.chapterList}>
-          {item.items.map((b) => (
-            <li key={b.slice(0, 28)}>{b}</li>
-          ))}
+          {item.items.map((b) => {
+            const text = typeof b === 'string' ? b : b.text
+            return <li key={text.slice(0, 28)} dangerouslySetInnerHTML={{ __html: safeRich(text) }} />
+          })}
         </ul>
       )
 
@@ -398,20 +437,27 @@ function StudyItem({ item }) {
         </div>
       )
 
-    /* the diagnosis reads as prose, its symptoms as cards stacked alongside */
+    /* the heading holds the left column; the diagnosis and the symptoms it
+       produced run down the right, as in the Pantas reference */
     case 'splitPoint':
       return (
         <div className={styles.splitPoint}>
-          <div className={styles.splitProse}>
-            <h3>{item.title}</h3>
-            <PointBody body={item.body} />
-          </div>
-          <div className={styles.splitCards}>
-            {item.cards.map((c) => (
-              <div className={styles.splitCard} key={c.slice(0, 28)}>
-                <p>{c}</p>
-              </div>
-            ))}
+          <h3 className={styles.splitHeading}>{item.title}</h3>
+          <div className={styles.splitBody}>
+            <div className={styles.splitProse}>
+              <PointBody body={item.body} />
+            </div>
+            <div className={styles.splitCards}>
+              {item.cards.map((c) => {
+                const text = typeof c === 'string' ? c : c.text
+                return (
+                  <div className={styles.splitCard} key={text.slice(0, 28)}>
+                    {typeof c !== 'string' && <SymptomIcon name={c.icon} />}
+                    <p dangerouslySetInnerHTML={{ __html: safeRich(text) }} />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       )
@@ -440,6 +486,10 @@ function StudyItem({ item }) {
     /* the run of work in order, on a rail */
     case 'timeline':
       return <Flow items={item.items} />
+
+    /* a statement callout, left unpaired by groupItems */
+    case 'callout':
+      return <Callout item={item} />
 
     case 'calloutGrid':
       return (
