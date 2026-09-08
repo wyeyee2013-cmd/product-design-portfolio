@@ -10,6 +10,7 @@
  *   { type: 'bullets',     items: [] }
  *   { type: 'callout',     title, subtitle?, bullets?, text }
  *   { type: 'phases',      items: [{ label, title, scope, outcome }] }
+ *   { type: 'iaDiagram',   caption }
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
  *   { type: 'feature',     title, text, figure: { src | srcs, caption, dark? } }
@@ -77,6 +78,10 @@ export const CASE_STUDIES = {
           {
             type: 'text',
             text: 'I discovered over 10 undocumented, hidden flows buried behind non-descriptive, generic icons. The cognitive load for merchants was massive. We consolidated these fragmented paths into a streamlined, intuitive information architecture, replacing cryptic iconography with clear, predictable navigation patterns.',
+          },
+          {
+            type: 'iaDiagram',
+            caption: '01 Spaghetti vs scalable — the tangle the audit mapped, and the architecture that replaced it',
           },
         ],
       },

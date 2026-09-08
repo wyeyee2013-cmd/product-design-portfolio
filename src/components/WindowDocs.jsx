@@ -185,6 +185,112 @@ function splitCaption(caption = '') {
   return m ? { n: m[1], rest: m[2] } : { n: null, rest: caption }
 }
 
+/* ---- Spaghetti vs Scalable ------------------------------------------------
+   A schematic, not a map of the real screens: the left side shows the shape
+   of the problem the audit found (many entry points, tangled paths, generic
+   icons that name nothing), the right the shape of what replaced it. The area
+   labels are the ones visible in the shipped navigation. Replace the whole
+   item with a `figure` if a proper diagram gets exported from Figma. */
+const TANGLE = [
+  [62, 96], [152, 68], [250, 100], [350, 72], [412, 136],
+  [72, 176], [162, 152], [272, 184], [382, 206],
+  [112, 256], [232, 266], [342, 296], [152, 336], [272, 344],
+]
+const TANGLE_EDGES = [
+  [0, 2], [0, 6], [1, 7], [1, 10], [2, 8], [2, 5], [3, 7], [3, 12],
+  [4, 10], [5, 11], [6, 13], [7, 12], [8, 9], [9, 13], [10, 3], [11, 1], [12, 4],
+]
+const AREAS = ['Tables', 'Ordering', 'Payment', 'Report', 'Settings']
+
+/** A crossing arc between two nodes, bowed alternately so paths overlap. */
+function arc([x1, y1], [x2, y2], i) {
+  const mx = (x1 + x2) / 2
+  const my = (y1 + y2) / 2
+  const bow = (i % 2 ? 1 : -1) * (26 + (i % 3) * 16)
+  const dx = x2 - x1
+  const dy = y2 - y1
+  const len = Math.hypot(dx, dy) || 1
+  return `M${x1} ${y1} Q${mx - (dy / len) * bow} ${my + (dx / len) * bow} ${x2} ${y2}`
+}
+
+function IaDiagram({ item }) {
+  return (
+    <figure className={styles.diagram}>
+      <svg viewBox="0 0 1000 400" className={styles.diagramSvg} role="img" aria-label={item.caption}>
+        {/* ---- legacy ---- */}
+        <rect className={styles.diagramPanel} x="8" y="8" width="462" height="384" rx="14" />
+        <text className={styles.diagramTagBad} x="30" y="42">
+          LEGACY
+        </text>
+        <text className={styles.diagramNote} x="30" y="372">
+          10+ undocumented flows behind generic icons
+        </text>
+        <g className={styles.tangleEdge}>
+          {TANGLE_EDGES.map(([a, b], i) => (
+            <path d={arc(TANGLE[a], TANGLE[b], i)} key={`e-${a}-${b}`} />
+          ))}
+        </g>
+        {TANGLE.map(([x, y]) => (
+          <g key={`n-${x}-${y}`}>
+            <rect className={styles.tangleNode} x={x - 10} y={y - 10} width="20" height="20" rx="6" />
+            <text className={styles.tangleGlyph} x={x} y={y + 4}>
+              ?
+            </text>
+          </g>
+        ))}
+
+        {/* ---- revamped ---- */}
+        <rect className={styles.diagramPanel} x="530" y="8" width="462" height="384" rx="14" />
+        <text className={styles.diagramTagGood} x="552" y="42">
+          REVAMPED
+        </text>
+        <text className={styles.diagramNote} x="552" y="372">
+          One predictable path to every area
+        </text>
+        <g className={styles.cleanEdge}>
+          <path d="M761 134 V166" />
+          <path d="M600 166 H922" />
+          {[600, 681, 761, 842, 922].map((x) => (
+            <path d={`M${x} 166 V196`} key={`d-${x}`} />
+          ))}
+          {/* ticks down to the child rows, so those read as nested rather
+              than as loose marks floating under the tree */}
+          {[600, 681, 761, 842, 922].map((x) => (
+            <path d={`M${x} 230 V254`} key={`l-${x}`} />
+          ))}
+        </g>
+        <rect className={styles.cleanRoot} x="706" y="100" width="110" height="34" rx="9" />
+        <text className={styles.cleanRootLabel} x="761" y="122">
+          POS
+        </text>
+        {AREAS.map((label, i) => {
+          const x = [600, 681, 761, 842, 922][i]
+          return (
+            <g key={label}>
+              <rect className={styles.cleanNode} x={x - 38} y="196" width="76" height="34" rx="9" />
+              <text className={styles.cleanLabel} x={x} y="218">
+                {label}
+              </text>
+              {[0, 1].map((k) => (
+                <rect
+                  className={styles.cleanLeaf}
+                  x={x - 26 + k * 28}
+                  y="256"
+                  width="24"
+                  height="8"
+                  rx="4"
+                  key={k}
+                />
+              ))}
+            </g>
+          )
+        })}
+      </svg>
+      <figcaption>{item.caption}</figcaption>
+    </figure>
+  )
+}
+
 /** Loose enough that '&' and 'and' count as the same word. */
 const sameWords = (a = '', b = '') => {
   const norm = (t) =>
@@ -326,6 +432,9 @@ function StudyItem({ item }) {
 
     case 'compare':
       return <CompareFigure item={item} />
+
+    case 'iaDiagram':
+      return <IaDiagram item={item} />
 
     /* items are either a plain sentence or { icon, value, label, note } — the
        object form gets the display-number treatment, the string form the

@@ -1812,3 +1812,96 @@
     left: -26px;
   }
 }
+
+/* ---------- information-architecture diagram ---------- */
+.diagram {
+  margin: 24px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.diagramSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.diagramPanel {
+  fill: #faf9fb;
+  stroke: rgba(0, 0, 0, 0.07);
+}
+.diagramTagBad,
+.diagramTagGood {
+  font-family: var(--font-tag);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.diagramTagBad {
+  fill: #c2453f;
+}
+.diagramTagGood {
+  fill: var(--violet);
+}
+.diagramNote {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  fill: #9a9a9a;
+}
+
+/* the tangle */
+.tangleEdge path {
+  fill: none;
+  stroke: rgba(194, 69, 63, 0.42);
+  stroke-width: 1.4;
+}
+.tangleNode {
+  fill: #fff;
+  stroke: rgba(194, 69, 63, 0.45);
+  stroke-width: 1.4;
+}
+.tangleGlyph {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  fill: #c2453f;
+  text-anchor: middle;
+}
+
+/* the clean tree */
+.cleanEdge path {
+  fill: none;
+  stroke: rgba(129, 104, 253, 0.45);
+  stroke-width: 1.6;
+}
+.cleanRoot {
+  fill: var(--violet);
+}
+.cleanRootLabel {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  fill: #fff;
+  text-anchor: middle;
+}
+.cleanNode {
+  fill: #fff;
+  stroke: rgba(129, 104, 253, 0.5);
+  stroke-width: 1.4;
+}
+.cleanLabel {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  fill: #111;
+  text-anchor: middle;
+}
+.cleanLeaf {
+  fill: rgba(129, 104, 253, 0.22);
+}
+
+.diagram figcaption {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  letter-spacing: -0.1px;
+  color: #9a9a9a;
+}
