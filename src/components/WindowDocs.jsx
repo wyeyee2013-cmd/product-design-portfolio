@@ -138,11 +138,22 @@ function groupItems(items) {
     out.push(item)
   }
 
+  /* a sequence belongs to the point that introduces it, not beside it */
+  const joined = []
+  for (const item of out) {
+    const last = joined[joined.length - 1]
+    if (item.type === 'phases' && last?.type === 'point') {
+      joined[joined.length - 1] = { ...last, type: 'phasedPoint', phases: item.items }
+      continue
+    }
+    joined.push(item)
+  }
+
   /* runs of sibling cards pair up rather than stacking down the left, which
      leaves a section reading as one rhythm instead of three */
   const PAIRS = { point: 'pointGrid', callout: 'calloutGrid' }
   const packed = []
-  for (const item of out) {
+  for (const item of joined) {
     const grid = PAIRS[item.type]
     const last = packed[packed.length - 1]
     if (grid) {
@@ -153,12 +164,48 @@ function groupItems(items) {
     packed.push(item)
   }
 
-  /* a card earns its box by sitting beside a sibling. A lone point is just a
-     passage of prose — boxing and numbering it only adds furniture. */
+  /* A card earns its box by having company. A point alone in a section of
+     plain prose is just prose — but one sitting alongside other cards keeps
+     its box, or it reads as a gap in the set. */
+  const CARDED = new Set(['calloutGrid', 'feature', 'phasedPoint'])
+  const hasCompany = packed.some(
+    (i) => CARDED.has(i.type) || (i.type === 'pointGrid' && i.items.length > 1)
+  )
   return packed.map((item) =>
-    item.type === 'pointGrid' && item.items.length === 1
+    item.type === 'pointGrid' && item.items.length === 1 && !hasCompany
       ? { ...item.items[0], type: 'plainPoint' }
       : item
+  )
+}
+
+/** The paragraphs and lists that hang off a point. */
+function PointBody({ body }) {
+  return body.map((b, i) =>
+    b.type === 'bullets' ? (
+      <ul key={`b-${i}`}>
+        {b.items.map((li) => (
+          <li key={li.slice(0, 28)}>{li}</li>
+        ))}
+      </ul>
+    ) : (
+      <p key={`p-${i}`}>{b.text}</p>
+    )
+  )
+}
+
+/** A left-to-right sequence on a track: node per step, arrowhead at the end. */
+function PhaseTrack({ items }) {
+  return (
+    <ol className={styles.phases}>
+      {items.map((p) => (
+        <li className={styles.phase} key={p.label}>
+          <span className={styles.phaseLabel}>{p.label}</span>
+          <h4>{p.title}</h4>
+          <p className={styles.phaseScope}>{p.scope}</p>
+          <p className={styles.phaseOutcome}>{p.outcome}</p>
+        </li>
+      ))}
+    </ol>
   )
 }
 
@@ -235,13 +282,17 @@ function IaDiagram({ item }) {
             <path d={arc(TANGLE[a], TANGLE[b], i)} key={`e-${a}-${b}`} />
           ))}
         </g>
+        {/* deliberately featureless — the point is that they named nothing */}
         {TANGLE.map(([x, y]) => (
-          <g key={`n-${x}-${y}`}>
-            <rect className={styles.tangleNode} x={x - 10} y={y - 10} width="20" height="20" rx="6" />
-            <text className={styles.tangleGlyph} x={x} y={y + 4}>
-              ?
-            </text>
-          </g>
+          <rect
+            className={styles.tangleNode}
+            x={x - 9}
+            y={y - 9}
+            width="18"
+            height="18"
+            rx="4"
+            key={`n-${x}-${y}`}
+          />
         ))}
 
         {/* ---- revamped ---- */}
@@ -331,21 +382,24 @@ function StudyItem({ item }) {
         <div className={styles.pointGrid}>
           {item.items.map((point, n) => (
             <div className={styles.point} key={point.title}>
-              <span className={styles.pointNum}>{String(n + 1).padStart(2, '0')}</span>
-              <h3>{point.title}</h3>
-              {point.body.map((b, i) =>
-                b.type === 'bullets' ? (
-                  <ul key={`b-${i}`}>
-                    {b.items.map((li) => (
-                      <li key={li.slice(0, 28)}>{li}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p key={`p-${i}`}>{b.text}</p>
-                )
+              {/* a number only means something when there is a sibling to count against */}
+              {item.items.length > 1 && (
+                <span className={styles.pointNum}>{String(n + 1).padStart(2, '0')}</span>
               )}
+              <h3>{point.title}</h3>
+              <PointBody body={point.body} />
             </div>
           ))}
+        </div>
+      )
+
+    /* a point whose phases belong to it — one card, full width for the track */
+    case 'phasedPoint':
+      return (
+        <div className={`${styles.point} ${styles.pointWide}`}>
+          <h3>{item.title}</h3>
+          <PointBody body={item.body} />
+          <PhaseTrack items={item.phases} />
         </div>
       )
 
@@ -372,19 +426,9 @@ function StudyItem({ item }) {
 
     /* a sequence on a progress track — deliberately not a card, so it does not
        read as two independent options the way the callout pairs do */
+    /* only reached if a sequence stands alone; normally it folds into its point */
     case 'phases':
-      return (
-        <ol className={styles.phases}>
-          {item.items.map((p) => (
-            <li className={styles.phase} key={p.label}>
-              <span className={styles.phaseLabel}>{p.label}</span>
-              <h4>{p.title}</h4>
-              <p className={styles.phaseScope}>{p.scope}</p>
-              <p className={styles.phaseOutcome}>{p.outcome}</p>
-            </li>
-          ))}
-        </ol>
-      )
+      return <PhaseTrack items={item.items} />
 
     case 'calloutGrid':
       return (
