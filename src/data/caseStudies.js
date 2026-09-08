@@ -19,6 +19,183 @@
  */
 
 export const CASE_STUDIES = {
+  'feedme-pos': {
+    sector: 'Food & Beverage Technology',
+    title: 'Revamping the Feedme POS',
+    tagline: 'From legacy chaos to a scalable, defensible ecosystem',
+    credits: [
+      {
+        label: 'My Role',
+        values: ['Product Designer - UX Audit, UI Design, Design Systems, Usability Testing'],
+      },
+      {
+        label: 'Team',
+        values: ['Lead Product Designer', 'Senior Product Designer'],
+      },
+      { label: 'Platform', values: ['POS (Tablet & Mobile iOS/Android)'] },
+      { label: 'Timeline', values: ['TBC'] },
+    ],
+    sections: [
+      {
+        label: 'The Overview',
+        items: [
+          {
+            type: 'text',
+            text: 'The legacy Feedme POS system (tablet and mobile) was suffering from technical debt, brand misalignment, and an interface that was becoming too easy for competitors to clone. Collaborating alongside the Lead and Senior Product Designer, I spearheaded the UX audit and UI redesign. We established the foundational design system for the Feedme brand, overhauled the architecture, and delivered a phased rollout that increased task efficiency by 10% while significantly accelerating engineering handoff.',
+          },
+        ],
+      },
+      {
+        label: 'The Audit',
+        lead: 'UX archaeology & uncovering hidden flows',
+        items: [
+          {
+            type: 'text',
+            text: 'The legacy system lacked documentation and was riddled with usability dead-ends. We could not simply build a new UI on top of broken logic.',
+          },
+          { type: 'subhead', text: 'The Click-Through Audit' },
+          {
+            type: 'text',
+            text: 'I initiated a massive, manual click-through audit of the existing product, pairing directly with frontend and backend engineers to map out the actual (not assumed) user journeys.',
+          },
+          { type: 'subhead', text: 'Taming the Chaos' },
+          {
+            type: 'text',
+            text: 'I discovered over 10 undocumented, hidden flows buried behind non-descriptive, generic icons. The cognitive load for merchants was massive. We consolidated these fragmented paths into a streamlined, intuitive information architecture, replacing cryptic iconography with clear, predictable navigation patterns.',
+          },
+        ],
+      },
+      {
+        label: 'The Defensive Moat',
+        lead: 'Brand alignment & visual strategy',
+        items: [
+          {
+            type: 'text',
+            text: 'The previous iteration of the POS was a generic blue interface that completely missed Feedme’s vibrant orange brand identity. Worse, its generic nature made it an easy target for copycats. We needed a UI that was aggressively “Feedme.”',
+          },
+          { type: 'subhead', text: 'Brand Translation' },
+          {
+            type: 'text',
+            text: 'I led the transition to our new visual identity, introducing bespoke typography and highly customized data visualizations that elevated the product from a basic utility to a premium merchant experience.',
+          },
+          { type: 'subhead', text: 'Operationalizing Craft' },
+          {
+            type: 'text',
+            text: 'To create a defensible visual moat, we needed rich, proprietary illustrations and icons. Recognizing the bandwidth constraints on our graphic designers, I engineered an AI-assisted generation workflow. This empowered the product design team to independently generate and maintain on-brand icons and illustrations, scaling our visual quality without bottlenecking the graphics team.',
+          },
+        ],
+      },
+      {
+        label: 'Execution',
+        lead: 'Architecting the base & phased rollout',
+        items: [
+          {
+            type: 'text',
+            text: 'Building a design system while simultaneously redesigning the core product is akin to changing a tire on a moving car. To manage risk, we approached this systematically.',
+          },
+          { type: 'subhead', text: 'Establishing the Feedme Foundation' },
+          {
+            type: 'text',
+            text: 'In close collaboration with the Lead and Senior PD, I helped architect the core design system that now powers the entire Feedme ecosystem. We established base design tokens and a robust component library, moving the engineering team away from hard-coded legacy styles.',
+          },
+          { type: 'subhead', text: 'Strategic Phased Delivery' },
+          {
+            type: 'text',
+            text: 'To ensure we didn’t disrupt our merchants’ daily operations, I advocated for a phased rollout strategy:',
+          },
+          {
+            type: 'callout',
+            title: 'Phase 1: Core Operations',
+            subtitle: 'Ordering, Payments, Transactions, and Reporting.',
+            text: 'Beta-tested with a cohort of live merchants to validate the new architecture.',
+          },
+          {
+            type: 'callout',
+            title: 'Phase 2: Secondary Features',
+            subtitle: 'Inventory Management, Membership, and Settings.',
+            text: 'Safely deployed once the core foundation was proven stable.',
+          },
+        ],
+      },
+      {
+        label: 'The Final Interface',
+        lead: 'A unified ecosystem',
+        items: [
+          {
+            type: 'text',
+            text: 'The culmination of the UX audit and structural overhaul resulted in a highly functional, brand-aligned interface designed for speed and low cognitive load.',
+          },
+          {
+            type: 'feature',
+            title: 'Spatial Table Management',
+            text: 'Visualized a clear, scannable floor plan using standardized, color-coded tokens (Available, Reserved, Occupied) to replace cryptic legacy icons, allowing staff to read the room at a glance.',
+          },
+          {
+            type: 'feature',
+            title: 'Streamlined POS & Ordering',
+            text: 'Redesigned the menu architecture with rich item imagery and a persistent, clear billing summary. We prioritized tap-targets and categorized navigation to ensure cashiers could process orders without friction.',
+          },
+          {
+            type: 'feature',
+            title: 'Frictionless Payment Processing',
+            text: 'Introduced a split-pane layout for checkout, separating the itemized bill from distinct, oversized payment method cards tailored for high-speed, high-stress environments.',
+          },
+          {
+            type: 'feature',
+            title: 'Actionable Reporting Dashboards',
+            text: 'Replaced generic charts with customized data visualizations utilizing the Feedme palette, giving store managers immediate, readable insights into daily sales and top products.',
+          },
+          {
+            type: 'feature',
+            title: 'Defensible Settings & Onboarding',
+            text: 'Integrated the proprietary, AI-generated illustrations directly into complex workflows (like configuring Operation Modes), turning a traditionally dry settings page into a premium, highly defensible brand experience.',
+          },
+        ],
+      },
+      {
+        label: 'Architecting the Dark Mode Experience',
+        items: [
+          {
+            type: 'text',
+            text: 'Because the POS system is utilized in brightly lit cafes as well as dimly lit bars, a robust Dark Mode was a strict operational requirement, not just an aesthetic add-on.',
+          },
+          { type: 'subhead', text: 'Token-Driven Inversion' },
+          {
+            type: 'text',
+            text: 'Instead of manually recoloring hundreds of screens, I built the foundational component library using semantic color tokens. This allowed us to map global variables that seamlessly inverted the UI for low-light environments without breaking the visual hierarchy.',
+          },
+          { type: 'subhead', text: 'Preserving Brand Identity' },
+          {
+            type: 'text',
+            text: 'Designed the dark theme to retain Feedme’s vibrant orange accent colors, ensuring the brand identity remained recognizable even when the primary backgrounds shifted to deep charcoal and black.',
+          },
+        ],
+      },
+      {
+        label: 'Measurable Impact & Senior Reflections',
+        items: [
+          {
+            type: 'text',
+            text: 'The true measure of a redesign is its impact on both the end-user and the internal product team. Following the rollout, I conducted usability testing with 5 distinct merchants to validate our assumptions.',
+          },
+          { type: 'subhead', text: 'The Results' },
+          {
+            type: 'resultCards',
+            items: [
+              '🚀 10% Faster Task Completion — Merchants navigated the new, decluttered UI significantly faster, proving our structural overhaul worked.',
+              '⚡ 30% Faster Engineering Handoff — By establishing the foundational component library and tokens, front-end implementation velocity skyrocketed.',
+              '🤝 Executive Alignment — Received overwhelmingly positive feedback from leadership for successfully aligning the product with the new market strategy and fending off copycats.',
+            ],
+          },
+          { type: 'subhead', text: 'The Retrospective: The 80% Compromise' },
+          {
+            type: 'text',
+            text: 'Perfection is the enemy of shipping. As the launch date approached, I had to make a calculated decision regarding visual polish. We shipped the UI at about 80% visual perfection. Had we pushed for that final 20% of pixel-perfect polish, we would have missed our strategic launch window. By prioritizing functional stability and the core token architecture over minor visual tweaks, we delivered immediate value to the merchants on time, scheduling the remaining polish as fast-follows in subsequent sprints.',
+          },
+        ],
+      },
+    ],
+  },
   pantas: {
     sector: 'Environmental Services',
     title: 'Pantas Organisation Revamp',

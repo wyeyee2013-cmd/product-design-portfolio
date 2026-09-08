@@ -65,7 +65,6 @@ const ALL_PROJECTS = [
       'The hardest surface I design for: used one-handed, at speed, by staff trained once. Every extra tap costs real seconds during a rush.',
     thumb: '/assets/pos-cover.png',
     gallery: [],
-    comingSoon: true,
     tint: '#f0803c',
     row: 0,
     rotate: -3.12,

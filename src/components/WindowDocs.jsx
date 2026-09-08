@@ -93,20 +93,23 @@ function StudyItem({ item }) {
         <div className={styles.feature}>
           <h3>{item.title}</h3>
           <p>{item.text}</p>
-          <figure
-            className={`${styles.featureFigure} ${item.figure.dark ? styles.figureOnDark : ''}`}
-          >
-            {item.figure.srcs ? (
-              <div className={styles.figureGrid}>
-                {item.figure.srcs.map((src) => (
-                  <img src={src} alt="" loading="lazy" key={src} />
-                ))}
-              </div>
-            ) : (
-              <img src={item.figure.src} alt={item.figure.caption} loading="lazy" />
-            )}
-            <figcaption>{item.figure.caption}</figcaption>
-          </figure>
+          {/* the figure is optional so copy can land before the screens do */}
+          {item.figure && (
+            <figure
+              className={`${styles.featureFigure} ${item.figure.dark ? styles.figureOnDark : ''}`}
+            >
+              {item.figure.srcs ? (
+                <div className={styles.figureGrid}>
+                  {item.figure.srcs.map((src) => (
+                    <img src={src} alt="" loading="lazy" key={src} />
+                  ))}
+                </div>
+              ) : (
+                <img src={item.figure.src} alt={item.figure.caption} loading="lazy" />
+              )}
+              <figcaption>{item.figure.caption}</figcaption>
+            </figure>
+          )}
         </div>
       )
 
