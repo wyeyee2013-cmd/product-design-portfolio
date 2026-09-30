@@ -9,7 +9,8 @@
  *   { type: 'text',        text }
  *   { type: 'bullets',     items: [] | [{ icon, text }] }  text allows <b>
  *   { type: 'callout',     title, subtitle?, bullets?, text, variant? }
- *   { type: 'timeline',    items: [{ label, text }] }
+ *   { type: 'timeline',    items: [{ label, text }] }           a run of work, down a rail
+ *   { type: 'stepFlow',    items: [{ label, text | body: [] }] } a process, read across
  *   { type: 'personas',    items: [{ icon, title, text }] }
  *   { type: 'journey',     title, intro, items: [{ label, mood, bullets, note }] }
  *   { type: 'iaDiagram',   caption }
@@ -95,45 +96,39 @@ export const CASE_STUDIES = {
         label: 'The Discovery',
         lead: 'Understanding the problem before defining the solution',
         items: [
-          { type: 'subhead', text: 'Pain Point Discovery' },
           {
-            type: 'text',
-            text: 'We began by identifying the friction merchants experience when planning their workforce.',
-          },
-          {
-            type: 'text',
-            text: 'We gathered examples of how merchants currently approached scheduling, looking across different operational contexts rather than assuming that one restaurant’s workflow represented the entire market.',
-          },
-          {
-            type: 'text',
-            text: 'This gave us an initial set of pain points and assumptions to investigate.',
-          },
-          { type: 'subhead', text: 'Validating the Pain Points' },
-          {
-            type: 'text',
-            text: 'We then validated whether these pain points were actually meaningful to merchants.',
-          },
-          {
-            type: 'text',
-            text: 'This helped us separate genuine operational problems from assumptions that might simply make sense from an internal product perspective.',
-          },
-          { type: 'subhead', text: 'Event Storming' },
-          {
-            type: 'text',
-            text: 'With the problem space clearer, we used event storming to map the scheduling process and understand the different events, actions and dependencies involved.',
-          },
-          {
-            type: 'text',
-            text: 'This gave the team a shared view of the scheduling journey and helped us identify where the product needed to intervene.',
-          },
-          { type: 'subhead', text: 'Defining the Product Goal' },
-          {
-            type: 'text',
-            text: 'From the discovery work, we established the initial problem statement and product goal.',
-          },
-          {
-            type: 'text',
-            text: 'The challenge was no longer simply: “How do we build a scheduling tool?” It became the question below.',
+            type: 'stepFlow',
+            items: [
+              {
+                label: 'Pain Point Discovery',
+                body: [
+                  'We began by identifying the friction merchants experience when planning their workforce.',
+                  'We gathered examples of how merchants currently approached scheduling, looking across different operational contexts rather than assuming that one restaurant’s workflow represented the entire market.',
+                  'This gave us an initial set of pain points and assumptions to investigate.',
+                ],
+              },
+              {
+                label: 'Validating the Pain Points',
+                body: [
+                  'We then validated whether these pain points were actually meaningful to merchants.',
+                  'This helped us separate genuine operational problems from assumptions that might simply make sense from an internal product perspective.',
+                ],
+              },
+              {
+                label: 'Event Storming',
+                body: [
+                  'With the problem space clearer, we used event storming to map the scheduling process and understand the different events, actions and dependencies involved.',
+                  'This gave the team a shared view of the scheduling journey and helped us identify where the product needed to intervene.',
+                ],
+              },
+              {
+                label: 'Defining the Product Goal',
+                body: [
+                  'From the discovery work, we established the initial problem statement and product goal.',
+                  'The challenge was no longer simply: “How do we build a scheduling tool?” It became the question below.',
+                ],
+              },
+            ],
           },
           {
             type: 'figure',
@@ -207,30 +202,30 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'Based on our discovery, we structured the initial scheduling experience around five core stages.',
           },
-          { type: 'subhead', text: 'First Week Onboarding' },
           {
-            type: 'text',
-            text: 'Guide operators through setting up their first scheduling week instead of dropping them into an empty scheduling interface.',
-          },
-          { type: 'subhead', text: 'Define Demand' },
-          {
-            type: 'text',
-            text: 'Operators define staffing requirements based on time ranges and positions. This establishes how many people are required and where before assigning individual employees.',
-          },
-          { type: 'subhead', text: 'Auto Scheduling' },
-          {
-            type: 'text',
-            text: 'Use the defined demand and available employee information to generate a proposed schedule. The intention was to reduce the amount of repetitive manual scheduling work.',
-          },
-          { type: 'subhead', text: 'Review and Publish' },
-          {
-            type: 'text',
-            text: 'Give operators a clear point to review the generated schedule before publishing it to their employees.',
-          },
-          { type: 'subhead', text: 'Copy to Next Week' },
-          {
-            type: 'text',
-            text: 'Allow operators to reuse an existing schedule rather than rebuilding the same structure every week. This was particularly important because scheduling is a recurring operational task.',
+            type: 'stepFlow',
+            items: [
+              {
+                label: 'First Week Onboarding',
+                text: 'Guide operators through setting up their first scheduling week instead of dropping them into an empty scheduling interface.',
+              },
+              {
+                label: 'Define Demand',
+                text: 'Operators define staffing requirements based on time ranges and positions. This establishes how many people are required and where before assigning individual employees.',
+              },
+              {
+                label: 'Auto Scheduling',
+                text: 'Use the defined demand and available employee information to generate a proposed schedule. The intention was to reduce the amount of repetitive manual scheduling work.',
+              },
+              {
+                label: 'Review and Publish',
+                text: 'Give operators a clear point to review the generated schedule before publishing it to their employees.',
+              },
+              {
+                label: 'Copy to Next Week',
+                text: 'Allow operators to reuse an existing schedule rather than rebuilding the same structure every week. This was particularly important because scheduling is a recurring operational task.',
+              },
+            ],
           },
           {
             type: 'figure',
@@ -270,12 +265,10 @@ export const CASE_STUDIES = {
             caption:
               '04 The scheduling samples we collected, from a small restaurant to a multi outlet operator',
           },
-        ],
-      },
-      {
-        label: 'The Reality Check',
-        lead: 'The flow worked. The mental model did not work well enough.',
-        items: [
+          {
+            type: 'text',
+            text: 'The flow worked. The mental model did not work well enough.',
+          },
           {
             type: 'text',
             text: 'The prototype allowed merchants to move through the scheduling process.',
@@ -348,12 +341,9 @@ export const CASE_STUDIES = {
             title: 'What Testing Challenged',
             text: 'There isn’t one “correct” way to schedule a restaurant. The product therefore needed to provide structure without becoming unnecessarily rigid.',
           },
-        ],
-      },
-      {
-        label: 'The Pivot',
-        lead: 'From designing the perfect workflow to designing a flexible foundation',
-        items: [
+          /* the pivot: what testing changed, in the same section as what it
+             taught us, so the insight and the response are read together */
+          { type: 'subhead', text: 'From designing the perfect workflow to designing a flexible foundation' },
           {
             type: 'text',
             text: 'The usability testing changed how we approached the first version.',
@@ -522,49 +512,6 @@ export const CASE_STUDIES = {
             title: 'AI Assisted Scheduling',
             text: 'A future capability built around historical scheduling data, intentionally deferred until the foundational workflow is mature.',
             figure: { src: '/assets/hrm-12-ai-scheduling.png', caption: '06 AI Assisted Scheduling' },
-          },
-        ],
-      },
-      {
-        label: 'What We Established',
-        lead: 'A validated foundation for a new product',
-        items: [
-          {
-            type: 'text',
-            text: 'Because this was a 0 to 1 initiative, the success of the project wasn’t simply about shipping a collection of screens.',
-          },
-          {
-            type: 'text',
-            text: 'The more important outcome was reducing uncertainty around what the scheduling product needed to be.',
-          },
-          {
-            type: 'text',
-            text: 'Through discovery, event storming, rapid prototyping and merchant testing, we established:',
-          },
-          { type: 'subhead', text: 'A clearer product model' },
-          {
-            type: 'text',
-            text: 'We identified the fundamental stages required to take a merchant from an empty schedule to a published weekly schedule.',
-          },
-          { type: 'subhead', text: 'Validated assumptions' },
-          {
-            type: 'text',
-            text: 'Testing with three merchants revealed that our initial mental model and terminology were not intuitive enough.',
-          },
-          { type: 'subhead', text: 'A more flexible direction' },
-          {
-            type: 'text',
-            text: 'We recognized that merchants have different scheduling practices and designed the product direction around flexibility rather than assuming one universal workflow.',
-          },
-          { type: 'subhead', text: 'A foundation for AI' },
-          {
-            type: 'text',
-            text: 'We identified where historical data could eventually make scheduling more intelligent without compromising the usability of the foundational experience.',
-          },
-          { type: 'subhead', text: 'A scalable design foundation' },
-          {
-            type: 'text',
-            text: 'The final interface was brought into the existing design system, with my Claude orchestrator accelerating the transition from exploratory UI to system compliant components.',
           },
         ],
       },

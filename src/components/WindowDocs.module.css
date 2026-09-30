@@ -1958,6 +1958,100 @@
   color: rgba(18, 18, 18, 0.72);
 }
 
+/* ---------- step flow: the same process, read across ---------- */
+.stepFlow {
+  list-style: none;
+  margin: 26px 0 10px;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  column-gap: 24px;
+  align-items: start;
+}
+.stepFlowItem {
+  position: relative;
+  padding-top: 28px;
+}
+/* one rail segment per step, bridging the gap to the next, so the line reads
+   as continuous across the row but breaks cleanly when the flow stacks */
+.stepFlowItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: -24px;
+  top: 5px;
+  height: 2px;
+  background: var(--study-tint, var(--violet));
+  opacity: 0.3;
+}
+/* the rail stops at the last node rather than running past it: the segment
+   before it already bridges the gap, so this one has nothing left to draw */
+.stepFlowItem:last-child::before {
+  display: none;
+}
+.stepFlowItem::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--study-tint, var(--violet));
+  box-shadow: 0 0 0 4px #fff;
+}
+.stepFlowItem h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 16.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  color: #111;
+}
+.stepFlowItem p {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  /* a touch under the body size: four or five of these sit side by side, so
+     the column is narrower than a reading measure */
+  font-size: 14.5px;
+  line-height: 1.58;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.72);
+}
+.stepFlowItem p:last-child {
+  margin-bottom: 0;
+}
+
+/* the row turns into a rail once the columns would be too narrow to read */
+@media (max-width: 900px) {
+  .stepFlow {
+    grid-auto-flow: row;
+    row-gap: 26px;
+  }
+  .stepFlowItem {
+    padding: 0 0 0 30px;
+  }
+  .stepFlowItem::before {
+    left: 5px;
+    right: auto;
+    top: 6px;
+    bottom: -26px;
+    width: 2px;
+    height: auto;
+  }
+  .stepFlowItem:last-child::before {
+    display: none;
+  }
+  .stepFlowItem::after {
+    top: 1px;
+  }
+  .stepFlowItem p {
+    font-size: 15.5px;
+  }
+}
+
 /* ---------- statement: the section's conclusion, centred ---------- */
 /* the measure rule targets .chapter > .callout, so it needs matching reach */
 .chapter > .callout.statement,

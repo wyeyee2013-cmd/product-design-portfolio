@@ -311,6 +311,29 @@ function Flow({ items }) {
   )
 }
 
+/**
+ * A process read across rather than down: the steps sit on one tinted rail, so
+ * a section that is genuinely sequential looks sequential. The vertical `Flow`
+ * still covers a narrative run of work; this covers a journey the reader is
+ * meant to follow end to end. Below the breakpoint the rail turns vertical so
+ * the order survives on a phone.
+ */
+function StepFlow({ items }) {
+  return (
+    <ol className={styles.stepFlow}>
+      {items.map((step, i) => (
+        <li className={styles.stepFlowItem} key={step.label}>
+          <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+          <h4>{step.label}</h4>
+          {(step.body ?? [step.text]).map((p, n) => (
+            <p key={`${i}-${n}`}>{p}</p>
+          ))}
+        </li>
+      ))}
+    </ol>
+  )
+}
+
 function Callout({ item }) {
   /* a statement stands on its own, centred, with the body at display size —
      used where the callout is the section's conclusion rather than an aside */
@@ -564,6 +587,10 @@ function StudyItem({ item }) {
     /* the run of work in order, on a rail */
     case 'timeline':
       return <Flow items={item.items} />
+
+    /* the same run of work, laid across instead of down */
+    case 'stepFlow':
+      return <StepFlow items={item.items} />
 
     /* the personalities the interviews surfaced, three across */
     case 'personas':
