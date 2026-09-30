@@ -418,7 +418,7 @@ export const CASE_STUDIES = {
               {
                 label: 'Menu onboarding',
                 text: 'Set up and prepare the restaurant menu.',
-                note: 'This is where I focused',
+                note: 'Focus',
               },
               { label: 'Bind POS', text: 'Connect the restaurant’s POS.' },
               { label: 'First transaction', text: 'Make the restaurant’s first POS transaction.' },

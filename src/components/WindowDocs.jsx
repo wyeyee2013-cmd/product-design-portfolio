@@ -495,13 +495,14 @@ function StepFlow({ items }) {
           className={`${styles.stepFlowItem} ${step.note ? styles.stepMarked : ''}`}
           key={step.label}
         >
-          {/* the mark sits above the rail, over its own step. Below the copy
-              it landed wherever that column happened to end and read as an
-              aside; beside the number it pushed that one title off the row's
-              baseline. Over the line it belongs to the step and costs the
-              layout nothing. */}
-          {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
-          <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+          {/* the mark rides with the number, so it reads as a property of the
+              step rather than a line of commentary near it. Every head
+              reserves the pill's height, or the one step that has it would sit
+              a few pixels below the rest of the row. */}
+          <span className={styles.stepFlowHead}>
+            <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+            {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
+          </span>
           <h4>{step.label}</h4>
           {/* a step can be a name on its own, where the sequence is the point
               and there is nothing to say about each link in it */}
@@ -660,13 +661,16 @@ function Balance({ item }) {
   return (
     <div className={styles.balance}>
       {item.title && <p className={styles.balanceLabel}>{item.title}</p>}
-      <div className={styles.balanceRow} style={{ '--cols': item.parts.length }}>
+      {/* one line, divided, rather than equal columns: the parts are sentences
+          of very different lengths and a grid gives the short ones a column of
+          empty space to sit in the middle of */}
+      <p className={styles.balanceRow}>
         {item.parts.map((part) => (
-          <p className={styles.balancePart} key={part}>
+          <span className={styles.balancePart} key={part}>
             {part}
-          </p>
+          </span>
         ))}
-      </div>
+      </p>
     </div>
   )
 }
