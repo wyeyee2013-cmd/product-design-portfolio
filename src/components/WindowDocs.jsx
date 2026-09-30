@@ -867,13 +867,16 @@ function StudyItem({ item }) {
                 <p>{r}</p>
               </div>
             ) : (
+              /* A band reads as a band when every cell opens at the same size.
+                 Where an outcome has no number, its claim is the headline
+                 rather than a small glyph standing in for one. */
               <div className={styles.metric} key={r.label}>
-                {r.value ? (
-                  <strong className={styles.metricValue}>{r.value}</strong>
-                ) : (
-                  r.icon && <span className={styles.metricIcon}>{r.icon}</span>
-                )}
-                <span className={styles.metricLabel}>{r.label}</span>
+                <strong
+                  className={`${styles.metricValue} ${r.value ? '' : styles.metricWords}`}
+                >
+                  {r.value ?? r.label}
+                </strong>
+                {r.value && <span className={styles.metricLabel}>{r.label}</span>}
                 <p className={styles.metricNote}>{r.note}</p>
               </div>
             )

@@ -750,19 +750,16 @@ export const CASE_STUDIES = {
             type: 'resultCards',
             items: [
               {
-                icon: '🚀',
                 value: '10%',
                 label: 'Faster Task Completion',
                 note: 'Merchants navigated the new, decluttered UI significantly faster, proving our structural overhaul worked.',
               },
               {
-                icon: '⚡',
                 value: '30%',
                 label: 'Faster Engineering Handoff',
                 note: 'By establishing the foundational component library and tokens, front-end implementation velocity skyrocketed.',
               },
               {
-                icon: '🤝',
                 label: 'Executive Alignment',
                 note: 'Received overwhelmingly positive feedback from leadership for successfully aligning the product with the new market strategy and fending off copycats.',
               },
@@ -931,7 +928,6 @@ export const CASE_STUDIES = {
                 note: 'Reducing manual data processing tasks for the onboarding team.',
               },
               {
-                icon: '🤝',
                 label: 'High satisfaction rate',
                 note: 'Achieved from internal employees and clients.',
               },
@@ -1192,17 +1188,14 @@ export const CASE_STUDIES = {
             type: 'resultCards',
             items: [
               {
-                icon: '⏱️',
                 label: 'Significant time savings',
                 note: 'By reducing time and effort in manual processes.',
               },
               {
-                icon: '🌍',
                 label: 'Increased diversity in hiring',
                 note: 'By dispelling human biases.',
               },
               {
-                icon: '🤝',
                 label: 'High satisfaction rate',
                 note: 'Achieved from employees.',
               },

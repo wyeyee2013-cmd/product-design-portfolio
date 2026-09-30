@@ -1502,9 +1502,13 @@
   letter-spacing: -3px;
   color: #111;
 }
-.metricIcon {
-  font-size: clamp(34px, 4vw, 48px);
-  line-height: 1.1;
+/* a phrase in the number's place needs the number's weight, not its size:
+   68px of words wraps to four lines and swamps the cell beside it */
+.metricWords {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
 }
 .metricLabel {
   font-family: var(--font-ui);
