@@ -401,6 +401,12 @@
     scroll-snap-align: none;
     align-items: flex-start;
   }
+  /* the title and three tags are all nowrap, so on a phone the foot runs past
+     the card. The year is the one that still reads at a glance; the type and
+     the client are both on the card's own case study anyway. */
+  .tags span:not(:last-child) {
+    display: none;
+  }
   .fit {
     height: auto;
   }
