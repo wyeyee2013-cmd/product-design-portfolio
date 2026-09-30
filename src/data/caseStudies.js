@@ -40,7 +40,15 @@ export const CASE_STUDIES = {
           'Product Designer: Product Discovery, UX Strategy, Prototyping, Usability Testing, Design Systems',
         ],
       },
-      { label: 'Team', values: ['Product Manager', 'Product Design', 'Engineering'] },
+      {
+        label: 'Team',
+        values: [
+          'Hsin Ling Lim (Product Manager)',
+          'Jane Yong (Product Designer)',
+          'Jun Lee (Senior Software Engineer)',
+          'Yan Ting Yap (Senior Software Engineer)',
+        ],
+      },
       { label: 'Platform', values: ['HRM Premium, Web'] },
       { label: 'Timeline', values: ['2026'] },
     ],
