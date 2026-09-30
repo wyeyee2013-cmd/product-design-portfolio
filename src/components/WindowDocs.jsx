@@ -542,6 +542,27 @@ function Loop({ items }) {
 }
 
 /**
+ * A statement that is really several held in balance. Both of the lines this
+ * was built for are about splitting responsibility, and a centred paragraph
+ * says nothing about a split: set across, divided, each half carries its own
+ * weight and the reader sees the division before reading it.
+ */
+function Balance({ item }) {
+  return (
+    <div className={styles.balance}>
+      {item.title && <p className={styles.balanceLabel}>{item.title}</p>}
+      <div className={styles.balanceRow} style={{ '--cols': item.parts.length }}>
+        {item.parts.map((part) => (
+          <p className={styles.balancePart} key={part}>
+            {part}
+          </p>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/**
  * Two states of the same thing, side by side under one rule: what the work
  * replaced, and what replaced it. A sequence would say these happen in turn.
  */
@@ -943,6 +964,9 @@ function StudyItem({ item }) {
 
     case 'contrast':
       return <Contrast items={item.items} />
+
+    case 'balance':
+      return <Balance item={item} />
 
     case 'gauge':
       return <Gauge item={item} />

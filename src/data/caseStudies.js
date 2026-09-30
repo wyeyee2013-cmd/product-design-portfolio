@@ -14,6 +14,7 @@
  *   { type: 'questions',   items: [] }                          the framing, unboxed
  *   { type: 'loop',        items: [] }                          a cycle, returning to its first step
  *   { type: 'contrast',    items: [{ label, text }] }           two states under one rule
+ *   { type: 'balance',     title?, parts: [] }                  one statement, held in parts
  *   { type: 'timeline',    items: [{ label, text }] }           a run of work, down a rail
  *   { type: 'stepFlow',    items: [{ label, text | body: [] }] } a process, read across
  *   { type: 'personas',    items: [{ icon, title, text }] }
@@ -533,10 +534,9 @@ export const CASE_STUDIES = {
             ],
           },
           {
-            type: 'callout',
-            variant: 'statement',
+            type: 'balance',
             title: 'The Division',
-            text: 'AI prepares. The merchant reviews. The merchant decides.',
+            parts: ['AI prepares', 'The merchant reviews', 'The merchant decides'],
           },
           {
             type: 'text',
@@ -594,10 +594,9 @@ export const CASE_STUDIES = {
             text: 'Because menu configuration involves complex sales logic, full automation was not the goal. The AI-generated result needs to stay something the merchant can inspect and correct, and the final responsibility stays with them: AI prepares the menu, the merchant reviews and corrects it, chooses the restaurants, and confirms publication.',
           },
           {
-            type: 'callout',
-            variant: 'statement',
+            type: 'balance',
             title: 'The Principle',
-            text: 'Automate the tedious work. Keep meaningful decisions with the merchant.',
+            parts: ['Automate the tedious work', 'Keep meaningful decisions with the merchant'],
           },
           {
             type: 'text',
