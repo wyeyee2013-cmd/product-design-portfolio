@@ -12,6 +12,8 @@
  *                          variant: 'statement' centred, 'quote' on a rule,
  *                          'deferred' outlined for what was not built
  *   { type: 'questions',   items: [] }                          the framing, unboxed
+ *   { type: 'loop',        items: [] }                          a cycle, returning to its first step
+ *   { type: 'contrast',    items: [{ label, text }] }           two states under one rule
  *   { type: 'timeline',    items: [{ label, text }] }           a run of work, down a rail
  *   { type: 'stepFlow',    items: [{ label, text | body: [] }] } a process, read across
  *   { type: 'personas',    items: [{ icon, title, text }] }
@@ -440,14 +442,21 @@ export const CASE_STUDIES = {
           },
           { type: 'text', text: 'This created a dependency loop:' },
           {
-            type: 'stepFlow',
+            type: 'loop',
             items: [
-              { label: 'Complex menu setup' },
-              { label: 'Merchant needs help' },
-              { label: 'Messages onboarding executive' },
-              { label: 'Wait for response' },
-              { label: 'Continue setup' },
+              'Complex menu setup',
+              'Merchant needs help',
+              'Messages onboarding executive',
+              'Wait for response',
+              'Continue setup',
             ],
+          },
+          {
+            type: 'figure',
+            src: '/assets/os-01-onboarding-messages.png',
+            pending: true,
+            inset: true,
+            caption: '01 A merchant working through setup with an onboarding executive',
           },
           { type: 'text', text: 'The merchant’s actual goal was much simpler.' },
           {
@@ -477,13 +486,16 @@ export const CASE_STUDIES = {
             text: 'Instead of asking merchants to manually recreate their existing menu inside FeedMe’s configuration system, we explored AI as a way to translate what merchants already have into the structure FeedMe needs.',
           },
           {
-            type: 'stepFlow',
+            type: 'contrast',
             items: [
-              { label: 'Existing menu', text: 'A PDF or an image of the menu they already use.' },
-              { label: 'AI', text: 'Extracts the information and structures it.' },
-              { label: 'Review', text: 'The merchant verifies what came back.' },
-              { label: 'Edit', text: 'The merchant corrects anything wrong.' },
-              { label: 'Publish', text: 'The merchant chooses the restaurants and confirms.' },
+              {
+                label: 'What it replaced',
+                text: 'Merchants manually recreate their existing menu inside FeedMe’s configuration system.',
+              },
+              {
+                label: 'The translation layer',
+                text: 'AI translates what merchants already have into the structure FeedMe needs.',
+              },
             ],
           },
           {
@@ -563,9 +575,9 @@ export const CASE_STUDIES = {
           },
           {
             type: 'figure',
-            src: '/assets/os-01-menu-onboarding.png',
+            src: '/assets/os-02-menu-onboarding.png',
             pending: true,
-            caption: '01 Upload, generated result, and the review the merchant does on it',
+            caption: '02 Upload, generated result, and the review the merchant does on it',
           },
           {
             type: 'text',

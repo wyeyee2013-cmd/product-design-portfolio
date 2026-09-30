@@ -511,6 +511,48 @@ function StepFlow({ items }) {
 }
 
 /**
+ * A cycle, not a sequence. Drawn as the row it reads as, with the line under
+ * it returning to the first step, because a chain laid out straight says the
+ * problem ends at the last box when the point is that it starts again.
+ */
+function Loop({ items }) {
+  return (
+    <div className={styles.loop}>
+      <ol className={styles.loopRow}>
+        {items.map((step, i) => (
+          <li key={step}>
+            <span className={styles.loopNum}>{String(i + 1).padStart(2, '0')}</span>
+            {step}
+          </li>
+        ))}
+      </ol>
+      <div className={styles.loopReturn} aria-hidden="true">
+        <svg viewBox="0 0 14 10" width="14" height="10" preserveAspectRatio="none">
+          <path d="M6 1 1 5l5 4" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Two states of the same thing, side by side under one rule: what the work
+ * replaced, and what replaced it. A sequence would say these happen in turn.
+ */
+function Contrast({ items }) {
+  return (
+    <div className={styles.contrast}>
+      {items.map((side, i) => (
+        <div className={`${styles.contrastSide} ${i ? styles.contrastAfter : ''}`} key={side.label}>
+          <p className={styles.contrastLabel}>{side.label}</p>
+          <p className={styles.contrastText}>{side.text}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/**
  * What a section decided, as a row of parallel commitments. Deliberately
  * unnumbered and undotted: these are things held at once, not steps taken in
  * order, so they get a rule each rather than the flow's rail.
@@ -889,6 +931,12 @@ function StudyItem({ item }) {
 
     case 'priorities':
       return <Priorities item={item} />
+
+    case 'loop':
+      return <Loop items={item.items} />
+
+    case 'contrast':
+      return <Contrast items={item.items} />
 
     case 'gauge':
       return <Gauge item={item} />

@@ -2130,6 +2130,111 @@
   color: #141414;
 }
 
+/* ---------- loop: a cycle drawn as one, returning to its first step ---------- */
+.loop {
+  margin: 24px 0 12px;
+}
+.loopRow {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  column-gap: 26px;
+  margin: 0;
+  padding: 0;
+}
+.loopRow li {
+  position: relative;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--study-tint, var(--violet)) 28%, transparent);
+  background: color-mix(in srgb, var(--study-tint, var(--violet)) 5%, transparent);
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.2px;
+  color: #141414;
+}
+/* the chevron bridging each box to the next, drawn in the gap between them */
+.loopRow li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -17px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 1.6px solid color-mix(in srgb, var(--study-tint, var(--violet)) 55%, transparent);
+  border-right: 1.6px solid color-mix(in srgb, var(--study-tint, var(--violet)) 55%, transparent);
+  transform: translateY(-50%) rotate(45deg);
+}
+.loopNum {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-tag);
+  font-variant-numeric: tabular-nums;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--study-tint, var(--violet));
+}
+/* the return: down from the last box, back along the row, up into the first */
+.loopReturn {
+  position: relative;
+  height: 26px;
+  margin-top: 14px;
+  color: color-mix(in srgb, var(--study-tint, var(--violet)) 55%, transparent);
+  border-left: 1.6px solid currentColor;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  border-radius: 0 0 12px 12px;
+}
+.loopReturn svg {
+  position: absolute;
+  left: -1px;
+  top: -5px;
+}
+
+/* ---------- contrast: what it replaced, and what replaced it ---------- */
+.contrast {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 26px 0 12px;
+  border-top: 2px solid var(--study-tint, var(--violet));
+}
+.contrastSide {
+  padding: 20px 26px 22px 0;
+}
+.contrastAfter {
+  padding: 20px 0 22px 26px;
+  border-left: 1px solid rgba(0, 0, 0, 0.09);
+}
+.contrastLabel {
+  margin: 0 0 10px;
+  font-family: var(--font-tag);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.contrastAfter .contrastLabel {
+  color: var(--study-tint, var(--violet));
+}
+.contrastText {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.35px;
+  color: rgba(18, 18, 18, 0.6);
+}
+.contrastAfter .contrastText {
+  color: #111;
+}
+
 /* ---------- priorities: what was decided, held side by side ---------- */
 .prioritiesBlock {
   margin: 26px 0 12px;
@@ -2345,6 +2450,36 @@
   }
   .featureGrid2 {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* a cycle stacks, and its return rail runs down the left instead */
+  .loopRow {
+    grid-auto-flow: row;
+    row-gap: 22px;
+  }
+  .loopRow li:not(:last-child)::after {
+    right: auto;
+    left: 22px;
+    top: auto;
+    bottom: -17px;
+    transform: rotate(135deg);
+  }
+  .loopReturn {
+    height: 22px;
+  }
+  /* two panels side by side are too narrow; the rule moves between them */
+  .contrast {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .contrastSide {
+    padding: 18px 0;
+  }
+  .contrastAfter {
+    padding: 18px 0 20px;
+    border-left: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.09);
+  }
+  .contrastText {
+    font-size: 16.5px;
   }
   /* four abreast is unreadable on a phone; two keeps them a set */
   .priorities {
