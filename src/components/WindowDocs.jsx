@@ -517,6 +517,104 @@ function StepFlow({ items }) {
 }
 
 /**
+ * The screens, steppable. A phone-shaped window at the frame's own ratio, so
+ * the long scrolling screens scroll inside it exactly as they would on a
+ * phone rather than being squashed to fit or cropped.
+ *
+ * Only the current screen is in the DOM; the next is warmed in the background
+ * so stepping forward does not wait on a fetch.
+ */
+function Prototype({ item }) {
+  const { screens } = item
+  const [i, setI] = useState(0)
+  const stage = useRef(null)
+
+  const go = (n) => setI((n + screens.length) % screens.length)
+
+  /* the tall screens are scrolled; a new one should start at its top */
+  useEffect(() => {
+    if (stage.current) stage.current.scrollTop = 0
+  }, [i])
+
+  useEffect(() => {
+    const next = screens[(i + 1) % screens.length]
+    if (next) new Image().src = next.src
+  }, [i, screens])
+
+  const screen = screens[i]
+
+  return (
+    <figure className={styles.proto}>
+      <div
+        className={styles.protoStage}
+        role="group"
+        aria-roledescription="prototype"
+        aria-label={item.label ?? 'Prototype'}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault()
+            go(i - 1)
+          }
+          if (e.key === 'ArrowRight') {
+            e.preventDefault()
+            go(i + 1)
+          }
+        }}
+      >
+        <button
+          type="button"
+          className={styles.protoArrow}
+          onClick={() => go(i - 1)}
+          aria-label="Previous screen"
+        >
+          <StrokeIcon d="M15 5 8 12l7 7" size={20} />
+        </button>
+
+        <div className={styles.protoPhone}>
+          <div className={styles.protoScreen} ref={stage}>
+            <img src={screen.src} alt={screen.caption} />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className={styles.protoArrow}
+          onClick={() => go(i + 1)}
+          aria-label="Next screen"
+        >
+          <StrokeIcon d="M9 5l7 7-7 7" size={20} />
+        </button>
+      </div>
+
+      <div className={styles.protoBar}>
+        <span className={styles.protoCount}>
+          {String(i + 1).padStart(2, '0')} / {String(screens.length).padStart(2, '0')}
+        </span>
+        <ol className={styles.protoDots}>
+          {screens.map((s, n) => (
+            <li key={s.src}>
+              <button
+                type="button"
+                className={n === i ? styles.protoDotOn : styles.protoDot}
+                onClick={() => go(n)}
+                aria-label={`Screen ${n + 1}: ${s.caption}`}
+                aria-current={n === i ? 'true' : undefined}
+              />
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <figcaption aria-live="polite">
+        <span className={styles.protoStep}>{screen.step}</span>
+        {screen.caption}
+      </figcaption>
+    </figure>
+  )
+}
+
+/**
  * A cycle, not a sequence. Drawn as the row it reads as, with the line under
  * it returning to the first step, because a chain laid out straight says the
  * problem ends at the last box when the point is that it starts again.
@@ -978,6 +1076,9 @@ function StudyItem({ item }) {
 
     case 'balance':
       return <Balance item={item} />
+
+    case 'prototype':
+      return <Prototype item={item} />
 
     case 'gauge':
       return <Gauge item={item} />

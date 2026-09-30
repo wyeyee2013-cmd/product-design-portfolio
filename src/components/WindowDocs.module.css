@@ -2153,6 +2153,140 @@
   color: #141414;
 }
 
+/* ---------- prototype: the screens, steppable ---------- */
+.proto {
+  margin: 28px 0 14px;
+}
+.protoStage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 30px 18px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--study-tint, var(--violet)) 5%, transparent);
+  outline: none;
+}
+.protoStage:focus-visible {
+  box-shadow: 0 0 0 2px var(--study-tint, var(--violet));
+}
+.protoArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+}
+.protoArrow:hover {
+  background: var(--study-tint, var(--violet));
+  color: #fff;
+}
+/* the frame keeps the screens' own 393x852; a long screen scrolls inside it,
+   which is what it would do on the phone it was drawn for */
+.protoPhone {
+  width: min(320px, 100%);
+  aspect-ratio: 393 / 852;
+  padding: 7px;
+  border-radius: 40px;
+  background: #16161a;
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.35);
+}
+.protoScreen {
+  height: 100%;
+  border-radius: 33px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  scrollbar-width: none;
+}
+.protoScreen::-webkit-scrollbar {
+  display: none;
+}
+.protoScreen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.protoBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.protoCount {
+  font-family: var(--font-tag);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--study-tint, var(--violet));
+}
+.protoDots {
+  list-style: none;
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+/* a 7px dot is not something a thumb can hit, so the border carries the hit
+   area and the background is clipped to the dot itself */
+.protoDot,
+.protoDotOn {
+  display: block;
+  box-sizing: content-box;
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 8px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--study-tint, var(--violet)) 24%, transparent);
+  background-clip: padding-box;
+  transition: background 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.protoDotOn {
+  background: var(--study-tint, var(--violet));
+  transform: scale(1.35);
+}
+.proto figcaption {
+  margin: 16px auto 0;
+  max-width: var(--measure);
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+  color: rgba(18, 18, 18, 0.72);
+}
+.protoStep {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-tag);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--study-tint, var(--violet));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .protoArrow,
+  .protoDot,
+  .protoDotOn {
+    transition: none;
+  }
+}
+
 /* ---------- loop: a cycle drawn as one, returning to its first step ---------- */
 .loop {
   margin: 28px 0 26px;
@@ -2513,6 +2647,24 @@
   }
   .featureGrid2 {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* the arrows would crowd the phone, so they move under it */
+  .protoStage {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 22px 14px 18px;
+    gap: 18px;
+  }
+  .protoArrow {
+    display: none;
+  }
+  .protoPhone {
+    width: min(280px, 100%);
+  }
+  .protoDot,
+  .protoDotOn {
+    width: 9px;
+    height: 9px;
+    border-width: 9px;
   }
   /* the parts stack, and the division between them turns horizontal */
   .balance {

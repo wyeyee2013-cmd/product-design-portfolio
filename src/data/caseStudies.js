@@ -15,6 +15,7 @@
  *   { type: 'loop',        items: [] }                          a cycle, returning to its first step
  *   { type: 'contrast',    items: [{ label, text }] }           two states under one rule
  *   { type: 'balance',     title?, parts: [] }                  one statement, held in parts
+ *   { type: 'prototype',   label?, screens: [{ src, step, caption }] }
  *   { type: 'timeline',    items: [{ label, text }] }           a run of work, down a rail
  *   { type: 'stepFlow',    items: [{ label, text | body: [] }] } a process, read across
  *   { type: 'personas',    items: [{ icon, title, text }] }
@@ -574,10 +575,70 @@ export const CASE_STUDIES = {
             ],
           },
           {
-            type: 'figure',
-            src: '/assets/os-02-menu-onboarding.png',
-            pending: true,
-            caption: '02 Upload, generated result, and the review the merchant does on it',
+            type: 'prototype',
+            label: 'Menu onboarding, screen by screen',
+            screens: [
+              {
+                src: '/assets/os-proto/01.webp',
+                step: 'Before the menu',
+                caption:
+                  'The onboarding checklist. Building the menu is the first of three things standing between a new merchant and their first test order.',
+              },
+              {
+                src: '/assets/os-proto/02.webp',
+                step: 'Before the menu',
+                caption:
+                  'Three ways in. Remy is recommended, with a demo menu and manual entry as the alternatives, and each states what it will do before it is chosen.',
+              },
+              {
+                src: '/assets/os-proto/03.webp',
+                step: 'Upload',
+                caption:
+                  'Menu Manager opens on what the merchant already has: a photo of the printed menu, a PDF, or nothing at all.',
+              },
+              {
+                src: '/assets/os-proto/04.webp',
+                step: 'Upload',
+                caption:
+                  'A photo of the printed menu. Remy says what it will take from it, and asks whether the restaurant also sells on Grab or foodpanda.',
+              },
+              {
+                src: '/assets/os-proto/05.webp',
+                step: 'Upload',
+                caption:
+                  'A foodpanda link alongside the photo. Remy restates what it is holding, and which source it will trust for prices, before generating anything.',
+              },
+              {
+                src: '/assets/os-proto/06.webp',
+                step: 'AI processing',
+                caption:
+                  'Generating, out loud. It reports what it finds as it goes: 24 items across 5 categories, and 3 time-based sections.',
+              },
+              {
+                src: '/assets/os-proto/07.webp',
+                step: 'Review and edit',
+                caption:
+                  'What will be added, before any of it is. Forty-one changes split by kind, with the prices it proposes for each sales channel.',
+              },
+              {
+                src: '/assets/os-proto/08.webp',
+                step: 'Review and edit',
+                caption:
+                  'The full list, structure and all. Every category and item can be opened, corrected or unticked, which is where the merchant’s judgement goes.',
+              },
+              {
+                src: '/assets/os-proto/09.webp',
+                step: 'Review and edit',
+                caption:
+                  'What was saved, and the decision left with the merchant: publish it, fix something first, or start over.',
+              },
+              {
+                src: '/assets/os-proto/10.webp',
+                step: 'Choose and publish',
+                caption:
+                  'Which restaurants receive the menu. The outlet that already has one is flagged, because publishing there replaces what is live.',
+              },
+            ],
           },
           {
             type: 'text',
