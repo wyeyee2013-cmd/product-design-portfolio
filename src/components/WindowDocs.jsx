@@ -73,6 +73,38 @@ function useAsset(src, pending) {
   return found
 }
 
+/**
+ * A screen recording in place of a still. Silent product footage plays itself
+ * and loops, since there is nothing to hear and nothing to decide; a visitor
+ * who has asked their system for less motion gets controls and a poster frame
+ * instead, and starts it themselves.
+ */
+function FigureVideo({ figure }) {
+  const [still, setStill] = useState(false)
+
+  useEffect(() => {
+    const q = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => setStill(q.matches)
+    sync()
+    q.addEventListener('change', sync)
+    return () => q.removeEventListener('change', sync)
+  }, [])
+
+  return (
+    <video
+      src={figure.video}
+      poster={figure.poster}
+      autoPlay={!still}
+      loop={!still}
+      controls={still || figure.controls}
+      muted
+      playsInline
+      preload="metadata"
+      aria-label={figure.caption}
+    />
+  )
+}
+
 function FigurePlaceholder({ caption, ratio = '16 / 10', named = true }) {
   return (
     <div className={styles.placeholder} style={{ aspectRatio: ratio }}>
@@ -108,7 +140,7 @@ function FeatureFigure({ figure, bare = false }) {
   const [broken, setBroken] = useState(false)
   const found = useAsset(figure.src, figure.pending)
 
-  if (broken || !found) {
+  if (!figure.video && (broken || !found)) {
     return (
       <figure className={`${styles.featureFigure} ${bare ? styles.figureFills : ''}`}>
         <FigurePlaceholder caption={figure.caption} ratio={figure.ratio} />
@@ -123,7 +155,9 @@ function FeatureFigure({ figure, bare = false }) {
         bare ? styles.figureFills : ''
       }`}
     >
-      {figure.srcs ? (
+      {figure.video ? (
+        <FigureVideo figure={figure} />
+      ) : figure.srcs ? (
         <div className={styles.figureGrid}>
           {figure.srcs.map((src) => (
             <img src={src} alt="" loading="lazy" key={src} />
@@ -211,12 +245,17 @@ function groupItems(items) {
          cards stacked beside the prose than as bullets buried under it. Only
          the icon-bearing form earns that though: a run of four-word directives
          in the same boxes is a column of mostly empty cards beside a heading
-         with nothing under it, so plain strings stay a plain list. */
-      const next2 = items[i + 1]
-      if (next2?.type === 'bullets' && next2.items.some((c) => typeof c !== 'string')) {
+         with nothing under it. A plain list is part of what the heading is
+         saying, so it goes in the card with it rather than being stranded
+         under the set, with its own opening line left behind inside. */
+      const list = items[i + 1]
+      if (list?.type === 'bullets') {
         i += 1
-        out.push({ type: 'splitPoint', title: item.text, body, cards: next2.items })
-        continue
+        if (list.items.some((c) => typeof c !== 'string')) {
+          out.push({ type: 'splitPoint', title: item.text, body, cards: list.items })
+          continue
+        }
+        body.push(list)
       }
       out.push({ type: 'point', title: item.text, body })
       continue
@@ -267,7 +306,9 @@ function DocFigure({ item }) {
 
   return (
     <figure className={styles.figure}>
-      {broken || !found ? (
+      {item.video ? (
+        <FigureVideo figure={item} />
+      ) : broken || !found ? (
         <FigurePlaceholder caption={item.caption} ratio={item.ratio} named={false} />
       ) : (
         <img src={item.src} alt={item.caption} loading="lazy" onError={() => setBroken(true)} />

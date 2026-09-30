@@ -216,12 +216,6 @@ export const CASE_STUDIES = {
               },
             ],
           },
-          {
-            type: 'figure',
-            src: '/assets/hrm-03-scheduling-flow.png',
-            pending: true,
-            caption: '03 The five stages as one end to end scheduling journey',
-          },
         ],
       },
       {
@@ -301,15 +295,6 @@ export const CASE_STUDIES = {
           {
             type: 'text',
             text: 'The scheduling samples we collected also showed significant variation between merchants.',
-          },
-          /* the comparison sits here so the two insights stay a matched pair of
-             numbered cards: a list straight after a subhead's prose would fold
-             the second one into a split card and leave the first one bare */
-          {
-            type: 'figure',
-            src: '/assets/hrm-05-merchant-comparison.png',
-            pending: true,
-            caption: '05 The three merchants side by side, and where their approaches diverge',
           },
           { type: 'text', text: 'Different restaurants had different:' },
           {
@@ -410,12 +395,6 @@ export const CASE_STUDIES = {
             variant: 'quote',
             title: 'My Approach to AI',
             text: 'Use AI to accelerate the design process, not outsource the product thinking.',
-          },
-          {
-            type: 'figure',
-            src: '/assets/hrm-06-orchestrator.png',
-            pending: true,
-            caption: '06 Exploratory component, Claude orchestrator, final Figma component',
           },
         ],
       },

@@ -1006,7 +1006,8 @@
   flex-direction: column;
   gap: 9px;
 }
-.figure img {
+.figure img,
+.figure video {
   width: 100%;
   height: auto;
   border-radius: 14px;
@@ -1045,13 +1046,16 @@
   letter-spacing: -0.3px;
   color: #111;
 }
-/* an aside closes on 8px so its own copy sits tight under it; a heading
-   starting the next idea needs the full gap back */
-.callout + .chapterSubhead {
-  margin-top: 34px;
-}
+/* a heading opening a chapter needs no gap above it */
 .chapterSubhead:first-of-type {
   margin-top: 0;
+}
+/* ... but one after an aside does, and it is often also the chapter's first,
+   so this has to come after the rule above rather than before it. The aside
+   closes on 8px so its own copy sits tight under it; a heading starting the
+   next idea wants the full gap back. */
+.callout + .chapterSubhead {
+  margin-top: 34px;
 }
 
 /* callouts: challenges, solutions, personas, journey stages */
@@ -1163,7 +1167,8 @@
   flex-direction: column;
   gap: 9px;
 }
-.featureFigure > img {
+.featureFigure > img,
+.featureFigure > video {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -1457,7 +1462,8 @@
   max-width: none;
   margin-inline: 0;
 }
-.chapter > .figure img {
+.chapter > .figure img,
+.chapter > .figure video {
   border-radius: 12px;
 }
 /* a bled figure starts one gutter left of the text, so its caption is padded
@@ -1681,7 +1687,8 @@
 .figureFills {
   margin: 20px -24px 0;
 }
-.feature > .figureFills > img {
+.feature > .figureFills > img,
+.feature > .figureFills > video {
   border-radius: 0;
   border-left: 0;
   border-right: 0;
