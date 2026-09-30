@@ -491,8 +491,17 @@ function StepFlow({ items }) {
   return (
     <ol className={styles.stepFlow}>
       {items.map((step, i) => (
-        <li className={styles.stepFlowItem} key={step.label}>
-          <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+        <li
+          className={`${styles.stepFlowItem} ${step.note ? styles.stepMarked : ''}`}
+          key={step.label}
+        >
+          {/* the mark rides beside the number rather than trailing the step:
+              below the copy it lands wherever that column happens to end, and
+              reads as an aside instead of as what the step is */}
+          <span className={styles.stepFlowHead}>
+            <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+            {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
+          </span>
           <h4>{step.label}</h4>
           {/* a step can be a name on its own, where the sequence is the point
               and there is nothing to say about each link in it */}
@@ -501,9 +510,6 @@ function StepFlow({ items }) {
             .map((p, n) => (
               <p key={`${i}-${n}`}>{p}</p>
             ))}
-          {/* marks the one step a study is actually about, inside a journey
-              that is longer than the study */}
-          {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
         </li>
       ))}
     </ol>
