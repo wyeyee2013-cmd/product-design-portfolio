@@ -1991,7 +1991,8 @@
 .stepFlow {
   list-style: none;
   margin: 26px 0 10px;
-  padding: 0;
+  /* headroom above the rail for a step that carries a mark */
+  padding: 22px 0 0;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
@@ -2052,30 +2053,21 @@
 .stepFlowItem p:last-child {
   margin-bottom: 0;
 }
-/* the number, and the mark when the step carries one, on one line */
-.stepFlowHead {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  /* the pill is taller than a bare number, so every head reserves its height
-     and the titles across the row keep one baseline */
-  min-height: 21px;
-  margin-bottom: 4px;
-}
-.stepFlowHead .flowNum {
-  margin-bottom: 0;
-}
+/* the mark, above the rail and out of the flow entirely, so it cannot shift
+   the row it labels */
 .stepFlowNote {
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--study-tint, var(--violet)) 12%, transparent);
+  position: absolute;
+  left: 0;
+  /* 100% of the step's height puts the label's foot on the step's top edge,
+     which is above the rail; the step's own padding sits below that line */
+  bottom: calc(100% + 7px);
+  white-space: nowrap;
   font-family: var(--font-tag);
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  line-height: 1.3;
+  line-height: 1;
   color: var(--study-tint, var(--violet));
 }
 
@@ -2163,7 +2155,7 @@
 
 /* ---------- loop: a cycle drawn as one, returning to its first step ---------- */
 .loop {
-  margin: 24px 0 12px;
+  margin: 28px 0 26px;
 }
 .loopRow {
   list-style: none;
@@ -2176,7 +2168,7 @@
 }
 .loopRow li {
   position: relative;
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid color-mix(in srgb, var(--study-tint, var(--violet)) 28%, transparent);
   background: color-mix(in srgb, var(--study-tint, var(--violet)) 5%, transparent);
@@ -2212,18 +2204,19 @@
 /* the return: down from the last box, back along the row, up into the first */
 .loopReturn {
   position: relative;
-  height: 26px;
-  margin-top: 14px;
+  height: 38px;
+  margin-top: 20px;
   color: color-mix(in srgb, var(--study-tint, var(--violet)) 55%, transparent);
   border-left: 1.6px solid currentColor;
   border-right: 1.6px solid currentColor;
   border-bottom: 1.6px solid currentColor;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 14px 14px;
 }
+/* the head sits on the top end of the left side, where the path arrives */
 .loopReturn svg {
   position: absolute;
-  left: -1px;
-  top: -5px;
+  left: -5.2px;
+  top: -4px;
 }
 
 /* ---------- balance: one statement, held in parts ---------- */

@@ -495,13 +495,13 @@ function StepFlow({ items }) {
           className={`${styles.stepFlowItem} ${step.note ? styles.stepMarked : ''}`}
           key={step.label}
         >
-          {/* the mark rides beside the number rather than trailing the step:
-              below the copy it lands wherever that column happens to end, and
-              reads as an aside instead of as what the step is */}
-          <span className={styles.stepFlowHead}>
-            <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
-            {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
-          </span>
+          {/* the mark sits above the rail, over its own step. Below the copy
+              it landed wherever that column happened to end and read as an
+              aside; beside the number it pushed that one title off the row's
+              baseline. Over the line it belongs to the step and costs the
+              layout nothing. */}
+          {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
+          <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
           <h4>{step.label}</h4>
           {/* a step can be a name on its own, where the sequence is the point
               and there is nothing to say about each link in it */}
@@ -532,9 +532,20 @@ function Loop({ items }) {
           </li>
         ))}
       </ol>
+      {/* the return runs down from the last step, back along, and up into the
+          first, so the head points up where it arrives. The path is drawn with
+          borders because they stretch to any width cleanly; only the head is
+          SVG, at its own size so nothing about it is scaled. */}
       <div className={styles.loopReturn} aria-hidden="true">
-        <svg viewBox="0 0 14 10" width="14" height="10" preserveAspectRatio="none">
-          <path d="M6 1 1 5l5 4" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <svg viewBox="0 0 12 8" width="12" height="8">
+          <path
+            d="M1 7 6 2l5 5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </div>
     </div>
