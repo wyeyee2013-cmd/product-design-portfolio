@@ -327,7 +327,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             video: '/assets/hrm-setup.mp4',
-            pending: true,
+            ratio: '2560 / 1392',
             caption: '01 Setting up the first week: demand by time range and position',
           },
           {

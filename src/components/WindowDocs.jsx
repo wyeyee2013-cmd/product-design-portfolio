@@ -110,6 +110,9 @@ function FigureVideo({ figure }) {
 
   return (
     <video
+      /* `ratio` holds the box open before the first frame arrives, so a long
+         document does not jump as the reader comes down it */
+      style={figure.ratio ? { aspectRatio: figure.ratio } : undefined}
       src={figure.video}
       poster={figure.poster}
       autoPlay={!still}
@@ -117,7 +120,12 @@ function FigureVideo({ figure }) {
       controls={still || figure.controls}
       muted
       playsInline
-      preload="metadata"
+      /* screen recordings run to tens of megabytes and these sit near the foot
+         of the document. `none` keeps the fetch off the study's first paint,
+         and browsers already hold muted autoplay until the element is on
+         screen — which is the same deferral, handled by the one party that
+         cannot fail to notice the video has scrolled into view. */
+      preload="none"
       aria-label={figure.caption}
     />
   )
