@@ -24,8 +24,10 @@ const ALL_PROJECTS = [
       'The people side: shifts, skills, and permissions for businesses where the roster changes weekly and half the team is part-time.',
     thumb: '/assets/hrm-cover.webp',
     gallery: [],
-    /* the tint is dark enough to double as the accent: 4.9:1 on white */
-    tint: '#2f7d6b',
+    /* the cover's own orange; the accent is the nearest shade of it that
+       clears 4.5:1 on white, since the marks run at 11px */
+    tint: '#ef5308',
+    accent: '#cc3d00',
     row: 0,
     rotate: 7.65,
     clip: '/assets/clip-1.svg',

@@ -2139,7 +2139,7 @@
   padding: 0;
 }
 .priorities li {
-  padding-top: 16px;
+  padding-top: 14px;
   border-top: 2px solid var(--study-tint, var(--violet));
   font-family: var(--font-ui);
   font-size: 17px;
@@ -2147,6 +2147,11 @@
   line-height: 1.4;
   letter-spacing: -0.3px;
   color: #141414;
+}
+/* the number sits between the rule and the statement, so the eye counts the
+   set before it reads it */
+.priorities .flowNum {
+  margin-bottom: 6px;
 }
 
 /* ---------- gauge: the finding and the score that produced it ---------- */

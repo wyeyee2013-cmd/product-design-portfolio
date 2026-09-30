@@ -510,8 +510,11 @@ function Priorities({ item }) {
     <div className={styles.prioritiesBlock}>
       {title && <p className={styles.prioritiesLabel}>{title}</p>}
       <ul className={styles.priorities} style={{ '--cols': cols }}>
-        {items.map((p) => (
-          <li key={p}>{p}</li>
+        {items.map((p, i) => (
+          <li key={p}>
+            <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
+            {p}
+          </li>
         ))}
       </ul>
     </div>
