@@ -320,21 +320,15 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'The first phase of HRM Premium Scheduling established a complete scheduling workflow: a guided setup, and a week that builds itself once that setup is in place.',
+            text: 'The first phase of HRM Premium Scheduling established a complete scheduling workflow, from a guided first-week setup through to a published roster. Once that setup is in place, a week takes minutes.',
           },
           /* two clips rather than a list of stages: the work the operator does
              once, and what every week after it costs them */
           {
             type: 'figure',
-            video: '/assets/hrm-setup.mp4',
-            ratio: '2560 / 1392',
-            caption: '01 Setting up the first week: demand by time range and position',
-          },
-          {
-            type: 'figure',
             video: '/assets/hrm-scheduling.mp4',
-            pending: true,
-            caption: '02 Scheduling a week once the setup is done, and publishing it',
+            ratio: '2560 / 1392',
+            caption: '01 A week scheduled and published, once the setup is in place',
           },
           {
             type: 'callout',
