@@ -334,7 +334,24 @@ function DocFigure({ item }) {
           kind={item.video ? 'Video' : 'Screen'}
         />
       ) : (
-        <img src={item.src} alt={item.caption} loading="lazy" onError={() => setBroken(true)} />
+        <img
+          src={item.src}
+          alt={item.caption}
+          loading="lazy"
+          onError={() => setBroken(true)}
+          /* a photograph rather than an export: `crop` frames the part that
+             carries the evidence, since the whole frame at document width
+             would be taller than the window it sits in */
+          style={
+            item.crop
+              ? {
+                  aspectRatio: item.crop,
+                  objectFit: 'cover',
+                  objectPosition: item.focus ?? 'center',
+                }
+              : undefined
+          }
+        />
       )}
       <figcaption>{item.caption}</figcaption>
     </figure>

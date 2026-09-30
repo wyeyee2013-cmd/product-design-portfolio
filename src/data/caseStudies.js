@@ -17,7 +17,7 @@
  *   { type: 'personas',    items: [{ icon, title, text }] }
  *   { type: 'journey',     title, intro, items: [{ label, mood, bullets, note }] }
  *   { type: 'iaDiagram',   caption }
- *   { type: 'figure',      src, caption }
+ *   { type: 'figure',      src | video, caption, crop?, focus?, pending? }
  *   { type: 'figureGroup', srcs: [], caption }
  *   { type: 'feature',     title, text, figure: { src | srcs, caption, dark? } }
  *   { type: 'featureGrid', items: [feature] }                    the same, two across
@@ -211,8 +211,14 @@ export const CASE_STUDIES = {
             ],
           },
           {
-            type: 'text',
-            text: 'The prototype allowed merchants to move through the scheduling process, but testing revealed a more important problem.',
+            type: 'figure',
+            src: '/assets/hrm-03-usability-session.jpg',
+            /* a phone photograph of the session, so it is framed rather than
+               shown whole: portrait at the document's width would be taller
+               than the window it sits in */
+            crop: '3 / 2',
+            focus: 'center 50%',
+            caption: '03 A session in progress, walking a merchant through the scheduling setup',
           },
           /* the hinge of the study: the finding and the score that produced
              it, as one object rather than a claim followed by its evidence */
