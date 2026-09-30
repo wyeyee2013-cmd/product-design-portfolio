@@ -79,10 +79,6 @@ export const CASE_STUDIES = {
               'Can we create a common product model without forcing every restaurant to work the same way?',
             ],
           },
-          {
-            type: 'text',
-            text: 'Rather than jumping directly into screens, we started with problem discovery.',
-          },
         ],
       },
       {
@@ -130,10 +126,6 @@ export const CASE_STUDIES = {
             variant: 'statement',
             title: 'The Product Goal',
             text: 'How might we help restaurant operators create and manage weekly schedules with less manual effort, while keeping the experience simple enough to accommodate different ways of working?',
-          },
-          {
-            type: 'text',
-            text: 'The Product Manager then translated this direction into the initial product requirements.',
           },
         ],
       },
@@ -212,12 +204,11 @@ export const CASE_STUDIES = {
           },
           {
             type: 'figure',
-            src: '/assets/hrm-03-usability-session.jpg',
+            src: '/assets/hrm-03-usability-session.webp',
             /* a phone photograph of the session, so it is framed rather than
                shown whole: portrait at the document's width would be taller
                than the window it sits in */
-            crop: '3 / 2',
-            focus: 'center 50%',
+            inset: true,
             caption: '03 A session in progress, walking a merchant through the scheduling setup',
           },
           /* the hinge of the study: the finding and the score that produced
@@ -276,9 +267,9 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'The usability testing changed how we approached the first version. Instead of trying to make our initial scheduling model comprehensive, we focused on making the core workflow understandable and adaptable.',
           },
-          { type: 'text', text: 'Our priorities became:' },
           {
             type: 'priorities',
+            title: 'Our priorities became',
             items: [
               'Simplify the language.',
               'Reduce unnecessary complexity.',
@@ -329,54 +320,26 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'The first phase of HRM Premium Scheduling established a complete scheduling workflow built around:',
+            text: 'The first phase of HRM Premium Scheduling established a complete scheduling workflow: a guided setup, and a week that builds itself once that setup is in place.',
           },
-          /* the walkthrough carries the interface for this whole section, so
-             the six stages below it are the summary rather than the showcase */
+          /* two clips rather than a list of stages: the work the operator does
+             once, and what every week after it costs them */
           {
             type: 'figure',
-            video: '/assets/hrm-walkthrough.mp4',
+            video: '/assets/hrm-setup.mp4',
             pending: true,
-            caption: '01 The scheduling workflow end to end',
+            caption: '01 Setting up the first week: demand by time range and position',
           },
           {
-            type: 'feature',
-            n: '01',
-            title: 'First Week Setup',
-            text: 'A guided onboarding experience to help operators establish their first schedule.',
-          },
-          /* the entry point takes the full width; the four stages that follow
-             it do not each need one, and six identical bars read as a list
-             rather than as a product */
-          {
-            type: 'featureGrid',
-            items: [
-              {
-                n: '02',
-                title: 'Demand Planning',
-                text: 'Define staffing requirements by time range and position.',
-              },
-              {
-                n: '03',
-                title: 'Auto Scheduling',
-                text: 'Generate a proposed schedule based on the defined requirements.',
-              },
-              {
-                n: '04',
-                title: 'Review and Publish',
-                text: 'Allow operators to validate the schedule before making it available to their team.',
-              },
-              {
-                n: '05',
-                title: 'Schedule Reuse',
-                text: 'Copy existing schedules into subsequent weeks to reduce repetitive work.',
-              },
-            ],
+            type: 'figure',
+            video: '/assets/hrm-scheduling.mp4',
+            pending: true,
+            caption: '02 Scheduling a week once the setup is done, and publishing it',
           },
           {
             type: 'callout',
             variant: 'deferred',
-            title: '06 AI Assisted Scheduling',
+            title: 'AI Assisted Scheduling',
             text: 'A future capability built around historical scheduling data, intentionally deferred until the foundational workflow is mature.',
           },
         ],
@@ -404,8 +367,10 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'As the product moves beyond its initial phase, I would continue validating:',
           },
+          /* six parallel measures, so they take the same rule-topped row as
+             the priorities rather than a bulleted list to close the study on */
           {
-            type: 'bullets',
+            type: 'priorities',
             items: [
               'Schedule creation time',
               'Completion rate',

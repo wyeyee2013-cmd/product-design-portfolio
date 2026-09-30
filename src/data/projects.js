@@ -22,7 +22,7 @@ const ALL_PROJECTS = [
     tags: ['Web App', 'FeedMe', '2026'],
     summary:
       'The people side: shifts, skills, and permissions for businesses where the roster changes weekly and half the team is part-time.',
-    thumb: '/assets/hrm-cover.png',
+    thumb: '/assets/hrm-cover.webp',
     gallery: [],
     /* the tint is dark enough to double as the accent: 4.9:1 on white */
     tint: '#2f7d6b',

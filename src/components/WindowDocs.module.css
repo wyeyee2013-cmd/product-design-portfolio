@@ -2116,12 +2116,26 @@
 }
 
 /* ---------- priorities: what was decided, held side by side ---------- */
+.prioritiesBlock {
+  margin: 26px 0 12px;
+}
+/* the line that names the set, bound to it rather than floating above as one
+   more paragraph in the run */
+.prioritiesLabel {
+  margin: 0 0 14px;
+  font-family: var(--font-tag);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--study-tint, var(--violet));
+}
 .priorities {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
   gap: 22px;
-  margin: 22px 0 10px;
+  margin: 0;
   padding: 0;
 }
 .priorities li {
@@ -2223,6 +2237,12 @@
   color: rgba(18, 18, 18, 0.72);
 }
 
+/* a photograph that is evidence of the work rather than the work itself does
+   not need the document's full width */
+.chapter > .figure.inset {
+  max-width: 580px;
+}
+
 /* ---------- placeholder: the screen this space is reserved for ---------- */
 .placeholder {
   display: flex;
@@ -2306,6 +2326,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
   }
+  /* a photograph that is evidence rather than the subject sits inset */
+  .chapter > .figure.inset {
+    max-width: none;
+  }
   .priorities li {
     font-size: 15.5px;
   }
@@ -2367,6 +2391,9 @@
   padding: 4px 0 4px 26px;
   border-radius: 0;
   background: none;
+  /* the base callout draws a hairline box; a quote wants only the rule, so
+     the other three sides have to be cleared rather than left to show */
+  border: 0;
   border-left: 3px solid var(--study-tint, var(--violet));
   text-align: left;
 }

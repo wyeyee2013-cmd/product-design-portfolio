@@ -323,7 +323,7 @@ function DocFigure({ item }) {
   const found = useAsset(item.video ?? item.src, item.pending, item.video ? 'video' : 'image')
 
   return (
-    <figure className={styles.figure}>
+    <figure className={`${styles.figure} ${item.inset ? styles.inset : ''}`}>
       {item.video && found ? (
         <FigureVideo figure={item} />
       ) : broken || !found ? (
@@ -500,13 +500,21 @@ function StepFlow({ items }) {
  * unnumbered and undotted: these are things held at once, not steps taken in
  * order, so they get a rule each rather than the flow's rail.
  */
-function Priorities({ items }) {
+function Priorities({ item }) {
+  const { items, title } = item
+  /* four or fewer get a column each; more than that would be slivers, so they
+     wrap in threes instead */
+  const cols = items.length <= 4 ? items.length : 3
+
   return (
-    <ul className={styles.priorities}>
-      {items.map((p) => (
-        <li key={p}>{p}</li>
-      ))}
-    </ul>
+    <div className={styles.prioritiesBlock}>
+      {title && <p className={styles.prioritiesLabel}>{title}</p>}
+      <ul className={styles.priorities} style={{ '--cols': cols }}>
+        {items.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
@@ -854,7 +862,7 @@ function StudyItem({ item }) {
       return <Questions items={item.items} />
 
     case 'priorities':
-      return <Priorities items={item.items} />
+      return <Priorities item={item} />
 
     case 'gauge':
       return <Gauge item={item} />
