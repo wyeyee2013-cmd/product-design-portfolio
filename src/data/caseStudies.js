@@ -455,10 +455,12 @@ export const CASE_STUDIES = {
           },
           {
             type: 'figure',
-            src: '/assets/os-01-onboarding-messages.png',
-            pending: true,
+            src: '/assets/os-02-onboarding-messages.webp',
+            /* cropped to the conversation, and every name, handle and phone
+               number masked in the file rather than over it */
             inset: true,
-            caption: '01 A merchant working through setup with an onboarding executive',
+            caption:
+              '01 A merchant working a menu change through support: a request, a chase, and a check',
           },
           { type: 'text', text: 'The merchant’s actual goal was much simpler.' },
           {
