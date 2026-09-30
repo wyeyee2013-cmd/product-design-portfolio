@@ -79,7 +79,7 @@ export const CASE_STUDIES = {
             text: 'Before designing the product, we needed to answer three fundamental questions:',
           },
           {
-            type: 'bullets',
+            type: 'questions',
             items: [
               'What are the biggest pain points in the existing scheduling process?',
               'What does a useful scheduling workflow actually look like?',
@@ -163,8 +163,10 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'The prototype allowed us to explore the major scheduling activities:',
           },
+          /* the same run the next section sets out properly, so it reads here
+             as a glance at the shape rather than a second telling of it */
           {
-            type: 'bullets',
+            type: 'chips',
             items: [
               'Set up the first week',
               'Define staffing demand',
@@ -251,7 +253,7 @@ export const CASE_STUDIES = {
             text: 'The objective wasn’t simply to ask “Do you like this?” Instead, we wanted to understand:',
           },
           {
-            type: 'bullets',
+            type: 'questions',
             items: [
               'Can merchants understand the terminology?',
               'Can they navigate the scheduling model without explanation?',
@@ -267,23 +269,23 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'The flow worked. The mental model did not work well enough.',
-          },
-          {
-            type: 'text',
             text: 'The prototype allowed merchants to move through the scheduling process.',
           },
           { type: 'text', text: 'But testing revealed a more important problem.' },
+          /* the hinge of the study, so it gets the weight of a statement
+             rather than sitting in the run of prose */
           {
-            type: 'resultCards',
-            items: [
-              {
-                icon: '📉',
-                value: '3 / 5',
-                label: 'Average confidence',
-                note: 'Merchants reported an average confidence of approximately 3/5 when using the proposed experience.',
-              },
-            ],
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Reality Check',
+            text: 'The flow worked. The mental model did not work well enough.',
+          },
+          {
+            type: 'gauge',
+            value: 3,
+            of: 5,
+            label: 'Average confidence',
+            note: 'Merchants reported an average confidence of approximately 3/5 when using the proposed experience.',
           },
           { type: 'text', text: 'The issue wasn’t simply usability in the traditional sense.' },
           {
@@ -337,7 +339,7 @@ export const CASE_STUDIES = {
           { type: 'text', text: 'This challenged one of our initial assumptions:' },
           {
             type: 'callout',
-            variant: 'statement',
+            variant: 'quote',
             title: 'What Testing Challenged',
             text: 'There isn’t one “correct” way to schedule a restaurant. The product therefore needed to provide structure without becoming unnecessarily rigid.',
           },
@@ -383,45 +385,6 @@ export const CASE_STUDIES = {
         ],
       },
       {
-        label: 'AI Scheduling',
-        lead: 'A future opportunity, not a feature we forced into V1',
-        items: [
-          {
-            type: 'text',
-            text: 'During the product exploration, we identified a larger opportunity around AI assisted scheduling.',
-          },
-          {
-            type: 'text',
-            text: 'Historical scheduling data could eventually help the product understand recurring staffing patterns and make intelligent recommendations.',
-          },
-          { type: 'text', text: 'For example, historical data could potentially inform:' },
-          {
-            type: 'bullets',
-            items: [
-              'Staffing requirements',
-              'Recurring schedules',
-              'Employee allocation',
-              'Demand patterns',
-              'Future scheduling recommendations',
-            ],
-          },
-          {
-            type: 'text',
-            text: 'However, we intentionally did not implement the AI layer in the first phase. The fundamental scheduling workflow needed to be validated first.',
-          },
-          {
-            type: 'text',
-            text: 'Rather than adding AI for the sake of having an AI feature, we treated it as a future layer on top of a reliable scheduling foundation.',
-          },
-          {
-            type: 'callout',
-            variant: 'statement',
-            title: 'The Sequencing',
-            text: 'First establish the workflow. Then make the workflow intelligent.',
-          },
-        ],
-      },
-      {
         label: 'From Prototype to System',
         lead: 'Turning an exploratory concept into a scalable product',
         items: [
@@ -458,7 +421,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'callout',
-            variant: 'statement',
+            variant: 'quote',
             title: 'My Approach to AI',
             text: 'Use AI to accelerate the design process, not outsource the product thinking.',
           },
@@ -483,35 +446,42 @@ export const CASE_STUDIES = {
             text: 'A guided onboarding experience to help operators establish their first schedule.',
             figure: { src: '/assets/hrm-07-first-week.png', caption: '01 First Week Setup' },
           },
+          /* the entry point takes the full width; the four stages that follow
+             it do not each need one, and six identical bars read as a list
+             rather than as a product */
           {
-            type: 'feature',
-            title: 'Demand Planning',
-            text: 'Define staffing requirements by time range and position.',
-            figure: { src: '/assets/hrm-08-demand.png', caption: '02 Demand Planning' },
+            type: 'featureGrid',
+            items: [
+              {
+                title: 'Demand Planning',
+                text: 'Define staffing requirements by time range and position.',
+                figure: { src: '/assets/hrm-08-demand.png', caption: '02 Demand Planning' },
+              },
+              {
+                title: 'Auto Scheduling',
+                text: 'Generate a proposed schedule based on the defined requirements.',
+                figure: { src: '/assets/hrm-09-auto-scheduling.png', caption: '03 Auto Scheduling' },
+              },
+              {
+                title: 'Review and Publish',
+                text: 'Allow operators to validate the schedule before making it available to their team.',
+                figure: {
+                  src: '/assets/hrm-10-review-publish.png',
+                  caption: '04 Review and Publish',
+                },
+              },
+              {
+                title: 'Schedule Reuse',
+                text: 'Copy existing schedules into subsequent weeks to reduce repetitive work.',
+                figure: { src: '/assets/hrm-11-copy-week.png', caption: '05 Schedule Reuse' },
+              },
+            ],
           },
           {
-            type: 'feature',
-            title: 'Auto Scheduling',
-            text: 'Generate a proposed schedule based on the defined requirements.',
-            figure: { src: '/assets/hrm-09-auto-scheduling.png', caption: '03 Auto Scheduling' },
-          },
-          {
-            type: 'feature',
-            title: 'Review and Publish',
-            text: 'Allow operators to validate the schedule before making it available to their team.',
-            figure: { src: '/assets/hrm-10-review-publish.png', caption: '04 Review and Publish' },
-          },
-          {
-            type: 'feature',
-            title: 'Schedule Reuse',
-            text: 'Copy existing schedules into subsequent weeks to reduce repetitive work.',
-            figure: { src: '/assets/hrm-11-copy-week.png', caption: '05 Schedule Reuse' },
-          },
-          {
-            type: 'feature',
-            title: 'AI Assisted Scheduling',
+            type: 'callout',
+            variant: 'deferred',
+            title: '06 AI Assisted Scheduling',
             text: 'A future capability built around historical scheduling data, intentionally deferred until the foundational workflow is mature.',
-            figure: { src: '/assets/hrm-12-ai-scheduling.png', caption: '06 AI Assisted Scheduling' },
           },
         ],
       },

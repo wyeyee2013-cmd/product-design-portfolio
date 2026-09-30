@@ -151,8 +151,9 @@ function groupItems(items) {
   const PAIRS = { point: 'pointGrid', callout: 'calloutGrid' }
   const packed = []
   for (const item of out) {
-    /* a statement is the section's conclusion — it takes the full width alone */
-    if (item.type === 'callout' && item.variant === 'statement') {
+    /* a statement is the section's conclusion, a deferred card the one thing
+       that was not built — both take the full width alone */
+    if (item.type === 'callout' && item.variant) {
       packed.push(item)
       continue
     }
@@ -334,13 +335,105 @@ function StepFlow({ items }) {
   )
 }
 
+/**
+ * The questions a phase had to answer. Deliberately not cards: a numeral, a
+ * hairline, and the question at display size, so the framing of a study reads
+ * as framing rather than as another set of boxes.
+ */
+function Questions({ items }) {
+  return (
+    <ol className={styles.questions}>
+      {items.map((q, i) => (
+        <li key={q}>
+          <span className={styles.questionNum}>{String(i + 1).padStart(2, '0')}</span>
+          <p>{q}</p>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+/**
+ * A short enumerated list that is a summary of something explained properly
+ * further down. Pills rather than bullets, so the reader takes it as a glance
+ * at the shape of the thing and not as the thing itself.
+ */
+function Chips({ items }) {
+  return (
+    <ul className={styles.chips}>
+      {items.map((c, i) => (
+        <li key={c}>
+          <span className={styles.chipNum}>{String(i + 1).padStart(2, '0')}</span>
+          {c}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/**
+ * A score out of a small fixed total, drawn as the score: filled marks against
+ * empty ones. The metrics band suits a percentage; a 3-out-of-5 confidence
+ * rating reads better as the three-of-five it actually is.
+ */
+function Gauge({ item }) {
+  const total = item.of ?? 5
+  return (
+    <div className={styles.gauge}>
+      <div
+        className={styles.gaugeMarks}
+        role="img"
+        aria-label={`${item.value} out of ${total}`}
+      >
+        {Array.from({ length: total }, (_, i) => (
+          <span key={i} className={i < item.value ? styles.gaugeOn : styles.gaugeOff} />
+        ))}
+      </div>
+      <p className={styles.gaugeValue}>
+        {item.value}
+        <span>/ {total}</span>
+      </p>
+      <p className={styles.gaugeLabel}>{item.label}</p>
+      {item.note && <p className={styles.gaugeNote}>{item.note}</p>}
+    </div>
+  )
+}
+
+/* the showcase, two across: the stages that are not the entry point do not
+   each need the full width of the document */
+function FeatureGrid({ items }) {
+  return (
+    <div className={styles.featureGrid2}>
+      {items.map((f) => {
+        const cap = splitCaption(f.figure?.caption)
+        return (
+          <div className={styles.feature} key={f.title}>
+            <div className={styles.featureCopy}>
+              {cap.n && <span className={styles.pointNum}>{cap.n}</span>}
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </div>
+            {f.figure && <FeatureFigure figure={f.figure} bare />}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 function Callout({ item }) {
   /* a statement stands on its own, centred, with the body at display size —
      used where the callout is the section's conclusion rather than an aside */
-  const statement = item.variant === 'statement'
+  /* three weights of aside: a statement is the section's own conclusion and is
+     centred on the page, a quote is a line worth pulling out of the prose but
+     not worth stopping the page for, and a deferred card is something named in
+     the plan and deliberately not built. */
+  const variant = { statement: styles.statement, quote: styles.quote, deferred: styles.deferred }[
+    item.variant
+  ]
 
   return (
-    <div className={`${styles.callout} ${statement ? styles.statement : ''}`}>
+    <div className={`${styles.callout} ${variant ?? ''}`}>
       <div className={styles.calloutHead}>
         {/* a target, tinted per study from --study-tint */}
         <span className={styles.calloutIcon} aria-hidden="true">
@@ -591,6 +684,18 @@ function StudyItem({ item }) {
     /* the same run of work, laid across instead of down */
     case 'stepFlow':
       return <StepFlow items={item.items} />
+
+    case 'questions':
+      return <Questions items={item.items} />
+
+    case 'chips':
+      return <Chips items={item.items} />
+
+    case 'gauge':
+      return <Gauge item={item} />
+
+    case 'featureGrid':
+      return <FeatureGrid items={item.items} />
 
     /* the personalities the interviews surfaced, three across */
     case 'personas':
