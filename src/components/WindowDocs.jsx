@@ -354,46 +354,35 @@ function Questions({ items }) {
 }
 
 /**
- * A short enumerated list that is a summary of something explained properly
- * further down. Pills rather than bullets, so the reader takes it as a glance
- * at the shape of the thing and not as the thing itself.
- */
-function Chips({ items }) {
-  return (
-    <ul className={styles.chips}>
-      {items.map((c, i) => (
-        <li key={c}>
-          <span className={styles.chipNum}>{String(i + 1).padStart(2, '0')}</span>
-          {c}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-/**
- * A score out of a small fixed total, drawn as the score: filled marks against
- * empty ones. The metrics band suits a percentage; a 3-out-of-5 confidence
- * rating reads better as the three-of-five it actually is.
+ * A finding and the score behind it, as one object: the sentence the testing
+ * produced, and beside it the rating drawn as what it is, filled marks against
+ * empty ones. The metrics band suits a percentage; three out of five reads
+ * better as three of five, and the claim is worth nothing without it.
  */
 function Gauge({ item }) {
   const total = item.of ?? 5
   return (
     <div className={styles.gauge}>
-      <div
-        className={styles.gaugeMarks}
-        role="img"
-        aria-label={`${item.value} out of ${total}`}
-      >
-        {Array.from({ length: total }, (_, i) => (
-          <span key={i} className={i < item.value ? styles.gaugeOn : styles.gaugeOff} />
-        ))}
+      {item.title && <p className={styles.gaugeEyebrow}>{item.title}</p>}
+      <div className={styles.gaugeBody}>
+        {item.statement && <p className={styles.gaugeStatement}>{item.statement}</p>}
+        <div className={styles.gaugeScore}>
+          <div
+            className={styles.gaugeMarks}
+            role="img"
+            aria-label={`${item.value} out of ${total}`}
+          >
+            {Array.from({ length: total }, (_, i) => (
+              <span key={i} className={i < item.value ? styles.gaugeOn : styles.gaugeOff} />
+            ))}
+          </div>
+          <p className={styles.gaugeValue}>
+            {item.value}
+            <span>/ {total}</span>
+          </p>
+          <p className={styles.gaugeLabel}>{item.label}</p>
+        </div>
       </div>
-      <p className={styles.gaugeValue}>
-        {item.value}
-        <span>/ {total}</span>
-      </p>
-      <p className={styles.gaugeLabel}>{item.label}</p>
       {item.note && <p className={styles.gaugeNote}>{item.note}</p>}
     </div>
   )
@@ -687,9 +676,6 @@ function StudyItem({ item }) {
 
     case 'questions':
       return <Questions items={item.items} />
-
-    case 'chips':
-      return <Chips items={item.items} />
 
     case 'gauge':
       return <Gauge item={item} />

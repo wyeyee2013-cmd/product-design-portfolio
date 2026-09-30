@@ -9,6 +9,9 @@
  *   { type: 'text',        text }
  *   { type: 'bullets',     items: [] | [{ icon, text }] }  text allows <b>
  *   { type: 'callout',     title, subtitle?, bullets?, text, variant? }
+ *                          variant: 'statement' centred, 'quote' on a rule,
+ *                          'deferred' outlined for what was not built
+ *   { type: 'questions',   items: [] }                          the framing, unboxed
  *   { type: 'timeline',    items: [{ label, text }] }           a run of work, down a rail
  *   { type: 'stepFlow',    items: [{ label, text | body: [] }] } a process, read across
  *   { type: 'personas',    items: [{ icon, title, text }] }
@@ -17,7 +20,9 @@
  *   { type: 'figure',      src, caption }
  *   { type: 'figureGroup', srcs: [], caption }
  *   { type: 'feature',     title, text, figure: { src | srcs, caption, dark? } }
+ *   { type: 'featureGrid', items: [feature] }                    the same, two across
  *   { type: 'resultCards', items: [] }
+ *   { type: 'gauge',       title?, statement?, value, of, label, note? }
  *
  * `feature` keeps a design decision and the screen that shows it in one card,
  * rather than letting the copy and the UI drift apart down the page.
@@ -161,23 +166,6 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'The prototype allowed us to explore the major scheduling activities:',
-          },
-          /* the same run the next section sets out properly, so it reads here
-             as a glance at the shape rather than a second telling of it */
-          {
-            type: 'chips',
-            items: [
-              'Set up the first week',
-              'Define staffing demand',
-              'Assign shifts',
-              'Automatically generate a schedule',
-              'Review and publish',
-              'Reuse the schedule for the following week',
-            ],
-          },
-          {
-            type: 'text',
             text: 'The purpose of the prototype was not to present AI as the solution.',
           },
           {
@@ -194,12 +182,9 @@ export const CASE_STUDIES = {
             caption:
               '02 Requirements, AI prototype, a testable end to end flow we could put in front of merchants',
           },
-        ],
-      },
-      {
-        label: 'The First Scheduling Model',
-        lead: 'Turning operational requirements into a repeatable workflow',
-        items: [
+          /* the model the prototype embodied, in the same section: the
+             constraint and what it produced are one move, not two */
+          { type: 'subhead', text: 'Turning operational requirements into a repeatable workflow' },
           {
             type: 'text',
             text: 'Based on our discovery, we structured the initial scheduling experience around five core stages.',
@@ -272,16 +257,12 @@ export const CASE_STUDIES = {
             text: 'The prototype allowed merchants to move through the scheduling process.',
           },
           { type: 'text', text: 'But testing revealed a more important problem.' },
-          /* the hinge of the study, so it gets the weight of a statement
-             rather than sitting in the run of prose */
-          {
-            type: 'callout',
-            variant: 'statement',
-            title: 'The Reality Check',
-            text: 'The flow worked. The mental model did not work well enough.',
-          },
+          /* the hinge of the study: the finding and the score that produced
+             it, as one object rather than a claim followed by its evidence */
           {
             type: 'gauge',
+            title: 'The Reality Check',
+            statement: 'The flow worked. The mental model did not work well enough.',
             value: 3,
             of: 5,
             label: 'Average confidence',
