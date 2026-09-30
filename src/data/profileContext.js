@@ -22,28 +22,115 @@ import {
   TALKS,
 } from './about.js'
 import { CASE_STUDIES } from './caseStudies.js'
+import { KB } from './knowledge.js'
 import { PROJECTS } from './projects.js'
 import { REVIEWS } from './reviews.js'
 import { STATS } from './stats.js'
 
-/** Flattens one case-study item tree into plain sentences. */
+/** Copy may carry <b> and <i> for the page; the brief wants the words only. */
+const plain = (s) => String(s ?? '').replace(/<[^>]+>/g, '')
+
+/** A bullet is either a sentence or { icon, text }. */
+const bulletText = (b) => plain(typeof b === 'string' ? b : b.text)
+
+/**
+ * Flattens one case-study item into plain sentences.
+ *
+ * Every type in the vocabulary has to be handled here. A type that falls
+ * through is not a rendering bug — the page looks right — it is silently
+ * missing from what the assistant knows, which is far harder to notice.
+ */
 function itemText(item) {
   switch (item.type) {
     case 'subhead':
     case 'text':
-      return item.text
+      return plain(item.text)
+
+    /* all of these are a list of short statements, whatever they render as */
     case 'bullets':
-      return item.items.map((b) => `- ${b}`).join('\n')
+    case 'questions':
+    case 'priorities':
+    case 'loop':
+      return item.items.map((b) => `- ${bulletText(b)}`).join('\n')
+
     case 'callout':
-      return [item.title, item.subtitle, item.text, ...(item.bullets || [])]
+      return [item.title, item.subtitle, item.text, ...(item.bullets ?? [])]
+        .filter(Boolean)
+        .map(plain)
+        .join(' · ')
+
+    case 'balance':
+      return [item.title, item.parts.join(' / ')].filter(Boolean).map(plain).join(': ')
+
+    case 'contrast':
+      return item.items.map((c) => `${plain(c.label)}: ${plain(c.text)}`).join('\n')
+
+    /* a run of steps, down a rail or across one */
+    case 'timeline':
+    case 'stepFlow':
+      return item.items
+        .map((s) => {
+          const body = []
+            .concat(s.body ?? s.text ?? [])
+            .map(plain)
+            .join(' ')
+          return `- ${plain(s.label)}${body ? `: ${body}` : ''}${s.note ? ` [${plain(s.note)}]` : ''}`
+        })
+        .join('\n')
+
+    case 'personas':
+      return item.items.map((p) => `- ${plain(p.title)}: ${plain(p.text)}`).join('\n')
+
+    case 'journey':
+      return [
+        plain(item.title),
+        plain(item.intro),
+        ...item.items.map(
+          (s) =>
+            `- ${plain(s.label)}: ${(s.bullets ?? []).map(plain).join('; ')}` +
+            `${s.note ? ` — ${plain(s.note)}` : ''}`
+        ),
+      ]
+        .filter(Boolean)
+        .join('\n')
+
+    case 'gauge':
+      return [
+        plain(item.title),
+        plain(item.statement),
+        `${item.value}/${item.of} ${plain(item.label)}`,
+        ...[].concat(item.note ?? []).map(plain),
+      ]
         .filter(Boolean)
         .join(' · ')
+
     case 'feature':
-      return `${item.title}: ${item.text}`
+      return `${plain(item.title)}: ${plain(item.text)}`
+
+    case 'featureGrid':
+      return item.items.map((f) => `- ${plain(f.title)}: ${plain(f.text)}`).join('\n')
+
     case 'resultCards':
-      return item.items.map((r) => `- ${r}`).join('\n')
+      return item.items
+        .map((r) =>
+          typeof r === 'string'
+            ? `- ${plain(r)}`
+            : `- ${[r.value, plain(r.label)].filter(Boolean).join(' ')}: ${plain(r.note)}`
+        )
+        .join('\n')
+
+    /* the screens of a prototype, each captioned with what it shows */
+    case 'prototype':
+      return item.screens.map((s) => `- ${plain(s.step)}: ${plain(s.caption)}`).join('\n')
+
+    /* an image's caption is the only prose it carries, and it is worth having */
+    case 'figure':
+    case 'figureGroup':
+    case 'compare':
+    case 'iaDiagram':
+      return item.caption ? `(Shown: ${plain(item.caption)})` : ''
+
     default:
-      /* figures carry no prose worth briefing on */
       return ''
   }
 }
@@ -119,6 +206,19 @@ export function buildProfileContext() {
     `## What colleagues say\n${REVIEWS.map(
       (r) => `- ${r.name}, ${r.role}: ${r.quote} ${r.body}`
     ).join('\n')}`
+  )
+
+  /**
+   * Her own answers to the questions people actually ask. These were written
+   * for the offline fallback, which meant the model never saw them: the site
+   * copy says what she did, and these say how she puts it. They carry framing
+   * and opinion that no case study states outright, so the assistant reads
+   * them as her position rather than as facts to recite.
+   */
+  parts.push(
+    `## How she answers common questions\nThese are her own words. Match their framing and their opinions; do not quote them verbatim unless the wording is the point.\n\n${KB.map(
+      (e) => `Q (${e.k.slice(0, 4).join(', ')})\nA: ${plain(e.a)}`
+    ).join('\n\n')}`
   )
 
   parts.push(

@@ -85,7 +85,7 @@ export const KB = [
   },
   {
     k: ['result', 'impact', 'outcome', 'metric', 'measurable', 'success'],
-    a: 'The Pantas organisation revamp is the clearest one: AI-driven extraction cut onboarding by <b>6–7 hours</b> per client and removed over <b>60%</b> of the onboarding team’s manual data processing, with high satisfaction from both staff and clients.',
+    a: 'Pantas is the clearest: AI-driven extraction cut onboarding by <b>6–7 hours</b> per client and removed over <b>60%</b> of the team’s manual data processing. The POS revamp gave merchants <b>10% faster task completion</b> and engineering <b>30% faster handoff</b>, off the back of the token library. FeedMe OS menu onboarding targets about <b>5 minutes</b> for something that took the onboarding team around 2 days. And one that is not a win: HRM scheduling tested at <b>3/5 confidence</b>, which is the number that told us to change the model rather than polish it.',
   },
   {
     k: ['zero to one', '0 to 1', 'greenfield', 'new product', 'from scratch'],
@@ -123,7 +123,7 @@ export const KB = [
   },
   {
     k: ['research', 'user research', 'interview', 'usability', 'testing', 'user test'],
-    a: 'Interviews, empathy maps and affinity diagrams from my Hiredly days onward, then behaviour data to check what people actually did against what they told me. Design decisions should survive both.',
+    a: 'Interviews, empathy maps and affinity diagrams from my Hiredly days onward, then behaviour data to check what people actually did against what they told me. More recently: a manual click-through audit of the POS paired with the engineers who built it, usability testing with 5 merchants after that rollout, event storming to map the scheduling domain with the team, testing the scheduling prototype with 3 merchants, and shadowing live onboarding sessions to see where merchants got stuck. I watch what people do in the session rather than take their word for how it felt afterwards.',
   },
 
   /* ---------- proof ---------- */
@@ -166,6 +166,46 @@ export const KB = [
     a: "Because I close the gap between the spec and the screen. I'll model the rules, prototype the risk, and hand engineering something that already survived its own edge cases, and I can hold the product manager’s end of the conversation too.",
   },
 
+  {
+    k: ['engineer', 'developer', 'handoff', 'hand off', 'collaborate', 'collaboration', 'work with', 'cross functional', 'team'],
+    a: 'Closely, and early. On the POS audit I sat with frontend and backend engineers and clicked through the whole product with them, which is how we found the 10+ undocumented flows nobody had written down. On HRM I used event storming so engineering, product and design were mapping the same domain in one room. My handoff is a token library and named states rather than a redline, and my prototypes are meant to answer the questions engineering would otherwise have to ask.',
+  },
+  {
+    k: ['product manager', 'product management', 'pm', 'wear both hats', 'both hats', 'strategy'],
+    a: 'I hold the product manager’s end for the FeedMe onboarding portfolio, so the design brief and the revenue goal are the same conversation. It changes what I argue for: on menu onboarding the win was not a nicer screen, it was removing the support dependency that made setup take two days. Elsewhere I work with a PM rather than as one, and on HRM the PM turned the direction we set in discovery into the requirements.',
+  },
+  {
+    k: ['fail', 'failed', 'failure', 'setback', 'wrong', 'mistake', 'learn', 'lesson', 'hardest', 'difficult', 'challenge', 'go wrong', 'didn t work'],
+    a: 'HRM scheduling. We had a flow that worked and merchants who could get through it, and testing still came back at 3/5 confidence, because our terminology was ours rather than theirs and we had assumed every restaurant schedules the same way. Functional is not intuitive. We went back and simplified the language and loosened the model instead of refining a prototype that was technically fine. On the POS I made a different call: we shipped at about 80% visual polish to hold the launch window, and scheduled the rest as fast-follows.',
+  },
+  {
+    k: ['ai product', 'ai feature', 'ai ux', 'human in the loop', 'ai design', 'designing ai', 'llm product'],
+    a: 'The rule I keep is: AI prepares, the person decides. On FeedMe OS, AI reads a merchant’s existing menu and structures it into our format, then the merchant reviews, corrects, picks the outlets and publishes. Nothing goes live without them. On HRM we identified an AI scheduling layer and deliberately did not build it in phase one, because the underlying workflow had not been validated yet. Automate the tedious work and keep the meaningful decisions with the user.',
+  },
+  {
+    k: ['platform', 'mobile', 'tablet', 'web app', 'responsive', 'device'],
+    a: 'Tablet and mobile for the POS, which is the hardest surface I design for: one hand, at speed, by staff trained once. Mobile for FeedMe OS. Web for HRM Premium, Pantas and Hireti. The POS also needed a proper dark mode, since it runs in bright cafes and dim bars, so I built the component library on semantic tokens and inverted the theme through variables rather than recolouring screens.',
+  },
+  {
+    k: ['stakeholder', 'leadership', 'executive', 'buy in', 'present', 'influence'],
+    a: 'The POS revamp had to be argued as a market position, not a refresh: the old interface was generic enough to clone, so the visual work was a defensive moat. Leadership signed off on that framing and the rollout was phased so merchants were never disrupted mid-service. I find the commercial reason a design decision exists and lead with it.',
+  },
+  {
+    k: ['ambiguity', 'ambiguous', 'unclear', 'no brief', 'undefined', 'messy problem', 'where do you start'],
+    a: 'I start by finding out what is actually true. On the POS that meant clicking through a system with no documentation until the real journeys appeared. On HRM there was no existing scheduling experience at all, so it was pain point discovery, validating those pain points with merchants, and event storming before a single screen. On FeedMe OS the insight came from sitting in on onboarding calls. The brief usually arrives once you have looked.',
+  },
+  {
+    k: ['figma', 'design file', 'variables', 'token', 'component library', 'documentation'],
+    a: 'Figma, with variables in three tiers: Foundation, Semantic, Component. A colour decided once propagates everywhere and nobody re-picks a hex. I set that foundation up at FeedMe and unified Pantas’ modules onto React and shadcn. Lately I use a Claude orchestrator to turn exploratory UI into system-compliant components, which takes the repetitive part of the work without touching the decisions.',
+  },
+  {
+    k: ['what are you looking for', 'next role', 'ideal', 'want in a role', 'kind of team', 'culture'],
+    a: 'Product design or a design-engineering hybrid, on products with real operational complexity: the more rules underneath, the more interesting it is to make simple. I want to stay close to engineering and to the commercial side, and I would rather be somewhere that ships and learns than somewhere that polishes. Contract or full-time. cheryl.wylim@outlook.com.',
+  },
+  {
+    k: ['walkthrough', 'interactive', 'click through', 'demo', 'try it', 'see the screens', 'screens'],
+    a: 'The FeedMe OS write-up has the real screens in a phone frame you can step through, ten of them, from the onboarding checklist to publishing the menu to the right outlets. The HRM write-up has a recording of a week being scheduled. Both are on this page rather than behind a Figma link.',
+  },
   /* ---------- logistics ---------- */
   {
     k: ['available', 'hire', 'hiring', 'freelance', 'open to', 'opportunit', 'recruit', 'looking for'],
