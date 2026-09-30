@@ -577,7 +577,15 @@ function Gauge({ item }) {
           <p className={styles.gaugeLabel}>{item.label}</p>
         </div>
       </div>
-      {item.note && <p className={styles.gaugeNote}>{item.note}</p>}
+      {/* everything the finding says belongs inside it, under the same rules,
+          rather than trailing below the block with a line drawn between */}
+      {[]
+        .concat(item.note ?? [])
+        .map((n, i) => (
+          <p className={styles.gaugeNote} key={i}>
+            {n}
+          </p>
+        ))}
     </div>
   )
 }

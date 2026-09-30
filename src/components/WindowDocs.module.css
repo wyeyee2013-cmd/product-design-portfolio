@@ -2241,6 +2241,11 @@
   letter-spacing: -0.25px;
   color: rgba(18, 18, 18, 0.72);
 }
+/* a second paragraph inside the block sits on a paragraph gap, not the wider
+   one that separates the block's prose from the score above it */
+.gaugeNote + .gaugeNote {
+  margin-top: 14px;
+}
 
 /* a photograph that is evidence of the work rather than the work itself does
    not need the document's full width */

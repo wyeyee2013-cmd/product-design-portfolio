@@ -22,7 +22,7 @@
  *   { type: 'feature',     title, text, figure: { src | srcs, caption, dark? } }
  *   { type: 'featureGrid', items: [feature] }                    the same, two across
  *   { type: 'resultCards', items: [] }
- *   { type: 'gauge',       title?, statement?, value, of, label, note? }
+ *   { type: 'gauge',       title?, statement?, value, of, label, note?: string | [] }
  *
  * `feature` keeps a design decision and the screen that shows it in one card,
  * rather than letting the copy and the UI drift apart down the page.
@@ -220,11 +220,10 @@ export const CASE_STUDIES = {
             value: 3,
             of: 5,
             label: 'Average confidence',
-            note: 'Merchants reported an average confidence of approximately 3/5 when using the proposed experience.',
-          },
-          {
-            type: 'text',
-            text: 'The issue wasn’t simply usability in the traditional sense. The deeper problem was confidence in the product’s mental model.',
+            note: [
+              'Merchants reported an average confidence of approximately 3/5 when using the proposed experience.',
+              'The issue wasn’t simply usability in the traditional sense. The deeper problem was confidence in the product’s mental model.',
+            ],
           },
         ],
       },
