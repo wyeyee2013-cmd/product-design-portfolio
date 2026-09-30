@@ -38,9 +38,84 @@ const ExternalIcon = () => (
  * study can declare its figures before the exports land rather than shipping
  * broken images — put the file in place and it appears on the next load.
  */
+/**
+ * What stands in for a screen that has not been exported yet. It holds the
+ * space at the ratio the real export will have, so the page reads the way it
+ * will read once the file lands instead of collapsing around a gap, and it
+ * says which screen belongs there.
+ */
+/**
+ * Whether a figure's file is actually there.
+ *
+ * A figure marked `pending` shows its placeholder straight away rather than
+ * waiting to fail: a missing asset is not reliably an error, since the dev
+ * server answers 200 with the app shell and a lazy image is not decoded until
+ * it is nearly on screen. It still probes for the file in the background, so
+ * dropping the export into /public/assets swaps the real screen in on the next
+ * load with no edit here. An unflagged figure trusts the file and falls back
+ * to the placeholder only if the browser tells us it is broken.
+ */
+function useAsset(src, pending) {
+  const [found, setFound] = useState(!pending)
+
+  useEffect(() => {
+    if (!pending || !src) return
+    const probe = new Image()
+    probe.onload = () => {
+      if (probe.naturalWidth) setFound(true)
+    }
+    probe.src = src
+    return () => {
+      probe.onload = null
+    }
+  }, [src, pending])
+
+  return found
+}
+
+function FigurePlaceholder({ caption, ratio = '16 / 10', named = true }) {
+  return (
+    <div className={styles.placeholder} style={{ aspectRatio: ratio }}>
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+        <rect
+          x="2.6"
+          y="4.4"
+          width="18.8"
+          height="15.2"
+          rx="2.2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
+        <path
+          d="M2.6 15.6 8 10.9l3.7 3.2 3.4-2.8 4.3 3.6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="15.4" cy="8.6" r="1.4" fill="currentColor" />
+      </svg>
+      {/* a figure prints its caption underneath already; a feature card's
+          screen does not, so only that one needs naming here */}
+      <span>{named ? caption : 'Screen to come'}</span>
+    </div>
+  )
+}
+
 function FeatureFigure({ figure, bare = false }) {
-  const [missing, setMissing] = useState(false)
-  if (missing) return null
+  const [broken, setBroken] = useState(false)
+  const found = useAsset(figure.src, figure.pending)
+
+  if (broken || !found) {
+    return (
+      <figure className={`${styles.featureFigure} ${bare ? styles.figureFills : ''}`}>
+        <FigurePlaceholder caption={figure.caption} ratio={figure.ratio} />
+        {!bare && <figcaption>{figure.caption}</figcaption>}
+      </figure>
+    )
+  }
 
   return (
     <figure
@@ -59,7 +134,7 @@ function FeatureFigure({ figure, bare = false }) {
           src={figure.src}
           alt={figure.caption}
           loading="lazy"
-          onError={() => setMissing(true)}
+          onError={() => setBroken(true)}
         />
       )}
       {/* the caption moves up beside the copy when the screen fills the card */}
@@ -133,11 +208,14 @@ function groupItems(items) {
         i += 1
       }
       /* a list following the diagnosis is its symptoms — those read better as
-         cards stacked beside the prose than as bullets buried under it */
-      if (items[i + 1]?.type === 'bullets') {
-        const cards = items[i + 1].items
+         cards stacked beside the prose than as bullets buried under it. Only
+         the icon-bearing form earns that though: a run of four-word directives
+         in the same boxes is a column of mostly empty cards beside a heading
+         with nothing under it, so plain strings stay a plain list. */
+      const next2 = items[i + 1]
+      if (next2?.type === 'bullets' && next2.items.some((c) => typeof c !== 'string')) {
         i += 1
-        out.push({ type: 'splitPoint', title: item.text, body, cards })
+        out.push({ type: 'splitPoint', title: item.text, body, cards: next2.items })
         continue
       }
       out.push({ type: 'point', title: item.text, body })
@@ -167,32 +245,33 @@ function groupItems(items) {
     packed.push(item)
   }
 
-  /* A card earns its box by having company. A point alone in a section of
-     plain prose is just prose — but one sitting alongside other cards keeps
-     its box, or it reads as a gap in the set. */
-  const CARDED = new Set(['calloutGrid', 'feature'])
-  const hasCompany = packed.some(
-    (i) => CARDED.has(i.type) || (i.type === 'pointGrid' && i.items.length > 1)
-  )
+  /* A card earns its box by having a sibling to sit beside. Alone it takes one
+     column of a two-column grid and leaves the other empty, and its number
+     counts against nothing — so a lone point is just a heading and its prose,
+     however many cards the section holds elsewhere. */
   return packed.map((item) =>
-    item.type === 'pointGrid' && item.items.length === 1 && !hasCompany
+    item.type === 'pointGrid' && item.items.length === 1
       ? { ...item.items[0], type: 'plainPoint' }
       : item
   )
 }
 
 /**
- * A standalone evidence figure. Like the feature screens, it drops itself when
- * the export is not in place yet, so a study can declare where its research
+ * A standalone evidence figure. Like the feature screens, it holds its place
+ * when the export is not there yet, so a study can declare where its research
  * artefacts go and have them appear the moment the files land.
  */
 function DocFigure({ item }) {
-  const [missing, setMissing] = useState(false)
-  if (missing) return null
+  const [broken, setBroken] = useState(false)
+  const found = useAsset(item.src, item.pending)
 
   return (
     <figure className={styles.figure}>
-      <img src={item.src} alt={item.caption} loading="lazy" onError={() => setMissing(true)} />
+      {broken || !found ? (
+        <FigurePlaceholder caption={item.caption} ratio={item.ratio} named={false} />
+      ) : (
+        <img src={item.src} alt={item.caption} loading="lazy" onError={() => setBroken(true)} />
+      )}
       <figcaption>{item.caption}</figcaption>
     </figure>
   )

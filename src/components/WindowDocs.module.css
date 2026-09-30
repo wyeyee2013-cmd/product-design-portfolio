@@ -1045,6 +1045,11 @@
   letter-spacing: -0.3px;
   color: #111;
 }
+/* an aside closes on 8px so its own copy sits tight under it; a heading
+   starting the next idea needs the full gap back */
+.callout + .chapterSubhead {
+  margin-top: 34px;
+}
 .chapterSubhead:first-of-type {
   margin-top: 0;
 }
@@ -1615,6 +1620,11 @@
 .calloutGrid:has(> .callout:only-child) {
   grid-template-columns: minmax(0, var(--measure));
 }
+/* three in a two-column grid leaves the third alone beside an empty slot, so
+   a set of three takes a column each instead */
+.pointGrid:has(> .point:nth-child(3):last-child) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 
 /* inside a grid the card gives up its own width and spacing */
 .calloutGrid > .callout {
@@ -1692,8 +1702,13 @@
 }
 
 @media (max-width: 900px) {
+  /* the :has() rules above are more specific than a bare .pointGrid, so the
+     stack has to match them or a set of three stays three columns wide */
   .pointGrid,
-  .calloutGrid {
+  .calloutGrid,
+  .pointGrid:has(> .point:nth-child(3):last-child),
+  .pointGrid:has(> .point:only-child),
+  .calloutGrid:has(> .callout:only-child) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -2172,6 +2187,48 @@
   line-height: 1.6;
   letter-spacing: -0.25px;
   color: rgba(18, 18, 18, 0.72);
+}
+
+/* ---------- placeholder: the screen this space is reserved for ---------- */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  /* the ratio is what the export will have, but a 16:10 box at the full width
+     of the document is 730px of empty dashes, so height wins over ratio */
+  max-height: 340px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1.5px dashed color-mix(in srgb, var(--study-tint, var(--violet)) 30%, transparent);
+  background: color-mix(in srgb, var(--study-tint, var(--violet)) 4%, transparent);
+  color: color-mix(in srgb, var(--study-tint, var(--violet)) 72%, #6b6b6b);
+  text-align: center;
+}
+.placeholder span {
+  font-family: var(--font-tag);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  max-width: 30ch;
+  opacity: 0.85;
+}
+/* the four in the showcase grid are half-width, so they need less height */
+.featureGrid2 .placeholder {
+  max-height: 210px;
+}
+/* inside a feature card the screen runs to the card's own edges, which clip
+   it, so the placeholder drops the corners and sides the screen would drop */
+.figureFills .placeholder {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 1.5px dashed color-mix(in srgb, var(--study-tint, var(--violet)) 26%, transparent);
 }
 
 /* ---------- the showcase, two across ---------- */

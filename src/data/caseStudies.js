@@ -138,6 +138,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-01-event-storming.png',
+            pending: true,
             caption: '01 The event storming board, and the scheduling flow that came out of it',
           },
           {
@@ -179,6 +180,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-02-prototype.png',
+            pending: true,
             caption:
               '02 Requirements, AI prototype, a testable end to end flow we could put in front of merchants',
           },
@@ -217,6 +219,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-03-scheduling-flow.png',
+            pending: true,
             caption: '03 The five stages as one end to end scheduling journey',
           },
         ],
@@ -249,6 +252,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-04-merchant-samples.png',
+            pending: true,
             caption:
               '04 The scheduling samples we collected, from a small restaurant to a multi outlet operator',
           },
@@ -304,6 +308,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-05-merchant-comparison.png',
+            pending: true,
             caption: '05 The three merchants side by side, and where their approaches diverge',
           },
           { type: 'text', text: 'Different restaurants had different:' },
@@ -409,6 +414,7 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-06-orchestrator.png',
+            pending: true,
             caption: '06 Exploratory component, Claude orchestrator, final Figma component',
           },
         ],
@@ -425,7 +431,7 @@ export const CASE_STUDIES = {
             type: 'feature',
             title: 'First Week Setup',
             text: 'A guided onboarding experience to help operators establish their first schedule.',
-            figure: { src: '/assets/hrm-07-first-week.png', caption: '01 First Week Setup' },
+            figure: { src: '/assets/hrm-07-first-week.png', pending: true, caption: '01 First Week Setup' },
           },
           /* the entry point takes the full width; the four stages that follow
              it do not each need one, and six identical bars read as a list
@@ -436,25 +442,26 @@ export const CASE_STUDIES = {
               {
                 title: 'Demand Planning',
                 text: 'Define staffing requirements by time range and position.',
-                figure: { src: '/assets/hrm-08-demand.png', caption: '02 Demand Planning' },
+                figure: { src: '/assets/hrm-08-demand.png', pending: true, caption: '02 Demand Planning' },
               },
               {
                 title: 'Auto Scheduling',
                 text: 'Generate a proposed schedule based on the defined requirements.',
-                figure: { src: '/assets/hrm-09-auto-scheduling.png', caption: '03 Auto Scheduling' },
+                figure: { src: '/assets/hrm-09-auto-scheduling.png', pending: true, caption: '03 Auto Scheduling' },
               },
               {
                 title: 'Review and Publish',
                 text: 'Allow operators to validate the schedule before making it available to their team.',
                 figure: {
                   src: '/assets/hrm-10-review-publish.png',
+                  pending: true,
                   caption: '04 Review and Publish',
                 },
               },
               {
                 title: 'Schedule Reuse',
                 text: 'Copy existing schedules into subsequent weeks to reduce repetitive work.',
-                figure: { src: '/assets/hrm-11-copy-week.png', caption: '05 Schedule Reuse' },
+                figure: { src: '/assets/hrm-11-copy-week.png', pending: true, caption: '05 Schedule Reuse' },
               },
             ],
           },
