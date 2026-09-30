@@ -2052,6 +2052,21 @@
 .stepFlowItem p:last-child {
   margin-bottom: 0;
 }
+/* the step the study is about, called out inside a longer journey */
+.stepFlowNote {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--study-tint, var(--violet)) 10%, transparent);
+  font-family: var(--font-tag);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--study-tint, var(--violet));
+}
 
 /* the row turns into a rail once the columns would be too narrow to read */
 @media (max-width: 900px) {

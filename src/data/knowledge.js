@@ -57,7 +57,7 @@ export const KB = [
   /* ---------- the work ---------- */
   {
     k: ['project', 'portfolio', 'case study', 'built', 'shipped', 'work on', 'works on', 'working on', 'her work', 'your work', 'selected work', 'what have you'],
-    a: 'Five pieces on this page: HRM Premium, FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. HRM Premium, FeedMe POS, Pantas and Hireti have full write-ups; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
+    a: 'Five pieces on this page: HRM Premium, FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. All five have full write-ups; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
   },
   {
     k: ['pos', 'point of sale', 'terminal', 'cashier', 'till'],
@@ -73,7 +73,7 @@ export const KB = [
   },
   {
     k: ['onboarding', 'first run', 'activation'],
-    a: '<b>FeedMe OS Onboarding</b> is about getting an outlet from signed-up to actually selling. I run this one as product manager as well as designer, so the design brief and the revenue goal are the same conversation.',
+    a: '<b>FeedMe OS Onboarding</b> is about getting an outlet from signed-up to actually selling. I run this one as product manager as well as designer, so the design brief and the revenue goal are the same conversation. The write-up covers the menu onboarding step, where I used AI as a translation layer: merchants upload the menu they already have, AI structures it into FeedMe’s format, and the merchant reviews, edits and publishes. Setup that took the onboarding team around 2 days is designed to take a merchant about 5 minutes.',
   },
   {
     k: ['hrm', 'hr', 'employee', 'staff', 'roster', 'payroll', 'scheduling', 'schedule', 'shift', 'shifts'],

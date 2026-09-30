@@ -494,9 +494,16 @@ function StepFlow({ items }) {
         <li className={styles.stepFlowItem} key={step.label}>
           <span className={styles.flowNum}>{String(i + 1).padStart(2, '0')}</span>
           <h4>{step.label}</h4>
-          {(step.body ?? [step.text]).map((p, n) => (
-            <p key={`${i}-${n}`}>{p}</p>
-          ))}
+          {/* a step can be a name on its own, where the sequence is the point
+              and there is nothing to say about each link in it */}
+          {[]
+            .concat(step.body ?? step.text ?? [])
+            .map((p, n) => (
+              <p key={`${i}-${n}`}>{p}</p>
+            ))}
+          {/* marks the one step a study is actually about, inside a journey
+              that is longer than the study */}
+          {step.note && <span className={styles.stepFlowNote}>{step.note}</span>}
         </li>
       ))}
     </ol>

@@ -385,6 +385,261 @@ export const CASE_STUDIES = {
       },
     ],
   },
+  'feedme-os': {
+    sector: 'Food & Beverage Technology',
+    title: 'Using AI to rethink menu onboarding within FeedMe OS',
+    tagline: 'From operational dependency to merchant-led setup',
+    credits: [
+      {
+        label: 'My Role',
+        values: ['Product Designer: UX Strategy, AI UX, User Flows, Prototyping'],
+      },
+      { label: 'Platform', values: ['FeedMe OS, Mobile'] },
+      { label: 'Timeline', values: ['2026'] },
+    ],
+    sections: [
+      {
+        label: 'Overview',
+        lead: 'Rethinking one step in the merchant onboarding journey',
+        items: [
+          {
+            type: 'text',
+            text: 'FeedMe OS is a mobile app designed to help restaurant merchants set up and run their businesses more seamlessly. Menu onboarding is only one part of the larger journey: the intended experience takes a merchant from creating an account to making their first transaction on FeedMe.',
+          },
+          {
+            type: 'stepFlow',
+            items: [
+              { label: 'Sign up', text: 'Create a FeedMe account.' },
+              { label: 'Subscribe', text: 'Choose and subscribe to a FeedMe plan within the app.' },
+              {
+                label: 'Menu onboarding',
+                text: 'Set up and prepare the restaurant menu.',
+                note: 'This is where I focused',
+              },
+              { label: 'Bind POS', text: 'Connect the restaurant’s POS.' },
+              { label: 'First transaction', text: 'Make the restaurant’s first POS transaction.' },
+            ],
+          },
+          {
+            type: 'text',
+            text: 'Menu onboarding acts as an important bridge between getting started with FeedMe and actually operating through the POS. For trial users it can also happen before subscribing, letting them experience the setup before committing to a plan.',
+          },
+        ],
+      },
+      {
+        label: 'The Problem',
+        lead: 'A critical onboarding step was carrying too much complexity',
+        items: [
+          {
+            type: 'text',
+            text: 'FeedMe’s existing menu configuration system was built to support complex restaurant requirements and sales logic. That power came with a cost: getting a merchant’s menu configured could take the onboarding team around 2 days.',
+          },
+          {
+            type: 'text',
+            text: 'While shadowing onboarding sessions, I also noticed that merchants frequently relied on onboarding executives for help. They would send multiple messages throughout the setup to clarify what they needed to do or resolve configuration questions, and when executives are supporting several merchants at once, important messages can easily get buried.',
+          },
+          { type: 'text', text: 'This created a dependency loop:' },
+          {
+            type: 'stepFlow',
+            items: [
+              { label: 'Complex menu setup' },
+              { label: 'Merchant needs help' },
+              { label: 'Messages onboarding executive' },
+              { label: 'Wait for response' },
+              { label: 'Continue setup' },
+            ],
+          },
+          { type: 'text', text: 'The merchant’s actual goal was much simpler.' },
+          {
+            type: 'callout',
+            variant: 'quote',
+            title: 'What the merchant wanted',
+            text: '“I already have my menu. I just want to get it into FeedMe.”',
+          },
+          {
+            type: 'text',
+            text: 'That made menu onboarding a clear opportunity to reduce both setup effort and dependency on the onboarding team.',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Design Question',
+            text: 'How might we let merchants start from the menu they already have, while using AI to handle the complexity underneath?',
+          },
+        ],
+      },
+      {
+        label: 'The Opportunity',
+        lead: 'What if AI could become the translation layer?',
+        items: [
+          {
+            type: 'text',
+            text: 'Instead of asking merchants to manually recreate their existing menu inside FeedMe’s configuration system, we explored AI as a way to translate what merchants already have into the structure FeedMe needs.',
+          },
+          {
+            type: 'stepFlow',
+            items: [
+              { label: 'Existing menu', text: 'A PDF or an image of the menu they already use.' },
+              { label: 'AI', text: 'Extracts the information and structures it.' },
+              { label: 'Review', text: 'The merchant verifies what came back.' },
+              { label: 'Edit', text: 'The merchant corrects anything wrong.' },
+              { label: 'Publish', text: 'The merchant chooses the restaurants and confirms.' },
+            ],
+          },
+          {
+            type: 'text',
+            text: 'The target was to turn a process that could take the onboarding team around 2 days into something a merchant could complete in roughly 5 minutes. This was not about removing the underlying sales logic. It was about moving the complexity away from the merchant’s starting point.',
+          },
+        ],
+      },
+      {
+        label: 'The AI Approach',
+        lead: 'AI handles the translation. Merchants keep the control.',
+        items: [
+          {
+            type: 'text',
+            text: 'The experience was designed around a clear division of responsibility.',
+          },
+          {
+            type: 'callout',
+            title: 'AI handles',
+            bullets: [
+              'Extracting information from the uploaded menu',
+              'Structuring menu information',
+              'Translating it into FeedMe’s format',
+              'Preparing the menu for review',
+            ],
+          },
+          {
+            type: 'callout',
+            title: 'The merchant handles',
+            bullets: [
+              'Verifying the generated information',
+              'Making corrections',
+              'Deciding which restaurants should receive the menu',
+              'Confirming publication',
+            ],
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Division',
+            text: 'AI prepares. The merchant reviews. The merchant decides.',
+          },
+          {
+            type: 'text',
+            text: 'This human-in-the-loop approach mattered because menu information directly affects how a restaurant operates and sells. The goal was not to automate every decision, but to remove the repetitive configuration work while keeping the meaningful ones with the merchant.',
+          },
+        ],
+      },
+      {
+        label: 'The Experience',
+        lead: 'From an existing menu to a publish-ready menu',
+        items: [
+          {
+            type: 'stepFlow',
+            items: [
+              {
+                label: 'Upload',
+                text: 'The merchant uploads their existing menu as a PDF or image. Instead of starting with FeedMe’s configuration system, they start with something they already understand.',
+              },
+              {
+                label: 'AI processing',
+                text: 'AI processes the uploaded menu and generates a structured version, handling the translation from an unstructured menu into FeedMe’s configuration format.',
+              },
+              {
+                label: 'Review and edit',
+                text: 'The generated menu is presented back to the merchant to review and correct. Their role shifts from building the menu to validating it.',
+              },
+              {
+                label: 'Choose restaurants',
+                text: 'The merchant decides which restaurants should receive the menu.',
+              },
+              {
+                label: 'Publish',
+                text: 'After reviewing the final result, the merchant confirms publication.',
+              },
+            ],
+          },
+          {
+            type: 'figure',
+            src: '/assets/os-01-menu-onboarding.png',
+            pending: true,
+            caption: '01 Upload, generated result, and the review the merchant does on it',
+          },
+          {
+            type: 'text',
+            text: 'The experience turns a configuration-heavy task into a guided onboarding step that needs significantly less operational support.',
+          },
+        ],
+      },
+      {
+        label: 'Designing for Control',
+        lead: 'Reducing dependency without removing human judgement',
+        items: [
+          {
+            type: 'text',
+            text: 'Because menu configuration involves complex sales logic, full automation was not the goal. The AI-generated result needs to stay something the merchant can inspect and correct, and the final responsibility stays with them: AI prepares the menu, the merchant reviews and corrects it, chooses the restaurants, and confirms publication.',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Principle',
+            text: 'Automate the tedious work. Keep meaningful decisions with the merchant.',
+          },
+          {
+            type: 'text',
+            text: 'That let AI absorb the complexity of the initial setup without turning the merchant’s menu into a black box.',
+          },
+        ],
+      },
+      {
+        label: 'Outcome & Reflection',
+        lead: 'A simpler entry point into a complex system',
+        items: [
+          {
+            type: 'text',
+            text: 'Menu onboarding is one step in the broader FeedMe OS journey, but it was an important opportunity to reduce operational dependency.',
+          },
+          {
+            type: 'resultCards',
+            items: [
+              {
+                value: '~2 days',
+                label: 'The existing process',
+                note: 'Menu configuration carried by the onboarding team.',
+              },
+              {
+                value: '~5 min',
+                label: 'What the design targets',
+                note: 'Merchant-led setup in the app, with review and publication in their hands.',
+              },
+            ],
+          },
+          {
+            type: 'callout',
+            variant: 'quote',
+            title: 'The Bigger Shift',
+            text: 'Not 2 days to 5 minutes. Operational dependency to merchant-led setup.',
+          },
+          {
+            type: 'text',
+            text: 'The opportunity came from looking beyond the interface. Shadowing onboarding sessions showed that the problem wasn’t only a complex menu system: that complexity created downstream communication and support needs that cost both merchants and onboarding executives.',
+          },
+          {
+            type: 'text',
+            text: 'The underlying system still needs its complex sales logic. The difference is that the merchant no longer needs to understand all of it to get started.',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'What I Took From It',
+            text: 'Good AI product design isn’t always about automating everything. Sometimes it’s about moving complexity away from the user while keeping control in their hands.',
+          },
+        ],
+      },
+    ],
+  },
   'feedme-pos': {
     sector: 'Food & Beverage Technology',
     title: 'Revamping the FeedMe POS',

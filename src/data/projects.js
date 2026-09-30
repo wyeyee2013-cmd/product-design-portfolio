@@ -46,8 +46,10 @@ const ALL_PROJECTS = [
       'Getting an outlet from signed-up to actually selling. The design problem is sequencing: what has to be true before the first order can be rung up.',
     thumb: '/assets/feedme-os-cover.png',
     gallery: [],
-    comingSoon: true,
+    /* the brand violet fills the thumbnail; the accent is the nearest shade
+       that clears 4.5:1 on white, since the marks run at 11px */
     tint: '#8168fd',
+    accent: '#7656f0',
     row: 0,
     rotate: -3.12,
     clip: '/assets/clip-2.svg',
