@@ -138,7 +138,8 @@ export const CASE_STUDIES = {
           {
             type: 'figure',
             src: '/assets/hrm-01-event-storming.png',
-            pending: true,
+            /* 1656x547, a wide crop of the board */
+            ratio: '1656 / 547',
             caption: '01 The event storming board, and the scheduling flow that came out of it',
           },
           {
@@ -179,8 +180,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'figure',
-            src: '/assets/hrm-02-prototype.png',
-            pending: true,
+            src: '/assets/hrm-02-prototype.webp',
             caption:
               '02 Requirements, AI prototype, a testable end to end flow we could put in front of merchants',
           },
