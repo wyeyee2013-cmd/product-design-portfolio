@@ -327,30 +327,12 @@ export const CASE_STUDIES = {
           },
           { type: 'text', text: 'Our priorities became:' },
           {
-            type: 'bullets',
+            type: 'priorities',
             items: [
               'Simplify the language.',
               'Reduce unnecessary complexity.',
               'Guide users through the first scheduling experience.',
               'Provide structure without forcing one operational model.',
-            ],
-          },
-          {
-            type: 'text',
-            text: 'This became the foundation for the first phase of HRM Premium Scheduling.',
-          },
-          {
-            type: 'timeline',
-            items: [
-              { label: 'Initial assumption', text: 'One standardized scheduling model.' },
-              {
-                label: 'What we learned',
-                text: 'Merchants have different scheduling practices, and low confidence in our terminology.',
-              },
-              {
-                label: 'Design response',
-                text: 'Simpler language, guided setup, and a more flexible structure.',
-              },
             ],
           },
         ],

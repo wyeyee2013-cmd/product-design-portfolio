@@ -456,6 +456,21 @@ function StepFlow({ items }) {
 }
 
 /**
+ * What a section decided, as a row of parallel commitments. Deliberately
+ * unnumbered and undotted: these are things held at once, not steps taken in
+ * order, so they get a rule each rather than the flow's rail.
+ */
+function Priorities({ items }) {
+  return (
+    <ul className={styles.priorities}>
+      {items.map((p) => (
+        <li key={p}>{p}</li>
+      ))}
+    </ul>
+  )
+}
+
+/**
  * The questions a phase had to answer. Deliberately not cards: a numeral, a
  * hairline, and the question at display size, so the framing of a study reads
  * as framing rather than as another set of boxes.
@@ -796,6 +811,9 @@ function StudyItem({ item }) {
 
     case 'questions':
       return <Questions items={item.items} />
+
+    case 'priorities':
+      return <Priorities items={item.items} />
 
     case 'gauge':
       return <Gauge item={item} />
