@@ -57,7 +57,7 @@ export const KB = [
   /* ---------- the work ---------- */
   {
     k: ['project', 'portfolio', 'case study', 'built', 'shipped', 'work on', 'works on', 'working on', 'her work', 'your work', 'selected work', 'what have you'],
-    a: 'Five pieces on this page: HRM Premium, FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. The FeedMe POS, Pantas and Hireti write-ups are full case studies; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
+    a: 'Five pieces on this page: HRM Premium, FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. HRM Premium, FeedMe POS, Pantas and Hireti have full write-ups; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
   },
   {
     k: ['pos', 'point of sale', 'terminal', 'cashier', 'till'],
@@ -76,8 +76,8 @@ export const KB = [
     a: '<b>FeedMe OS Onboarding</b> is about getting an outlet from signed-up to actually selling. I run this one as product manager as well as designer, so the design brief and the revenue goal are the same conversation.',
   },
   {
-    k: ['hrm', 'hr', 'employee', 'staff', 'roster', 'payroll'],
-    a: '<b>HRM Premium</b> covers the people side: shifts, skills and permissions for businesses where the roster changes weekly and half the team is part-time.',
+    k: ['hrm', 'hr', 'employee', 'staff', 'roster', 'payroll', 'scheduling', 'schedule', 'shift', 'shifts'],
+    a: '<b>HRM Premium</b> covers the people side: shifts, skills and permissions for businesses where the roster changes weekly and half the team is part-time. Scheduling was a 0 to 1 build. We ran discovery, event storming and an AI-assisted prototype, then tested with three merchants, who came back at about 3/5 confidence. That sent us back to simplify the language and loosen the model rather than polish the flow, because there is no single way restaurants schedule.',
   },
   {
     k: ['hireti', 'hilti', 'recruitment', 'hiring platform', 'talent', 'candidate'],

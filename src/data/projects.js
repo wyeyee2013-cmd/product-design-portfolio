@@ -17,14 +17,14 @@ const ALL_PROJECTS = [
     deckTitle: 'HRM Premium',
     client: 'FeedMe',
     year: '2026',
-    type: 'B2B2C Platform',
-    tool: 'Figma',
-    tags: ['B2B2C', 'FeedMe', '2026'],
+    type: 'Web Application',
+    tool: 'Figma, Claude',
+    tags: ['Web App', 'FeedMe', '2026'],
     summary:
       'The people side: shifts, skills, and permissions for businesses where the roster changes weekly and half the team is part-time.',
     thumb: '/assets/hrm-cover.png',
     gallery: [],
-    comingSoon: true,
+    /* the tint is dark enough to double as the accent: 4.9:1 on white */
     tint: '#2f7d6b',
     row: 0,
     rotate: 7.65,

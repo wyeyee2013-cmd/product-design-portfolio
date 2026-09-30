@@ -180,6 +180,23 @@ function groupItems(items) {
   )
 }
 
+/**
+ * A standalone evidence figure. Like the feature screens, it drops itself when
+ * the export is not in place yet, so a study can declare where its research
+ * artefacts go and have them appear the moment the files land.
+ */
+function DocFigure({ item }) {
+  const [missing, setMissing] = useState(false)
+  if (missing) return null
+
+  return (
+    <figure className={styles.figure}>
+      <img src={item.src} alt={item.caption} loading="lazy" onError={() => setMissing(true)} />
+      <figcaption>{item.caption}</figcaption>
+    </figure>
+  )
+}
+
 /* Line icons for the symptom cards. Drawn here rather than exported, so they
    inherit --study-tint and stay crisp; keyed by name from the case-study data. */
 const SYMPTOM_ICONS = {
@@ -601,12 +618,7 @@ function StudyItem({ item }) {
       )
 
     case 'figure':
-      return (
-        <figure className={styles.figure}>
-          <img src={item.src} alt={item.caption} loading="lazy" />
-          <figcaption>{item.caption}</figcaption>
-        </figure>
-      )
+      return <DocFigure item={item} />
 
     case 'figureGroup':
       return (

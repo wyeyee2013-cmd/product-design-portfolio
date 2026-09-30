@@ -23,6 +23,597 @@
  */
 
 export const CASE_STUDIES = {
+  'hrm-premium': {
+    sector: 'Restaurant Workforce Management',
+    title: 'Building HRM Premium Scheduling from 0 to 1',
+    tagline: 'From an ambiguous operational problem to a validated scheduling foundation',
+    credits: [
+      {
+        label: 'My Role',
+        values: [
+          'Product Designer: Product Discovery, UX Strategy, Prototyping, Usability Testing, Design Systems',
+        ],
+      },
+      { label: 'Team', values: ['Product Manager', 'Product Design', 'Engineering'] },
+      { label: 'Platform', values: ['HRM Premium, Web'] },
+      { label: 'Timeline', values: ['2026'] },
+    ],
+    sections: [
+      {
+        label: 'The Overview',
+        lead: 'Building a scheduling product where no established workflow existed',
+        items: [
+          {
+            type: 'text',
+            text: 'HRM Premium Scheduling was a 0 to 1 product initiative designed to help restaurant operators create and manage employee schedules.',
+          },
+          {
+            type: 'text',
+            text: 'Unlike an iteration project, we did not have an existing scheduling experience to optimize. We first needed to understand how restaurants actually schedule their teams, determine which problems were worth solving, and establish a product model that could support different types of merchants.',
+          },
+          {
+            type: 'text',
+            text: 'I worked across problem discovery, pain point validation, event storming, rapid prototyping and usability testing to shape the initial product direction.',
+          },
+          {
+            type: 'text',
+            text: 'One of the most important findings was that there was no single scheduling behavior across merchants. Rather than forcing users into our initial mental model, we used the research to simplify the experience and establish a more flexible foundation for future iterations.',
+          },
+        ],
+      },
+      {
+        label: 'The Problem',
+        lead: 'Scheduling is operationally complex, and every restaurant does it differently',
+        items: [
+          {
+            type: 'text',
+            text: 'Restaurant scheduling can vary significantly depending on the size of the restaurant, number of outlets, staffing structure and operating patterns.',
+          },
+          {
+            type: 'text',
+            text: 'A small restaurant may manage a relatively small team manually, while larger operators need to coordinate many employees, positions and time periods across multiple outlets.',
+          },
+          {
+            type: 'text',
+            text: 'Before designing the product, we needed to answer three fundamental questions:',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'What are the biggest pain points in the existing scheduling process?',
+              'What does a useful scheduling workflow actually look like?',
+              'Can we create a common product model without forcing every restaurant to work the same way?',
+            ],
+          },
+          {
+            type: 'text',
+            text: 'Rather than jumping directly into screens, we started with problem discovery.',
+          },
+        ],
+      },
+      {
+        label: 'The Discovery',
+        lead: 'Understanding the problem before defining the solution',
+        items: [
+          { type: 'subhead', text: 'Pain Point Discovery' },
+          {
+            type: 'text',
+            text: 'We began by identifying the friction merchants experience when planning their workforce.',
+          },
+          {
+            type: 'text',
+            text: 'We gathered examples of how merchants currently approached scheduling, looking across different operational contexts rather than assuming that one restaurant’s workflow represented the entire market.',
+          },
+          {
+            type: 'text',
+            text: 'This gave us an initial set of pain points and assumptions to investigate.',
+          },
+          { type: 'subhead', text: 'Validating the Pain Points' },
+          {
+            type: 'text',
+            text: 'We then validated whether these pain points were actually meaningful to merchants.',
+          },
+          {
+            type: 'text',
+            text: 'This helped us separate genuine operational problems from assumptions that might simply make sense from an internal product perspective.',
+          },
+          { type: 'subhead', text: 'Event Storming' },
+          {
+            type: 'text',
+            text: 'With the problem space clearer, we used event storming to map the scheduling process and understand the different events, actions and dependencies involved.',
+          },
+          {
+            type: 'text',
+            text: 'This gave the team a shared view of the scheduling journey and helped us identify where the product needed to intervene.',
+          },
+          { type: 'subhead', text: 'Defining the Product Goal' },
+          {
+            type: 'text',
+            text: 'From the discovery work, we established the initial problem statement and product goal.',
+          },
+          {
+            type: 'text',
+            text: 'The challenge was no longer simply: “How do we build a scheduling tool?” It became the question below.',
+          },
+          {
+            type: 'figure',
+            src: '/assets/hrm-01-event-storming.png',
+            caption: '01 The event storming board, and the scheduling flow that came out of it',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Product Goal',
+            text: 'How might we help restaurant operators create and manage weekly schedules with less manual effort, while keeping the experience simple enough to accommodate different ways of working?',
+          },
+          {
+            type: 'text',
+            text: 'The Product Manager then translated this direction into the initial product requirements.',
+          },
+        ],
+      },
+      {
+        label: 'Designing Under Constraints',
+        lead: 'Testing the entire experience before investing in the final UI',
+        items: [
+          {
+            type: 'text',
+            text: 'With limited time available, we needed a way to validate the whole scheduling journey before investing heavily in production ready UI.',
+          },
+          {
+            type: 'text',
+            text: 'Instead of designing every screen individually, I created an AI assisted prototype as a structural representation of the end to end flow.',
+          },
+          {
+            type: 'text',
+            text: 'The prototype allowed us to explore the major scheduling activities:',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'Set up the first week',
+              'Define staffing demand',
+              'Assign shifts',
+              'Automatically generate a schedule',
+              'Review and publish',
+              'Reuse the schedule for the following week',
+            ],
+          },
+          {
+            type: 'text',
+            text: 'The purpose of the prototype was not to present AI as the solution.',
+          },
+          {
+            type: 'text',
+            text: 'It was to create a fast, tangible representation of our hypothesis that we could put in front of real users.',
+          },
+          {
+            type: 'text',
+            text: 'We wanted to validate the workflow before we polished the interface.',
+          },
+          {
+            type: 'figure',
+            src: '/assets/hrm-02-prototype.png',
+            caption:
+              '02 Requirements, AI prototype, a testable end to end flow we could put in front of merchants',
+          },
+        ],
+      },
+      {
+        label: 'The First Scheduling Model',
+        lead: 'Turning operational requirements into a repeatable workflow',
+        items: [
+          {
+            type: 'text',
+            text: 'Based on our discovery, we structured the initial scheduling experience around five core stages.',
+          },
+          { type: 'subhead', text: 'First Week Onboarding' },
+          {
+            type: 'text',
+            text: 'Guide operators through setting up their first scheduling week instead of dropping them into an empty scheduling interface.',
+          },
+          { type: 'subhead', text: 'Define Demand' },
+          {
+            type: 'text',
+            text: 'Operators define staffing requirements based on time ranges and positions. This establishes how many people are required and where before assigning individual employees.',
+          },
+          { type: 'subhead', text: 'Auto Scheduling' },
+          {
+            type: 'text',
+            text: 'Use the defined demand and available employee information to generate a proposed schedule. The intention was to reduce the amount of repetitive manual scheduling work.',
+          },
+          { type: 'subhead', text: 'Review and Publish' },
+          {
+            type: 'text',
+            text: 'Give operators a clear point to review the generated schedule before publishing it to their employees.',
+          },
+          { type: 'subhead', text: 'Copy to Next Week' },
+          {
+            type: 'text',
+            text: 'Allow operators to reuse an existing schedule rather than rebuilding the same structure every week. This was particularly important because scheduling is a recurring operational task.',
+          },
+          {
+            type: 'figure',
+            src: '/assets/hrm-03-scheduling-flow.png',
+            caption: '03 The five stages as one end to end scheduling journey',
+          },
+        ],
+      },
+      {
+        label: 'Validating the Solution',
+        lead: 'Three merchants challenged our assumptions',
+        items: [
+          {
+            type: 'text',
+            text: 'We collected scheduling examples from merchants with different operational scales, from smaller restaurants to larger operators with multiple outlets.',
+          },
+          {
+            type: 'text',
+            text: 'We then conducted usability testing with 3 merchants using the proposed scheduling flow.',
+          },
+          {
+            type: 'text',
+            text: 'The objective wasn’t simply to ask “Do you like this?” Instead, we wanted to understand:',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'Can merchants understand the terminology?',
+              'Can they navigate the scheduling model without explanation?',
+              'Does the workflow match how they currently think about scheduling?',
+              'Do they feel confident enough to use it independently?',
+            ],
+          },
+          {
+            type: 'figure',
+            src: '/assets/hrm-04-merchant-samples.png',
+            caption:
+              '04 The scheduling samples we collected, from a small restaurant to a multi outlet operator',
+          },
+        ],
+      },
+      {
+        label: 'The Reality Check',
+        lead: 'The flow worked. The mental model did not work well enough.',
+        items: [
+          {
+            type: 'text',
+            text: 'The prototype allowed merchants to move through the scheduling process.',
+          },
+          { type: 'text', text: 'But testing revealed a more important problem.' },
+          {
+            type: 'resultCards',
+            items: [
+              {
+                icon: '📉',
+                value: '3 / 5',
+                label: 'Average confidence',
+                note: 'Merchants reported an average confidence of approximately 3/5 when using the proposed experience.',
+              },
+            ],
+          },
+          { type: 'text', text: 'The issue wasn’t simply usability in the traditional sense.' },
+          {
+            type: 'text',
+            text: 'The deeper problem was confidence in the product’s mental model.',
+          },
+        ],
+      },
+      {
+        label: 'What We Learned',
+        lead: 'Restaurant scheduling isn’t standardized',
+        items: [
+          { type: 'text', text: 'Testing surfaced two major insights.' },
+          { type: 'subhead', text: 'Our terminology was too product centric' },
+          {
+            type: 'text',
+            text: 'Some of the terminology made sense from a system perspective, but wasn’t necessarily familiar to restaurant operators.',
+          },
+          {
+            type: 'text',
+            text: 'Users preferred a more simplified and intuitive way of expressing the same concepts.',
+          },
+          {
+            type: 'text',
+            text: 'This showed us that we couldn’t simply expose the underlying scheduling logic through the interface. We needed to translate the system into the language of the operator.',
+          },
+          { type: 'subhead', text: 'Every merchant schedules differently' },
+          {
+            type: 'text',
+            text: 'The scheduling samples we collected also showed significant variation between merchants.',
+          },
+          /* the comparison sits here so the two insights stay a matched pair of
+             numbered cards: a list straight after a subhead's prose would fold
+             the second one into a split card and leave the first one bare */
+          {
+            type: 'figure',
+            src: '/assets/hrm-05-merchant-comparison.png',
+            caption: '05 The three merchants side by side, and where their approaches diverge',
+          },
+          { type: 'text', text: 'Different restaurants had different:' },
+          {
+            type: 'bullets',
+            items: [
+              'Staffing structures',
+              'Positions',
+              'Scheduling habits',
+              'Operational patterns',
+              'Approaches to planning shifts',
+            ],
+          },
+          { type: 'text', text: 'This challenged one of our initial assumptions:' },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'What Testing Challenged',
+            text: 'There isn’t one “correct” way to schedule a restaurant. The product therefore needed to provide structure without becoming unnecessarily rigid.',
+          },
+        ],
+      },
+      {
+        label: 'The Pivot',
+        lead: 'From designing the perfect workflow to designing a flexible foundation',
+        items: [
+          {
+            type: 'text',
+            text: 'The usability testing changed how we approached the first version.',
+          },
+          {
+            type: 'text',
+            text: 'Instead of trying to make our initial scheduling model comprehensive, we focused on making the core workflow understandable and adaptable.',
+          },
+          { type: 'text', text: 'Our priorities became:' },
+          {
+            type: 'bullets',
+            items: [
+              'Simplify the language.',
+              'Reduce unnecessary complexity.',
+              'Guide users through the first scheduling experience.',
+              'Provide structure without forcing one operational model.',
+            ],
+          },
+          {
+            type: 'text',
+            text: 'This became the foundation for the first phase of HRM Premium Scheduling.',
+          },
+          {
+            type: 'timeline',
+            items: [
+              { label: 'Initial assumption', text: 'One standardized scheduling model.' },
+              {
+                label: 'What we learned',
+                text: 'Merchants have different scheduling practices, and low confidence in our terminology.',
+              },
+              {
+                label: 'Design response',
+                text: 'Simpler language, guided setup, and a more flexible structure.',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: 'AI Scheduling',
+        lead: 'A future opportunity, not a feature we forced into V1',
+        items: [
+          {
+            type: 'text',
+            text: 'During the product exploration, we identified a larger opportunity around AI assisted scheduling.',
+          },
+          {
+            type: 'text',
+            text: 'Historical scheduling data could eventually help the product understand recurring staffing patterns and make intelligent recommendations.',
+          },
+          { type: 'text', text: 'For example, historical data could potentially inform:' },
+          {
+            type: 'bullets',
+            items: [
+              'Staffing requirements',
+              'Recurring schedules',
+              'Employee allocation',
+              'Demand patterns',
+              'Future scheduling recommendations',
+            ],
+          },
+          {
+            type: 'text',
+            text: 'However, we intentionally did not implement the AI layer in the first phase. The fundamental scheduling workflow needed to be validated first.',
+          },
+          {
+            type: 'text',
+            text: 'Rather than adding AI for the sake of having an AI feature, we treated it as a future layer on top of a reliable scheduling foundation.',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Sequencing',
+            text: 'First establish the workflow. Then make the workflow intelligent.',
+          },
+        ],
+      },
+      {
+        label: 'From Prototype to System',
+        lead: 'Turning an exploratory concept into a scalable product',
+        items: [
+          {
+            type: 'text',
+            text: 'Once the core flow had been determined, we moved from exploratory UI into our established design system.',
+          },
+          {
+            type: 'text',
+            text: 'This was also where I introduced an AI assisted implementation workflow that I had been developing using a Claude orchestrator.',
+          },
+          {
+            type: 'text',
+            text: 'The orchestrator helped convert the validated interface into components aligned with our existing design system.',
+          },
+          { type: 'subhead', text: 'Establish the Product Foundation' },
+          {
+            type: 'text',
+            text: 'I mapped the scheduling experience against our existing design language and identified the components, patterns and states required by the new product.',
+          },
+          { type: 'subhead', text: 'Orchestrate the Components' },
+          {
+            type: 'text',
+            text: 'Using the Claude based orchestrator, I accelerated the process of translating the exploratory UI into system compliant components. This reduced repetitive design work while maintaining consistency with the broader FeedMe ecosystem.',
+          },
+          { type: 'subhead', text: 'Preserve Product Thinking' },
+          {
+            type: 'text',
+            text: 'The AI workflow was intentionally introduced after the problem and flow had been validated. AI was used to accelerate execution, not to decide what the product should be.',
+          },
+          {
+            type: 'text',
+            text: 'This distinction became an important part of my approach to AI assisted product design:',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'My Approach to AI',
+            text: 'Use AI to accelerate the design process, not outsource the product thinking.',
+          },
+          {
+            type: 'figure',
+            src: '/assets/hrm-06-orchestrator.png',
+            caption: '06 Exploratory component, Claude orchestrator, final Figma component',
+          },
+        ],
+      },
+      {
+        label: 'The Final Product Direction',
+        lead: 'A foundation for repeatable restaurant scheduling',
+        items: [
+          {
+            type: 'text',
+            text: 'The first phase of HRM Premium Scheduling established a complete scheduling workflow built around:',
+          },
+          {
+            type: 'feature',
+            title: 'First Week Setup',
+            text: 'A guided onboarding experience to help operators establish their first schedule.',
+            figure: { src: '/assets/hrm-07-first-week.png', caption: '01 First Week Setup' },
+          },
+          {
+            type: 'feature',
+            title: 'Demand Planning',
+            text: 'Define staffing requirements by time range and position.',
+            figure: { src: '/assets/hrm-08-demand.png', caption: '02 Demand Planning' },
+          },
+          {
+            type: 'feature',
+            title: 'Auto Scheduling',
+            text: 'Generate a proposed schedule based on the defined requirements.',
+            figure: { src: '/assets/hrm-09-auto-scheduling.png', caption: '03 Auto Scheduling' },
+          },
+          {
+            type: 'feature',
+            title: 'Review and Publish',
+            text: 'Allow operators to validate the schedule before making it available to their team.',
+            figure: { src: '/assets/hrm-10-review-publish.png', caption: '04 Review and Publish' },
+          },
+          {
+            type: 'feature',
+            title: 'Schedule Reuse',
+            text: 'Copy existing schedules into subsequent weeks to reduce repetitive work.',
+            figure: { src: '/assets/hrm-11-copy-week.png', caption: '05 Schedule Reuse' },
+          },
+          {
+            type: 'feature',
+            title: 'AI Assisted Scheduling',
+            text: 'A future capability built around historical scheduling data, intentionally deferred until the foundational workflow is mature.',
+            figure: { src: '/assets/hrm-12-ai-scheduling.png', caption: '06 AI Assisted Scheduling' },
+          },
+        ],
+      },
+      {
+        label: 'What We Established',
+        lead: 'A validated foundation for a new product',
+        items: [
+          {
+            type: 'text',
+            text: 'Because this was a 0 to 1 initiative, the success of the project wasn’t simply about shipping a collection of screens.',
+          },
+          {
+            type: 'text',
+            text: 'The more important outcome was reducing uncertainty around what the scheduling product needed to be.',
+          },
+          {
+            type: 'text',
+            text: 'Through discovery, event storming, rapid prototyping and merchant testing, we established:',
+          },
+          { type: 'subhead', text: 'A clearer product model' },
+          {
+            type: 'text',
+            text: 'We identified the fundamental stages required to take a merchant from an empty schedule to a published weekly schedule.',
+          },
+          { type: 'subhead', text: 'Validated assumptions' },
+          {
+            type: 'text',
+            text: 'Testing with three merchants revealed that our initial mental model and terminology were not intuitive enough.',
+          },
+          { type: 'subhead', text: 'A more flexible direction' },
+          {
+            type: 'text',
+            text: 'We recognized that merchants have different scheduling practices and designed the product direction around flexibility rather than assuming one universal workflow.',
+          },
+          { type: 'subhead', text: 'A foundation for AI' },
+          {
+            type: 'text',
+            text: 'We identified where historical data could eventually make scheduling more intelligent without compromising the usability of the foundational experience.',
+          },
+          { type: 'subhead', text: 'A scalable design foundation' },
+          {
+            type: 'text',
+            text: 'The final interface was brought into the existing design system, with my Claude orchestrator accelerating the transition from exploratory UI to system compliant components.',
+          },
+        ],
+      },
+      {
+        label: 'The Retrospective',
+        lead: 'The biggest lesson wasn’t about scheduling. It was about knowing when the solution isn’t ready.',
+        items: [
+          {
+            type: 'text',
+            text: 'The most valuable moment in the project was discovering that our first solution wasn’t solid enough.',
+          },
+          {
+            type: 'text',
+            text: 'We could have continued refining the prototype because the flow was technically functional. Instead, merchant testing showed us that functional does not mean intuitive.',
+          },
+          {
+            type: 'text',
+            text: 'A 3/5 confidence score forced us to step back and question the assumptions behind our solution, particularly our terminology and the idea that restaurants could fit into a single scheduling model.',
+          },
+          {
+            type: 'text',
+            text: 'For me, this reinforced an important principle in 0 to 1 product design:',
+          },
+          {
+            type: 'callout',
+            variant: 'statement',
+            title: 'The Principle',
+            text: 'When you’re building something new, validation isn’t about proving that your solution is right. It’s about finding out where you’re wrong early enough to change it.',
+          },
+          { type: 'subhead', text: 'What I would validate next' },
+          {
+            type: 'text',
+            text: 'As the product moves beyond its initial phase, I would continue validating:',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'Schedule creation time',
+              'Completion rate',
+              'Merchant adoption',
+              'Accuracy and usefulness of auto scheduling',
+              'Effectiveness of schedule reuse',
+              'AI recommendations based on historical scheduling data',
+            ],
+          },
+        ],
+      },
+    ],
+  },
   'feedme-pos': {
     sector: 'Food & Beverage Technology',
     title: 'Revamping the FeedMe POS',
