@@ -55,20 +55,38 @@ const ExternalIcon = () => (
  * load with no edit here. An unflagged figure trusts the file and falls back
  * to the placeholder only if the browser tells us it is broken.
  */
-function useAsset(src, pending) {
+function useAsset(src, pending, kind = 'image') {
   const [found, setFound] = useState(!pending)
 
   useEffect(() => {
     if (!pending || !src) return
+    let live = true
+
+    if (kind === 'video') {
+      /* nothing decodes a video cheaply, so ask the server. The content type
+         matters as much as the status: a miss here answers 200 with the app
+         shell, which is a perfectly good HTML document and not a film. */
+      fetch(src, { method: 'HEAD' })
+        .then((r) => {
+          const type = r.headers.get('content-type') ?? ''
+          if (live && r.ok && type.startsWith('video/')) setFound(true)
+        })
+        .catch(() => {})
+      return () => {
+        live = false
+      }
+    }
+
     const probe = new Image()
     probe.onload = () => {
-      if (probe.naturalWidth) setFound(true)
+      if (live && probe.naturalWidth) setFound(true)
     }
     probe.src = src
     return () => {
+      live = false
       probe.onload = null
     }
-  }, [src, pending])
+  }, [src, pending, kind])
 
   return found
 }
@@ -105,7 +123,7 @@ function FigureVideo({ figure }) {
   )
 }
 
-function FigurePlaceholder({ caption, ratio = '16 / 10', named = true }) {
+function FigurePlaceholder({ caption, ratio = '16 / 10', named = true, kind = 'Screen' }) {
   return (
     <div className={styles.placeholder} style={{ aspectRatio: ratio }}>
       <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
@@ -131,7 +149,7 @@ function FigurePlaceholder({ caption, ratio = '16 / 10', named = true }) {
       </svg>
       {/* a figure prints its caption underneath already; a feature card's
           screen does not, so only that one needs naming here */}
-      <span>{named ? caption : 'Screen to come'}</span>
+      <span>{named ? caption : `${kind} to come`}</span>
     </div>
   )
 }
@@ -302,14 +320,19 @@ function groupItems(items) {
  */
 function DocFigure({ item }) {
   const [broken, setBroken] = useState(false)
-  const found = useAsset(item.src, item.pending)
+  const found = useAsset(item.video ?? item.src, item.pending, item.video ? 'video' : 'image')
 
   return (
     <figure className={styles.figure}>
-      {item.video ? (
+      {item.video && found ? (
         <FigureVideo figure={item} />
       ) : broken || !found ? (
-        <FigurePlaceholder caption={item.caption} ratio={item.ratio} named={false} />
+        <FigurePlaceholder
+          caption={item.caption}
+          ratio={item.ratio}
+          named={false}
+          kind={item.video ? 'Video' : 'Screen'}
+        />
       ) : (
         <img src={item.src} alt={item.caption} loading="lazy" onError={() => setBroken(true)} />
       )}
@@ -530,10 +553,11 @@ function FeatureGrid({ items }) {
     <div className={styles.featureGrid2}>
       {items.map((f) => {
         const cap = splitCaption(f.figure?.caption)
+        const n = f.n ?? cap.n
         return (
           <div className={styles.feature} key={f.title}>
             <div className={styles.featureCopy}>
-              {cap.n && <span className={styles.pointNum}>{cap.n}</span>}
+              {n && <span className={styles.pointNum}>{n}</span>}
               <h3>{f.title}</h3>
               <p>{f.text}</p>
             </div>
@@ -892,10 +916,13 @@ function StudyItem({ item }) {
     /* copy on top, then the screen filling the rest of the card */
     case 'feature': {
       const cap = splitCaption(item.figure?.caption)
+      /* the number belongs to the stage, not to the screen that captions it,
+         so it survives a section whose visuals moved to one video */
+      const n = item.n ?? cap.n
       return (
         <div className={styles.feature}>
           <div className={styles.featureCopy}>
-            {cap.n && <span className={styles.pointNum}>{cap.n}</span>}
+            {n && <span className={styles.pointNum}>{n}</span>}
             <h3>{item.title}</h3>
             <p>{item.text}</p>
             {/* only worth showing when it says something the title does not */}

@@ -51,19 +51,11 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'HRM Premium Scheduling was a 0 to 1 product initiative designed to help restaurant operators create and manage employee schedules.',
+            text: 'HRM Premium Scheduling was a 0 to 1 product initiative designed to help restaurant operators create and manage employee schedules. There was no existing experience to optimize, so we had to understand how restaurants actually schedule their teams, decide which problems were worth solving, and establish a product model that could support different types of merchants.',
           },
           {
             type: 'text',
-            text: 'There was no existing scheduling experience to optimize. We had to understand how restaurants actually schedule their teams, decide which problems were worth solving, and establish a product model that could support different types of merchants.',
-          },
-          {
-            type: 'text',
-            text: 'I worked across problem discovery, pain point validation, event storming, rapid prototyping and usability testing to shape the initial product direction.',
-          },
-          {
-            type: 'text',
-            text: 'The most important finding was that there is no single scheduling behavior across merchants. Rather than force users into our initial mental model, we simplified the experience and built a more flexible foundation.',
+            text: 'I worked across problem discovery, pain point validation, event storming, rapid prototyping and usability testing to shape the initial direction. The most important finding was that there is no single scheduling behavior across merchants, so rather than force users into our initial mental model, we simplified the experience and built a more flexible foundation.',
           },
         ],
       },
@@ -73,11 +65,7 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'Restaurant scheduling can vary significantly depending on the size of the restaurant, number of outlets, staffing structure and operating patterns.',
-          },
-          {
-            type: 'text',
-            text: 'A small restaurant may manage a relatively small team manually, while larger operators need to coordinate many employees, positions and time periods across multiple outlets.',
+            text: 'Restaurant scheduling varies with the size of the restaurant, the number of outlets, the staffing structure and the operating pattern. A small restaurant may manage a relatively small team manually, while larger operators coordinate many employees, positions and time periods across multiple outlets.',
           },
           {
             type: 'text',
@@ -107,29 +95,25 @@ export const CASE_STUDIES = {
               {
                 label: 'Pain Point Discovery',
                 body: [
-                  'We began with the friction merchants hit when planning their workforce.',
-                  'We gathered examples across different operational contexts, rather than assume one restaurant’s workflow stood for the market. That gave us a first set of pain points to investigate.',
+                  'We began with the friction merchants hit when planning their workforce, gathering examples across different operational contexts rather than assume one restaurant’s workflow stood for the market. That gave us a first set of pain points to investigate.',
                 ],
               },
               {
                 label: 'Validating the Pain Points',
                 body: [
-                  'We then checked which of those pain points were actually meaningful to merchants.',
-                  'That separated real operational problems from assumptions that only made sense from the inside.',
+                  'We then checked which of those pain points were actually meaningful to merchants, separating real operational problems from assumptions that only made sense from the inside.',
                 ],
               },
               {
                 label: 'Event Storming',
                 body: [
-                  'We used event storming to map the scheduling process: its events, actions and dependencies.',
-                  'It gave the team one shared view of the journey, and showed where the product needed to intervene.',
+                  'We used event storming to map the scheduling process: its events, actions and dependencies. It gave the team one shared view of the journey, and showed where the product needed to intervene.',
                 ],
               },
               {
                 label: 'Defining the Product Goal',
                 body: [
-                  'Discovery gave us the problem statement and the product goal.',
-                  'The challenge was no longer “How do we build a scheduling tool?” It became the question below.',
+                  'Discovery gave us the problem statement and the product goal. The challenge was no longer “How do we build a scheduling tool?” It became the question below.',
                 ],
               },
             ],
@@ -159,11 +143,7 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'With limited time available, we needed a way to validate the whole scheduling journey before investing heavily in production ready UI.',
-          },
-          {
-            type: 'text',
-            text: 'Instead of designing every screen individually, I created an AI assisted prototype as a structural representation of the end to end flow.',
+            text: 'With limited time available, we needed a way to validate the whole scheduling journey before investing heavily in production ready UI. Instead of designing every screen individually, I created an AI assisted prototype as a structural representation of the end to end flow.',
           },
           {
             type: 'text',
@@ -215,11 +195,7 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'We collected scheduling examples from merchants with different operational scales, from smaller restaurants to larger operators with multiple outlets.',
-          },
-          {
-            type: 'text',
-            text: 'We then conducted usability testing with 3 merchants using the proposed scheduling flow.',
+            text: 'We collected scheduling examples from merchants of different operational scales, from smaller restaurants to larger operators with multiple outlets, then ran usability testing with 3 merchants on the proposed scheduling flow.',
           },
           {
             type: 'text',
@@ -236,9 +212,8 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'The prototype allowed merchants to move through the scheduling process.',
+            text: 'The prototype allowed merchants to move through the scheduling process, but testing revealed a more important problem.',
           },
-          { type: 'text', text: 'But testing revealed a more important problem.' },
           /* the hinge of the study: the finding and the score that produced
              it, as one object rather than a claim followed by its evidence */
           {
@@ -250,10 +225,9 @@ export const CASE_STUDIES = {
             label: 'Average confidence',
             note: 'Merchants reported an average confidence of approximately 3/5 when using the proposed experience.',
           },
-          { type: 'text', text: 'The issue wasn’t simply usability in the traditional sense.' },
           {
             type: 'text',
-            text: 'The deeper problem was confidence in the product’s mental model.',
+            text: 'The issue wasn’t simply usability in the traditional sense. The deeper problem was confidence in the product’s mental model.',
           },
         ],
       },
@@ -265,22 +239,13 @@ export const CASE_STUDIES = {
           { type: 'subhead', text: 'Our terminology was too product centric' },
           {
             type: 'text',
-            text: 'Some of the terminology made sense from a system perspective, but wasn’t necessarily familiar to restaurant operators.',
-          },
-          {
-            type: 'text',
-            text: 'Users preferred a more simplified and intuitive way of expressing the same concepts.',
-          },
-          {
-            type: 'text',
-            text: 'We couldn’t simply expose the underlying scheduling logic. We had to translate the system into the operator’s language.',
+            text: 'Some of the terminology made sense from a system perspective but wasn’t familiar to restaurant operators, who preferred a simpler way of expressing the same concepts. We couldn’t just expose the underlying scheduling logic; we had to translate the system into the operator’s language.',
           },
           { type: 'subhead', text: 'Every merchant schedules differently' },
           {
             type: 'text',
-            text: 'The scheduling samples we collected also showed significant variation between merchants.',
+            text: 'The scheduling samples we collected also showed significant variation between merchants. Different restaurants had different:',
           },
-          { type: 'text', text: 'Different restaurants had different:' },
           {
             type: 'bullets',
             items: [
@@ -303,11 +268,7 @@ export const CASE_STUDIES = {
           { type: 'subhead', text: 'From designing the perfect workflow to designing a flexible foundation' },
           {
             type: 'text',
-            text: 'The usability testing changed how we approached the first version.',
-          },
-          {
-            type: 'text',
-            text: 'Instead of trying to make our initial scheduling model comprehensive, we focused on making the core workflow understandable and adaptable.',
+            text: 'The usability testing changed how we approached the first version. Instead of trying to make our initial scheduling model comprehensive, we focused on making the core workflow understandable and adaptable.',
           },
           { type: 'text', text: 'Our priorities became:' },
           {
@@ -331,11 +292,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'This was also where I introduced an AI assisted implementation workflow that I had been developing using a Claude orchestrator.',
-          },
-          {
-            type: 'text',
-            text: 'The orchestrator helped convert the validated interface into components aligned with our existing design system.',
+            text: 'This was also where I introduced an AI assisted implementation workflow that I had been developing using a Claude orchestrator. It helped convert the validated interface into components aligned with that system.',
           },
           { type: 'subhead', text: 'Establish the Product Foundation' },
           {
@@ -350,11 +307,7 @@ export const CASE_STUDIES = {
           { type: 'subhead', text: 'Preserve Product Thinking' },
           {
             type: 'text',
-            text: 'The AI workflow came in only after the problem and the flow were validated. AI accelerated execution; it did not decide what the product should be.',
-          },
-          {
-            type: 'text',
-            text: 'This distinction became an important part of my approach to AI assisted product design:',
+            text: 'The AI workflow came in only after the problem and the flow were validated. AI accelerated execution; it did not decide what the product should be. That distinction became an important part of my approach to AI assisted product design:',
           },
           {
             type: 'callout',
@@ -372,11 +325,19 @@ export const CASE_STUDIES = {
             type: 'text',
             text: 'The first phase of HRM Premium Scheduling established a complete scheduling workflow built around:',
           },
+          /* the walkthrough carries the interface for this whole section, so
+             the six stages below it are the summary rather than the showcase */
+          {
+            type: 'figure',
+            video: '/assets/hrm-walkthrough.mp4',
+            pending: true,
+            caption: '01 The scheduling workflow end to end',
+          },
           {
             type: 'feature',
+            n: '01',
             title: 'First Week Setup',
             text: 'A guided onboarding experience to help operators establish their first schedule.',
-            figure: { src: '/assets/hrm-07-first-week.png', pending: true, caption: '01 First Week Setup' },
           },
           /* the entry point takes the full width; the four stages that follow
              it do not each need one, and six identical bars read as a list
@@ -385,28 +346,24 @@ export const CASE_STUDIES = {
             type: 'featureGrid',
             items: [
               {
+                n: '02',
                 title: 'Demand Planning',
                 text: 'Define staffing requirements by time range and position.',
-                figure: { src: '/assets/hrm-08-demand.png', pending: true, caption: '02 Demand Planning' },
               },
               {
+                n: '03',
                 title: 'Auto Scheduling',
                 text: 'Generate a proposed schedule based on the defined requirements.',
-                figure: { src: '/assets/hrm-09-auto-scheduling.png', pending: true, caption: '03 Auto Scheduling' },
               },
               {
+                n: '04',
                 title: 'Review and Publish',
                 text: 'Allow operators to validate the schedule before making it available to their team.',
-                figure: {
-                  src: '/assets/hrm-10-review-publish.png',
-                  pending: true,
-                  caption: '04 Review and Publish',
-                },
               },
               {
+                n: '05',
                 title: 'Schedule Reuse',
                 text: 'Copy existing schedules into subsequent weeks to reduce repetitive work.',
-                figure: { src: '/assets/hrm-11-copy-week.png', pending: true, caption: '05 Schedule Reuse' },
               },
             ],
           },
@@ -424,19 +381,11 @@ export const CASE_STUDIES = {
         items: [
           {
             type: 'text',
-            text: 'The most valuable moment in the project was discovering that our first solution wasn’t solid enough.',
+            text: 'The most valuable moment in the project was discovering that our first solution wasn’t solid enough. We could have continued refining the prototype because the flow was technically functional, but merchant testing showed us that functional does not mean intuitive.',
           },
           {
             type: 'text',
-            text: 'We could have continued refining the prototype because the flow was technically functional. Instead, merchant testing showed us that functional does not mean intuitive.',
-          },
-          {
-            type: 'text',
-            text: 'A 3/5 confidence score forced us back to our assumptions: the terminology, and the idea that restaurants fit one scheduling model.',
-          },
-          {
-            type: 'text',
-            text: 'For me, this reinforced an important principle in 0 to 1 product design:',
+            text: 'A 3/5 confidence score forced us back to our assumptions: the terminology, and the idea that restaurants fit one scheduling model. For me, that reinforced an important principle in 0 to 1 product design:',
           },
           {
             type: 'callout',
