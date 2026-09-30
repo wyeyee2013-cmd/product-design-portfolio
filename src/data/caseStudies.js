@@ -89,7 +89,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'iaDiagram',
-            caption: '01 Spaghetti vs scalable — the tangle the audit mapped, and the architecture that replaced it',
+            caption: '01 Spaghetti vs scalable: the tangle the audit mapped, and the architecture that replaced it',
           },
         ],
       },
@@ -119,7 +119,7 @@ export const CASE_STUDIES = {
             /* framed 4:3 so the legacy screen stays whole; the revamp is
                1194x834 and gives up a sliver left and right instead */
             aspect: '4 / 3',
-            caption: '02 The generic blue build against the FeedMe revamp — drag to compare',
+            caption: '02 The generic blue build against the FeedMe revamp. Drag to compare',
           },
         ],
       },
@@ -224,7 +224,7 @@ export const CASE_STUDIES = {
             light: '/assets/pos-02-ordering.png',
             dark: '/assets/pos-06-ordering-dark.png',
             labels: ['Light', 'Dark'],
-            caption: '06 One screen, both themes — drag to compare',
+            caption: '06 One screen, both themes. Drag to compare',
           },
         ],
       },
@@ -238,7 +238,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'Each session was an interview built around a set of actions for the merchant to carry out on the new interface. My job was to observe those actions — where they hesitated, what they reached for first, which steps they skipped — rather than to take their word for how the product felt.',
+            text: 'Each session was an interview built around a set of actions for the merchant to carry out on the new interface. My job was to observe those actions (where they hesitated, what they reached for first, which steps they skipped) rather than to take their word for how the product felt.',
           },
         ],
       },

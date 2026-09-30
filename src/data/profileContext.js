@@ -37,9 +37,9 @@ function itemText(item) {
     case 'callout':
       return [item.title, item.subtitle, item.text, ...(item.bullets || [])]
         .filter(Boolean)
-        .join(' — ')
+        .join(' · ')
     case 'feature':
-      return `${item.title} — ${item.text}`
+      return `${item.title}: ${item.text}`
     case 'resultCards':
       return item.items.map((r) => `- ${r}`).join('\n')
     default:
@@ -58,7 +58,7 @@ function caseStudyBrief(id) {
     })
     .filter(Boolean)
     .join('\n\n')
-  return `${study.title} — ${study.tagline}\nSector: ${study.sector}\n${study.credits
+  return `${study.title}: ${study.tagline}\nSector: ${study.sector}\n${study.credits
     .map((c) => `${c.label}: ${c.values.join('; ')}`)
     .join('\n')}\n\n${sections}`
 }
@@ -77,7 +77,7 @@ export function buildProfileContext() {
   parts.push(
     `## Experience\n${EXPERIENCE.map(
       (e) =>
-        `### ${e.role} — ${e.company} (${e.type})\n${e.period} · ${e.location}\n${e.points
+        `### ${e.role} · ${e.company} (${e.type})\n${e.period} · ${e.location}\n${e.points
           .map((p) => `- ${p}`)
           .join('\n')}`
     ).join('\n\n')}`
@@ -95,13 +95,13 @@ export function buildProfileContext() {
 
   parts.push(
     `## Talks and workshops (10+ given)\n${TALKS.map(
-      (t) => `- ${t.title} — ${t.kind} at ${t.event}. ${t.blurb}`
+      (t) => `- ${t.title}: ${t.kind} at ${t.event}. ${t.blurb}`
     ).join('\n')}`
   )
 
   parts.push(
     `## Hackathons and competitions\n${HACKATHONS.map(
-      (h) => `- ${h.name} — ${h.place} (${h.date})`
+      (h) => `- ${h.name}: ${h.place} (${h.date})`
     ).join('\n')}`
   )
 

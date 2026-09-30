@@ -65,7 +65,7 @@ export default function ProjectDeck() {
           href="#work"
           data-i={i}
           style={{ '--i': i, '--delay': `${i * 45}ms` }}
-          aria-label={`${p.title} — ${p.client}, ${p.year}`}
+          aria-label={`${p.title}, ${p.client}, ${p.year}`}
           onClick={(e) => onCardClick(e, p)}
         >
           <div className={styles.inner}>

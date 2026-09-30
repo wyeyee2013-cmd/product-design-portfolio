@@ -16,7 +16,7 @@ export default function ProjectCard({ project, index = 0 }) {
         className={styles.card}
         role="button"
         tabIndex={0}
-        aria-label={comingSoon ? `${title} — case study coming soon` : `Open case study: ${title}`}
+        aria-label={comingSoon ? `${title}: case study coming soon` : `Open case study: ${title}`}
         onClick={() => openProject(project)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -41,7 +41,7 @@ export default function ProjectCard({ project, index = 0 }) {
             <div className={styles.shot}>
               <img
                 src={thumb}
-                alt={`${title} — project thumbnail`}
+                alt={`${title} project thumbnail`}
                 style={{
                   height: fit.height,
                   width: fit.width,

@@ -87,9 +87,9 @@ function CompareFigure({ item }) {
         className={styles.compareStage}
         style={{ '--pos': `${pos}%`, aspectRatio: item.aspect ?? '1194 / 834' }}
       >
-        <img src={item.light} alt={`${item.caption} — ${before}`} loading="lazy" />
+        <img src={item.light} alt={`${item.caption}, ${before}`} loading="lazy" />
         <div className={styles.compareDark}>
-          <img src={item.dark} alt={`${item.caption} — ${after}`} loading="lazy" />
+          <img src={item.dark} alt={`${item.caption}, ${after}`} loading="lazy" />
         </div>
         <span className={`${styles.compareTag} ${styles.compareTagLight}`}>{before}</span>
         <span className={`${styles.compareTag} ${styles.compareTagDark}`}>{after}</span>
@@ -734,7 +734,7 @@ export function ProjectDoc({ project }) {
 
       {comingSoon && !study && (
         <p className={styles.soonNote}>
-          The full case study for this project is being written up — check back soon.
+          The full case study for this project is being written up. Check back soon.
         </p>
       )}
 

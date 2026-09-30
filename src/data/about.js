@@ -16,7 +16,7 @@ export const PROFILE = {
 export const LEDE = 'Doing wonders with the power of great designs'
 
 export const INTRO =
-  'A Product Designer who loves turning messy problems into products that actually make sense. With a background in Data Analytics, I sit somewhere between design, technology, data, and product — honestly, I quite like it there.'
+  'A Product Designer who loves turning messy problems into products that actually make sense. With a background in Data Analytics, I sit somewhere between design, technology, data, and product. Honestly, I quite like it there.'
 
 export const HIGHLIGHTS = [
   {
@@ -33,7 +33,7 @@ export const HIGHLIGHTS = [
   },
   {
     emoji: '🎤',
-    text: 'Given 10+ talks and workshops on design, technology, and community — apparently I enjoy sharing and yapping almost as much as I enjoy designing',
+    text: 'Given 10+ talks and workshops on design, technology, and community. Apparently I enjoy sharing and yapping almost as much as I enjoy designing',
   },
   {
     emoji: '❤️',
@@ -46,7 +46,7 @@ export const EXPERIENCE = [
     role: 'Senior Product Designer / Product Manager',
     company: 'FeedMe',
     type: 'Full-time',
-    period: 'Nov 2025 — Present · 10 mos',
+    period: 'Nov 2025 - Present · 10 mos',
     location: 'Kuala Lumpur, Malaysia · Hybrid',
     logo: '/assets/feedme-icon.png',
     points: [
@@ -60,7 +60,7 @@ export const EXPERIENCE = [
     role: 'AI Product Designer',
     company: 'Pantas',
     type: 'Full-time',
-    period: 'Oct 2024 — Nov 2025 · 1 yr 2 mos',
+    period: 'Oct 2024 - Nov 2025 · 1 yr 2 mos',
     location: 'Kuala Lumpur, Malaysia · Hybrid',
     logo: '/assets/pantas.png',
     points: [
@@ -78,7 +78,7 @@ export const EXPERIENCE = [
     role: 'UX/UI Designer',
     company: 'V Systems',
     type: 'Part-time',
-    period: 'May 2024 — Sep 2024 · 5 mos',
+    period: 'May 2024 - Sep 2024 · 5 mos',
     location: 'Kuala Lumpur, Malaysia · Remote',
     logo: '/assets/vsystems.jpg',
     points: [
@@ -93,7 +93,7 @@ export const EXPERIENCE = [
     role: 'Digital Analytics Intern',
     company: 'Maxis',
     type: 'Internship',
-    period: 'Jul 2023 — Nov 2023 · 5 mos',
+    period: 'Jul 2023 - Nov 2023 · 5 mos',
     location: 'Kuala Lumpur, Malaysia · Hybrid',
     logo: '/assets/maxis.jpg',
     points: [
@@ -109,7 +109,7 @@ export const EXPERIENCE = [
     role: 'CTI R&D Assistant (UX/UI Designer)',
     company: 'Asia Pacific University of Technology and Innovation',
     type: 'Part-time',
-    period: 'Sep 2022 — Nov 2023 · 1 yr 3 mos',
+    period: 'Sep 2022 - Nov 2023 · 1 yr 3 mos',
     location: 'Kuala Lumpur, Malaysia · Hybrid',
     logo: '/assets/apspace-logo.png',
     points: [
@@ -125,7 +125,7 @@ export const EXPERIENCE = [
     role: 'UX/UI Intern',
     company: 'Hiredly',
     type: 'Internship',
-    period: 'May 2022 — Aug 2022 · 4 mos',
+    period: 'May 2022 - Aug 2022 · 4 mos',
     location: 'Malaysia · Hybrid',
     logo: '/assets/hiredly.jpg',
     points: [
@@ -169,7 +169,7 @@ export const TALKS = [
     kind: 'Talk',
     year: null,
     blurb:
-      'How products actually get built in the real world, beyond just making screens look nice — product thinking, iteration, constraints, decision-making, and how AI is starting to reshape the way designers and developers work together.',
+      'How products actually get built in the real world, beyond just making screens look nice: product thinking, iteration, constraints, decision-making, and how AI is starting to reshape the way designers and developers work together.',
   },
   {
     title: 'Figma Sandbox: Build AI-powered apps with Figma Make',
@@ -177,7 +177,7 @@ export const TALKS = [
     kind: 'Workshop',
     year: null,
     blurb:
-      'A fundraiser for an animal shelter — taught students how to design with AI, then hosted a mini make-a-thon.',
+      'A fundraiser for an animal shelter. Taught students how to design with AI, then hosted a mini make-a-thon.',
   },
   {
     title: 'UI/UX Workshop',
@@ -199,7 +199,7 @@ export const TALKS = [
 
 /** Hackathons and competitions, newest first. */
 export const HACKATHONS = [
-  { name: 'AWS Great AI Hackathon — Corporate Track', place: 'Top 10', date: 'Oct 2025' },
+  { name: 'AWS Great AI Hackathon (Corporate Track)', place: 'Top 10', date: 'Oct 2025' },
   { name: 'Loophole Hackathon', place: 'Honorable Mention', date: 'May 2025' },
   { name: 'Deriv AI Hackathon, 2nd Edition', place: 'Top 10', date: 'Feb 2025' },
   { name: 'Hilti IT Competition 2024', place: 'Grand Champion', date: 'Jun 2024' },
@@ -232,7 +232,7 @@ export const HACKATHONS = [
 export const COMMUNITY = {
   heading: 'Community building',
   intro:
-    'I like being around people who build things. Alongside work, I help run two design and productivity communities in Kuala Lumpur — organising events that connect makers, and giving people a reason to show up and learn something.',
+    'I like being around people who build things. Alongside work, I help run two design and productivity communities in Kuala Lumpur, organising events that connect makers and giving people a reason to show up and learn something.',
   roles: [
     { org: 'Friends of Figma, Kuala Lumpur', role: 'Core committee' },
     { org: 'Notion Community, Kuala Lumpur', role: 'Core committee' },
@@ -248,7 +248,7 @@ export const COMMUNITY_PHOTOS = [
   {
     src: '/assets/community-fof-kl.jpg',
     alt: 'Friends of Figma Kuala Lumpur Config 2026 watch party group photo',
-    caption: 'Friends of Figma KL — Config 2026 watch party',
+    caption: 'Friends of Figma KL: Config 2026 watch party',
     wide: true,
   },
   {
@@ -285,7 +285,7 @@ export const PERSONAL = {
     'Design addict, casual gamer, and always down for cafe hopping.',
     'Enjoys solving problems by designing captivating interfaces, mostly by talking to people from all sorts of backgrounds.',
     'Has led design for several competitions and hackathons, and at times led UX/UI design departments to mature their design processes.',
-    'Volunteers — has taught English reading to children and parents in rural areas, and fundraised for several events and communities.',
+    'Volunteers: has taught English reading to children and parents in rural areas, and fundraised for several events and communities.',
     'Works in English, and gets by in Malay and Mandarin.',
   ],
 }

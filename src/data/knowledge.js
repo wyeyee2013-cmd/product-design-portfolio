@@ -13,11 +13,11 @@ export const KB = [
   /* ---------- who she is ---------- */
   {
     k: ['who is', 'who are', 'yourself', 'introduce', 'intro', 'bio', 'about you', 'about her', 'about cheryl'],
-    a: "I'm <b>Cheryl Lim</b> — a product designer who loves turning messy problems into products that actually make sense. With a background in data analytics, I sit somewhere between design, technology, data, and product. Honestly, I quite like it there.",
+    a: "I'm <b>Cheryl Lim</b>, a product designer who loves turning messy problems into products that actually make sense. With a background in data analytics, I sit somewhere between design, technology, data, and product. Honestly, I quite like it there.",
   },
   {
     k: ['role', 'job', 'title', 'position', 'work as', 'what do you do', 'what does she do'],
-    a: '<b>Senior Product Designer / Product Manager</b> at FeedMe. Both hats on the same problems — I scope the thing, design it, then carry it through the lifecycle with the PMs and developers.',
+    a: '<b>Senior Product Designer / Product Manager</b> at FeedMe. Both hats on the same problems. I scope the thing, design it, then carry it through the lifecycle with the PMs and developers.',
   },
   {
     k: ['experience', 'experienced', 'years', 'how long', 'career', 'seniority', 'how many years'],
@@ -25,21 +25,21 @@ export const KB = [
   },
   {
     k: ['background', 'data analytics', 'analytics', 'pivot', 'switch', 'how did you start', 'get into design', 'journey'],
-    a: 'I started in <b>data analytics</b> — my last analytics role was at Maxis, building data layers, BigQuery pipelines and Looker dashboards. Design pulled me in because I wanted to shape the thing people actually touch, not just measure it afterwards. The data habit stayed.',
+    a: 'I started in <b>data analytics</b>. My last analytics role was at Maxis, building data layers, BigQuery pipelines and Looker dashboards. Design pulled me in because I wanted to shape the thing people actually touch, not just measure it afterwards. The data habit stayed.',
   },
   {
     k: ['passionate', 'care about', 'mission', 'purpose', 'believe', 'value', 'motivat'],
-    a: 'Bridging humans and technology. Plenty of people are locked out of good software simply because it assumes fluency they were never given — so I design for intuitive, accessible, scalable products, and keep asking <i>“but why?”</i> until the answer holds up.',
+    a: 'Bridging humans and technology. Plenty of people are locked out of good software simply because it assumes fluency they were never given, so I design for intuitive, accessible, scalable products, and keep asking <i>“but why?”</i> until the answer holds up.',
   },
 
   /* ---------- where she works ---------- */
   {
     k: ['feedme', 'feed me', 'at feedme', 'company', 'employer', 'current job', 'where do you work', 'where does she work', 'work now', 'currently work', 'who do you work for'],
-    a: '<b>FeedMe</b> — a restaurant operating system. I lead the POS v7 → v8 revamp on tablet and mobile, design 0 → 1 work across five products (POS, KDS, Menu, FM OS, HRM Premium), and act as product manager for the onboarding portfolio.',
+    a: '<b>FeedMe</b> is a restaurant operating system. I lead the POS v7 → v8 revamp on tablet and mobile, design 0 → 1 work across five products (POS, KDS, Menu, FM OS, HRM Premium), and act as product manager for the onboarding portfolio.',
   },
   {
     k: ['pantas', 'at pantas', 'esg', 'sustainability', 'emission', 'carbon'],
-    a: 'I was <b>AI Product Designer at Pantas</b> for a year, on three B2B ESG products — Enterprise, Financed Emissions, and Connect. I also led the move off Django-Bootstrap onto a React + shadcn framework, which finally gave the modules one design system.',
+    a: 'I was <b>AI Product Designer at Pantas</b> for a year, on three B2B ESG products: Enterprise, Financed Emissions, and Connect. I also led the move off Django-Bootstrap onto a React + shadcn framework, which finally gave the modules one design system.',
   },
   {
     k: ['previous', 'past', 'before', 'other companies', 'worked at', 'employment', 'history'],
@@ -47,21 +47,21 @@ export const KB = [
   },
   {
     k: ['maxis', 'at maxis', 'bigquery', 'looker', 'tag manager', 'dashboard'],
-    a: 'At <b>Maxis</b> I was a digital analytics intern — data layers and event tracking through Google Tag Manager, dataset work in BigQuery, and Looker Studio dashboards I presented to stakeholders. Good grounding in what the numbers can and cannot tell you.',
+    a: 'At <b>Maxis</b> I was a digital analytics intern: data layers and event tracking through Google Tag Manager, dataset work in BigQuery, and Looker Studio dashboards I presented to stakeholders. Good grounding in what the numbers can and cannot tell you.',
   },
   {
     k: ['apu', 'at apu', 'university', 'apspace', 'student', 'academic'],
-    a: 'At <b>Asia Pacific University</b> I was an R&D assistant on the design side — I led the APSpace admin system revamp, built responsive interfaces in Angular Material, and designed a Thesis Bank system on OutSystems.',
+    a: 'At <b>Asia Pacific University</b> I was an R&D assistant on the design side. I led the APSpace admin system revamp, built responsive interfaces in Angular Material, and designed a Thesis Bank system on OutSystems.',
   },
 
   /* ---------- the work ---------- */
   {
     k: ['project', 'portfolio', 'case study', 'built', 'shipped', 'work on', 'works on', 'working on', 'her work', 'your work', 'selected work', 'what have you'],
-    a: 'Four pieces on this page — FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. The Pantas and Hireti write-ups are full case studies; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
+    a: 'Five pieces on this page: HRM Premium, FeedMe OS Onboarding, FeedMe POS, Pantas Organisation, and Hireti Talent. The FeedMe POS, Pantas and Hireti write-ups are full case studies; hover the stack at the bottom right to fan them out, or scroll to the projects board.',
   },
   {
     k: ['pos', 'point of sale', 'terminal', 'cashier', 'till'],
-    a: 'The POS is the hardest surface I design for: used one-handed, at speed, by staff trained once. I am leading the <b>v7 → v8 revamp</b> on tablet and mobile — sharpening the brand identity while laying the foundation of the design system.',
+    a: 'The POS is the hardest surface I design for: used one-handed, at speed, by staff trained once. I am leading the <b>v7 → v8 revamp</b> on tablet and mobile, sharpening the brand identity while laying the foundation of the design system.',
   },
   {
     k: ['kds', 'kitchen', 'display', 'cook', 'chef'],
@@ -69,7 +69,7 @@ export const KB = [
   },
   {
     k: ['menu', 'pricing', 'price', 'catalog'],
-    a: 'Menu is deceptively deep — base prices, price groups, schedulers, catalog deltas and variants can all touch the same item. Most of the work is making precedence visible <i>before</i> a manager hits publish.',
+    a: 'Menu is deceptively deep: base prices, price groups, schedulers, catalog deltas and variants can all touch the same item. Most of the work is making precedence visible <i>before</i> a manager hits publish.',
   },
   {
     k: ['onboarding', 'first run', 'activation'],
@@ -77,11 +77,11 @@ export const KB = [
   },
   {
     k: ['hrm', 'hr', 'employee', 'staff', 'roster', 'payroll'],
-    a: '<b>HRM Premium</b> covers the people side — shifts, skills and permissions — for businesses where the roster changes weekly and half the team is part-time.',
+    a: '<b>HRM Premium</b> covers the people side: shifts, skills and permissions for businesses where the roster changes weekly and half the team is part-time.',
   },
   {
     k: ['hireti', 'hilti', 'recruitment', 'hiring platform', 'talent', 'candidate'],
-    a: '<b>Hireti</b> is a recruitment system that matches candidates to roles without burying either side in forms — including a chatbot consultant for headcount budgeting. Team Sweetzerland from APU built it, and it won <b>Grand Champion of the Hilti IT Competition 2024</b>.',
+    a: '<b>Hireti</b> is a recruitment system that matches candidates to roles without burying either side in forms, including a chatbot consultant for headcount budgeting. Team Sweetzerland from APU built it, and it won <b>Grand Champion of the Hilti IT Competition 2024</b>.',
   },
   {
     k: ['result', 'impact', 'outcome', 'metric', 'measurable', 'success'],
@@ -89,7 +89,7 @@ export const KB = [
   },
   {
     k: ['zero to one', '0 to 1', 'greenfield', 'new product', 'from scratch'],
-    a: 'A lot of my work is <b>0 → 1</b> — shaping product experiences, design systems and strategy from nothing, alongside product managers and developers. Five products at FeedMe, three at Pantas.',
+    a: 'A lot of my work is <b>0 → 1</b>: shaping product experiences, design systems and strategy from nothing, alongside product managers and developers. Five products at FeedMe, three at Pantas.',
   },
 
   /* ---------- craft ---------- */
@@ -107,19 +107,19 @@ export const KB = [
   },
   {
     k: ['ai', 'artificial intelligence', 'llm', 'claude', 'automation', 'copilot'],
-    a: 'This is the part I am most excited about. At FeedMe I am driving adoption of <b>AI-powered design workflows</b> — Claude orchestrators and custom skills — to build an AI ecosystem for the design team. At Pantas I pushed AI-first principles into the products themselves.',
+    a: 'This is the part I am most excited about. At FeedMe I am driving adoption of <b>AI-powered design workflows</b>, using Claude orchestrators and custom skills, to build an AI ecosystem for the design team. At Pantas I pushed AI-first principles into the products themselves.',
   },
   {
     k: ['design system', 'token', 'component', 'library', 'consistency'],
-    a: 'I build token layers in three tiers — Foundation, Semantic, Component — so a colour decided once propagates everywhere without anyone re-picking a hex. I set up the foundation at FeedMe and unified Pantas’ modules onto React + shadcn.',
+    a: 'I build token layers in three tiers (Foundation, Semantic, Component) so a colour decided once propagates everywhere without anyone re-picking a hex. I set up the foundation at FeedMe and unified Pantas’ modules onto React + shadcn.',
   },
   {
     k: ['prototype', 'code', 'react', 'engineer', 'developer', 'front end', 'frontend'],
-    a: 'I prototype in React and plain CSS — this whole page is one. It keeps the handoff conversation grounded in what actually renders instead of what a static frame implies.',
+    a: 'I prototype in React and plain CSS; this whole page is one. It keeps the handoff conversation grounded in what actually renders instead of what a static frame implies.',
   },
   {
     k: ['accessib', 'accessible', 'accessibility', 'inclusive', 'a11y', 'disabilit'],
-    a: 'It is the reason I design at all. Low digital proficiency locks people out of services they need, so the target is interfaces that work for diverse demographics — and a journey that is genuinely enjoyable, not merely compliant.',
+    a: 'It is the reason I design at all. Low digital proficiency locks people out of services they need, so the target is interfaces that work for diverse demographics, and a journey that is genuinely enjoyable, not merely compliant.',
   },
   {
     k: ['research', 'user research', 'interview', 'usability', 'testing', 'user test'],
@@ -133,29 +133,29 @@ export const KB = [
   },
   {
     k: ['talk', 'workshop', 'speak', 'speaker', 'teach', 'taught', 'mentor', 'conference'],
-    a: '<b>10+ talks and workshops</b> on design, technology and community — design thinking and prototyping at UTP CodeFest, Build.Design.Launch with APU Hackthletes, Figma Make workshops, and a deep dive into UI/UX at Imaginehack. Apparently I enjoy sharing almost as much as designing.',
+    a: '<b>10+ talks and workshops</b> on design, technology and community: design thinking and prototyping at UTP CodeFest, Build.Design.Launch with APU Hackthletes, Figma Make workshops, and a deep dive into UI/UX at Imaginehack. Apparently I enjoy sharing almost as much as designing.',
   },
   {
     k: ['community', 'communities', 'figma kl', 'friends of figma', 'notion', 'meetup', 'organiser', 'organizer', 'committee'],
-    a: 'I am on the <b>core committee of Friends of Figma Kuala Lumpur</b> and of <b>Notion Community Kuala Lumpur</b>. Both are about giving makers a reason to show up and learn something — I like being around people who build things.',
+    a: 'I am on the <b>core committee of Friends of Figma Kuala Lumpur</b> and of <b>Notion Community Kuala Lumpur</b>. Both are about giving makers a reason to show up and learn something. I like being around people who build things.',
   },
   {
     k: ['volunteer', 'charity', 'giving back', 'fundrais', 'social', 'rural'],
-    a: 'I have taught English reading to children and parents in rural areas, and fundraised for several communities — one Figma Make workshop doubled as a fundraiser for an animal shelter. The best part is meeting people whose lives look nothing like mine.',
+    a: 'I have taught English reading to children and parents in rural areas, and fundraised for several communities; one Figma Make workshop doubled as a fundraiser for an animal shelter. The best part is meeting people whose lives look nothing like mine.',
   },
   {
     k: ['testimonial', 'reference', 'people say', 'say about', 'said about', 'colleague', 'recommend', 'review', 'feedback about'],
-    a: 'Scroll to the reviews section — teammates from Pantas and elsewhere describe me as resilient and reliable under tight timelines, fast without losing quality, and generally fun to work with. Their words, not mine.',
+    a: 'Scroll to the reviews section. Teammates from Pantas and elsewhere describe me as resilient and reliable under tight timelines, fast without losing quality, and generally fun to work with. Their words, not mine.',
   },
 
   /* ---------- personal ---------- */
   {
     k: ['hobby', 'fun', 'outside work', 'free time', 'personal', 'interest', 'gamer', 'game', 'cafe', 'coffee'],
-    a: 'Design addict, casual gamer, and always down for cafe hopping. Otherwise I build small interactive things for the sake of it — the dock at the bottom of this page started as one of those.',
+    a: 'Design addict, casual gamer, and always down for cafe hopping. Otherwise I build small interactive things for the sake of it; the dock at the bottom of this page started as one of those.',
   },
   {
     k: ['language', 'speak', 'english', 'mandarin', 'chinese', 'malay', 'bahasa'],
-    a: 'Hello, Hai, and 你好 — I work in English day to day and get by in Malay and Mandarin besides.',
+    a: 'Hello, Hai, and 你好. I work in English day to day and get by in Malay and Mandarin besides.',
   },
   {
     k: ['not just visuals', 'tagline', 'alive', 'digital things', 'headline'],
@@ -163,13 +163,13 @@ export const KB = [
   },
   {
     k: ['why you', 'why should', 'why hire'],
-    a: "Because I close the gap between the spec and the screen. I'll model the rules, prototype the risk, and hand engineering something that already survived its own edge cases — and I can hold the product manager’s end of the conversation too.",
+    a: "Because I close the gap between the spec and the screen. I'll model the rules, prototype the risk, and hand engineering something that already survived its own edge cases, and I can hold the product manager’s end of the conversation too.",
   },
 
   /* ---------- logistics ---------- */
   {
     k: ['available', 'hire', 'hiring', 'freelance', 'open to', 'opportunit', 'recruit', 'looking for'],
-    a: 'Yes — currently <b>available for work</b>. Product design or a design-engineering hybrid, contract or full-time. Best route is <b>cheryl.wylim@outlook.com</b>.',
+    a: 'Yes, currently <b>available for work</b>. Product design or a design-engineering hybrid, contract or full-time. Best route is <b>cheryl.wylim@outlook.com</b>.',
   },
   {
     k: ['contact', 'email', 'reach', 'get in touch', 'talk to', 'call', 'connect', 'message'],
@@ -181,7 +181,7 @@ export const KB = [
   },
   {
     k: ['resume', 'cv', 'download'],
-    a: 'There is a résumé link at the top of the About document — open <b>About</b> from the dock and it is in the top right.',
+    a: 'There is a résumé link at the top of the About document. Open <b>About</b> from the dock and it is in the top right.',
   },
   {
     k: ['location', 'based', 'where are you', 'city', 'country', 'remote', 'remotely', 'open to remote', 'work remote', 'timezone', 'relocat'],

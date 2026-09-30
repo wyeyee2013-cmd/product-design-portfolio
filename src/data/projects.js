@@ -13,10 +13,6 @@
 const ALL_PROJECTS = [
   {
     id: 'hrm-premium',
-    /* off the page for now. Delete this one line to bring it back, then
-       re-slot the row-0 tilts so the three cards alternate again:
-       first 7.65/clip-1, second -3.12/clip-2, third -7/clip-3. */
-    hidden: true,
     title: 'HRM Premium',
     deckTitle: 'HRM Premium',
     client: 'FeedMe',
@@ -25,14 +21,14 @@ const ALL_PROJECTS = [
     tool: 'Figma',
     tags: ['B2B2C', 'FeedMe', '2026'],
     summary:
-      'The people side — shifts, skills, and permissions — for businesses where the roster changes weekly and half the team is part-time.',
+      'The people side: shifts, skills, and permissions for businesses where the roster changes weekly and half the team is part-time.',
     thumb: '/assets/hrm-cover.png',
     gallery: [],
     comingSoon: true,
     tint: '#2f7d6b',
     row: 0,
-    rotate: -7,
-    clip: '/assets/clip-3.svg',
+    rotate: 7.65,
+    clip: '/assets/clip-1.svg',
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
@@ -45,14 +41,14 @@ const ALL_PROJECTS = [
     tool: 'Figma',
     tags: ['Mobile App', 'FeedMe', '2026'],
     summary:
-      'Getting an outlet from signed-up to actually selling. The design problem is sequencing — what has to be true before the first order can be rung up.',
+      'Getting an outlet from signed-up to actually selling. The design problem is sequencing: what has to be true before the first order can be rung up.',
     thumb: '/assets/feedme-os-cover.png',
     gallery: [],
     comingSoon: true,
     tint: '#8168fd',
     row: 0,
-    rotate: 7.65,
-    clip: '/assets/clip-1.svg',
+    rotate: -3.12,
+    clip: '/assets/clip-2.svg',
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
@@ -71,8 +67,8 @@ const ALL_PROJECTS = [
     tint: '#f0803c',
     accent: '#b35110',
     row: 0,
-    rotate: -3.12,
-    clip: '/assets/clip-2.svg',
+    rotate: -7,
+    clip: '/assets/clip-3.svg',
     fit: { height: '100%', top: '0', width: '100%', left: '0' },
   },
   {
