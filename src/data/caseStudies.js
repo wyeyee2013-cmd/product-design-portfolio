@@ -55,7 +55,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'Unlike an iteration project, we did not have an existing scheduling experience to optimize. We first needed to understand how restaurants actually schedule their teams, determine which problems were worth solving, and establish a product model that could support different types of merchants.',
+            text: 'There was no existing scheduling experience to optimize. We had to understand how restaurants actually schedule their teams, decide which problems were worth solving, and establish a product model that could support different types of merchants.',
           },
           {
             type: 'text',
@@ -63,7 +63,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'One of the most important findings was that there was no single scheduling behavior across merchants. Rather than forcing users into our initial mental model, we used the research to simplify the experience and establish a more flexible foundation for future iterations.',
+            text: 'The most important finding was that there is no single scheduling behavior across merchants. Rather than force users into our initial mental model, we simplified the experience and built a more flexible foundation.',
           },
         ],
       },
@@ -107,30 +107,29 @@ export const CASE_STUDIES = {
               {
                 label: 'Pain Point Discovery',
                 body: [
-                  'We began by identifying the friction merchants experience when planning their workforce.',
-                  'We gathered examples of how merchants currently approached scheduling, looking across different operational contexts rather than assuming that one restaurant’s workflow represented the entire market.',
-                  'This gave us an initial set of pain points and assumptions to investigate.',
+                  'We began with the friction merchants hit when planning their workforce.',
+                  'We gathered examples across different operational contexts, rather than assume one restaurant’s workflow stood for the market. That gave us a first set of pain points to investigate.',
                 ],
               },
               {
                 label: 'Validating the Pain Points',
                 body: [
-                  'We then validated whether these pain points were actually meaningful to merchants.',
-                  'This helped us separate genuine operational problems from assumptions that might simply make sense from an internal product perspective.',
+                  'We then checked which of those pain points were actually meaningful to merchants.',
+                  'That separated real operational problems from assumptions that only made sense from the inside.',
                 ],
               },
               {
                 label: 'Event Storming',
                 body: [
-                  'With the problem space clearer, we used event storming to map the scheduling process and understand the different events, actions and dependencies involved.',
-                  'This gave the team a shared view of the scheduling journey and helped us identify where the product needed to intervene.',
+                  'We used event storming to map the scheduling process: its events, actions and dependencies.',
+                  'It gave the team one shared view of the journey, and showed where the product needed to intervene.',
                 ],
               },
               {
                 label: 'Defining the Product Goal',
                 body: [
-                  'From the discovery work, we established the initial problem statement and product goal.',
-                  'The challenge was no longer simply: “How do we build a scheduling tool?” It became the question below.',
+                  'Discovery gave us the problem statement and the product goal.',
+                  'The challenge was no longer “How do we build a scheduling tool?” It became the question below.',
                 ],
               },
             ],
@@ -168,15 +167,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'The purpose of the prototype was not to present AI as the solution.',
-          },
-          {
-            type: 'text',
-            text: 'It was to create a fast, tangible representation of our hypothesis that we could put in front of real users.',
-          },
-          {
-            type: 'text',
-            text: 'We wanted to validate the workflow before we polished the interface.',
+            text: 'The prototype was not about presenting AI as the solution. It was a fast, tangible version of our hypothesis that we could put in front of real users.',
           },
           {
             type: 'figure',
@@ -196,15 +187,15 @@ export const CASE_STUDIES = {
             items: [
               {
                 label: 'First Week Onboarding',
-                text: 'Guide operators through setting up their first scheduling week instead of dropping them into an empty scheduling interface.',
+                text: 'Guide operators through their first scheduling week, rather than drop them into an empty interface.',
               },
               {
                 label: 'Define Demand',
-                text: 'Operators define staffing requirements based on time ranges and positions. This establishes how many people are required and where before assigning individual employees.',
+                text: 'Define staffing requirements by time range and position: how many people are needed and where, before anyone is assigned.',
               },
               {
                 label: 'Auto Scheduling',
-                text: 'Use the defined demand and available employee information to generate a proposed schedule. The intention was to reduce the amount of repetitive manual scheduling work.',
+                text: 'Generate a proposed schedule from the defined demand and the available employees, to cut the repetitive manual work.',
               },
               {
                 label: 'Review and Publish',
@@ -212,7 +203,7 @@ export const CASE_STUDIES = {
               },
               {
                 label: 'Copy to Next Week',
-                text: 'Allow operators to reuse an existing schedule rather than rebuilding the same structure every week. This was particularly important because scheduling is a recurring operational task.',
+                text: 'Reuse an existing schedule rather than rebuild the same structure every week, since scheduling is a recurring task.',
               },
             ],
           },
@@ -242,13 +233,6 @@ export const CASE_STUDIES = {
               'Does the workflow match how they currently think about scheduling?',
               'Do they feel confident enough to use it independently?',
             ],
-          },
-          {
-            type: 'figure',
-            src: '/assets/hrm-04-merchant-samples.png',
-            pending: true,
-            caption:
-              '04 The scheduling samples we collected, from a small restaurant to a multi outlet operator',
           },
           {
             type: 'text',
@@ -289,7 +273,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'This showed us that we couldn’t simply expose the underlying scheduling logic through the interface. We needed to translate the system into the language of the operator.',
+            text: 'We couldn’t simply expose the underlying scheduling logic. We had to translate the system into the operator’s language.',
           },
           { type: 'subhead', text: 'Every merchant schedules differently' },
           {
@@ -361,12 +345,12 @@ export const CASE_STUDIES = {
           { type: 'subhead', text: 'Orchestrate the Components' },
           {
             type: 'text',
-            text: 'Using the Claude based orchestrator, I accelerated the process of translating the exploratory UI into system compliant components. This reduced repetitive design work while maintaining consistency with the broader FeedMe ecosystem.',
+            text: 'The orchestrator accelerated the translation of exploratory UI into system compliant components, cutting repetitive design work while holding consistency with the wider FeedMe ecosystem.',
           },
           { type: 'subhead', text: 'Preserve Product Thinking' },
           {
             type: 'text',
-            text: 'The AI workflow was intentionally introduced after the problem and flow had been validated. AI was used to accelerate execution, not to decide what the product should be.',
+            text: 'The AI workflow came in only after the problem and the flow were validated. AI accelerated execution; it did not decide what the product should be.',
           },
           {
             type: 'text',
@@ -448,7 +432,7 @@ export const CASE_STUDIES = {
           },
           {
             type: 'text',
-            text: 'A 3/5 confidence score forced us to step back and question the assumptions behind our solution, particularly our terminology and the idea that restaurants could fit into a single scheduling model.',
+            text: 'A 3/5 confidence score forced us back to our assumptions: the terminology, and the idea that restaurants fit one scheduling model.',
           },
           {
             type: 'text',
